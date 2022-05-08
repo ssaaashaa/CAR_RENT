@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:CAR_RENT.pages"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="1080" 
-        Width="1920"
+        Height="720" 
+        Width="1280"
         Background="#3A4149"
         ResizeMode="NoResize"
         WindowState="Maximized"
+        WindowStyle="None"
        
         >
     <Grid>
@@ -21,16 +22,16 @@
                 BorderThickness="0"
                 Margin="30"
                 Click="Button_Click">
-            <!--<Button.Background>
+            <Button.Background>
                 <ImageBrush ImageSource="../images/exit.png"></ImageBrush>
-            </Button.Background>-->
-           
+            </Button.Background>
+
         </Button>
         <Frame
                x:Name="frame"
                HorizontalContentAlignment="Center" 
                VerticalContentAlignment="Center"  
-               Height="800"
+               Height="720"
             NavigationUIVisibility="Hidden"
                >
            

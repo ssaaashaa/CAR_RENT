@@ -195,6 +195,11 @@
     <Resource Include="images\user.png" />
     <Resource Include="images\key.png" />
     <Resource Include="images\exit.png" />
+    <Resource Include="images\car.png" />
+    <Resource Include="images\insurance.png" />
+    <Resource Include="images\clocks.png" />
+    <Resource Include="mainCar.png" />
+    <Resource Include="images\mainCar.png" />
     <Content Include="models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

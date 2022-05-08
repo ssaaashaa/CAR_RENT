@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:CAR_RENT.windows"
         mc:Ignorable="d"
         Title="CatalogWindow" 
-        Height="1080" 
-        Width="1920"
+        Height="720" 
+        Width="1280"
         Background="#3A4149"
         ResizeMode="NoResize"
         WindowState="Maximized"
         FontFamily="Comfortaa"
+        
         >
     <Grid>
         <StackPanel Height="60"
@@ -32,6 +33,7 @@
                     Background="Transparent"
                     Foreground="White"
                     Margin="0 0 80 0"
+                    BorderThickness="0"
                     
                    >
                 Личный кабинет
@@ -40,12 +42,17 @@
                     Width="80"
                     Background="Transparent"
                     Foreground="White"
+                    BorderThickness="0"
                     >Выйти</Button>
             
         </StackPanel>
         </StackPanel>
-        <Border Height="415" Width="395"
+        <Border Height="415" 
+                Width="395"
+                VerticalAlignment="Top"
                 HorizontalAlignment="Left"
+                Margin="160 120"
+                BorderThickness="0"
                 >
             <Border.OpacityMask>
                 <VisualBrush>
@@ -55,11 +62,73 @@
                 </VisualBrush>
             </Border.OpacityMask>
 
-            <Grid Height="415" Width="395" 
-            Background="#2B3238">
-                
+            <Grid Height="415" 
+                  Width="395" 
+                  Background="#2B3238">
+                <StackPanel Orientation="Vertical"
+                            Margin="30"
+                            HorizontalAlignment="Center">
+                    <Label FontSize="24"
+                           Foreground="White"
+                           Padding="20">
+                        Прокат автомобилей
+                    </Label>
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0 40 0 0">
+                        <Image Source="../images/car.png"
+                               Width="35"/>
+                        <Label FontSize="18"
+                               Foreground="White"
+                               Margin="30 0"
+                               VerticalAlignment="Center">Широкий выбор</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0 35 0 0">
+                        <Image Source="../images/clocks.png"
+                               Width="35"/>
+                        <TextBlock FontSize="18"
+                               Foreground="White"
+                               Margin="30 0"
+                               VerticalAlignment="Center"
+                                   TextWrapping="Wrap" Width="269">Возможность аренды авто в любое время суток</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0 35 0 0">
+                        <Image Source="../images/insurance.png"
+                               Width="35"/>
+                        <TextBlock FontSize="18"
+                               Foreground="White"
+                               Margin="30 0"
+                               VerticalAlignment="Center"
+                                   TextWrapping="Wrap" Width="269">Все авто застрахованы</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <Label VerticalAlignment="Bottom" 
+                       HorizontalAlignment="Center"
+                       FontSize="14"
+                       Margin="0 0 0 20"
+                       Foreground="white">carrent</Label>
             </Grid>
 
         </Border>
+        <StackPanel Width="600"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Margin="0 250 160 0"
+                   >
+        <Image Width="600"
+               Source="../images/mainCar.png"
+              VerticalAlignment="Top"
+               HorizontalAlignment="Right"
+               ></Image>
+        </StackPanel>
+        <Rectangle Width="auto"
+                   Height="3"
+                   Fill="White"
+                   Margin="150 570 150 131"/>
+
     </Grid>
 </Window>
