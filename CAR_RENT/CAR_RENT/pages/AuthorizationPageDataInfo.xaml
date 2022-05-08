@@ -1,0 +1,123 @@
+﻿<Page x:Class="CAR_RENT.pages.AuthorizationPageDataInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CAR_RENT.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" 
+      d:DesignWidth="1920"
+      Title="AuthorizationPageDataInfo"
+      Background="Transparent"
+      FontFamily="Comfortaa">
+
+    <Page.Resources>
+        <Style x:Key="TextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" SnapsToDevicePixels="True" CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="0 0 0 14"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style x:Key="Label" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0 0 0 5"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+
+        <Border Height="630" Width="650">
+            <Border.OpacityMask>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Border CornerRadius="20" Height="650" Width="630" Background="White"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.OpacityMask>
+
+            <Grid Height="630" Width="650" 
+            Background="white">
+                <StackPanel Orientation="Vertical"
+                            Margin="75 40">
+                    <Label FontSize="18">Регистрация</Label>
+                    <Label Style="{DynamicResource Label}"
+                           Margin="0 25 0 6">Номер телефона</Label>
+                    
+                    <TextBox Style="{DynamicResource TextBox}"
+                             Background="#3A4149" 
+                             Opacity="0.15"
+                             Width="225"
+                             Height="20"
+                             HorizontalAlignment="Left"></TextBox>
+                    <Label Style="{DynamicResource Label}">Домашний адрес</Label>
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             Background="#3A4149" 
+                             Opacity="0.15"
+                             Width="225"
+                             Height="20"
+                             HorizontalAlignment="Left"
+                             ></TextBox>
+                    <Label Style="{DynamicResource Label}">Серия паспорта</Label>
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             Background="#3A4149" 
+                             Opacity="0.15"
+                             Width="225"
+                             Height="20"
+                             HorizontalAlignment="Left"
+                             ></TextBox>
+                    <Label Style="{DynamicResource Label}">Номер паспорта</Label>
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             Background="#3A4149" 
+                             Opacity="0.15"
+                             Width="225"
+                             Height="20"
+                             HorizontalAlignment="Left"></TextBox>
+                    <Label Style="{DynamicResource Label}">Номер ВУ</Label>
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             Background="#3A4149" 
+                             Opacity="0.15"
+                             Width="225"
+                             Height="20"
+                             HorizontalAlignment="Left"></TextBox>
+                    <Label Style="{DynamicResource Label}">Опыт вождения</Label>
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             Background="#3A4149" 
+                             Opacity="0.15"
+                             Width="225"
+                             Height="20"
+                             HorizontalAlignment="Left"></TextBox>
+                    
+                   
+
+                </StackPanel>
+                <Label VerticalAlignment="Bottom" 
+                       HorizontalAlignment="Center"
+                       FontSize="18"
+                       Margin="0 0 0 20">carrent</Label>
+                <Button HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                            Width="70"
+                            Height="70"
+                            Background="Transparent"
+                            BorderThickness="0"
+                        Margin="0 0 75 80"
+                        Click="Button_Click"
+                            
+                            >
+                    <Image Source="..\images\regArrow.png"></Image>
+                </Button>
+            </Grid>
+
+        </Border>
+
+    </Grid>
+</Page>

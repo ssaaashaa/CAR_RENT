@@ -1,0 +1,39 @@
+﻿<Window x:Class="CAR_RENT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CAR_RENT.pages"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="1080" 
+        Width="1920"
+        Background="#3A4149"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+       
+        >
+    <Grid>
+        <Button HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Width="60"
+                Height="60"
+                BorderThickness="0"
+                Margin="30"
+                Click="Button_Click">
+            <!--<Button.Background>
+                <ImageBrush ImageSource="../images/exit.png"></ImageBrush>
+            </Button.Background>-->
+           
+        </Button>
+        <Frame
+               x:Name="frame"
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"  
+               Height="800"
+            NavigationUIVisibility="Hidden"
+               >
+           
+        </Frame>
+    </Grid>
+</Window>
