@@ -24,7 +24,12 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="Margin" Value="0 0 0 14"/>
+            <Setter Property="Background" Value="#E1E3E4"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="2"/>
         </Style>
         <Style x:Key="Label" TargetType="Label">
             <Setter Property="FontSize" Value="14"/>
@@ -53,45 +58,39 @@
                            Margin="0 25 0 6">Номер телефона</Label>
                     
                     <TextBox Style="{DynamicResource TextBox}"
-                             Background="#3A4149" 
-                             Opacity="0.15"
+                             x:Name="telephone"
                              Width="225"
                              Height="20"
                              HorizontalAlignment="Left"></TextBox>
                     <Label Style="{DynamicResource Label}">Домашний адрес</Label>
                     <TextBox Style="{DynamicResource TextBox}" 
-                             Background="#3A4149" 
-                             Opacity="0.15"
+                             x:Name="aldress"
                              Width="225"
                              Height="20"
                              HorizontalAlignment="Left"
                              ></TextBox>
                     <Label Style="{DynamicResource Label}">Серия паспорта</Label>
                     <TextBox Style="{DynamicResource TextBox}" 
-                             Background="#3A4149" 
-                             Opacity="0.15"
+                             x:Name="passportSeries"
                              Width="225"
                              Height="20"
                              HorizontalAlignment="Left"
                              ></TextBox>
                     <Label Style="{DynamicResource Label}">Номер паспорта</Label>
                     <TextBox Style="{DynamicResource TextBox}" 
-                             Background="#3A4149" 
-                             Opacity="0.15"
+                             x:Name="passportID"
                              Width="225"
                              Height="20"
                              HorizontalAlignment="Left"></TextBox>
                     <Label Style="{DynamicResource Label}">Номер ВУ</Label>
                     <TextBox Style="{DynamicResource TextBox}" 
-                             Background="#3A4149" 
-                             Opacity="0.15"
+                             x:Name="licenseID"
                              Width="225"
                              Height="20"
                              HorizontalAlignment="Left"></TextBox>
                     <Label Style="{DynamicResource Label}">Опыт вождения</Label>
                     <TextBox Style="{DynamicResource TextBox}" 
-                             Background="#3A4149" 
-                             Opacity="0.15"
+                             x:Name="experience"
                              Width="225"
                              Height="20"
                              HorizontalAlignment="Left"></TextBox>

@@ -64,6 +64,8 @@
                            Foreground="#8E8E8E"
                            x:Name="login"
                            Text="Логин"
+                           GotFocus="login_GotFocus"
+                           LostFocus="login_LostFocus"
                            />
                         </Border>
                     
@@ -106,6 +108,9 @@
                            x:Name="password"
                            Text="Пароль"
                            Padding="10 24"
+                           GotFocus="password_GotFocus"
+                           LostFocus="password_LostFocus"
+                           MaxLength="12"          
                         />
                         </Border>
                         <Border BorderBrush="Black" BorderThickness="1" Width="100"/>

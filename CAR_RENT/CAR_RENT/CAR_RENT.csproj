@@ -200,6 +200,8 @@
     <Resource Include="images\clocks.png" />
     <Resource Include="mainCar.png" />
     <Resource Include="images\mainCar.png" />
+    <Resource Include="images\done.png" />
+    <Resource Include="images\error.png" />
     <Content Include="models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

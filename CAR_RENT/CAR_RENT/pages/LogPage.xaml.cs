@@ -34,7 +34,7 @@ namespace CAR_RENT.pages
                 return;
             }
 
-            if(login.Text!=String.Empty && login.Text != String.Empty)
+            if(login.Text !="Логин" && password.Text!="Пароль")
             {
 
            
@@ -43,14 +43,14 @@ namespace CAR_RENT.pages
                 string log = login.Text;
                 string pass = password.Text;
 
-                CLIENT user = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log  && u.USER_TYPE=="0");
-                if (user!=null)
+                CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log  && u.USER_TYPE=="0");
+                if (client!=null)
                 {
 
-                        if (user.PASSWORD == pass)
+                        if (client.PASSWORD == pass)
                         {
                             CatalogWindow catalog = new CatalogWindow();
-                            App.currentClient = user;
+                            App.currentClient = client;
                             catalog.Show();
                             Application.Current.MainWindow.Close();
                         }
@@ -74,9 +74,34 @@ namespace CAR_RENT.pages
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
           AuthorizationPage authorizationPage = new AuthorizationPage();
-            NavigationService.Navigate(authorizationPage);
+          NavigationService.Navigate(authorizationPage);
 
 
         }
+
+        private void login_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (login.Text == "Логин")
+                login.Text = "";
+        }
+
+        private void login_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (login.Text == "")
+                login.Text = "Логин";
+        }
+
+        private void password_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (password.Text == "Пароль")
+                password.Text = "";
+        }
+
+        private void password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (password.Text == "")
+                password.Text = "Пароль";
+        }
+       
     }
 }
