@@ -97,6 +97,18 @@
     <Compile Include="models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Page Include="templates\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\StylesCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\CatalogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +120,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="windows\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\CatalogWindow.xaml.cs">
       <DependentUpon>CatalogWindow.xaml</DependentUpon>
@@ -206,6 +221,15 @@
     <Resource Include="images\done.png" />
     <Resource Include="images\error.png" />
     <Resource Include="images\arrowBack.png" />
+    <Resource Include="images\suv.png" />
+    <Resource Include="images\sedan.png" />
+    <Resource Include="images\fiat.png" />
+    <Resource Include="images\convertible.png" />
+    <Resource Include="images\jeep.png" />
+    <Resource Include="images\van.png" />
+    <Resource Include="images\container.png" />
+    <Resource Include="images\arrowBottom.png" />
+    <Resource Include="images\contracts.png" />
     <Content Include="models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

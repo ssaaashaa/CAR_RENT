@@ -29,10 +29,7 @@ namespace CAR_RENT.pages
 
         private void Come_Click(object sender, RoutedEventArgs e)
         {
-            if(login.Text=="admin" && password.Text=="admin")
-            {
-                return;
-            }
+           
 
             if(login.Text !="Логин" && password.Text!="Пароль")
             {
@@ -42,7 +39,14 @@ namespace CAR_RENT.pages
             {
                 string log = login.Text;
                 string pass = password.Text;
-
+                CLIENT admin = db.CLIENTS.FirstOrDefault(a => a.LOGIN == log && a.USER_TYPE == "1");
+                if (admin != null)
+                { 
+                        AdminWindow adminWindow = new AdminWindow();
+                        App.admin = admin;
+                        adminWindow.Show();
+                        Application.Current.MainWindow.Close();
+                }
                 CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log  && u.USER_TYPE=="0");
                 if (client!=null)
                 {
@@ -60,7 +64,10 @@ namespace CAR_RENT.pages
                 }
                     else
                     {
-                        MessageBox.Show("Пользователь не найден. Введите данные ещё раз!");
+                        if (admin == null)
+                        {
+                            MessageBox.Show("Пользователь не найден. Введите данные ещё раз!");
+                        }
                     }
             }
             }

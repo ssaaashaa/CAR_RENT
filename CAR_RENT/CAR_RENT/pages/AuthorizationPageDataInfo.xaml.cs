@@ -59,7 +59,6 @@ namespace CAR_RENT.pages
                     && adressDone.Visibility==Visibility.Visible
                     &&seriesDone.Visibility==Visibility.Visible
                     &&passportDone.Visibility==Visibility.Visible
-                    &&licenseID.Visibility==Visibility.Visible
                     &&numberDone.Visibility==Visibility.Visible
                     &&numDone.Visibility==Visibility.Visible
                     &&passportID.Text!="") 
@@ -100,7 +99,11 @@ namespace CAR_RENT.pages
         }
         void telephoneTextInput(object sender, TextCompositionEventArgs e)
         {
-          if (!Char.IsDigit(e.Text, 0) && !Char.IsWhiteSpace(e.Text, 0) && !Char.IsControl(e.Text,0))
+          //if (!Char.IsControl(e.Text, 0) && !Char.IsDigit(e.Text, 0) && !Char.IsWhiteSpace(e.Text, 0))
+          //  {
+          //      e.Handled = true; //не обрабатывать введеный символ
+          //  }
+            if (!e.Equals((Char)'+'))
             {
                 e.Handled = true; //не обрабатывать введеный символ
             }

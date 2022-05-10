@@ -111,7 +111,9 @@
                            GotFocus="password_GotFocus"
                            LostFocus="password_LostFocus"
                            MaxLength="12"          
-                        />
+                        >
+                                
+                            </TextBox>
                         </Border>
                         <Border BorderBrush="Black" BorderThickness="1" Width="100"/>
                 </StackPanel>

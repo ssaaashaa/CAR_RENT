@@ -15,25 +15,13 @@ using System.Windows.Shapes;
 namespace CAR_RENT.windows
 {
     /// <summary>
-    /// Логика взаимодействия для CatalogWindow.xaml
+    /// Логика взаимодействия для AdminWindow.xaml
     /// </summary>
-    public partial class CatalogWindow : Window
+    public partial class AdminWindow : Window
     {
-        public CatalogWindow()
+        public AdminWindow()
         {
             InitializeComponent();
-            
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-           
-           
         }
     }
 }

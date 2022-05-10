@@ -12,29 +12,11 @@
       FontFamily="Comfortaa">
 
     <Page.Resources>
-        <Style x:Key="TextBox" TargetType="TextBox">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" SnapsToDevicePixels="True" CornerRadius="5">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Margin" Value="0 0 0 14"/>
-            <Setter Property="Background" Value="#E1E3E4"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="2"/>
-        </Style>
-        <Style x:Key="Label" TargetType="Label">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Margin" Value="0 0 0 5"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../templates/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
     </Page.Resources>
 
@@ -54,38 +36,30 @@
                 <StackPanel Orientation="Vertical"
                             Margin="75 40">
                     <Label FontSize="18">Регистрация</Label>
-                    <Label Style="{DynamicResource Label}"
+                    <Label Style="{StaticResource Label}"
                            Margin="0 25 0 6">Номер телефона</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
+                        <TextBox Style="{StaticResource TextBox}"
                              x:Name="telephone"
                              SelectionChanged="telephone_SelectionChanged"></TextBox>
                         <Image Source="../images/done.png"
-                               Width="20"
-                               Height="20"
                                x:Name="telephDone"
-                               Margin="10 0"
-                               VerticalAlignment="Top"
-                               Visibility="Hidden"
+                               Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
-                    <Label Style="{DynamicResource Label}">Домашний адрес</Label>
+                    <Label Style="{StaticResource Label}">Домашний адрес</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}" 
+                        <TextBox Style="{StaticResource TextBox}" 
                              x:Name="adress"
                              HorizontalAlignment="Left"
                              SelectionChanged="aldress_SelectionChanged"
                              ></TextBox>
                         <Image Source="../images/done.png"
-                               Width="20"
-                               Height="20"
                                x:Name="adressDone"
-                               Margin="10 0"
-                               VerticalAlignment="Top"
-                               Visibility="Hidden"
+                               Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
-                    <Label Style="{DynamicResource Label}">Серия паспорта</Label>
+                    <Label Style="{StaticResource Label}">Серия паспорта</Label>
                     <StackPanel Orientation="Horizontal">
                   
                         <ComboBox Width="200"
@@ -126,58 +100,42 @@
                             </ComboBoxItem>
                         </ComboBox>
                         <Image Source="../images/done.png"
-                               Width="20"
-                               Height="20"
                                x:Name="seriesDone"
-                               Margin="10 0"
-                               VerticalAlignment="Top"
-                               Visibility="Hidden"
+                               Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
-                    <Label Style="{DynamicResource Label}">Номер паспорта</Label>
+                    <Label Style="{StaticResource Label}">Номер паспорта</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}" 
+                        <TextBox Style="{StaticResource TextBox}" 
                              x:Name="passportID"
                              HorizontalAlignment="Left"
                              SelectionChanged="passportID_SelectionChanged"
                              MaxLength="7"></TextBox>
                         <Image Source="../images/done.png"
-                               Width="20"
-                               Height="20"
                                x:Name="passportDone"
-                               Margin="10 0"
-                               VerticalAlignment="Top"
-                               Visibility="Hidden"
+                               Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
-                    <Label Style="{DynamicResource Label}">Номер ВУ</Label>
+                    <Label Style="{StaticResource Label}">Номер ВУ</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}" 
+                        <TextBox Style="{StaticResource TextBox}" 
                              x:Name="licenseID"
                              HorizontalAlignment="Left"
                              SelectionChanged="licenseID_SelectionChanged"></TextBox>
                         <Image Source="../images/done.png"
-                               Width="20"
-                               Height="20"
                                x:Name="numberDone"
-                               Margin="10 0"
-                               VerticalAlignment="Top"
-                               Visibility="Hidden"
+                               Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
-                    <Label Style="{DynamicResource Label}">Опыт вождения</Label>
+                    <Label Style="{StaticResource Label}">Опыт вождения</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}" 
+                        <TextBox Style="{StaticResource TextBox}" 
                              x:Name="experience"
                              HorizontalAlignment="Left"
                              SelectionChanged="experience_SelectionChanged"></TextBox>
                         <Image Source="../images/done.png"
-                               Width="20"
-                               Height="20"
                                x:Name="numDone"
-                               Margin="10 0"
-                               VerticalAlignment="Top"
-                               Visibility="Hidden"
+                               Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
                    

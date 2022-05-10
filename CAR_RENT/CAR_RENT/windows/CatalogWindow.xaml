@@ -6,14 +6,18 @@
         xmlns:local="clr-namespace:CAR_RENT.windows"
         mc:Ignorable="d"
         Title="CatalogWindow" 
-        Height="720" 
-        Width="1280"
+        Height="800" 
+        Width="1550"
         Background="#3A4149"
         ResizeMode="NoResize"
-        WindowState="Maximized"
+        WindowStyle="None"
         FontFamily="Comfortaa"
-        
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
         >
+    <Window.Resources>
+        <ResourceDictionary Source="../templates/Styles.xaml" />
+    </Window.Resources>
     <Grid>
         <StackPanel Height="60"
                     VerticalAlignment="Top"
@@ -43,6 +47,7 @@
                     Background="Transparent"
                     Foreground="White"
                     BorderThickness="0"
+                    Click="Button_Click"
                     >Выйти</Button>
             
         </StackPanel>
@@ -51,7 +56,7 @@
                 Width="395"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
-                Margin="160 120"
+                Margin="200 120"
                 BorderThickness="0"
                 >
             <Border.OpacityMask>
@@ -117,7 +122,7 @@
         <StackPanel Width="600"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"
-                    Margin="0 250 160 0"
+                    Margin="0 250 200 0"
                    >
         <Image Width="600"
                Source="../images/mainCar.png"
@@ -125,10 +130,105 @@
                HorizontalAlignment="Right"
                ></Image>
         </StackPanel>
+        <Image Source="..\images\arrowBottom.png"
+               Width="80"
+               Height="80"
+               HorizontalAlignment="Center"
+               Margin="0 350 0 0"></Image>
         <Rectangle Width="auto"
                    Height="3"
                    Fill="White"
-                   Margin="150 570 150 131"/>
-
+                   VerticalAlignment="Bottom"
+                   Margin="150 0 150 175"/>
+        <StackPanel Height="110"
+                    VerticalAlignment="Bottom" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0 0 0 40">
+            <Button Style="{StaticResource buttonCatalog}"
+                    Margin="38 0">
+        <StackPanel Orientation="Vertical">
+                <Image Source="../images/suv.png"
+                       Width="60"/>
+                <TextBlock Foreground="White"
+                       FontSize="18">
+                    Эконом
+                </TextBlock>
+            </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource buttonCatalog}"
+                     Margin="35 0">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="../images/fiat.png"
+                       Width="60"/>
+                <TextBlock Foreground="White"
+                       FontSize="18">
+                    Средний
+                </TextBlock>
+            </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource buttonCatalog}"
+                     Margin="45 0 20 0">
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="../images/sedan.png"
+                       Width="60"/>
+                <TextBlock Foreground="White"
+                       FontSize="18">
+                   Бизнес
+                </TextBlock>
+            </StackPanel>
+            </Button>
+            <Button Style="{StaticResource buttonCatalog}"
+                    Margin="40 0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="../images/convertible.png"
+                       Width="60"/>
+                <TextBlock Foreground="White"
+                       FontSize="18"
+                           TextWrapping="Wrap" 
+                           TextAlignment="Center"
+                           Width="128">
+                   Купе и кабриолеты
+                </TextBlock>
+            </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource buttonCatalog}"
+                     Margin="25 0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="../images/jeep.png"
+                       Width="60"/>
+                <TextBlock Foreground="White"
+                       FontSize="18">
+                    Внедорожники
+                </TextBlock>
+            </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource buttonCatalog}"
+                     Margin="25 0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="../images/van.png"
+                       Width="60"/>
+                <TextBlock Foreground="White"
+                       FontSize="18"
+                       TextWrapping="Wrap"
+                       Width="178"
+                       TextAlignment="Center">
+                    Микроавтобусы
+                    и минивэны
+                </TextBlock>
+            </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource buttonCatalog}"
+                     Margin="25 0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="../images/container.png"
+                       Width="60"/>
+                <TextBlock Foreground="White"
+                       FontSize="18">
+                   Грузовые
+                </TextBlock>
+            </StackPanel>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
