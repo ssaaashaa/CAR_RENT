@@ -18,7 +18,6 @@ namespace CAR_RENT.models
         public CLIENT()
         {
             this.CONTRACTS = new HashSet<CONTRACT>();
-            this.USER_TYPE = "0";
         }
     
         public int ID { get; set; }
@@ -34,7 +33,7 @@ namespace CAR_RENT.models
         public string DRIVING_EXPERIENCE { get; set; }
         public string TELEPHONE { get; set; }
         public string ADRESS { get; set; }
-        public string USER_TYPE { get; set; }
+        public Nullable<int> USER_TYPE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTRACT> CONTRACTS { get; set; }

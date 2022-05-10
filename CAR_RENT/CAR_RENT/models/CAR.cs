@@ -27,6 +27,7 @@ namespace CAR_RENT.models
         public string REGISTRATION_NUMBER { get; set; }
         public string STATUS { get; set; }
         public Nullable<int> RENT_ID { get; set; }
+        public string IMAGE { get; set; }
     
         public virtual MODEL_INFO MODEL_INFO { get; set; }
         public virtual RENT RENT { get; set; }

@@ -26,6 +26,7 @@
           <Property Name="REGISTRATION_NUMBER" Type="nchar" MaxLength="50" />
           <Property Name="STATUS" Type="nchar" MaxLength="30" />
           <Property Name="RENT_ID" Type="int" />
+          <Property Name="IMAGE" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="CLIENTS">
           <Key>
@@ -44,7 +45,7 @@
           <Property Name="DRIVING_EXPERIENCE" Type="nvarchar" MaxLength="20" />
           <Property Name="TELEPHONE" Type="nvarchar" MaxLength="30" />
           <Property Name="ADRESS" Type="nvarchar" MaxLength="30" />
-          <Property Name="USER_TYPE" Type="nvarchar" MaxLength="20" />
+          <Property Name="USER_TYPE" Type="int" />
         </EntityType>
         <EntityType Name="CONTRACTS">
           <Key>
@@ -229,6 +230,7 @@
           <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="STATUS" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="RENT_ID" Type="Int32" />
+          <Property Name="IMAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MODEL_INFO" Relationship="Self.FK_CARS_MODEL_INFO" FromRole="CARS" ToRole="MODEL_INFO" />
           <NavigationProperty Name="RENT" Relationship="Self.FK_CARS_RENT" FromRole="CARS" ToRole="RENT" />
           <NavigationProperty Name="CONTRACTS" Relationship="Self.FK_CONTRACTS_CARS" FromRole="CARS" ToRole="CONTRACTS" />
@@ -250,7 +252,7 @@
           <Property Name="DRIVING_EXPERIENCE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TELEPHONE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="ADRESS" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="USER_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="USER_TYPE" Type="Int32" />
           <NavigationProperty Name="CONTRACTS" Relationship="Self.FK_CONTRACTS_CLIENTS" FromRole="CLIENTS" ToRole="CONTRACTS" />
         </EntityType>
         <EntityType Name="CONTRACT">
@@ -443,6 +445,7 @@
                 <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="RENT_ID" ColumnName="RENT_ID" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

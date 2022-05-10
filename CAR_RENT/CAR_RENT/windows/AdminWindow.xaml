@@ -12,22 +12,103 @@
         ResizeMode="NoResize"
         FontFamily="Comfortaa"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary Source="../templates/Styles.xaml" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*">
             </ColumnDefinition>
             <ColumnDefinition Width="15*">
             </ColumnDefinition>
+            <ColumnDefinition Width="0.7*">
+            </ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.3*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" 
+              Grid.RowSpan="2"
+              Background="#2B3238"></Grid>
         <StackPanel Orientation="Vertical"
                     Grid.Column="0"
-                    Background="#2B3238">
-            <Button Background="Transparent">
+                    Grid.RowSpan="2"
+                    VerticalAlignment="Center">
+            <Button Style="{StaticResource buttonAdmin}"
+                    Click="Button_Click_1">
                 <Image Source="../images/contracts.png"
                        />
             </Button>
-            
+            <Button Style="{StaticResource buttonAdmin}">
+                <Image Source="../images/cars.png"
+                       />
+            </Button>
+            <Button Style="{StaticResource buttonAdmin}">
+                <Image Source="../images/carInfo.png"
+                       />
+            </Button>
+            <Button Style="{StaticResource buttonAdmin}">
+                <Image Source="../images/clients.png"
+                       />
+            </Button>
+            <Button Style="{StaticResource buttonAdmin}">
+                <Image Source="../images/accidents.png"
+                       />
+            </Button>
+            <Button Style="{StaticResource buttonAdmin}">
+                <Image Source="../images/price.png"
+                       />
+            </Button>
+            <Button Style="{StaticResource buttonAdmin}">
+                <Image Source="../images/promocode.png"
+                       />
+            </Button>
+           
+
         </StackPanel>
+        <Button Grid.Column="2"
+                Grid.Row="0"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="Button_Click"
+                >
+            <Image Source="../images/close.png"
+                   Width="50"
+                   Height="50"
+                   />
+        </Button>
+        <Frame Grid.Column="1"
+            Grid.ColumnSpan="2"
+               Grid.Row="1"
+               x:Name="frame">
+          
+        </Frame>
+        <Grid Grid.Column="1"
+              Grid.ColumnSpan="2"
+              Grid.Row="1"
+              x:Name="home">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*">
+                </ColumnDefinition>
+                <ColumnDefinition Width="10*">
+                </ColumnDefinition>
+                <ColumnDefinition Width="*">
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock Foreground="White"
+                           FontSize="24"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Padding="100"
+                          >
+                    Вы можете выбрать таблицу, с которой хотите поработать, или заполнить форму о произошедшем ДТП.
+                </TextBlock>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -39,7 +39,7 @@ namespace CAR_RENT.pages
             {
                 string log = login.Text;
                 string pass = password.Text;
-                CLIENT admin = db.CLIENTS.FirstOrDefault(a => a.LOGIN == log && a.USER_TYPE == "1");
+                CLIENT admin = db.CLIENTS.FirstOrDefault(a => a.LOGIN == log && a.USER_TYPE == 1);
                 if (admin != null)
                 { 
                         AdminWindow adminWindow = new AdminWindow();
@@ -47,7 +47,8 @@ namespace CAR_RENT.pages
                         adminWindow.Show();
                         Application.Current.MainWindow.Close();
                 }
-                CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log  && u.USER_TYPE=="0");
+                
+                CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log  && u.USER_TYPE==0);
                 if (client!=null)
                 {
 
