@@ -32,7 +32,7 @@
                HorizontalContentAlignment="Center" 
                VerticalContentAlignment="Center"  
                Height="720"
-            NavigationUIVisibility="Hidden"
+               NavigationUIVisibility="Hidden"
                >
            
         </Frame>

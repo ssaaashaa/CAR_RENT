@@ -50,13 +50,7 @@ namespace CAR_RENT.pages
             //одна буква маленькая, одна большая, одна цифра, один любой знак(ни цифра/буква)
             string patternPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{8,12}$";
             string patternName= @"^([a-zA-ZА-Яа-я])+$";
-            //Windows.notificationWindow window = new Windows.notificationWindow();
 
-            /* if (.Name.|| User.Email == "Email" || User.Login == "Login" || User.Password == "Password" || ConfirmPassword == "Confirm password")
-             {
-                 window.Show();
-                 window.notificationText.Text = "Please fill in the fields!";
-             }*/
             using (CAR_RENTEntities db = new CAR_RENTEntities())
             {
                 CLIENT client = db.CLIENTS.FirstOrDefault(u => u.LOGIN == log);
@@ -73,7 +67,14 @@ namespace CAR_RENT.pages
                         && Regex.IsMatch(n, patternName, RegexOptions.IgnoreCase)
                         && Regex.IsMatch(patron, patternName, RegexOptions.IgnoreCase)
                         && bday.Text!="Выбор даты"&& bday.Text != ""
-                        &&pass==passConf)
+                        &&pass==passConf
+                        &&login.Text!=""
+                        &&password.Text!=""
+                        &&passwordConfirmation.Text!=""
+                        &&surname.Text!=""
+                        &&name.Text!=""
+                        &&patronymic.Text!=""
+                        &&password.Text==passwordConfirmation.Text)
                   
                     {
                         Log = log;
@@ -89,6 +90,11 @@ namespace CAR_RENT.pages
                     }
                     else
                     {
+                        if (pass != passConf) 
+                        {                      
+                            MessageBox.Show("Пароли не совпадают!");
+                        }
+                        else if(pass==passConf)
                         MessageBox.Show("Заполните все поля!");
 
                     }
@@ -129,15 +135,25 @@ namespace CAR_RENT.pages
 
         private void login_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            string patternLogin = @"^[a-zA-Zа-яА-Я0-9_-]{3,16}$";
             string log = login.Text;
-            if (Regex.IsMatch(log, patternLogin, RegexOptions.IgnoreCase))
-            {
+            using (CAR_RENTEntities db = new CAR_RENTEntities()) 
+            { 
+            CLIENT client = db.CLIENTS.FirstOrDefault(u => u.LOGIN == log);
+            string patternLogin = @"^[a-zA-Zа-яА-Я0-9_-]{3,16}$";
+            if(client != null) 
+                { 
+                   busy.Visibility = Visibility.Visible;
+                }
+            if (client ==null && Regex.IsMatch(log, patternLogin, RegexOptions.IgnoreCase))
+               {
                 logDone.Visibility = Visibility.Visible;
-            }
+                busy.Visibility = Visibility.Hidden;
+                }
+
             else
-            {
-                logDone.Visibility = Visibility.Hidden;
+                {
+                    logDone.Visibility = Visibility.Hidden;
+                }
             }
         }
 
@@ -163,12 +179,74 @@ namespace CAR_RENT.pages
             if (pass==passConf)
             {
                 passConfDone.Visibility = Visibility.Visible;
+                notmatch.Visibility = Visibility.Hidden;
             }
-            else 
-            { 
+            else if(pass!=passConf)
+            {  
+                notmatch.Visibility = Visibility.Visible;
                 passConfDone.Visibility = Visibility.Hidden;
             }
 
+        }
+
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
+
+        private void surname_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            string surn = surname.Text;
+            string patternName = @"^([a-zA-ZА-Яа-я])+$";
+            if (Regex.IsMatch(surn, patternName, RegexOptions.IgnoreCase))
+            {
+                surnDone.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                surnDone.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void name_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            string n = name.Text;
+            string patternName = @"^([a-zA-ZА-Яа-я])+$";
+            if (Regex.IsMatch(n, patternName, RegexOptions.IgnoreCase))
+            {
+                nDone.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                nDone.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void patronymic_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            string patron=patronymic.Text;
+            string patternName = @"^([a-zA-ZА-Яа-я])+$";
+            if (Regex.IsMatch(patron, patternName, RegexOptions.IgnoreCase))
+            {
+                patronDone.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                patronDone.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void bday_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(bday.Text!=null)
+            {
+                bdayDone.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                bdayDone.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

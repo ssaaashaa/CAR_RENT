@@ -56,45 +56,130 @@
                     <Label FontSize="18">Регистрация</Label>
                     <Label Style="{DynamicResource Label}"
                            Margin="0 25 0 6">Номер телефона</Label>
-                    
+                    <StackPanel Orientation="Horizontal">
                     <TextBox Style="{DynamicResource TextBox}"
                              x:Name="telephone"
-                             Width="225"
-                             Height="20"
-                             HorizontalAlignment="Left"></TextBox>
+                             SelectionChanged="telephone_SelectionChanged"></TextBox>
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="telephDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                    </StackPanel>
                     <Label Style="{DynamicResource Label}">Домашний адрес</Label>
+                    <StackPanel Orientation="Horizontal">
                     <TextBox Style="{DynamicResource TextBox}" 
-                             x:Name="aldress"
-                             Width="225"
-                             Height="20"
+                             x:Name="adress"
                              HorizontalAlignment="Left"
+                             SelectionChanged="aldress_SelectionChanged"
                              ></TextBox>
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="adressDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                    </StackPanel>
                     <Label Style="{DynamicResource Label}">Серия паспорта</Label>
-                    <TextBox Style="{DynamicResource TextBox}" 
-                             x:Name="passportSeries"
-                             Width="225"
-                             Height="20"
-                             HorizontalAlignment="Left"
-                             ></TextBox>
+                    <StackPanel Orientation="Horizontal">
+                  
+                        <ComboBox Width="200"
+                                  Height="20"
+                                  x:Name="passportSeries"
+                                  Margin="0 0 0 12"
+                                  BorderThickness="0"
+                                  SelectionChanged="passportSeries_SelectionChanged">
+                            <ComboBoxItem>
+                                AB
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                BM
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                HB
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                KH
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                MP
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                MC
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                KB
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                PP
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                SP
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                DP
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="seriesDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                    </StackPanel>
                     <Label Style="{DynamicResource Label}">Номер паспорта</Label>
+                    <StackPanel Orientation="Horizontal">
                     <TextBox Style="{DynamicResource TextBox}" 
                              x:Name="passportID"
-                             Width="225"
-                             Height="20"
-                             HorizontalAlignment="Left"></TextBox>
+                             HorizontalAlignment="Left"
+                             SelectionChanged="passportID_SelectionChanged"
+                             MaxLength="7"></TextBox>
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="passportDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                    </StackPanel>
                     <Label Style="{DynamicResource Label}">Номер ВУ</Label>
+                    <StackPanel Orientation="Horizontal">
                     <TextBox Style="{DynamicResource TextBox}" 
                              x:Name="licenseID"
-                             Width="225"
-                             Height="20"
-                             HorizontalAlignment="Left"></TextBox>
+                             HorizontalAlignment="Left"
+                             SelectionChanged="licenseID_SelectionChanged"></TextBox>
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="numberDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                    </StackPanel>
                     <Label Style="{DynamicResource Label}">Опыт вождения</Label>
+                    <StackPanel Orientation="Horizontal">
                     <TextBox Style="{DynamicResource TextBox}" 
                              x:Name="experience"
-                             Width="225"
-                             Height="20"
-                             HorizontalAlignment="Left"></TextBox>
-                    
+                             HorizontalAlignment="Left"
+                             SelectionChanged="experience_SelectionChanged"></TextBox>
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="numDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                    </StackPanel>
                    
 
                 </StackPanel>
@@ -104,15 +189,27 @@
                        Margin="0 0 0 20">carrent</Label>
                 <Button HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                            Width="70"
-                            Height="70"
-                            Background="Transparent"
-                            BorderThickness="0"
+                        Width="70"
+                        Height="70"
+                        Background="Transparent"
+                        BorderThickness="0"
                         Margin="0 0 75 80"
                         Click="Button_Click"
                             
                             >
                     <Image Source="..\images\regArrow.png"></Image>
+                </Button>
+                <Button HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Width="70"
+                        Height="70"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="0 0 175 80"
+                        Click="Button_Click_1"
+                            
+                            >
+                    <Image Source="..\images\arrowBack.png"></Image>
                 </Button>
             </Grid>
 

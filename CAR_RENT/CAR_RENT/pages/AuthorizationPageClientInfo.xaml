@@ -67,11 +67,13 @@
                             
                              
                             />
+
                         <Image Source="../images/done.png"
                                Width="20"
                                x:Name="logDone"
                                Margin="10 0"
-                               Visibility="Hidden"/>
+                               Visibility="Hidden"
+                               />
                         <TextBlock x:Name="loginToolTip"
                         TextWrapping="Wrap" 
                                Width="234"
@@ -80,6 +82,12 @@
                                Foreground="#1D6A72"
                                Margin="7 0 0 0">*логин может содержать цифры, буквы, символы "-" и "_", длина от 3 до 16 символов</TextBlock>
                     </StackPanel>
+                    <Label Foreground="Red"
+                           Margin="0 -10 0 -5"
+                           FontSize="8"
+                           Visibility="Hidden"
+                           x:Name="busy"
+                           >Логин занят! Попробуйте другой.</Label>
                     <Label Style="{DynamicResource Label}">Пароль</Label>
                     <StackPanel Orientation="Horizontal" Width="565">
                     <TextBox Style="{DynamicResource TextBox}"
@@ -124,36 +132,88 @@
                                Foreground="#1D6A72"
                                >*пароли должены совпадать</TextBlock>
                     </StackPanel>
+                    <Label Foreground="Red"
+                           Margin="0 -3 0 -15"
+                           FontSize="8"
+                           Visibility="Hidden"
+                           x:Name="notmatch"
+                           >Пароли не совпадают!</Label>
                     <Label Style="{DynamicResource Label}"
                            Margin="0 10 0 10">Фамилия</Label>
-                    <TextBox Style="{DynamicResource TextBox}"
-                             x:Name="surname"/>
+                    <StackPanel Orientation="Horizontal"
+                                >
+                        <TextBox Style="{DynamicResource TextBox}"
+                             x:Name="surname"
+                             SelectionChanged="surname_SelectionChanged"    
+                                 />
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="surnDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical"
-                                    Margin="0 0 48 0">
+                                    Margin="0 0 10 0">
                             <Label Style="{DynamicResource Label}"
                                    Margin="0 0 0 10">Имя</Label>
+                            <StackPanel Orientation="Horizontal">
                             <TextBox Style="{DynamicResource TextBox}"
-                                     x:Name="name"/>
+                                     x:Name="name"
+                                     SelectionChanged="name_SelectionChanged"/>
+                               <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="nDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <Label Style="{DynamicResource Label}"
                                    Margin="0 0 0 10">Отчество</Label>
-                            <TextBox Style="{DynamicResource TextBox}"
-                                     x:Name="patronymic"/>
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Style="{DynamicResource TextBox}"
+                                     x:Name="patronymic"
+                                         SelectionChanged="patronymic_SelectionChanged"/>
+                                <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="patronDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+
+                            </StackPanel>
+                    </StackPanel>
                     </StackPanel>
                     <Label Style="{DynamicResource Label}">Дата рождения</Label>
-                    <DatePicker  Width="225"
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker  Width="225"
                              HorizontalAlignment="Left"
                                  FontSize="13"
                                  Margin="0 0 0 15"
                                  BorderThickness="0.1"
                                  BorderBrush="#3A4149"
                                  x:Name="bday"
+                                 SelectedDateChanged="bday_SelectedDateChanged"
                                 ></DatePicker>
-                   
-                   
+                              <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="bdayDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+
+                    </StackPanel>
                 </StackPanel>
                 <Label VerticalAlignment="Bottom" 
                        HorizontalAlignment="Center"
@@ -165,10 +225,21 @@
                             Height="70"
                             Background="Transparent"
                             BorderThickness="0"
-                            Margin="0 0 75 80"
+                            Margin="20 0 75 80"
                             Click="Button_Click"
                             >
                     <Image Source="..\images\regArrow.png"></Image>
+                </Button>
+                <Button HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                            Width="70"
+                            Height="70"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Margin="0 0 175 80"
+                            Click="Button_Click_1"
+                            >
+                    <Image Source="..\images\ArrowBack.png" RenderTransformOrigin="-0.213,0.532"></Image>
                 </Button>
             </Grid>
 
