@@ -28,6 +28,7 @@ namespace CAR_RENT.models
         public Nullable<int> COUNT_OF_DAYS { get; set; }
         public string PROMO_CODE { get; set; }
         public Nullable<int> TOTAL_COST { get; set; }
+        public string STATUS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ACCIDENT> ACCIDENTS { get; set; }

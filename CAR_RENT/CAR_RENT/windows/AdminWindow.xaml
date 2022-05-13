@@ -38,15 +38,20 @@
                     Grid.RowSpan="2"
                     VerticalAlignment="Center">
             <Button Style="{StaticResource buttonAdmin}"
-                    Click="Button_Click_1">
+                    x:Name="CLIENTS"
+                    Click="CLIENTS_Click">
                 <Image Source="../images/contracts.png"
                        />
             </Button>
-            <Button Style="{StaticResource buttonAdmin}">
+            <Button Style="{StaticResource buttonAdmin}" 
+                    x:Name="CARS"
+                    Click="CARS_Click">
                 <Image Source="../images/cars.png"
                        />
             </Button>
-            <Button Style="{StaticResource buttonAdmin}">
+            <Button Style="{StaticResource buttonAdmin}"
+                    x:Name="MODEL_INFO"
+                        Click="MODEL_INFO_Click">
                 <Image Source="../images/carInfo.png"
                        />
             </Button>
@@ -62,11 +67,21 @@
                 <Image Source="../images/price.png"
                        />
             </Button>
-            <Button Style="{StaticResource buttonAdmin}">
+            <Button Style="{StaticResource buttonAdmin}"
+                    x:Name="promocode"
+                    Click="promocode_Click">
                 <Image Source="../images/promocode.png"
                        />
             </Button>
-           
+            <Button Style="{StaticResource buttonAdmin}"
+                    Margin="0 60 0 0"
+                    Width="60"
+                   x:Name="HOME"
+                    Click="HOME_Click">
+                <Image Source="../images/home.png"
+                       />
+            </Button>
+
 
         </StackPanel>
         <Button Grid.Column="2"
@@ -83,32 +98,9 @@
         <Frame Grid.Column="1"
             Grid.ColumnSpan="2"
                Grid.Row="1"
-               x:Name="frame">
-          
+               x:Name="frame"
+              NavigationUIVisibility="Hidden">
         </Frame>
-        <Grid Grid.Column="1"
-              Grid.ColumnSpan="2"
-              Grid.Row="1"
-              x:Name="home">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*">
-                </ColumnDefinition>
-                <ColumnDefinition Width="10*">
-                </ColumnDefinition>
-                <ColumnDefinition Width="*">
-                </ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1"
-                        VerticalAlignment="Center">
-                <TextBlock Foreground="White"
-                           FontSize="24"
-                           TextWrapping="Wrap"
-                           TextAlignment="Center"
-                           Padding="100"
-                          >
-                    Вы можете выбрать таблицу, с которой хотите поработать, или заполнить форму о произошедшем ДТП.
-                </TextBlock>
-            </StackPanel>
-        </Grid>
+        
     </Grid>
 </Window>

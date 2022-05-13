@@ -25,8 +25,8 @@
           <Property Name="CLASS" Type="nvarchar" MaxLength="100" />
           <Property Name="REGISTRATION_NUMBER" Type="nchar" MaxLength="50" />
           <Property Name="STATUS" Type="nchar" MaxLength="30" />
-          <Property Name="RENT_ID" Type="int" />
           <Property Name="IMAGE" Type="nvarchar" MaxLength="200" />
+          <Property Name="RENT_PRICE" Type="int" />
         </EntityType>
         <EntityType Name="CLIENTS">
           <Key>
@@ -44,7 +44,7 @@
           <Property Name="DRIVER_LICENSE_ID" Type="nvarchar" MaxLength="30" />
           <Property Name="DRIVING_EXPERIENCE" Type="nvarchar" MaxLength="20" />
           <Property Name="TELEPHONE" Type="nvarchar" MaxLength="30" />
-          <Property Name="ADRESS" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADRESS" Type="nvarchar" MaxLength="100" />
           <Property Name="USER_TYPE" Type="int" />
         </EntityType>
         <EntityType Name="CONTRACTS">
@@ -59,6 +59,7 @@
           <Property Name="COUNT_OF_DAYS" Type="int" />
           <Property Name="PROMO_CODE" Type="nvarchar" MaxLength="20" />
           <Property Name="TOTAL_COST" Type="int" />
+          <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="MODEL_INFO">
           <Key>
@@ -78,14 +79,6 @@
           </Key>
           <Property Name="PROMO_CODE" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="DISCOUNT_AMOUNT" Type="nvarchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="RENT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="COUNT_OF_DAYS" Type="int" />
-          <Property Name="BYN_PER_DAY" Type="nvarchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -121,18 +114,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CARS_RENT">
-          <End Role="RENT" Type="Self.RENT" Multiplicity="0..1" />
-          <End Role="CARS" Type="Self.CARS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CARS">
-              <PropertyRef Name="RENT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CONTRACTS_CARS">
           <End Role="CARS" Type="Self.CARS" Multiplicity="0..1" />
           <End Role="CONTRACTS" Type="Self.CONTRACTS" Multiplicity="*" />
@@ -157,7 +138,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CONTRACTS_PROMO_CODE">
+        <Association Name="FK_CONTRACTS_PROMO_CODE1">
           <End Role="PROMO_CODE" Type="Self.PROMO_CODE" Multiplicity="0..1" />
           <End Role="CONTRACTS" Type="Self.CONTRACTS" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,7 +157,6 @@
           <EntitySet Name="CONTRACTS" EntityType="Self.CONTRACTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MODEL_INFO" EntityType="Self.MODEL_INFO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROMO_CODE" EntityType="Self.PROMO_CODE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RENT" EntityType="Self.RENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ACCIDENTS_CONTRACTS" Association="Self.FK_ACCIDENTS_CONTRACTS">
             <End Role="CONTRACTS" EntitySet="CONTRACTS" />
@@ -184,10 +164,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_CARS_MODEL_INFO" Association="Self.FK_CARS_MODEL_INFO">
             <End Role="MODEL_INFO" EntitySet="MODEL_INFO" />
-            <End Role="CARS" EntitySet="CARS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CARS_RENT" Association="Self.FK_CARS_RENT">
-            <End Role="RENT" EntitySet="RENT" />
             <End Role="CARS" EntitySet="CARS" />
           </AssociationSet>
           <AssociationSet Name="FK_CONTRACTS_CARS" Association="Self.FK_CONTRACTS_CARS">
@@ -198,7 +174,7 @@
             <End Role="CLIENTS" EntitySet="CLIENTS" />
             <End Role="CONTRACTS" EntitySet="CONTRACTS" />
           </AssociationSet>
-          <AssociationSet Name="FK_CONTRACTS_PROMO_CODE" Association="Self.FK_CONTRACTS_PROMO_CODE">
+          <AssociationSet Name="FK_CONTRACTS_PROMO_CODE1" Association="Self.FK_CONTRACTS_PROMO_CODE1">
             <End Role="PROMO_CODE" EntitySet="PROMO_CODE" />
             <End Role="CONTRACTS" EntitySet="CONTRACTS" />
           </AssociationSet>
@@ -229,10 +205,9 @@
           <Property Name="CLASS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="STATUS" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="RENT_ID" Type="Int32" />
           <Property Name="IMAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RENT_PRICE" Type="Int32" />
           <NavigationProperty Name="MODEL_INFO" Relationship="Self.FK_CARS_MODEL_INFO" FromRole="CARS" ToRole="MODEL_INFO" />
-          <NavigationProperty Name="RENT" Relationship="Self.FK_CARS_RENT" FromRole="CARS" ToRole="RENT" />
           <NavigationProperty Name="CONTRACTS" Relationship="Self.FK_CONTRACTS_CARS" FromRole="CARS" ToRole="CONTRACTS" />
         </EntityType>
         <EntityType Name="CLIENT">
@@ -251,7 +226,7 @@
           <Property Name="DRIVER_LICENSE_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="DRIVING_EXPERIENCE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TELEPHONE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="ADRESS" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="USER_TYPE" Type="Int32" />
           <NavigationProperty Name="CONTRACTS" Relationship="Self.FK_CONTRACTS_CLIENTS" FromRole="CLIENTS" ToRole="CONTRACTS" />
         </EntityType>
@@ -267,10 +242,11 @@
           <Property Name="COUNT_OF_DAYS" Type="Int32" />
           <Property Name="PROMO_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TOTAL_COST" Type="Int32" />
+          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ACCIDENTS" Relationship="Self.FK_ACCIDENTS_CONTRACTS" FromRole="CONTRACTS" ToRole="ACCIDENTS" />
           <NavigationProperty Name="CAR" Relationship="Self.FK_CONTRACTS_CARS" FromRole="CONTRACTS" ToRole="CARS" />
           <NavigationProperty Name="CLIENT" Relationship="Self.FK_CONTRACTS_CLIENTS" FromRole="CONTRACTS" ToRole="CLIENTS" />
-          <NavigationProperty Name="PROMO_CODE1" Relationship="Self.FK_CONTRACTS_PROMO_CODE" FromRole="CONTRACTS" ToRole="PROMO_CODE" />
+          <NavigationProperty Name="PROMO_CODE1" Relationship="Self.FK_CONTRACTS_PROMO_CODE1" FromRole="CONTRACTS" ToRole="PROMO_CODE" />
         </EntityType>
         <EntityType Name="MODEL_INFO">
           <Key>
@@ -291,16 +267,7 @@
           </Key>
           <Property Name="PROMO_CODE1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DISCOUNT_AMOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CONTRACTS" Relationship="Self.FK_CONTRACTS_PROMO_CODE" FromRole="PROMO_CODE" ToRole="CONTRACTS" />
-        </EntityType>
-        <EntityType Name="RENT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="COUNT_OF_DAYS" Type="Int32" />
-          <Property Name="BYN_PER_DAY" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CARS" Relationship="Self.FK_CARS_RENT" FromRole="RENT" ToRole="CARS" />
+          <NavigationProperty Name="CONTRACTS" Relationship="Self.FK_CONTRACTS_PROMO_CODE1" FromRole="PROMO_CODE" ToRole="CONTRACTS" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -336,18 +303,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CARS_RENT">
-          <End Role="RENT" Type="Self.RENT" Multiplicity="0..1" />
-          <End Role="CARS" Type="Self.CAR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CARS">
-              <PropertyRef Name="RENT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CONTRACTS_CARS">
           <End Role="CARS" Type="Self.CAR" Multiplicity="0..1" />
           <End Role="CONTRACTS" Type="Self.CONTRACT" Multiplicity="*" />
@@ -372,7 +327,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CONTRACTS_PROMO_CODE">
+        <Association Name="FK_CONTRACTS_PROMO_CODE1">
           <End Role="PROMO_CODE" Type="Self.PROMO_CODE" Multiplicity="0..1" />
           <End Role="CONTRACTS" Type="Self.CONTRACT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -391,7 +346,6 @@
           <EntitySet Name="CONTRACTS" EntityType="Self.CONTRACT" />
           <EntitySet Name="MODEL_INFO" EntityType="Self.MODEL_INFO" />
           <EntitySet Name="PROMO_CODE" EntityType="Self.PROMO_CODE" />
-          <EntitySet Name="RENTs" EntityType="Self.RENT" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_ACCIDENTS_CONTRACTS" Association="Self.FK_ACCIDENTS_CONTRACTS">
             <End Role="CONTRACTS" EntitySet="CONTRACTS" />
@@ -399,10 +353,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_CARS_MODEL_INFO" Association="Self.FK_CARS_MODEL_INFO">
             <End Role="MODEL_INFO" EntitySet="MODEL_INFO" />
-            <End Role="CARS" EntitySet="CARS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CARS_RENT" Association="Self.FK_CARS_RENT">
-            <End Role="RENT" EntitySet="RENTs" />
             <End Role="CARS" EntitySet="CARS" />
           </AssociationSet>
           <AssociationSet Name="FK_CONTRACTS_CARS" Association="Self.FK_CONTRACTS_CARS">
@@ -413,7 +363,7 @@
             <End Role="CLIENTS" EntitySet="CLIENTS" />
             <End Role="CONTRACTS" EntitySet="CONTRACTS" />
           </AssociationSet>
-          <AssociationSet Name="FK_CONTRACTS_PROMO_CODE" Association="Self.FK_CONTRACTS_PROMO_CODE">
+          <AssociationSet Name="FK_CONTRACTS_PROMO_CODE1" Association="Self.FK_CONTRACTS_PROMO_CODE1">
             <End Role="PROMO_CODE" EntitySet="PROMO_CODE" />
             <End Role="CONTRACTS" EntitySet="CONTRACTS" />
           </AssociationSet>
@@ -444,8 +394,8 @@
                 <ScalarProperty Name="CLASS" ColumnName="CLASS" />
                 <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-                <ScalarProperty Name="RENT_ID" ColumnName="RENT_ID" />
                 <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+                <ScalarProperty Name="RENT_PRICE" ColumnName="RENT_PRICE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -480,6 +430,7 @@
                 <ScalarProperty Name="COUNT_OF_DAYS" ColumnName="COUNT_OF_DAYS" />
                 <ScalarProperty Name="PROMO_CODE" ColumnName="PROMO_CODE" />
                 <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -501,15 +452,6 @@
               <MappingFragment StoreEntitySet="PROMO_CODE">
                 <ScalarProperty Name="PROMO_CODE1" ColumnName="PROMO_CODE" />
                 <ScalarProperty Name="DISCOUNT_AMOUNT" ColumnName="DISCOUNT_AMOUNT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RENTs">
-            <EntityTypeMapping TypeName="CAR_RENTModel.RENT">
-              <MappingFragment StoreEntitySet="RENT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="COUNT_OF_DAYS" ColumnName="COUNT_OF_DAYS" />
-                <ScalarProperty Name="BYN_PER_DAY" ColumnName="BYN_PER_DAY" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

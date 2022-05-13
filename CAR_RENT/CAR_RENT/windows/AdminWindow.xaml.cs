@@ -20,22 +20,49 @@ namespace CAR_RENT.windows
     /// </summary>
     public partial class AdminWindow : Window
     {
+        
         public AdminWindow()
         {
             InitializeComponent();
+            Frame = frame;
+            frame.Content = new homePage();
         }
-
+        public static Frame Frame { get; set; }
        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            foreach (Window w in App.Current.Windows)
+            w.Close();
+
+
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void promocode_Click(object sender, RoutedEventArgs e)
         {
-            clientPage clientPage = new clientPage();
-            frame.Navigate(clientPage);
-            home.Visibility = Visibility.Hidden;
+            Frame.Content=new promo_codePage();
+        }
+
+        private void CLIENTS_Click(object sender, RoutedEventArgs e)
+        {
+            clientsPage clientPage = new clientsPage();
+            Frame.Content = clientPage;
+        }
+
+        private void CARS_Click(object sender, RoutedEventArgs e)
+        {
+            carsPage carsPage = new carsPage();
+            Frame.Content = carsPage;
+        }
+
+        private void HOME_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new homePage();
+        }
+
+        private void MODEL_INFO_Click(object sender, RoutedEventArgs e)
+        {
+            modelInfo modelInfo = new modelInfo();
+            Frame.Content = modelInfo;
         }
     }
 }

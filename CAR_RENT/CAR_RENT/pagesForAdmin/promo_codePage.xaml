@@ -1,0 +1,115 @@
+﻿<Page x:Class="CAR_RENT.pagesForAdmin.promo_codePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CAR_RENT.pagesForAdmin"
+      mc:Ignorable="d" 
+       d:DesignHeight="690" 
+      d:DesignWidth="1280"
+      Background="#3A4149"
+      FontFamily="Comfortaa"
+      Title="promo_codePage1"
+      FontSize="16"
+      Foreground="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="6*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="3.5*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="3.5*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="3*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="DGridPromocodes"
+                  Grid.Column="1"   
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  FontSize="14"
+                  MouseDown="DGridPromocodes_MouseDown"
+                 HorizontalAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE1}" Width="auto"/>
+                <DataGridTextColumn Header="Скидка" Binding="{Binding DISCOUNT_AMOUNT}" Width="auto"/>                
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" x:Name="Edit" ></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1"
+              Grid.Column="3"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Промокод" Grid.Row="0" Margin="0 20"></TextBlock>
+            <TextBlock Text="Скидка" Grid.Row="1" Margin="0 20"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="1"
+              Grid.Column="4"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+             >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Text="Промокод" Grid.Row="0" Margin="0 20"></TextBox>
+            <TextBox Text="Скидка" Grid.Row="1" Margin="0 20"></TextBox>
+            <TextBox x:Name="PROMOCODE" Text="{Binding PROMO_CODE1}" Grid.Row="0" Width="200" Height="20" ></TextBox>
+            <TextBox x:Name="DISCOUNT" MaxLength="16" Text="{Binding DISCOUNT}" Grid.Row="1" Width="200" Height="20" ></TextBox>
+        </Grid>
+        <Button Content="Добавить"
+                Width="130"
+                Height="40"
+                FontSize="16"
+                x:Name="Add"
+                Click="Add_Click"
+                Grid.Column="3"
+                Grid.Row="2"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+               ></Button>
+        <Button Content="Удалить"
+                Width="130"
+                Height="40"
+                FontSize="16"
+                x:Name="Delete"
+                Click="Delete_Click"
+                Grid.Column="4"
+                Grid.Row="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"></Button>
+        <Button Content="Изменить"
+                Width="130"
+                Height="40"
+                FontSize="16"
+                x:Name="Update"
+                Click="Update_Click"
+                Grid.Column="3"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Top"></Button>
+        
+    </Grid>
+</Page>

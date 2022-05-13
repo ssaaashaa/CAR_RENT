@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="CAR_RENT.userControls.Car"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CAR_RENT.userControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" 
+             d:DesignWidth="600"
+             Foreground="White"
+             FontFamily="Comfortaa"
+             Background="Transparent"
+             FontSize="13"
+             >
+    <Border Width="Auto" Height="Auto" Name="windowFrame"
+          Background="#2B3238"
+          BorderThickness="1"
+          CornerRadius="40" >
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition  Height="10*"></RowDefinition>
+                <RowDefinition  Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid  Grid.Column="1"
+               Grid.Row="1"
+               Background="#2B3238"
+               Panel.ZIndex="1"
+               >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="0.8*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="currentName"
+                           VerticalAlignment="Top"
+                           Margin="0 15 0 0"
+                               FontSize="20"
+                               FontWeight="Bold"></TextBlock>
+                    <Image x:Name="currentImage" Grid.Row="1"
+                           ></Image>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.9*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition Height="0.8*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Стоимость аренды в сутки:"
+                          Margin="0 15 0 0"
+                           TextWrapping="Wrap"
+                           FontWeight="Bold"
+                           FontSize="14"
+                          ></TextBlock>
+                    <TextBlock Grid.Column="1"
+                         Height="20"
+                         Margin="0 15 0 0"
+                         FontSize="16"
+                         VerticalAlignment="Top"
+                           x:Name="price"></TextBlock>
+                    <Button Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Width="160"
+                        Height="30"
+                        Content="Бронирование авто"
+                        Background="#64AFB6"></Button>
+                    <TextBlock Grid.Row="2"
+                           Text="год выпуска: "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           ></TextBlock>
+                    <TextBlock Grid.Column="1"
+                           Grid.Row="2"
+                           VerticalAlignment="Center"
+                           x:Name="year"
+                           ></TextBlock>
+                    <TextBlock Grid.Row="3"
+                           Text="тип кузова: "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Column="1"
+                           Grid.Row="3"
+                           VerticalAlignment="Center"
+                           x:Name="bodyType"
+                           ></TextBlock>
+                    <TextBlock Grid.Row="4"
+                           Text="объем двигателя: "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Column="1"
+                           Grid.Row="4"
+                           VerticalAlignment="Center"
+                           x:Name="engineCapacity"
+                           ></TextBlock>
+                    <TextBlock Grid.Row="5"
+                           Text="тип двигателя: "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Column="1"
+                           Grid.Row="5"
+                           VerticalAlignment="Center"
+                           x:Name="engineType"
+                           ></TextBlock>
+                    <TextBlock Grid.Row="6"
+                           Text="трансмиссия: "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Column="1"
+                           Grid.Row="6"
+                           VerticalAlignment="Center"
+                           x:Name="transmission"
+                           ></TextBlock>
+                    <TextBlock Grid.Row="7"
+                           Text="оборудование: "
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Column="1"
+                           Grid.Row="7"
+                           VerticalAlignment="Top"
+                           TextWrapping="Wrap"
+                           x:Name="equipment"
+                           ></TextBlock>
+                </Grid>
+
+            </Grid>
+        </Grid>
+</Border>
+</UserControl>

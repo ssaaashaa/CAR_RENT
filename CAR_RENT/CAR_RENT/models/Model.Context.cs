@@ -15,11 +15,17 @@ namespace CAR_RENT.models
     
     public partial class CAR_RENTEntities : DbContext
     {
+        private static CAR_RENTEntities context;
         public CAR_RENTEntities()
             : base("name=CAR_RENTEntities")
         {
         }
-    
+     public static CAR_RENTEntities GetContext()
+        {
+            if (context == null)
+                context = new CAR_RENTEntities();
+            return context;
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -31,7 +37,6 @@ namespace CAR_RENT.models
         public virtual DbSet<CONTRACT> CONTRACTS { get; set; }
         public virtual DbSet<MODEL_INFO> MODEL_INFO { get; set; }
         public virtual DbSet<PROMO_CODE> PROMO_CODE { get; set; }
-        public virtual DbSet<RENT> RENTs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

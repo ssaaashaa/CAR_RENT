@@ -1,4 +1,4 @@
-﻿using CAR_RENT.pages;
+﻿using CAR_RENT.windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,36 +11,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CAR_RENT.windows
+namespace CAR_RENT.pagesForAdmin
 {
     /// <summary>
-    /// Логика взаимодействия для CatalogWindow.xaml
+    /// Логика взаимодействия для homePage1.xaml
     /// </summary>
-    public partial class CatalogWindow : Window
+    public partial class homePage : Page
     {
-        public CatalogWindow()
+        public homePage()
         {
             InitializeComponent();
-            frame.Content = new CatalogPage();
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
-
-        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-           
-           
-        }
-
-        private void userAccount_Click(object sender, RoutedEventArgs e)
-        {
-            
+            pageForRegistrationOfAccidents pageForRegistrationOfAccidents = new pageForRegistrationOfAccidents();
+            AdminWindow.Frame.Content= pageForRegistrationOfAccidents;
         }
     }
 }

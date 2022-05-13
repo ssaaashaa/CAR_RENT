@@ -26,11 +26,10 @@ namespace CAR_RENT.models
         public string CLASS { get; set; }
         public string REGISTRATION_NUMBER { get; set; }
         public string STATUS { get; set; }
-        public Nullable<int> RENT_ID { get; set; }
         public string IMAGE { get; set; }
+        public Nullable<int> RENT_PRICE { get; set; }
     
         public virtual MODEL_INFO MODEL_INFO { get; set; }
-        public virtual RENT RENT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTRACT> CONTRACTS { get; set; }
     }

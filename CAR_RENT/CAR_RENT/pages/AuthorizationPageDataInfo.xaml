@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CAR_RENT.pages"
+      xmlns:local="clr-namespace:CAR_RENT.pages" xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="720" 
       d:DesignWidth="1280"
@@ -39,11 +39,14 @@
                     <Label Style="{StaticResource Label}"
                            Margin="0 25 0 6">Номер телефона</Label>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Style="{StaticResource TextBox}"
+                       
+                        <wpfx:MaskedTextBox Mask="+375(00) 000-00-00" Style="{StaticResource TextBox}"
                              x:Name="telephone"
-                             SelectionChanged="telephone_SelectionChanged"></TextBox>
-                        <Image Source="../images/done.png"
+                             SelectionChanged="telephone_SelectionChanged" 
+                            />
+                         <Image Source="../images/done.png"
                                x:Name="telephDone"
+                               Visibility="Hidden"
                                Style="{StaticResource imageDone}"
                                />
                     </StackPanel>

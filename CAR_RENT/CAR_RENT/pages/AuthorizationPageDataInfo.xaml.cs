@@ -86,27 +86,19 @@ namespace CAR_RENT.pages
 
         private void telephone_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            string teleph = telephone.Text;
-            string patternTelephone = @"^((8|\+375)[\- ]?)?(\(?\d{2,3}\)?[\- ]?)?[\d\- ]{7,14}$";
-            if (Regex.IsMatch(teleph, patternTelephone, RegexOptions.IgnoreCase))
+            if (telephone.IsMaskCompleted == true)
+
             {
                 telephDone.Visibility = Visibility.Visible;
             }
-            else
-            {
-                telephDone.Visibility = Visibility.Hidden;
-            }
+           
         }
         void telephoneTextInput(object sender, TextCompositionEventArgs e)
         {
-          //if (!Char.IsControl(e.Text, 0) && !Char.IsDigit(e.Text, 0) && !Char.IsWhiteSpace(e.Text, 0))
-          //  {
-          //      e.Handled = true; //не обрабатывать введеный символ
-          //  }
-            if (!e.Equals((Char)'+'))
-            {
+          if (!Char.IsControl(e.Text, 0) && !Char.IsDigit(e.Text, 0) && !Char.IsWhiteSpace(e.Text, 0))
+          {
                 e.Handled = true; //не обрабатывать введеный символ
-            }
+          }
         }
 
         private void aldress_SelectionChanged(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CAR_RENT.windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,19 @@ using System.Windows.Shapes;
 namespace CAR_RENT.pagesForAdmin
 {
     /// <summary>
-    /// Логика взаимодействия для clientPage.xaml
+    /// Логика взаимодействия для pageForRegistrationOfAccidents.xaml
     /// </summary>
-    public partial class clientPage : Page
+    public partial class pageForRegistrationOfAccidents : Page
     {
-        public clientPage()
+        public pageForRegistrationOfAccidents()
         {
             InitializeComponent();
         }
+            
+        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AdminWindow.Frame.GoBack();
+         }
     }
 }
