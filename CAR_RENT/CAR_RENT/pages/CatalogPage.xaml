@@ -33,6 +33,7 @@
                 Grid.Column="1"
                 Grid.Row="1"
                 BorderThickness="0"
+                x:Name="mainInfo"
                 >
             <Border.OpacityMask>
                 <VisualBrush>
@@ -209,14 +210,16 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
                 Margin="0 0 0 0"
-                Background="white"
                 x:Name="catalog"
                 Padding="20"
+                Height="400"
                 >
-            <DockPanel  Height="400"
+            <DockPanel 
+                        
                        >
                 <ScrollViewer  IsTabStop="True" 
-                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                           ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <StackPanel x:Name="StackPanel"
                             Orientation="Vertical"
                             >

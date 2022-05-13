@@ -38,8 +38,9 @@
                     Grid.RowSpan="2"
                     VerticalAlignment="Center">
             <Button Style="{StaticResource buttonAdmin}"
-                    x:Name="CLIENTS"
-                    Click="CLIENTS_Click">
+                    x:Name="CONTRACTS"
+                    Click="CONTRACTS_Click"
+                   >
                 <Image Source="../images/contracts.png"
                        />
             </Button>
@@ -55,16 +56,14 @@
                 <Image Source="../images/carInfo.png"
                        />
             </Button>
-            <Button Style="{StaticResource buttonAdmin}">
+            <Button Style="{StaticResource buttonAdmin}"
+                    x:Name="CLIENTS"
+                    Click="CLIENTS_Click">
                 <Image Source="../images/clients.png"
                        />
             </Button>
             <Button Style="{StaticResource buttonAdmin}">
                 <Image Source="../images/accidents.png"
-                       />
-            </Button>
-            <Button Style="{StaticResource buttonAdmin}">
-                <Image Source="../images/price.png"
                        />
             </Button>
             <Button Style="{StaticResource buttonAdmin}"

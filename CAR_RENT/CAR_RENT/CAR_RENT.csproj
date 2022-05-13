@@ -83,11 +83,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="pagesForAdmin\accidentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pagesForAdmin\carsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pagesForAdmin\clientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pagesForAdmin\contractsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,11 +187,17 @@
     <Compile Include="models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="pagesForAdmin\accidentsPage.xaml.cs">
+      <DependentUpon>accidentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pagesForAdmin\carsPage.xaml.cs">
       <DependentUpon>carsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pagesForAdmin\clientsPage.xaml.cs">
       <DependentUpon>clientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pagesForAdmin\contractsPage.xaml.cs">
+      <DependentUpon>contractsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pagesForAdmin\homePage.xaml.cs">
       <DependentUpon>homePage.xaml</DependentUpon>

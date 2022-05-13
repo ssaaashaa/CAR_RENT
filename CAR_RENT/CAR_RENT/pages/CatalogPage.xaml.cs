@@ -23,9 +23,15 @@ namespace CAR_RENT.pages
     /// </summary>
     public partial class CatalogPage : Page
     {
+        public static StackPanel stackPanel { get; set; }
+        public static Border border { get; set; }
+        public static Image image { get; set; }
         public CatalogPage()
         {
             InitializeComponent();
+            stackPanel = StackPanel;
+            border= mainInfo;
+            image= mainCar;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

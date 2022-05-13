@@ -23,6 +23,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="0.4*"></ColumnDefinition>
@@ -36,7 +37,7 @@
                     x:Name="userAccount"
                     Click="userAccount_Click"
                     Grid.Row="0"
-                    Grid.Column="1"
+                    Grid.Column="2"
                      Panel.ZIndex="1"
                    >
                 Личный кабинет
@@ -47,14 +48,25 @@
                     BorderThickness="0"
                     Click="Button_Click"
                     Grid.Row="0"
-                    Grid.Column="3"
+                    Grid.Column="4"
                     Panel.ZIndex="1"
                     >Выйти</Button>
+            <Button Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    FontSize="18"
+                    Background="Transparent"
+                    Foreground="White"
+                    Panel.ZIndex="1"
+                    x:Name="main"
+                    BorderThickness="0">
+                Главная
+            </Button>
             <StackPanel Grid.Row="0"
                    Grid.ColumnSpan="5"
                    Background="#2B3238">
 
             </StackPanel>
+            
         </Grid>
         <Frame Grid.Row="1"
                x:Name="frame"></Frame>

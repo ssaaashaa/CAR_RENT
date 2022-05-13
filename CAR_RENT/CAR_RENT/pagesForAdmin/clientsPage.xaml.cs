@@ -94,12 +94,14 @@ namespace CAR_RENT.pagesForAdmin
             {
                 MessageBox.Show("Пользователь с таким логином уже существует. Попробуйте снова!");
             }
-            if (errors.Length == 0 && currentClient== null)
+            else 
+            { 
+            if (errors.Length == 0)
             {
-                 
                 CAR_RENTEntities.GetContext().CLIENTS.Add(currentClient);
                 try
                 {
+                    
                     CAR_RENTEntities.GetContext().SaveChanges();
                     MessageBox.Show("Запись добавлена!");
                     Load();
@@ -111,7 +113,8 @@ namespace CAR_RENT.pagesForAdmin
             }
             else
             {
-                MessageBox.Show("Такая запись уже существует!");
+                MessageBox.Show("Запись не добавлена!");
+            }
             }
         }
         void passportTextInput(object sender, TextCompositionEventArgs e)

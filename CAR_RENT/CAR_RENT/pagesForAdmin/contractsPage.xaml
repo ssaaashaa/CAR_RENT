@@ -1,26 +1,25 @@
-﻿<Page x:Class="CAR_RENT.pagesForAdmin.promo_codePage"
+﻿<Page x:Class="CAR_RENT.pagesForAdmin.contractsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CAR_RENT.pagesForAdmin"
       mc:Ignorable="d" 
-       d:DesignHeight="690" 
+      d:DesignHeight="690" 
       d:DesignWidth="1280"
       Background="#3A4149"
       FontFamily="Comfortaa"
-      Title="promo_codePage1"
+      Title="contractsPage"
       FontSize="16"
       Foreground="White">
-
     <Page.Resources>
         <ResourceDictionary Source="../templates/Styles.xaml" />
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*">
+            <ColumnDefinition Width="*">
             </ColumnDefinition>
-            <ColumnDefinition Width="3*">
+            <ColumnDefinition Width="10*">
             </ColumnDefinition>
             <ColumnDefinition Width="*">
             </ColumnDefinition>
@@ -28,7 +27,7 @@
             </ColumnDefinition>
             <ColumnDefinition Width="3.5*">
             </ColumnDefinition>
-            <ColumnDefinition Width="4*">
+            <ColumnDefinition Width="*">
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -37,25 +36,31 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="DGridPromocode"
+        <DataGrid x:Name="DGridContracts"
                   Grid.Column="1"   
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   FontSize="14"
-                  MouseDown="DGridPromocodes_MouseDown"
-                  >
+                  MouseDown="DGridContracts_MouseDown">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE1}" Width="auto" />
-                <DataGridTextColumn Header="Скидка" Binding="{Binding DISCOUNT_AMOUNT}" Width="auto"/>
-                </DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
+                <DataGridTextColumn Header="ID клиента" Binding="{Binding CLIENT_ID}" Width="auto"/>
+                <DataGridTextColumn Header="ID авто" Binding="{Binding CAR_ID}" Width="auto"/>
+                <DataGridTextColumn Header="Начало аренды" Binding="{Binding CONTRACT_START}" Width="auto"/>
+                <DataGridTextColumn Header="Конец аренды" Binding="{Binding CONTRACT_END}" Width="auto"/>
+                <DataGridTextColumn Header="Количество дней" Binding="{Binding COUNT_OF_DAYS}" Width="auto"/>
+                <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE}" Width="auto"/>
+                <DataGridTextColumn Header="Итоговая стоимость проката" Binding="{Binding TOTAL_COST}" Width="auto"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding STATUS}" Width="auto"/>
+            </DataGrid.Columns>
         </DataGrid>
         <Button Content="Добавить"
                 Width="130"
                 Height="40"
                 FontSize="16"
                 x:Name="Add"
-               
+                Click="Add_Click"
                 Grid.Column="3"
                 Grid.Row="2"
                 HorizontalAlignment="Left"
@@ -65,20 +70,20 @@
                 Height="40"
                 FontSize="16"
                 x:Name="Delete"
+                Click="Delete_Click"
                 Grid.Column="4"
                 Grid.Row="2"
-                HorizontalAlignment="Right"
-                Click="Delete_Click"></Button>
+                HorizontalAlignment="Right"></Button>
         <Button Content="Изменить"
                 Width="130"
                 Height="40"
                 FontSize="16"
-                x:Name="Edete"
+                x:Name="Edit"
+                Click="Edit_Click"
                 Grid.Column="3"
                 Grid.ColumnSpan="2"
                 Grid.Row="2"
                 HorizontalAlignment="Center"></Button>
-       
         <Grid Grid.Row="1"
               Grid.Column="3"
               HorizontalAlignment="Center"
@@ -99,8 +104,16 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Text="Промокод" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Скидка" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="ID" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="ID клиента" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="ID авто" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Начало аренды" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Конец аренды" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Количество дней" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Промокод" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Итоговая стоимость проката" TextWrapping="Wrap" Grid.Row="7" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Статус" Grid.Row="8" VerticalAlignment="Center"></TextBlock>
+           
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
@@ -121,8 +134,15 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox x:Name="PROMO_CODE" Text="{Binding PROMO_CODE}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="DISCOUNT_AMOUNT" MaxLength="16" Text="{Binding DISCOUNT_AMOUNT}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-        </Grid>
+            <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="CLIENT_ID" MaxLength="16" Text="{Binding CLIENT_ID}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="CAR_ID" MaxLength="12" Text="{Binding CAR_ID}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="CONTRACT_START" Text="{Binding CONTRACT_START}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="CONTRACT_END" Text="{Binding CONTRACT_END}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="PATRONYMIC" Text="{Binding COUNT_OF_DAYS}" Grid.Row="5" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="PROMO_CODE" Grid.Row="6"  Text="{Binding PROMO_CODE}" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" ></TextBox>
+            <TextBox x:Name="TOTAL_COST" Text="{Binding TOTAL_COST}" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"/>
+            <TextBox MaxLength="7" x:Name="STATUS"  Text="{Binding STATUS}" Grid.Row="8" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+             </Grid>
     </Grid>
 </Page>

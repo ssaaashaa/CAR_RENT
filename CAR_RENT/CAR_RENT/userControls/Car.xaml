@@ -11,16 +11,19 @@
              FontFamily="Comfortaa"
              Background="Transparent"
              FontSize="13"
+            
              >
     <Border Width="Auto" Height="Auto" Name="windowFrame"
           Background="#2B3238"
           BorderThickness="1"
-          CornerRadius="40" >
+          CornerRadius="40" 
+          Margin="20"
+          >
         <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="10*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="11*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -35,7 +38,7 @@
                >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
                     <ColumnDefinition Width="1.5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid>
@@ -47,7 +50,7 @@
                     <TextBlock x:Name="currentName"
                            VerticalAlignment="Top"
                            Margin="0 15 0 0"
-                               FontSize="20"
+                               FontSize="21"
                                FontWeight="Bold"></TextBlock>
                     <Image x:Name="currentImage" Grid.Row="1"
                            ></Image>
@@ -60,11 +63,12 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                         <RowDefinition Height="0.3*"></RowDefinition>
                         <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition> 
                         <RowDefinition Height="0.3*"></RowDefinition>
                         <RowDefinition Height="0.8*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.1*"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Стоимость аренды в сутки:"
@@ -77,7 +81,7 @@
                          Height="20"
                          Margin="0 15 0 0"
                          FontSize="16"
-                         VerticalAlignment="Top"
+                         VerticalAlignment="Center"
                            x:Name="price"></TextBlock>
                     <Button Grid.Row="1"
                         Grid.ColumnSpan="2"
@@ -129,17 +133,22 @@
                     <TextBlock Grid.Column="1"
                            Grid.Row="6"
                            VerticalAlignment="Center"
+                           TextWrapping="Wrap"    
                            x:Name="transmission"
                            ></TextBlock>
                     <TextBlock Grid.Row="7"
                            Text="оборудование: "
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"></TextBlock>
-                    <TextBlock Grid.Column="1"
-                           Grid.Row="7"
+                    <TextBlock Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Grid.Row="7"
+                               Grid.RowSpan="2"
+                               Margin="0 20 0 0"
                            VerticalAlignment="Top"
                            TextWrapping="Wrap"
                            x:Name="equipment"
+                           FontSize="12"
                            ></TextBlock>
                 </Grid>
 

@@ -64,5 +64,11 @@ namespace CAR_RENT.windows
             modelInfo modelInfo = new modelInfo();
             Frame.Content = modelInfo;
         }
+
+        private void CONTRACTS_Click(object sender, RoutedEventArgs e)
+        {
+            contractsPage contractsPage = new contractsPage();
+            Frame.Content = contractsPage;
+        }
     }
 }

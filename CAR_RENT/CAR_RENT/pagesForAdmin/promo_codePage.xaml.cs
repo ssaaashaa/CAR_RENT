@@ -33,16 +33,16 @@ namespace CAR_RENT.pagesForAdmin
         private void Load()
         {
             CAR_RENTEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(entry => entry.Reload());
-            DGridPromocodes.ItemsSource = CAR_RENTEntities.GetContext().PROMO_CODE.ToList();
+            DGridPromocode.ItemsSource = CAR_RENTEntities.GetContext().PROMO_CODE.ToList();
 
         }
         private void DGridPromocodes_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
             PROMO_CODE selectedPromocode = new PROMO_CODE();
-            selectedPromocode = DGridPromocodes.SelectedItem as PROMO_CODE;
-            PROMOCODE.Text = selectedPromocode.PROMO_CODE1;
-            DISCOUNT.Text = selectedPromocode.DISCOUNT_AMOUNT;
+            selectedPromocode = DGridPromocode.SelectedItem as PROMO_CODE;
+            PROMO_CODE.Text = selectedPromocode.PROMO_CODE1;
+            DISCOUNT_AMOUNT.Text = selectedPromocode.DISCOUNT_AMOUNT;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
