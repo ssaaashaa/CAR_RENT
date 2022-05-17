@@ -239,14 +239,27 @@ namespace CAR_RENT.pages
 
         private void bday_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(bday.Text!=null)
+
+            DateTime date = new DateTime();
+            DateTime.TryParse(bday.Text, out date);
+            DateTime today=DateTime.Today;
+            if((today.Year - date.Year) < 18)
             {
-                bdayDone.Visibility = Visibility.Visible;
+                MessageBox.Show("Извините! Вам нет 18 лет!");
+                this.NavigationService.GoBack();
             }
             else
             {
-                bdayDone.Visibility = Visibility.Hidden;
+                if (bday.Text != null)
+                {
+                    bdayDone.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    bdayDone.Visibility = Visibility.Hidden;
+                }
             }
+
         }
     }
 }

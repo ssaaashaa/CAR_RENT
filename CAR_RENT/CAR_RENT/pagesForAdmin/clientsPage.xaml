@@ -110,20 +110,19 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Text="ID" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Логин" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Пароль" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Фамилия" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Имя" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Отчество" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Дата рождения" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Серия паспорта" Grid.Row="7" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Номер пспорта" Grid.Row="8" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Номер ВУ" Grid.Row="9" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Опыт вождения" Grid.Row="10" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Телефон" Grid.Row="11" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Адрес" Grid.Row="12" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Тип" Grid.Row="13" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Логин" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Пароль" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Фамилия" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Имя" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Отчество" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Дата рождения" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Серия паспорта" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Номер пспорта" Grid.Row="7" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Номер ВУ" Grid.Row="8" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Опыт вождения" Grid.Row="9" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Телефон" Grid.Row="10" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Адрес" Grid.Row="11" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Тип" Grid.Row="12" VerticalAlignment="Center"></TextBlock>
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
@@ -144,14 +143,13 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-            <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="LOGIN" MaxLength="16" Text="{Binding LOGIN}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="PASSWORD" MaxLength="12" Text="{Binding PASSWORD, StringFormat=d}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="SURNAME" Text="{Binding SURNAME}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="NAME" Text="{Binding NAME}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="PATRONYMIC" Text="{Binding PATRONYMIC}" Grid.Row="5" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <DatePickerTextBox x:Name="BDAY" Grid.Row="6"  Text="{Binding BDAY}" Width="200" Height="20" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
-            <ComboBox x:Name="PASSPORT_SERIES" Text="{Binding PASSPORT_SERIES}" Grid.Row="7" Width="200" Height="20" >
+            <TextBox x:Name="LOGIN" MaxLength="16" Text="{Binding LOGIN}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="PASSWORD" MaxLength="12" Text="{Binding PASSWORD, StringFormat=d}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="SURNAME" Text="{Binding SURNAME}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="NAME" Text="{Binding NAME}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="PATRONYMIC" Text="{Binding PATRONYMIC}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <DatePickerTextBox x:Name="BDAY" Grid.Row="5"  Text="{Binding BDAY}" Width="200" Height="20" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
+            <ComboBox x:Name="PASSPORT_SERIES" Text="{Binding PASSPORT_SERIES}" Grid.Row="6" Width="200" Height="20" >
                 <ComboBoxItem>
                     AB
                 </ComboBoxItem>
@@ -183,14 +181,15 @@
                     DP
                 </ComboBoxItem>
             </ComboBox>
-            <TextBox MaxLength="7" x:Name="PASSPORT_ID"  Text="{Binding PASSPORT_ID}" Grid.Row="8" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="LICENSE_ID" MaxLength="11" Text="{Binding LICENSE_ID}" Grid.Row="9" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="EXPERIENCE" Text="{Binding EXPERIENCE}" Grid.Row="10" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <wpfx:MaskedTextBox  Mask="+375(00) 000-00-00" x:Name="TELEPHONE" Text="{Binding TELEPHONE}" Grid.Row="11" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></wpfx:MaskedTextBox>
-            <TextBox x:Name="ADRESS" Text="{Binding ADRESS}" Grid.Row="12" Width="200"
+            <TextBox MaxLength="7" x:Name="PASSPORT_ID"  Text="{Binding PASSPORT_ID}" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="LICENSE_ID" MaxLength="11" Text="{Binding LICENSE_ID}" Grid.Row="8" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="EXPERIENCE" Text="{Binding EXPERIENCE}" Grid.Row="9" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <wpfx:MaskedTextBox x:Name="TELEPHONE"  Mask="+375 (00) 000-00-00" Grid.Row="10" Style="{StaticResource textBoxOuputData}" VerticalAlignment="Center"/>
+            <TextBox x:Name="ADRESS" Text="{Binding ADRESS}" Grid.Row="11" Width="200"
                      TextWrapping="Wrap" Style="{StaticResource textBoxOuputData }"
                      VerticalAlignment="Center"></TextBox>
-            <TextBox x:Name="TYPE" Text="{Binding TYPE}" Grid.Row="13" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="TYPE" Text="{Binding TYPE}" Grid.Row="12" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="ID" Visibility="Hidden" Text="{Binding ID}" Grid.Row="13" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
 
         </Grid>
     </Grid>

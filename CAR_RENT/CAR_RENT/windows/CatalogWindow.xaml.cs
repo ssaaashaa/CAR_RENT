@@ -29,6 +29,8 @@ namespace CAR_RENT.windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
 
@@ -40,7 +42,18 @@ namespace CAR_RENT.windows
 
         private void userAccount_Click(object sender, RoutedEventArgs e)
         {
-            
+            frame.Content = new UserInfoPage();
+        }
+
+        private void userContracts_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new UserContracts();
+           
+        }
+
+        private void main_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new CatalogPage();
         }
     }
 }

@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CAR_RENT.pages
+namespace CAR_RENT.windows
 {
     /// <summary>
-    /// Логика взаимодействия для UserAccount.xaml
+    /// Логика взаимодействия для rent.xaml
     /// </summary>
-    public partial class UserContracts : Page
+    public partial class rent : Window
     {
-        public UserContracts()
+        public rent()
         {
             InitializeComponent();
         }

@@ -88,7 +88,8 @@
                         Width="160"
                         Height="30"
                         Content="Бронирование авто"
-                        Background="#64AFB6"></Button>
+                        Background="#64AFB6"
+                        Click="Button_Click"></Button>
                     <TextBlock Grid.Row="2"
                            Text="год выпуска: "
                            VerticalAlignment="Center"

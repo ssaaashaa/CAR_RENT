@@ -43,11 +43,11 @@
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   FontSize="14"
-                  MouseDown="DGridPromocodes_MouseDown"
+                   MouseDown="Grid_MouseDown"
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE1}" Width="auto" />
-                <DataGridTextColumn Header="Скидка" Binding="{Binding DISCOUNT_AMOUNT}" Width="auto"/>
+                <DataGridTextColumn Header="Скидка (%)" Binding="{Binding DISCOUNT_AMOUNT}" Width="auto"/>
                 </DataGrid.Columns>
         </DataGrid>
         <Button Content="Добавить"
@@ -55,7 +55,7 @@
                 Height="40"
                 FontSize="16"
                 x:Name="Add"
-               
+                Click="Add_Click"
                 Grid.Column="3"
                 Grid.Row="2"
                 HorizontalAlignment="Left"
@@ -73,15 +73,19 @@
                 Width="130"
                 Height="40"
                 FontSize="16"
-                x:Name="Edete"
+                x:Name="Edit"
                 Grid.Column="3"
                 Grid.ColumnSpan="2"
                 Grid.Row="2"
-                HorizontalAlignment="Center"></Button>
+                HorizontalAlignment="Center"
+                Click="Edit_Click"></Button>
+       
        
         <Grid Grid.Row="1"
               Grid.Column="3"
               HorizontalAlignment="Center"
+              x:Name="grid"
+             
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -100,7 +104,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Text="Промокод" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Скидка" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Скидка (%)" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
@@ -121,7 +125,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox x:Name="PROMO_CODE" Text="{Binding PROMO_CODE}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="PROMO_CODE" Text="{Binding PROMO_CODE1}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="DISCOUNT_AMOUNT" MaxLength="16" Text="{Binding DISCOUNT_AMOUNT}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
         </Grid>
     </Grid>

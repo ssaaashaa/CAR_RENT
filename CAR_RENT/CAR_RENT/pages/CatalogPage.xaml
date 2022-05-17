@@ -28,12 +28,13 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Height="415" 
+        <Border Height="445" 
                 Width="395"
                 Grid.Column="1"
                 Grid.Row="1"
                 BorderThickness="0"
                 x:Name="mainInfo"
+                Background="#2B3238"
                 >
             <Border.OpacityMask>
                 <VisualBrush>
@@ -43,10 +44,7 @@
                 </VisualBrush>
             </Border.OpacityMask>
 
-            <Grid Height="415" 
-                  Width="395" 
-                  Background="#2B3238"
-                  x:Name="content">
+            <Grid x:Name="content">
                 <StackPanel Orientation="Vertical"
                             Margin="30"
                             HorizontalAlignment="Center">
@@ -57,7 +55,7 @@
                     </Label>
                     <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center"
-                                Margin="0 40 0 0">
+                                Margin="0 20 0 0">
                         <Image Source="../images/car.png"
                                Width="35"/>
                         <Label FontSize="18"
@@ -87,6 +85,16 @@
                                VerticalAlignment="Center"
                                    TextWrapping="Wrap" Width="269">Все авто застрахованы</TextBlock>
                     </StackPanel>
+                    <Button Width="180"
+                        Height="45"
+                        BorderThickness="0"
+                        Background="#64AFB6"
+                        Content="Автопарк"
+                        Foreground="White"
+                        FontSize="18"
+                        Margin="0 35 0 0"
+                        x:Name="autopark"
+                        Click="autopark_Click"/>
                 </StackPanel>
                 <Label VerticalAlignment="Bottom" 
                        HorizontalAlignment="Center"
@@ -121,7 +129,8 @@
             >
             <Button Style="{StaticResource buttonCatalog}"
                     Margin="38 0"
-                    Click="Button_Click"
+                    x:Name="econom"
+                    Click="econom_Click"
                     >
                 <StackPanel Orientation="Vertical">
                     <Image Source="../images/suv.png"
@@ -133,8 +142,11 @@
                 </StackPanel>
             </Button>
             <Button  Style="{StaticResource buttonCatalog}"
-                     Margin="35 0">
-                <StackPanel Orientation="Vertical">
+                     Margin="35 0"
+                     x:Name="middle"
+                     Click="middle_Click">
+                <StackPanel Orientation="Vertical"
+                            >
                     <Image Source="../images/fiat.png"
                        Width="60"/>
                     <TextBlock Foreground="White"
@@ -144,7 +156,9 @@
                 </StackPanel>
             </Button>
             <Button  Style="{StaticResource buttonCatalog}"
-                     Margin="45 0 20 0">
+                     Margin="45 0 20 0"
+                     x:Name="business"
+                     Click="business_Click">
                 <StackPanel Orientation="Vertical" >
                     <Image Source="../images/sedan.png"
                        Width="60"/>
@@ -155,7 +169,9 @@
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource buttonCatalog}"
-                    Margin="40 0">
+                    Margin="40 0"
+                    x:Name="cabriolet"
+                    Click="cabriolet_Click">
                 <StackPanel Orientation="Vertical">
                     <Image Source="../images/convertible.png"
                        Width="60"/>
@@ -164,12 +180,14 @@
                            TextWrapping="Wrap" 
                            TextAlignment="Center"
                            Width="128">
-                   Купе и кабриолеты
+                   Кабриолеты
                     </TextBlock>
                 </StackPanel>
             </Button>
             <Button  Style="{StaticResource buttonCatalog}"
-                     Margin="25 0">
+                     Margin="25 0"
+                     x:Name="offroad_cars"
+                     Click="offroad_cars_Click">
                 <StackPanel Orientation="Vertical">
                     <Image Source="../images/jeep.png"
                        Width="60"/>
@@ -180,7 +198,9 @@
                 </StackPanel>
             </Button>
             <Button  Style="{StaticResource buttonCatalog}"
-                     Margin="25 0">
+                     Margin="25 0"
+                     x:Name="minibus"
+                     Click="minibus_Click">
                 <StackPanel Orientation="Vertical">
                     <Image Source="../images/van.png"
                        Width="60"/>
@@ -188,14 +208,13 @@
                        FontSize="18"
                        TextWrapping="Wrap"
                        Width="178"
-                       TextAlignment="Center">
-                    Микроавтобусы
-                    и минивэны
-                    </TextBlock>
+                       TextAlignment="Center"><Run Text="Микроавтобусы"/></TextBlock>
                 </StackPanel>
             </Button>
             <Button  Style="{StaticResource buttonCatalog}"
-                     Margin="25 0">
+                     Margin="25 0"
+                     x:Name="truck"
+                     Click="truck_Click">
                 <StackPanel Orientation="Vertical">
                     <Image Source="../images/container.png"
                        Width="60"/>
@@ -213,15 +232,17 @@
                 x:Name="catalog"
                 Padding="20"
                 Height="400"
+                Visibility="Hidden"
                 >
             <DockPanel 
-                        
                        >
                 <ScrollViewer  IsTabStop="True" 
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                            ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <StackPanel x:Name="StackPanel"
                             Orientation="Vertical"
+                            ButtonBase.Click="StackPanel_Click"
+                            DataContext="{Binding SelectedAgreement}"
                             >
                     <ItemsControl Margin="20 0">
                         <ItemsControl.ItemsPanel>

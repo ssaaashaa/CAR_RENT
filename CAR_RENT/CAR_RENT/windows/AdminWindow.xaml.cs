@@ -20,26 +20,20 @@ namespace CAR_RENT.windows
     /// </summary>
     public partial class AdminWindow : Window
     {
-        
+
         public AdminWindow()
         {
             InitializeComponent();
             Frame = frame;
-            frame.Content = new homePage();
+
         }
         public static Frame Frame { get; set; }
-       
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (Window w in App.Current.Windows)
-            w.Close();
 
 
-        }
 
         private void promocode_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content=new promo_codePage();
+            Frame.Content = new promo_codePage();
         }
 
         private void CLIENTS_Click(object sender, RoutedEventArgs e)
@@ -54,10 +48,7 @@ namespace CAR_RENT.windows
             Frame.Content = carsPage;
         }
 
-        private void HOME_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new homePage();
-        }
+
 
         private void MODEL_INFO_Click(object sender, RoutedEventArgs e)
         {
@@ -69,6 +60,22 @@ namespace CAR_RENT.windows
         {
             contractsPage contractsPage = new contractsPage();
             Frame.Content = contractsPage;
+        }
+
+        private void ACCIEDNTS_Click(object sender, RoutedEventArgs e)
+        {
+            accidentsPage accidentsPage = new accidentsPage();
+            Frame.Content = accidentsPage;
+        }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+        private void HOME_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = null;
         }
     }
 }

@@ -134,8 +134,22 @@
             <TextBox x:Name="YEAR_OF_ISSUE" MaxLength="16" Text="{Binding YEAR_OF_ISSUE}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="BODY_TYPE" MaxLength="12" Text="{Binding BODY_TYPE}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="ENGINE_CAPACITY" Text="{Binding ENGINE_CAPACITY}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="5" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <ComboBox x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="4" Width="200" Height="20" >
+                <ComboBoxItem>
+                   бензин
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    дизель
+                </ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="5" Width="200" Height="20" >
+                <ComboBoxItem>
+                   автоматическая
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    механическая
+                </ComboBoxItem>
+            </ComboBox>
             <TextBox x:Name="EQUIPMENT" Grid.Row="6" Grid.RowSpan="4" TextWrapping="Wrap" Text="{Binding EQUIPMENT}" Width="200"  Style="{StaticResource textBoxOuputData }"></TextBox>
         </Grid>
     </Grid>

@@ -227,6 +227,7 @@
                             BorderThickness="0"
                             Margin="20 0 75 80"
                             Click="Button_Click"
+                        x:Name="next"
                             >
                     <Image Source="..\images\regArrow.png"></Image>
                 </Button>

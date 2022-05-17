@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CAR_RENT.windows;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,7 +23,8 @@ namespace CAR_RENT.userControls
     public partial class Car : UserControl
     {
        
-        public Car(string CurrentName, string Price, string Year, string BodyType, string EngineCapacity, string Transmission, string Equipment, string Image)
+        public Car(string CurrentName, string Price, string Year, string BodyType, 
+        string EngineCapacity, string Transmission, string Equipment, string Image)
         {
             InitializeComponent();
             currentName.Text = CurrentName;
@@ -38,6 +40,11 @@ namespace CAR_RENT.userControls
 
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //rent rent=new rent();
+           // Console.WriteLine(sender.);
+            
+        }
     }
 }

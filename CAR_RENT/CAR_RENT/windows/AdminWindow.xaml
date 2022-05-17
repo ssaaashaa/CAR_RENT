@@ -62,7 +62,9 @@
                 <Image Source="../images/clients.png"
                        />
             </Button>
-            <Button Style="{StaticResource buttonAdmin}">
+            <Button Style="{StaticResource buttonAdmin}"
+                    x:Name="ACCIEDNTS"
+                    Click="ACCIEDNTS_Click">
                 <Image Source="../images/accidents.png"
                        />
             </Button>
@@ -83,17 +85,84 @@
 
 
         </StackPanel>
-        <Button Grid.Column="2"
-                Grid.Row="0"
-                Background="Transparent"
+
+        <Border Height="445" 
+                Width="395"
+                Grid.Column="1"
+                Grid.Row="1"
                 BorderThickness="0"
-                Click="Button_Click"
+                x:Name="mainInfo"
+                Background="#2B3238"
+                Margin="0 -85 0 0"
                 >
-            <Image Source="../images/close.png"
-                   Width="50"
-                   Height="50"
-                   />
-        </Button>
+            <Border.OpacityMask>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Border CornerRadius="20" Height="415" Width="395" Background="White"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.OpacityMask>
+
+            <Grid x:Name="content">
+                <StackPanel Orientation="Vertical"
+                            Margin="30"
+                            HorizontalAlignment="Center">
+                    <Label FontSize="24"
+                           Foreground="White"
+                           Padding="20">
+                        Прокат автомобилей
+                    </Label>
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0 20 0 0">
+                        <Image Source="../images/car.png"
+                               Width="35"/>
+                        <Label FontSize="18"
+                               Foreground="White"
+                               Margin="30 0"
+                               VerticalAlignment="Center">Широкий выбор</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0 35 0 0">
+                        <Image Source="../images/clocks.png"
+                               Width="35"/>
+                        <TextBlock FontSize="18"
+                               Foreground="White"
+                               Margin="30 0"
+                               VerticalAlignment="Center"
+                                   TextWrapping="Wrap" Width="269">Возможность аренды авто в любое время суток</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0 35 0 0">
+                        <Image Source="../images/insurance.png"
+                               Width="35"/>
+                        <TextBlock FontSize="18"
+                               Foreground="White"
+                               Margin="30 0"
+                               VerticalAlignment="Center"
+                                   TextWrapping="Wrap" Width="269">Все авто застрахованы</TextBlock>
+                    </StackPanel>
+                    <Button Width="180"
+                        Height="45"
+                        BorderThickness="0"
+                        Background="#64AFB6"
+                        Content="Выйти"
+                        Foreground="White"
+                        FontSize="18"
+                        Margin="0 35 0 0"
+                        x:Name="Exit"
+                        Click="Exit_Click"/>
+                </StackPanel>
+                <Label VerticalAlignment="Bottom" 
+                       HorizontalAlignment="Center"
+                       FontSize="14"
+                       Margin="0 0 0 20"
+                       Foreground="white">carrent</Label>
+            </Grid>
+
+        </Border>
         <Frame Grid.Column="1"
             Grid.ColumnSpan="2"
                Grid.Row="1"

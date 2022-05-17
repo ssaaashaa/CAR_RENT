@@ -1,4 +1,5 @@
 ﻿using CAR_RENT.pages;
+using CAR_RENT.windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,22 +22,26 @@ namespace CAR_RENT
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow mainWindow = new MainWindow();
         //public static Frame Frame;
         public MainWindow()
         {
             InitializeComponent();
             LogPage LogPage = new LogPage();
             frame.Navigate(LogPage);
-            
+            mainWindow = this;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //MainWindow mainWindow = new MainWindow();
             //mainWindow.Show();
-            this.Close();
+            //private void Button_Click(object sender, RoutedEventArgs e)
+            //{
+            foreach (Window w in App.Current.Windows)
+                w.Close();
+
         }
-
-
     }
 }

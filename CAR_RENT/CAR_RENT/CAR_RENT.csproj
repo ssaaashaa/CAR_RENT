@@ -83,6 +83,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="windows\Accident.xaml.cs">
+      <DependentUpon>Accident.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\rent.xaml.cs">
+      <DependentUpon>rent.xaml</DependentUpon>
+    </Compile>
     <Page Include="pagesForAdmin\accidentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,10 +102,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pagesForAdmin\contractsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pagesForAdmin\homePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\UserInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="templates\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="userControls\LimitedInputUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Accident.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,9 +209,6 @@
     <Compile Include="pagesForAdmin\contractsPage.xaml.cs">
       <DependentUpon>contractsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pagesForAdmin\homePage.xaml.cs">
-      <DependentUpon>homePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="pagesForAdmin\modelInfo.xaml.cs">
       <DependentUpon>modelInfo.xaml</DependentUpon>
     </Compile>
@@ -216,6 +223,9 @@
     </Compile>
     <Compile Include="pages\UserAccount.xaml.cs">
       <DependentUpon>UserAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\UserInfoPage.xaml.cs">
+      <DependentUpon>UserInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="userControls\Car.xaml.cs">
       <DependentUpon>Car.xaml</DependentUpon>
@@ -246,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\LogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\rent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -334,6 +348,8 @@
     <Resource Include="images\home.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\userAccount.png" />
+    <Resource Include="images\userContracts.png" />
     <Content Include="models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

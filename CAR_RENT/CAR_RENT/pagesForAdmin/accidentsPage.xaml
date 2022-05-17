@@ -5,10 +5,131 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CAR_RENT.pagesForAdmin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="accidentsPage">
-
+      d:DesignHeight="690" 
+      d:DesignWidth="1280"
+      Background="#3A4149"
+      FontFamily="Comfortaa"
+      Title="accidentsPage"
+      FontSize="16"
+      Foreground="White">
+    <Page.Resources>
+        <ResourceDictionary Source="../templates/Styles.xaml" />
+    </Page.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="10*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="3.5*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="3.5*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="DGridAccidents"
+                  Grid.Column="1"   
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  FontSize="14"
+                  MouseDown="DGridAccidents_MouseDown">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
+                <DataGridTextColumn Header="ID контракта" Binding="{Binding CONTRACT_ID}" Width="auto"/>
+                <DataGridTextColumn Header="Дата ДТП" Binding="{Binding DATE, StringFormat=d}" Width="auto"/>
+                <DataGridTextColumn Header="Величина ущерба" Binding="{Binding DAMAGE_COST}" Width="auto"/>
+                <DataGridTextColumn Header="Описание ущерба" Binding="{Binding DAMAGE_DESCRIPTION}" Width="auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Добавить"
+                Width="130"
+                Height="40"
+                FontSize="16"
+                x:Name="Add"
+                Click="Add_Click"
+                Grid.Column="3"
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+               ></Button>
+        <Button Content="Удалить"
+                Width="130"
+                Height="40"
+                FontSize="16"
+                x:Name="Delete"
+                Click="Delete_Click"
+                Grid.Column="4"
+                Grid.Row="2"
+                HorizontalAlignment="Right"></Button>
+        <Button Content="Изменить"
+                Width="130"
+                Height="40"
+                FontSize="16"
+                x:Name="Edit"
+                Click="Edit_Click"
+                Grid.Column="3"
+                Grid.ColumnSpan="2"
+                Grid.Row="2"
+                HorizontalAlignment="Center"></Button>
+        <Grid Grid.Row="1"
+              Grid.Column="3"
+              HorizontalAlignment="Center"
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="ID" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="ID контракта" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Дата" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Величина ущерба" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Описание ущерба" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="1"
+              Grid.Column="4"
+              HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="37.912"></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="37.912"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="CONTRACT_ID" MaxLength="16" Text="{Binding CONTRACT_ID}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="DATE" MaxLength="12" Text="{Binding DATE, StringFormat=d}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="DAMAGE_COST" Text="{Binding DAMAGE_COST}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="DAMAGE_DESCRIPTION" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="4" Grid.RowSpan="5" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+        </Grid>
     </Grid>
 </Page>

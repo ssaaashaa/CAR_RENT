@@ -45,7 +45,7 @@ namespace CAR_RENT.pages
                         AdminWindow adminWindow = new AdminWindow();
                         App.admin = admin;
                         adminWindow.Show();
-                        Application.Current.MainWindow.Close();
+                        MainWindow.mainWindow.Close();
                 }
                 
                 CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log  && u.USER_TYPE==0);

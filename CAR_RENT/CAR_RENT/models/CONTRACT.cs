@@ -14,8 +14,12 @@ namespace CAR_RENT.models
     
     public partial class CONTRACT
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CONTRACT()
+        {
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CONTRACT(object var)
         {
             this.ACCIDENTS = new HashSet<ACCIDENT>();
         }
