@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CAR_RENT.pages"
+      xmlns:local="clr-namespace:CAR_RENT.userControls"
       mc:Ignorable="d" 
       d:DesignHeight="750"
       d:DesignWidth="1550"
@@ -226,34 +226,43 @@
             </Button>
         </StackPanel>
         <Border Grid.Column="1"
-                Grid.Row="1"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 Grid.ColumnSpan="3"
-                Margin="0 0 0 0"
                 x:Name="catalog"
-                Padding="20"
-                Height="400"
-                Visibility="Hidden"
+                Height="550"
+                VerticalAlignment="Top"
+                Width="620"
+                BorderThickness="0"
+              Visibility="Hidden"
                 >
-            <DockPanel 
-                       >
-                <ScrollViewer  IsTabStop="True" 
+           
+                <!--<ScrollViewer  IsTabStop="True" 
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                           ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <StackPanel x:Name="StackPanel"
-                            Orientation="Vertical"
-                            ButtonBase.Click="StackPanel_Click"
-                            DataContext="{Binding SelectedAgreement}"
+                           ScrollViewer.VerticalScrollBarVisibility="Hidden">-->
+                <ListView x:Name="StackPanel"
+                           Background="Transparent"
+                           BorderThickness="0"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                             >
-                    <ItemsControl Margin="20 0">
+               
+                <!--<ItemsControl Margin="20 0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
 
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
-            </DockPanel>
+                    </ItemsControl>-->
+                </ListView>
+                <!--<ListView>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <local:Car DataContext="{Binding listView}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListView>-->
+            <!--</ScrollViewer>-->
+           
         </Border>
     </Grid>
 </Page>

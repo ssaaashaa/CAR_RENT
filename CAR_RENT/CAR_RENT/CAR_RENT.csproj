@@ -109,10 +109,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pagesForAdmin\pageForRegistrationOfAccidents.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="pagesForAdmin\promo_codePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,9 +207,6 @@
     </Compile>
     <Compile Include="pagesForAdmin\modelInfo.xaml.cs">
       <DependentUpon>modelInfo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pagesForAdmin\pageForRegistrationOfAccidents.xaml.cs">
-      <DependentUpon>pageForRegistrationOfAccidents.xaml</DependentUpon>
     </Compile>
     <Compile Include="pagesForAdmin\promo_codePage.xaml.cs">
       <DependentUpon>promo_codePage.xaml</DependentUpon>

@@ -86,7 +86,7 @@ namespace CAR_RENT.pages
 
         private void telephone_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            string patternTelephone = @"^\+375 \((17|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
+            string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
             string teleph = telephone.Text;
             if (Regex.IsMatch(teleph, patternTelephone, RegexOptions.IgnoreCase))
             {

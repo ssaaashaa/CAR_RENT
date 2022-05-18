@@ -122,6 +122,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBox Style="{StaticResource TextBox}" 
                              x:Name="licenseID"
+                             MaxLength="11"    
                              HorizontalAlignment="Left"
                              SelectionChanged="licenseID_SelectionChanged"></TextBox>
                         <Image Source="../images/done.png"

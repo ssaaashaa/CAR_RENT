@@ -149,10 +149,7 @@
                     Новая заявка
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    Активна
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    Завершена
+                    Подтверждена
                 </ComboBoxItem>
                 <ComboBoxItem>
                     Отменена

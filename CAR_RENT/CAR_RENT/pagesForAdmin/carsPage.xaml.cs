@@ -32,6 +32,7 @@ namespace CAR_RENT.pagesForAdmin
             InitializeComponent();
 
             DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
+            RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(rent_priceTextInput);
             using (CAR_RENTEntities db = new CAR_RENTEntities())
             {
                 var currentModels = from cars in db.CARS
@@ -46,7 +47,55 @@ namespace CAR_RENT.pagesForAdmin
                     MODEL.Items.Add(model.Model);
                 }
             }
-            RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(rent_priceTextInput);
+           foreach(CAR car in DGridCars.Items)
+            {
+                string id=car.ID.ToString();
+                CONTRACT contract=CAR_RENTEntities.GetContext().CONTRACTS.Where(c=>c.CAR_ID.ToString() == id).FirstOrDefault();
+
+                if (contract != null)
+                {
+                    try
+                    {
+                        DateTime now = new DateTime();
+                        DateTime.TryParse(DateTime.Now.ToString(), out now);
+                        DateTime contract_end = new DateTime();
+                        DateTime.TryParse(contract.CONTRACT_END.ToString(), out contract_end);
+                        int status = now.Day - contract_end.Day;
+                        int flag = 0;
+                        if (status >= 0)
+                        {
+                            flag = 1;
+                        }
+                        if (contract.STATUS.Equals("Новая заявка") && flag==1)
+                        {
+                            car.STATUS = "свободна";
+                        }
+                        if (contract.STATUS.Equals("Отменена"))
+                        {
+                            car.STATUS = "свободна";
+                        }
+                        if (contract.STATUS.Equals("Подтверждена") && flag == 0)
+                        {
+                            car.STATUS = "в прокате";
+                        }
+                        else
+                        {
+                            car.STATUS = "свободна";
+                        }
+
+                    }
+                    catch
+                    {
+
+                    }
+                }
+                else if (contract == null)
+                {
+                    car.STATUS = "свободна";
+                }
+
+            }
+
         }
 
         void Clear()
@@ -65,6 +114,8 @@ namespace CAR_RENT.pagesForAdmin
         {
             CAR selectedCar = new CAR();
             selectedCar = DGridCars.SelectedItem as CAR;
+            if(selectedCar != null)
+            { 
             ID.Text = selectedCar.ID.ToString();
             BREND.Text = selectedCar.BREND;
             MODEL.SelectedValue = selectedCar.MODEL;
@@ -78,6 +129,12 @@ namespace CAR_RENT.pagesForAdmin
             link.Text=Link;
             RENT_PRICE.Text = selectedCar.RENT_PRICE.ToString();
             MODEL.ScrollIntoView(selectedCar.MODEL);
+            }
+            else
+            {
+                MessageBox.Show("Вы не выбрали запись!");
+            }
+
         }
         void rent_priceTextInput(object sender, TextCompositionEventArgs e)
         {

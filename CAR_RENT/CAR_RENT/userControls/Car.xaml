@@ -52,6 +52,12 @@
                            Margin="0 15 0 0"
                                FontSize="21"
                                FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="id"
+                               Visibility="Hidden"
+                           VerticalAlignment="Top"
+                           Margin="0 15 0 0"
+                               FontSize="21"
+                               FontWeight="Bold"></TextBlock>
                     <Image x:Name="currentImage" Grid.Row="1"
                            ></Image>
                 </Grid>

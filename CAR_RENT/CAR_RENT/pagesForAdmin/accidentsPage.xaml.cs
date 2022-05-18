@@ -1,6 +1,7 @@
 ﻿using CAR_RENT.models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,6 @@ namespace CAR_RENT.pagesForAdmin
                 DATE.Text = selectedAccident.DATE.ToString().Remove(10);
                 DAMAGE_COST.Text = selectedAccident.DAMAGE_COST.ToString();
                 DAMAGE_DESCRIPTION.Text = selectedAccident.DAMAGE_DESCRIPTION;
-
             }
         }
         void Clear()
@@ -60,17 +60,144 @@ namespace CAR_RENT.pagesForAdmin
         }
         private void Add_Click(object sender, RoutedEventArgs e)
         {
+            StringBuilder errors = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(CONTRACT_ID.Text))
+            {
+                errors.AppendLine("Введите ID контракта!");
+            }
+            if (string.IsNullOrWhiteSpace(DATE.Text))
+            {
+                errors.AppendLine("Введите дату ДТП!");
+            }
+            if (string.IsNullOrWhiteSpace(DAMAGE_COST.Text))
+            {
+                errors.AppendLine("Введите величину ущерба!");
+            }
+            if (string.IsNullOrWhiteSpace(DAMAGE_DESCRIPTION.Text))
+            {
+                errors.AppendLine("Введите описание повреждения!");
+            }
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+            ACCIDENT currentAccident=new ACCIDENT();
+            currentAccident.ID = Convert.ToInt32(ID.Text);
+            currentAccident.CONTRACT_ID = Convert.ToInt32(CONTRACT_ID.Text);
+            currentAccident.DATE = Convert.ToDateTime(DATE.Text);
+            currentAccident.DAMAGE_COST = Convert.ToInt32(DAMAGE_COST.Text);
+            currentAccident.DAMAGE_DESCRIPTION = DAMAGE_DESCRIPTION.Text;
+            CAR_RENTEntities.GetContext().ACCIDENTS.Add(currentAccident); 
+            try
+            {
+                CAR_RENTEntities.GetContext().SaveChanges();
+                DGridAccidents.ItemsSource = CAR_RENTEntities.GetContext().ACCIDENTS.ToList();
+                Clear();
+                MessageBox.Show("Данные успешно добавлены!");
+            }
+            catch
+            {
+                MessageBox.Show("Такая запись уже существует!");
+            }
 
         }
-
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
+            if (ID.Text.Equals(""))
+            {
+                MessageBox.Show("Выделите запись, которую требуется изменить!");
 
+            }
+            StringBuilder errors = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(CONTRACT_ID.Text))
+            {
+                errors.AppendLine("Введите ID контракта!");
+            }
+            if (string.IsNullOrWhiteSpace(DATE.Text))
+            {
+                errors.AppendLine("Введите дату ДТП!");
+            }
+            if (string.IsNullOrWhiteSpace(DAMAGE_COST.Text))
+            {
+                errors.AppendLine("Введите величину ущерба!");
+            }
+            if (string.IsNullOrWhiteSpace(DAMAGE_DESCRIPTION.Text))
+            {
+                errors.AppendLine("Введите описание повреждения!");
+            }
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+            try
+            {
+                ACCIDENT currentAccident =CAR_RENTEntities.GetContext().ACCIDENTS.Where(a=>a.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
+                currentAccident.ID = Convert.ToInt32(ID.Text);
+                currentAccident.CONTRACT_ID = Convert.ToInt32(CONTRACT_ID.Text);
+                currentAccident.DATE = Convert.ToDateTime(DATE.Text);
+                currentAccident.DAMAGE_COST = Convert.ToInt32(DAMAGE_COST.Text);
+                currentAccident.DAMAGE_DESCRIPTION = DAMAGE_DESCRIPTION.Text;
+                if (currentAccident != null)
+                {
+                    try
+                    {
+                        CAR_RENTEntities.GetContext().SaveChanges();
+                        DGridAccidents.ItemsSource = CAR_RENTEntities.GetContext().ACCIDENTS.ToList();
+                        Clear();
+                        MessageBox.Show("Данные успешно обновлены!");
+                    }
+                    catch 
+                    {
+                        MessageBox.Show("Некорректный ID контракта!");
+                    }
+                   
+                }
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                //MessageBox.Show(ex.Message);
+                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                {
+                    foreach (DbValidationError err in validationError.ValidationErrors) 
+                    {
+                        MessageBox.Show(err.ErrorMessage + " ");
+
+                    }
+                }
+            }
         }
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (ID.Text.Equals(""))
+            {
+                MessageBox.Show("Выделите запись, которую требуется удалить!");
+
+            }
+            ACCIDENT currentAccident = CAR_RENTEntities.GetContext().ACCIDENTS.Where(a => a.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
+            if (currentAccident != null)
+            {
+                CAR_RENTEntities.GetContext().ACCIDENTS.Remove(currentAccident);
+                try
+                {
+                    CAR_RENTEntities.GetContext().SaveChanges();
+                    DGridAccidents.ItemsSource = CAR_RENTEntities.GetContext().ACCIDENTS.ToList();
+                    Clear();
+                    MessageBox.Show("Запись удалена!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (currentAccident == null && string.IsNullOrEmpty(ID.Text) == false)
+            {
+                MessageBox.Show("Такого акта ДТП не существует!");
+            }
+        }
+
+
     }
 }

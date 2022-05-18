@@ -5,13 +5,108 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CAR_RENT.windows"
         mc:Ignorable="d"
-        Title="rent" Height="450" Width="800">
+        Title="rent" 
+        Height="800" 
+        Width="1550"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        FontSize="14"
+        FontFamily="Comfortaa"
+        >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../templates/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        <TextBox>
-            
-        </TextBox>
-        <Calendar></Calendar>
-        <Calendar></Calendar>
-        
+        <Rectangle Fill="#3A4149" Opacity="0.8"></Rectangle>
+        <Border Height="480" Width="380">
+            <Border.OpacityMask>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Border CornerRadius="50" Height="480" Width="380" Background="White"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.OpacityMask>
+
+            <Grid Height="480" Width="380" 
+            Background="#2B3238">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="2"
+                        Grid.Row="0"
+                        Background="Transparent"
+                        Width="30"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        BorderThickness="0"
+                        x:Name="Close"
+                        Click="Close_Click">
+                    <Image Source="../images/close.png"></Image>
+                </Button>
+                <StackPanel Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Vertical"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            >
+                    <Label Foreground="White" FontSize="18"
+                           HorizontalAlignment="Center">Бронирование</Label>
+                    <TextBlock x:Name="auto"
+                               Foreground="White"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                             ></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                          Grid.Row="2"
+                            VerticalAlignment="Center">
+                    <Label Foreground="White">Дата начала аренды</Label>
+                    <DatePicker x:Name="CONTRACT_START"></DatePicker>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                          Grid.Row="3"
+                            VerticalAlignment="Center">
+                    <Label Foreground="White">Дата окончания аренды</Label>
+                    <DatePicker x:Name="CONTRACT_END"></DatePicker>
+                </StackPanel>
+                <StackPanel  Grid.Column="1"
+                          Grid.Row="4"
+                          VerticalAlignment="Center">
+                    <Label Foreground="White">Промокод</Label>
+                    <TextBox x:Name="PROMO_CODE" Style="{DynamicResource TextBox}" VerticalAlignment="Center"></TextBox>
+                </StackPanel>
+                <Button Grid.Row="5"
+                        Grid.Column="1"
+                        Width="200"
+                        Height="40"
+                        Content="Отправить заявку"
+                        Background="#64AFB6"
+                       BorderThickness="0"
+                        Foreground="White"
+                        FontSize="17"
+                        x:Name="send"
+                        Click="send_Click"></Button>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

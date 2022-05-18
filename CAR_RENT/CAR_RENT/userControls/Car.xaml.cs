@@ -22,29 +22,33 @@ namespace CAR_RENT.userControls
     /// </summary>
     public partial class Car : UserControl
     {
-       
-        public Car(string CurrentName, string Price, string Year, string BodyType, 
-        string EngineCapacity, string Transmission, string Equipment, string Image)
+
+        public Car(string CurrentName, string Price, string Year, string BodyType,
+        string EngineCapacity, string Transmission, string Equipment, string Image, string Id)
         {
             InitializeComponent();
             currentName.Text = CurrentName;
-            price.Text = Price+" BYN";
+            price.Text = Price + " BYN";
             year.Text = Year;
-            bodyType.Text= BodyType;
-            engineCapacity.Text= EngineCapacity;
-            transmission.Text= Transmission;
-            equipment.Text= Equipment;
+            bodyType.Text = BodyType;
+            engineCapacity.Text = EngineCapacity;
+            transmission.Text = Transmission;
+            equipment.Text = Equipment;
             BitmapImage myBitmapImage = new BitmapImage(new Uri(Image));
             myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             currentImage.Source = myBitmapImage;
+            id.Text = Id;
 
         }
-
+        public static string CurrentName { get; set; }
+        public static string Id { get; set; }
+        public Car() { }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //rent rent=new rent();
-           // Console.WriteLine(sender.);
-            
+            CurrentName = currentName.Text;
+            Id = id.Text;
+            rent rent = new rent();
+            rent.Show();
         }
     }
 }

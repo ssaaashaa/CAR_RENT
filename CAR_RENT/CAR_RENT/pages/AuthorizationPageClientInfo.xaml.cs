@@ -243,9 +243,9 @@ namespace CAR_RENT.pages
             DateTime date = new DateTime();
             DateTime.TryParse(bday.Text, out date);
             DateTime today=DateTime.Today;
-            if((today.Year - date.Year) < 18)
+            if((today.Year - date.Year) <= 18)
             {
-                MessageBox.Show("Извините! Вам нет 18 лет!");
+                MessageBox.Show("Извините! Вам нет 18 лет! Мы не сможем предоставить вам автомобиль!");
                 this.NavigationService.GoBack();
             }
             else

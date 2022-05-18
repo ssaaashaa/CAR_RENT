@@ -3,6 +3,7 @@ using CAR_RENT.userControls;
 using CAR_RENT.windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,13 @@ namespace CAR_RENT.pages
     /// </summary>
     public partial class CatalogPage : Page
     {
+        //List<Car> listView= new List<Car>();
+        public ObservableCollection<Car> Cars{ get; set; }
         public CatalogPage()
         {
             InitializeComponent();
+            Cars = new ObservableCollection<Car>();
+            StackPanel.ItemsSource = Cars;
 
         }
         private void autopark_Click(object sender, RoutedEventArgs e)
@@ -47,16 +52,18 @@ namespace CAR_RENT.pages
                                       EngineCapacity = models.ENGINE_CAPACITY,
                                       Transmission = models.TRANSMISSION,
                                       Equipment = models.EQUIPMENT,
-                                      Image = cars.IMAGE
+                                      Image = cars.IMAGE,
+                                      Id=cars.ID
                                   };
                 foreach (var car in carsCatalog)
                 {
                     var buf = new Car(car.CurrentName, car.Price.ToString(), 
                     car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineCapacity, 
-                    car.Transmission, car.Equipment, car.Image);
+                    car.Transmission, car.Equipment, car.Image, car.Id.ToString());
                     buf.Width = 600;
                     buf.Height = 350;
-                    StackPanel.Children.Add(buf);
+                    Cars.Add(buf);
+                   
                 }
             }
         }
@@ -64,7 +71,7 @@ namespace CAR_RENT.pages
        
         private void request(string CLASS)
         {
-            StackPanel.Children.Clear();
+            Cars.Clear();
             catalog.Visibility = Visibility.Visible;
             mainInfo.Visibility = Visibility.Hidden;
             mainCar.Visibility = Visibility.Hidden;
@@ -83,14 +90,16 @@ namespace CAR_RENT.pages
                                       EngineCapacity = models.ENGINE_CAPACITY,
                                       Transmission = models.TRANSMISSION,
                                       Equipment = models.EQUIPMENT,
-                                      Image = cars.IMAGE
+                                      Image = cars.IMAGE,
+                                      Id=cars.ID
                                   };
                 foreach (var car in carsCatalog)
                 {
-                    var buf = new Car(car.CurrentName, car.Price.ToString(), car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineCapacity, car.Transmission, car.Equipment, car.Image);
+                    var buf = new Car(car.CurrentName, car.Price.ToString(), car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineCapacity, car.Transmission, car.Equipment, car.Image, car.Id.ToString());
                     buf.Width = 600;
                     buf.Height = 350;
-                    StackPanel.Children.Add(buf);
+                    Cars.Add(buf);
+                   
                 }
             }
         }
