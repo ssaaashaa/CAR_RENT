@@ -9,11 +9,17 @@
       d:DesignWidth="1550"
       Title="CatalogPage"
       FontSize="18"
-      FontFamily="Comfortaa">
+      FontFamily="Comfortaa"
+      Foreground="White">
     <Page.Resources>
-        <ResourceDictionary Source="../templates/Styles.xaml"/>
+       
+        <ResourceDictionary Source="../templates/ScrollViewer.xaml"/>
+
+               
+           
     </Page.Resources>
-    <Grid>
+
+    <Grid  MouseWheel="ScrollViewer_MouseWheel">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -34,6 +40,7 @@
                 Grid.Row="1"
                 BorderThickness="0"
                 x:Name="mainInfo"
+                Visibility="Hidden"
                 Background="#2B3238"
                 >
             <Border.OpacityMask>
@@ -109,17 +116,38 @@
                VerticalAlignment="Bottom"
                Grid.Column="3"
                Grid.Row="1"
-               x:Name="mainCar"/>
+               x:Name="mainCar"
+               Visibility="Hidden"/>
         <Rectangle Width="auto"
-                   Height="3"
+                   Height="1.5"
                    Fill="White"
                    VerticalAlignment="Center"
                    Grid.Row="2"
                    Grid.Column="0"
                    Grid.ColumnSpan="5"
                    Margin="180 0"
+                   x:Name="line"
+                   Visibility="Hidden"
                   />
-        <StackPanel 
+        <StackPanel Grid.Column="2"
+            Grid.ColumnSpan="2" 
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    x:Name="Class"
+                   Margin="-75 0 0 -100"
+                   
+                   >
+            <TextBlock x:Name="type_of_class"
+                       FontSize="22"
+                       >
+            </TextBlock>
+            <TextBlock FontSize="22"
+                       Width="80"
+                       x:Name="klass"></TextBlock>
+        </StackPanel>
+        <StackPanel x:Name="classes"
+                    Visibility="Hidden"
                     VerticalAlignment="Bottom" 
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
@@ -225,44 +253,160 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <Border Grid.Column="1"
-                Grid.Row="0"
-                Grid.RowSpan="3"
-                Grid.ColumnSpan="3"
-                x:Name="catalog"
-                Height="550"
-                VerticalAlignment="Top"
-                Width="620"
-                BorderThickness="0"
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="5"
+              Grid.RowSpan="3"
+              x:Name="search"
               Visibility="Hidden"
-                >
-           
-                <!--<ScrollViewer  IsTabStop="True" 
-                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                           ScrollViewer.VerticalScrollBarVisibility="Hidden">-->
-                <ListView x:Name="StackPanel"
-                           Background="Transparent"
-                           BorderThickness="0"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                            >
-               
-                <!--<ItemsControl Margin="20 0">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
+             >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <GroupBox Padding="5" 
+                      Header="Коробка передач"
+                      Width="220"
+                      Height="80"
+                      Grid.Column="1"
+                      FontSize="14"
+                      VerticalAlignment="Top"
+                      Margin="0 0 0 0"
+                      BorderThickness="0.3">              
+                <StackPanel>
+                    <RadioButton Checked="Transmission_Checked" Margin="3" GroupName="Transmission" Foreground="White" Background="Transparent">автоматическая</RadioButton>
+                    <RadioButton Checked="Transmission_Checked" Margin="3"  GroupName="Transmission" Foreground="White" Background="Transparent">механическая</RadioButton>
+                </StackPanel>
+            </GroupBox>
+            
+            <GroupBox Header="Марка" 
+                      Padding="5"
+                      Width="220"
+                      Height="200"
+                      FontSize="14"
+                      Grid.Column="1"
+                      VerticalAlignment="Bottom"
+                      Margin="0 0 0 330"
+                      BorderThickness="0.3"
+                       BorderBrush="#2B3238">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <StackPanel>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent" >Audi</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">BMW</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Chevrolet</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Citroen</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Fiat</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Ford</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Gaz</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Honda</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Hyundai</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Infiniti</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Kia</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Lada</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Lexus</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Lifan</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Maserati</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Mazda</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Mercedes</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Nissan</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Range Rover</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Renault</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Skoda</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Tesla</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Toyota</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Volkswagen</RadioButton>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Volvo</RadioButton>
+                    </StackPanel>
+                </ScrollViewer>
+            </GroupBox>
+            <GroupBox Header="Класс"
+                      Padding="5"
+                      Width="220"
+                      Height="180"
+                      FontSize="14"
+                      Grid.Column="1"
+                      VerticalAlignment="Bottom"
+                      Margin="0 0 0 120"
+                      BorderThickness="0.3"
+                      BorderBrush="#2B3238"
+                      x:Name="Classes"
+                     >
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <StackPanel>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent" >эконом</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">средний</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">бизнес</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">кабриолет</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">внедорожник</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">микроавтобус</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">грузовые</RadioButton>
+                       </StackPanel>
+                </ScrollViewer>
+            </GroupBox>
+            <Button Grid.Column="1"
+                    Width="200"
+                    Height="40"
+                    BorderThickness="0"
+                    Background="#64AFB6"
+                    Foreground="white"
+                    VerticalAlignment="Bottom"
+                    Margin="0 0 0 200"
+                    x:Name="filters_for_classes"
+                    Click="filters_for_classes_Click"
+                    Visibility="Hidden">
+                Подобрать авто
+            </Button>
+            <Button Grid.Column="1"
+                    Width="200"
+                    Height="40"
+                    BorderThickness="0"
+                    Background="#64AFB6"
+                    Foreground="white"
+                    VerticalAlignment="Bottom"
+                    Margin="0 0 0 60"
+                    x:Name="filters"
+                    Click="filters_Click"
+                    Visibility="Hidden">
+                Подобрать авто
+            </Button>
+            <TextBlock Grid.Column="2"
+                      HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Margin="0 0 0 395"
+                       FontSize="19"
+                      Visibility="Hidden"
+                       x:Name="result">Данные не найдены</TextBlock>
+            <Border Grid.Column="2"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                x:Name="catalog"
+                Height="420"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="0 0 80 160"
+                Width="740"
+                BorderThickness="0"
+                MouseWheel="ScrollViewer_MouseWheel">
+                <ItemsControl  x:Name="StackPanel"  MouseWheel="ScrollViewer_MouseWheel" >
+                    <ItemsControl.Style>
+                        <Style TargetType="ItemsControl">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ItemsControl}">
+                                        <ScrollViewer CanContentScroll="True">
+                                            <ItemsPresenter  MouseWheel="ScrollViewer_MouseWheel" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ItemsControl.Style>
+                </ItemsControl>
 
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>-->
-                </ListView>
-                <!--<ListView>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <local:Car DataContext="{Binding listView}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListView>-->
-            <!--</ScrollViewer>-->
-           
-        </Border>
+            </Border>
+        </Grid>
+       
     </Grid>
 </Page>

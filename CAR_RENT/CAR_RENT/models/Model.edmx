@@ -56,10 +56,10 @@
           <Property Name="CAR_ID" Type="int" />
           <Property Name="CONTRACT_START" Type="date" />
           <Property Name="CONTRACT_END" Type="date" />
-          <Property Name="COUNT_OF_DAYS" Type="int" />
           <Property Name="PROMO_CODE" Type="nvarchar" MaxLength="20" />
           <Property Name="TOTAL_COST" Type="int" />
-          <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+          <Property Name="STATUS" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CONTRACT_STATUS" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="MODEL_INFO">
           <Key>
@@ -239,10 +239,10 @@
           <Property Name="CAR_ID" Type="Int32" />
           <Property Name="CONTRACT_START" Type="DateTime" Precision="0" />
           <Property Name="CONTRACT_END" Type="DateTime" Precision="0" />
-          <Property Name="COUNT_OF_DAYS" Type="Int32" />
           <Property Name="PROMO_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TOTAL_COST" Type="Int32" />
-          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CONTRACT_STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ACCIDENTS" Relationship="Self.FK_ACCIDENTS_CONTRACTS" FromRole="CONTRACTS" ToRole="ACCIDENTS" />
           <NavigationProperty Name="CAR" Relationship="Self.FK_CONTRACTS_CARS" FromRole="CONTRACTS" ToRole="CARS" />
           <NavigationProperty Name="CLIENT" Relationship="Self.FK_CONTRACTS_CLIENTS" FromRole="CONTRACTS" ToRole="CLIENTS" />
@@ -427,10 +427,10 @@
                 <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
                 <ScalarProperty Name="CONTRACT_START" ColumnName="CONTRACT_START" />
                 <ScalarProperty Name="CONTRACT_END" ColumnName="CONTRACT_END" />
-                <ScalarProperty Name="COUNT_OF_DAYS" ColumnName="COUNT_OF_DAYS" />
                 <ScalarProperty Name="PROMO_CODE" ColumnName="PROMO_CODE" />
                 <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="CONTRACT_STATUS" ColumnName="CONTRACT_STATUS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

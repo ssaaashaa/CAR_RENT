@@ -18,7 +18,6 @@ namespace CAR_RENT.models
         public CLIENT()
         {
             this.CONTRACTS = new HashSet<CONTRACT>();
-            this.USER_TYPE = 0;
         }
     
         public int ID { get; set; }

@@ -22,22 +22,27 @@ namespace CAR_RENT.pages
     /// <summary>
     /// Логика взаимодействия для CatalogPage.xaml
     /// </summary>
+  
     public partial class CatalogPage : Page
     {
-        //List<Car> listView= new List<Car>();
-        public ObservableCollection<Car> Cars{ get; set; }
         public CatalogPage()
         {
             InitializeComponent();
-            Cars = new ObservableCollection<Car>();
-            StackPanel.ItemsSource = Cars;
-
+            mainInfo.Visibility = Visibility.Visible;
+            mainCar.Visibility = Visibility.Visible;
+            classes.Visibility = Visibility.Visible;
+            line.Visibility = Visibility.Visible;
         }
+        
         private void autopark_Click(object sender, RoutedEventArgs e)
         {
-            catalog.Visibility = Visibility.Visible;
+            search.Visibility = Visibility.Visible;            
             mainInfo.Visibility = Visibility.Hidden;
             mainCar.Visibility = Visibility.Hidden;
+            classes.Visibility = Visibility.Hidden;
+            line.Visibility = Visibility.Hidden;
+            Classes.Visibility = Visibility.Visible;
+            filters.Visibility = Visibility.Visible;
             using (CAR_RENTEntities db = new CAR_RENTEntities())
             {
                 var carsCatalog = from cars in db.CARS
@@ -50,6 +55,7 @@ namespace CAR_RENT.pages
                                       Year = models.YEAR_OF_ISSUE,
                                       BodyType = models.BODY_TYPE,
                                       EngineCapacity = models.ENGINE_CAPACITY,
+                                      EngineType=models.ENGINE_TYPE,
                                       Transmission = models.TRANSMISSION,
                                       Equipment = models.EQUIPMENT,
                                       Image = cars.IMAGE,
@@ -58,12 +64,11 @@ namespace CAR_RENT.pages
                 foreach (var car in carsCatalog)
                 {
                     var buf = new Car(car.CurrentName, car.Price.ToString(), 
-                    car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineCapacity, 
+                    car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
                     car.Transmission, car.Equipment, car.Image, car.Id.ToString());
-                    buf.Width = 600;
-                    buf.Height = 350;
-                    Cars.Add(buf);
-                   
+                    buf.Width = 740;
+                    buf.Height = 420;
+                    StackPanel.Items.Add(buf);    
                 }
             }
         }
@@ -71,12 +76,21 @@ namespace CAR_RENT.pages
        
         private void request(string CLASS)
         {
-            Cars.Clear();
-            catalog.Visibility = Visibility.Visible;
+            
+            StackPanel.Items.Clear();
+            search.Visibility = Visibility.Visible;
+            Classes.Visibility = Visibility.Hidden;
+            classes.Visibility = Visibility.Visible;
             mainInfo.Visibility = Visibility.Hidden;
             mainCar.Visibility = Visibility.Hidden;
+            line.Visibility = Visibility.Visible;
+            filters_for_classes.Visibility = Visibility.Visible;
             using (CAR_RENTEntities db = new CAR_RENTEntities())
             {
+                string transmission = CheckedTransmission;
+                string brand = CheckedBrand;
+                if (transmission==null && brand == null) 
+                { 
                 var carsCatalog = from cars in db.CARS
                                   join models in db.MODEL_INFO
                                   on cars.MODEL equals models.MODEL
@@ -86,7 +100,8 @@ namespace CAR_RENT.pages
                                       CurrentName = cars.BREND + cars.MODEL,
                                       Price = cars.RENT_PRICE,
                                       Year = models.YEAR_OF_ISSUE,
-                                      BodyType = models.BODY_TYPE,
+                                      BodyType=models.BODY_TYPE,
+                                      EngineType = models.ENGINE_TYPE,
                                       EngineCapacity = models.ENGINE_CAPACITY,
                                       Transmission = models.TRANSMISSION,
                                       Equipment = models.EQUIPMENT,
@@ -95,53 +110,634 @@ namespace CAR_RENT.pages
                                   };
                 foreach (var car in carsCatalog)
                 {
-                    var buf = new Car(car.CurrentName, car.Price.ToString(), car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineCapacity, car.Transmission, car.Equipment, car.Image, car.Id.ToString());
-                    buf.Width = 600;
-                    buf.Height = 350;
-                    Cars.Add(buf);
-                   
+                    var buf = new Car(car.CurrentName, car.Price.ToString(), car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType.ToString(), car.EngineCapacity, car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                    buf.Width = 740;
+                    buf.Height = 420;
+                   // Cars.Add(buf);
+                    StackPanel.Items.Add(buf);    
+                    
+                }
+                }
+               
+                else
+                {
+                    result.Text = "Необходимо нажать на кнопку по подбору авто!";
+                    result.Visibility = Visibility.Visible;
                 }
             }
         }
         private void econom_Click(object sender, RoutedEventArgs e)
         {
-            request("эконом");
-            //StackPanel.ManipulationStartedEvent();
+            request("Эконом");
+            type_of_class.Text = "Эконом ";
+            klass.Visibility = Visibility.Visible;
+            klass.Text = "класс";
         }
 
         private void middle_Click(object sender, RoutedEventArgs e)
         {
-            request("средний");
+            request("Средний");
+            Class.Visibility = Visibility.Visible;
+            type_of_class.Text = "Средний ";
+            klass.Visibility = Visibility.Visible;
+            klass.Text = "класс";
         }
 
         private void business_Click(object sender, RoutedEventArgs e)
         {
-            request("бизнес");
+            request("Бизнес");
+            Class.Visibility = Visibility.Visible;
+            type_of_class.Text = "Бизнес ";
+            klass.Visibility = Visibility.Visible;
+            klass.Text = "класс";
         }
 
         private void cabriolet_Click(object sender, RoutedEventArgs e)
         {
-            request("кабриолет");
+            request("Кабриолет");
+            Class.Visibility = Visibility.Visible;
+            type_of_class.Text = "Кабриолет";
+            klass.Visibility = Visibility.Visible;
+            klass.Text = "ы";
         }
 
         private void offroad_cars_Click(object sender, RoutedEventArgs e)
         {
-            request("внедорожник");
+            request("Внедорожник");
+            Class.Visibility = Visibility.Visible;
+            type_of_class.Text = "внедорожник";
+            klass.Visibility = Visibility.Visible;
+            klass.Text = "и";
         }
 
         private void minibus_Click(object sender, RoutedEventArgs e)
         {
-            request("микроавтобус");
+            request("Микроавтобус");
+            Class.Visibility = Visibility.Visible;
+            type_of_class.Text = "Микроавтобус";
+            klass.Visibility = Visibility.Visible;
+            klass.Text = "ы";
         }
 
         private void truck_Click(object sender, RoutedEventArgs e)
         {
-             request("грузовые");
+            request("Грузовые");
+            Class.Visibility = Visibility.Visible;
+            type_of_class.Text = "Грузовые";
+            klass.Visibility = Visibility.Hidden;
+
         }
 
-        private void StackPanel_Click(object sender, RoutedEventArgs e)
+        private void ScrollViewer_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            Console.WriteLine(1);
+            e.Handled= true;
+        }
+        public string CheckedTransmission { get; private set; }
+        public string CheckedBrand { get; private set; }
+        public string CheckedClass { get; private set; }
+
+        private void Transmission_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton item)
+            {
+                CheckedTransmission = item.Content.ToString();
+            }
+        }
+        private void Brand_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton item)
+            {
+                CheckedBrand = item.Content.ToString();
+            }
+        }
+        private void Class_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton item)
+            {
+                CheckedClass = item.Content.ToString();
+            }
+        }
+
+        private void filters_Click(object sender, RoutedEventArgs e)
+        {
+           
+            StackPanel.Items.Clear();
+            string transmission = CheckedTransmission;
+            string brand = CheckedBrand;
+            string classs= CheckedClass;
+            using (CAR_RENTEntities db = new CAR_RENTEntities())
+            {
+                if(transmission==null && brand ==null && classs==null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                }
+                if (transmission != null && brand != null && classs!=null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission && cars.BREND == brand && cars.CLASS==classs
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission != null && brand != null && classs==null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission && cars.BREND == brand
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission == null && brand != null && classs!=null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where cars.BREND == brand && cars.CLASS == classs
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission != null && brand == null && classs!=null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission  && cars.CLASS == classs
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission != null && brand==null && classs==null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (brand != null && transmission==null && classs==null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where cars.BREND == brand
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+
+
+            }
+        }
+
+        private void filters_for_classes_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanel.Items.Clear();
+            string transmission = CheckedTransmission;
+            string brand = CheckedBrand;
+            string classs = CheckedClass;
+            using (CAR_RENTEntities db = new CAR_RENTEntities())
+            {
+                if (transmission == null && brand == null && type_of_class.Text == null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                }
+                if (transmission == null && brand == null && type_of_class.Text != null)
+                {
+
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where cars.CLASS == type_of_class.Text
+
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+
+                }
+                if (transmission != null && brand != null && type_of_class.Text != null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission && cars.BREND == brand && cars.CLASS == type_of_class.Text
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission != null && brand != null && type_of_class.Text == null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission && cars.BREND == brand
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission == null && brand != null && type_of_class.Text != null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where cars.BREND == brand && cars.CLASS == type_of_class.Text
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission != null && brand == null && type_of_class.Text != null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission && cars.CLASS == type_of_class.Text
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (transmission != null && brand == null && type_of_class.Text == null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where models.TRANSMISSION == transmission
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+                if (brand != null && transmission == null && type_of_class.Text == null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where cars.BREND == brand
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
+
+            }
         }
     }
 }

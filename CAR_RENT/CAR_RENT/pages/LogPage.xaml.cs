@@ -25,6 +25,60 @@ namespace CAR_RENT.pages
         public LogPage()
         {
             InitializeComponent();
+            var conracts = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+            foreach (CONTRACT contract in conracts)
+            {
+                DateTime contract_end = new DateTime();
+                DateTime.TryParse(contract.CONTRACT_END.ToString(), out contract_end);
+                DateTime now = new DateTime();
+                DateTime.TryParse(DateTime.Now.ToString(), out now);
+                TimeSpan days = now - contract_end;
+                if (contract.STATUS == "Подтверждена" && days.Days > 0)
+                {
+                    contract.CONTRACT_STATUS = "Прокат завершен";
+                }
+                if (contract.STATUS == "Подтверждена" && days.Days <= 0)
+                {
+                    contract.CONTRACT_STATUS = "Прокат активен";
+                }
+                if (contract.STATUS == "Отменена" && days.Days > 0)
+                {
+                    contract.CONTRACT_STATUS = "Прокат отменен";
+                }
+                if (contract.STATUS == "Новая заявка")
+                {
+                    contract.CONTRACT_STATUS = "Ждет подтверждения";
+                }
+                CAR_RENTEntities.GetContext().SaveChanges();
+            }
+            var cars = CAR_RENTEntities.GetContext().CARS.ToList();
+            foreach (CAR car in cars)
+            {
+                try
+                {
+                    string id = car.ID.ToString();
+                    CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString() == id).FirstOrDefault();
+
+                    if (contract != null)
+                    {
+                        if (contract.CONTRACT_STATUS == "Прокат активен")
+                        {
+                            car.STATUS = "В прокате";
+                        }
+                        else car.STATUS = "Свободна";
+                        CAR_RENTEntities.GetContext().SaveChanges();
+                    }
+
+
+                    else if (contract == null)
+                    {
+                        car.STATUS = "Свободна";
+                        CAR_RENTEntities.GetContext().SaveChanges();
+                    }
+                }
+                catch { }
+
+            }
         }
 
         private void Come_Click(object sender, RoutedEventArgs e)

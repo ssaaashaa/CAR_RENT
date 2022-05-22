@@ -81,7 +81,7 @@
                           Grid.Row="2"
                             VerticalAlignment="Center">
                     <Label Foreground="White">Дата начала аренды</Label>
-                    <DatePicker x:Name="CONTRACT_START"></DatePicker>
+                    <DatePicker  x:Name="CONTRACT_START"></DatePicker>
                 </StackPanel>
                 <StackPanel Grid.Column="1"
                           Grid.Row="3"
@@ -93,7 +93,7 @@
                           Grid.Row="4"
                           VerticalAlignment="Center">
                     <Label Foreground="White">Промокод</Label>
-                    <TextBox x:Name="PROMO_CODE" Style="{DynamicResource TextBox}" VerticalAlignment="Center"></TextBox>
+                    <TextBox x:Name="PROMO_CODE"  VerticalAlignment="Center"></TextBox>
                 </StackPanel>
                 <Button Grid.Row="5"
                         Grid.Column="1"

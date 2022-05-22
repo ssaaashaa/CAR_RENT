@@ -14,29 +14,20 @@
       FontSize="16"
       Foreground="White">
     <Page.Resources>
-        <Style x:Key="TextBox" TargetType="TextBox">
+       
+        <Style TargetType="Label">
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" SnapsToDevicePixels="True" CornerRadius="5">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Margin" Value="0 0 0 14"/>
-            <Setter Property="Background" Value="#E1E3E4"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="#8E8E8E"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="20"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            
         </Style>
-        <Style x:Key="Label" TargetType="Label">
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-
     </Page.Resources>
 
     <Grid>
@@ -52,16 +43,12 @@
         </Grid.RowDefinitions>
         <Border Grid.Column="1"
                 Grid.Row="1"
-                Background="white"
+                Background="Transparent"
+                BorderBrush="White"
+                BorderThickness="1"
                 >
-            <Border.OpacityMask>
-                <VisualBrush>
-                    <VisualBrush.Visual>
-                        <Border CornerRadius="20" Height="600" Width="1000" Background="White"/>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Border.OpacityMask>
-            <Grid>
+           
+            <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.5*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
@@ -78,24 +65,26 @@
                     <ColumnDefinition Width="1.4*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <TextBlock x:Name="id"
+                           Visibility="Hidden"></TextBlock>
                 <StackPanel Grid.Column="0"
                             Grid.Row="1"
                            VerticalAlignment="Center"
                            Margin="50 0"
                             >
-                <Label>Логин</Label>
+                    <Label>Логин</Label>
                     <StackPanel Orientation="Horizontal">
-                <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="login"
-                        GotFocus="login_GotFocus"
-                        LostFocus="login_LostFocus"
+                <TextBox x:Name="login"
+                    GotFocus="login_GotFocus"
+                         LostFocus="login_LostFocus" 
                             />
                         <TextBlock x:Name="loginToolTip"
                         TextWrapping="Wrap" 
                                Width="234"
+                               VerticalAlignment="Center"
                                Visibility="Hidden"
                                FontSize="10"
-                               Foreground="#1D6A72"
+                               Foreground="white"
                                Margin="7 0 0 0">*логин может содержать цифры, буквы, символы "-" и "_", длина от 3 до 16 символов</TextBlock>
                     </StackPanel>
                 </StackPanel>
@@ -106,8 +95,7 @@
                             >
                     <Label>Пароль</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="password"
+                    <TextBox x:Name="password"
                              GotFocus="password_GotFocus"
                              LostFocus="password_LostFocus"
                             />
@@ -116,7 +104,7 @@
                                Width="241"
                                Visibility="Hidden"
                                FontSize="10"
-                               Foreground="#1D6A72"
+                               Foreground="white"
                                Margin="7 0 0 0">*пароль должен быть 8-12 символов, содержать хотя бы одну цифру, одну латинскую букву, один специальный символ</TextBlock>
 
                     </StackPanel>
@@ -128,18 +116,18 @@
                             >
                     <Label>Подтверждение пароля</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="passwordConf"
+                    <TextBox x:Name="passwordConf"
                          GotFocus="passwordConf_GotFocus"
                          LostFocus="passwordConf_LostFocus"
                             />
                         <TextBlock x:Name="passwordConfToolTip"
                                TextWrapping="Wrap" 
                                Width="241"
+                               VerticalAlignment="Bottom"
                                Visibility="Hidden"
                                FontSize="10"
                                Margin="7 0 0 0"
-                               Foreground="#1D6A72"
+                               Foreground="White"
                                >*пароли должены совпадать</TextBlock>
                     </StackPanel>
                 </StackPanel>
@@ -150,18 +138,18 @@
                             >
                     <Label>Фамилия</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="surname"
+                    <TextBox x:Name="surname"
                          GotFocus="surname_GotFocus"
                          LostFocus="surname_LostFocus"
                             />
                         <TextBlock x:Name="surnameToolTip"
                                TextWrapping="Wrap" 
                                Width="241"
+                               VerticalAlignment="Bottom"
                                Visibility="Hidden"
                                FontSize="10"
                                Margin="7 0 0 0"
-                               Foreground="#1D6A72"
+                               Foreground="white"
                                >*ввод с большой буквы</TextBlock>
 
                     </StackPanel>
@@ -173,17 +161,17 @@
                             >
                     <Label>Имя</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="name"
+                    <TextBox x:Name="name"
                          GotFocus="name_GotFocus"
                          LostFocus="name_LostFocus"   />
                         <TextBlock x:Name="nameToolTip"
                                TextWrapping="Wrap" 
                                Width="241"
                                Visibility="Hidden"
+                               VerticalAlignment="Bottom"
                                FontSize="10"
                                Margin="7 0 0 0"
-                               Foreground="#1D6A72"
+                               Foreground="white"
                                >*ввод с большой буквы</TextBlock>
 
                     </StackPanel>
@@ -195,8 +183,7 @@
                             >
                     <Label>Отчество</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="patronymic"
+                    <TextBox x:Name="patronymic"
                          GotFocus="patronymic_GotFocus"    
                          LostFocus="patronymic_LostFocus"    
                             />
@@ -204,9 +191,10 @@
                                TextWrapping="Wrap" 
                                Width="241"
                                Visibility="Hidden"
+                               VerticalAlignment="Bottom"
                                FontSize="10"
                                Margin="7 0 0 0"
-                               Foreground="#1D6A72"
+                               Foreground="white"
                                >*ввод с большой буквы</TextBlock>
 
                     </StackPanel>
@@ -219,11 +207,13 @@
                     <Label>Дата рождения</Label>
                     <DatePicker  Width="225"
                              HorizontalAlignment="Left"
-                                 FontSize="13"
+                                 FontSize="16"
                                  Margin="0 0 0 15"
                                  BorderThickness="0.1"
                                  BorderBrush="#3A4149"
                                  x:Name="bday"
+                                 VerticalAlignment="Center"
+                                 
                                  SelectedDateChanged="bday_SelectedDateChanged"
                                 ></DatePicker>
                 </StackPanel>
@@ -234,8 +224,7 @@
                             >
                     <Label>Номер телефона</Label>
                     <StackPanel Orientation="Horizontal">                        
-                        <TextBox Style="{StaticResource TextBox}"
-                             x:Name="telephone"
+                        <TextBox x:Name="telephone"
                             />
                     </StackPanel>
                 </StackPanel>
@@ -244,10 +233,10 @@
                             VerticalAlignment="Center"                           
                             >
                     <Label>Домашний адрес</Label>
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="adress"
+                    <TextBox x:Name="adress"
                              TextWrapping="Wrap"
                              Height="35"
+                             HorizontalAlignment="Left"
                             />
                 </StackPanel>
                 <StackPanel Grid.Column="1"
@@ -300,10 +289,9 @@
                           
                             >
                     <Label>Номер паспорта</Label>
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="passport_id"
+                    <TextBox x:Name="passport_id"
                          MaxLength="7"
-                             
+                             HorizontalAlignment="Left"
                             />
                 </StackPanel>
                 <StackPanel Grid.Column="1"
@@ -313,8 +301,7 @@
                             >
                     <Label>Номер ВУ</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="license_id"
+                    <TextBox x:Name="license_id"
                              MaxLength="11"
                              GotFocus="license_id_GotFocus"
                              LostFocus="license_id_LostFocus"
@@ -325,7 +312,8 @@
                                Visibility="Hidden"
                                FontSize="10"
                                Margin="7 0 0 0"
-                               Foreground="#1D6A72"                                 
+                               VerticalAlignment="Bottom"
+                               Foreground="white"                                 
                                >*например, 4AB 0000245</TextBlock>
 
                     </StackPanel>
@@ -336,13 +324,15 @@
                            
                             >
                     <Label>Опыт вождения</Label>
-                    <TextBox Style="{DynamicResource TextBox}"
-                         x:Name="experience"
+                    <TextBox x:Name="experience"
+                             HorizontalAlignment="Left"
                             />
                 </StackPanel>
                 <Button Grid.Column="1"
                         Grid.Row="8"
-                        Margin="100 5">
+                        Margin="100 5"
+                        x:Name="save"
+                        Click="save_Click">
                     Сохранить изменения
                 </Button>
             </Grid>

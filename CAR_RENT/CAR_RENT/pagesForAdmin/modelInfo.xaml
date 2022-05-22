@@ -46,7 +46,7 @@
                   MouseDown="DGridModelInfo_MouseDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Модель" Binding="{Binding MODEL}" Width="auto" />
-                <DataGridTextColumn Header="Год выпуска" Binding="{Binding YEAR_OF_ISSUE, StringFormat=Y}" Width="auto"/>
+                <DataGridTextColumn Header="Год выпуска" Binding="{Binding YEAR_OF_ISSUE, StringFormat='{}{0:yyyy}'}" Width="auto"/>
                 <DataGridTextColumn Header="Тип кузова" Binding="{Binding BODY_TYPE}" Width="auto"/>
                 <DataGridTextColumn Header="Объем двигателя" Binding="{Binding ENGINE_CAPACITY}" Width="auto"/>
                 <DataGridTextColumn Header="Тип двигателя" Binding="{Binding ENGINE_TYPE}" Width="auto"/>

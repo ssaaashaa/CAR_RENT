@@ -14,12 +14,8 @@ namespace CAR_RENT.models
     
     public partial class CONTRACT
     {
-        public CONTRACT()
-        {
-        }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CONTRACT(object var)
+        public CONTRACT()
         {
             this.ACCIDENTS = new HashSet<ACCIDENT>();
         }
@@ -29,10 +25,10 @@ namespace CAR_RENT.models
         public Nullable<int> CAR_ID { get; set; }
         public Nullable<System.DateTime> CONTRACT_START { get; set; }
         public Nullable<System.DateTime> CONTRACT_END { get; set; }
-        public Nullable<int> COUNT_OF_DAYS { get; set; }
         public string PROMO_CODE { get; set; }
         public Nullable<int> TOTAL_COST { get; set; }
         public string STATUS { get; set; }
+        public string CONTRACT_STATUS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ACCIDENT> ACCIDENTS { get; set; }

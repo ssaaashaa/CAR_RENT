@@ -28,10 +28,43 @@ namespace CAR_RENT.pagesForAdmin
             InitializeComponent();
             DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
             CLIENT_ID.PreviewTextInput += new TextCompositionEventHandler(textInput);
-            CAR_ID.PreviewTextInput += new TextCompositionEventHandler(textInput);            
+            CAR_ID.PreviewTextInput += new TextCompositionEventHandler(textInput);
+            contract_status();
 
         }
+        void contract_status()
+        {
+            try
+            {
+                foreach (CONTRACT contract in DGridContracts.Items)
+                {
+                    DateTime contract_end = new DateTime();
+                    DateTime.TryParse(contract.CONTRACT_END.ToString(), out contract_end);
+                    DateTime now = new DateTime();
+                    DateTime.TryParse(DateTime.Now.ToString(), out now);
+                    TimeSpan days = now - contract_end;
+                    if (contract.STATUS == "Подтверждена" && days.Days > 0)
+                    {
+                        contract.CONTRACT_STATUS = "Прокат завершен";
+                    }
+                    if (contract.STATUS == "Подтверждена" && days.Days <= 0)
+                    {
+                        contract.CONTRACT_STATUS = "Прокат активен";
+                    }
+                    if (contract.STATUS == "Отменена")
+                    {
+                        contract.CONTRACT_STATUS = "Прокат отменен";
+                    }
+                    if (contract.STATUS == "Новая заявка")
+                    {
+                        contract.CONTRACT_STATUS = "Ждет подтверждения";
+                    }                    
+                    CAR_RENTEntities.GetContext().SaveChanges();
+                }
 
+            }
+            catch { }
+        }
         private void textInput(object sender, TextCompositionEventArgs e)
         {
             if (!Char.IsDigit(e.Text, 0))
@@ -53,6 +86,7 @@ namespace CAR_RENT.pagesForAdmin
                 PROMO_CODE.Text = selectedContract.PROMO_CODE;
                 TOTAL_COST.Text = selectedContract.TOTAL_COST.ToString();
                 STATUS.Text = selectedContract.STATUS;
+                
             }   
         }
         void Clear()
@@ -65,6 +99,7 @@ namespace CAR_RENT.pagesForAdmin
             PROMO_CODE.Clear();
             TOTAL_COST.Clear();
             STATUS.SelectedItem = null;
+           
         }
         private void Add_Click(object sender, RoutedEventArgs e)
         {
@@ -113,7 +148,6 @@ namespace CAR_RENT.pagesForAdmin
             currentContract.CAR_ID=Convert.ToInt32(CAR_ID.Text);
             currentContract.CONTRACT_START = contract_start;
             currentContract.CONTRACT_END = contract_end;
-            currentContract.COUNT_OF_DAYS = count_of_days;
             try
             {
                 currentContract.PROMO_CODE = promo_code.PROMO_CODE1;
@@ -121,11 +155,12 @@ namespace CAR_RENT.pagesForAdmin
             catch { }
             currentContract.TOTAL_COST = Convert.ToInt32(total_price);
             currentContract.STATUS = STATUS.Text;
+            contract_status();
             CAR_RENTEntities.GetContext().CONTRACTS.Add(currentContract);
             try
             {
                 CAR_RENTEntities.GetContext().SaveChanges();
-                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();               
                 Clear();
                 MessageBox.Show("Данные успешно добавлены!");
             }
@@ -190,15 +225,13 @@ namespace CAR_RENT.pagesForAdmin
                 currentContract.CAR_ID = Convert.ToInt32(CAR_ID.Text);
                 currentContract.CONTRACT_START = contract_start;
                 currentContract.CONTRACT_END = contract_end;
-                currentContract.COUNT_OF_DAYS = count_of_days;
                 try
                 {
                     currentContract.PROMO_CODE = promo_code.PROMO_CODE1;
                 }
                 catch { }
                 currentContract.TOTAL_COST = Convert.ToInt32(total_price);
-                currentContract.STATUS = STATUS.Text;          
-
+                currentContract.STATUS = STATUS.Text;    
                 if (currentContract != null)
                 {
                     try
@@ -213,22 +246,23 @@ namespace CAR_RENT.pagesForAdmin
                         }
                         if (STATUS.Text.Equals("Новая заявка") && flag == 1)
                         {
-                            currentCar.STATUS = "свободна";                            
+                            currentCar.STATUS = "Cвободна";                            
                         }
                         if (STATUS.Text.Equals("Отменена"))
                         {
-                            currentCar.STATUS = "свободна";                          
+                            currentCar.STATUS = "Cвободна";                          
                         }
                         if (STATUS.Text.Equals("Подтверждена") && flag == 0)
                         {
-                            currentCar.STATUS = "в прокате";                           
+                            currentCar.STATUS = "D прокате";                           
                         }
                         else
                         {
-                            currentCar.STATUS = "свободна";
+                            currentCar.STATUS = "Cвободна";
                         }
+                        contract_status();
                         CAR_RENTEntities.GetContext().SaveChanges();
-                        DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                        DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();                        
                         Clear();
                         MessageBox.Show("Данные успешно обновлены!");
                     }

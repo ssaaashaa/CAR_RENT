@@ -19,6 +19,7 @@ namespace CAR_RENT
         public App()
         {
             App.currentClient = new CLIENT();
+           
         }
     }
 }

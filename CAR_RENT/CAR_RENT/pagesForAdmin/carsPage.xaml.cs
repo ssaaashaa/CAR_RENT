@@ -49,50 +49,29 @@ namespace CAR_RENT.pagesForAdmin
             }
            foreach(CAR car in DGridCars.Items)
             {
-                string id=car.ID.ToString();
-                CONTRACT contract=CAR_RENTEntities.GetContext().CONTRACTS.Where(c=>c.CAR_ID.ToString() == id).FirstOrDefault();
-
-                if (contract != null)
+                try
                 {
-                    try
-                    {
-                        DateTime now = new DateTime();
-                        DateTime.TryParse(DateTime.Now.ToString(), out now);
-                        DateTime contract_end = new DateTime();
-                        DateTime.TryParse(contract.CONTRACT_END.ToString(), out contract_end);
-                        int status = now.Day - contract_end.Day;
-                        int flag = 0;
-                        if (status >= 0)
-                        {
-                            flag = 1;
-                        }
-                        if (contract.STATUS.Equals("Новая заявка") && flag==1)
-                        {
-                            car.STATUS = "свободна";
-                        }
-                        if (contract.STATUS.Equals("Отменена"))
-                        {
-                            car.STATUS = "свободна";
-                        }
-                        if (contract.STATUS.Equals("Подтверждена") && flag == 0)
-                        {
-                            car.STATUS = "в прокате";
-                        }
-                        else
-                        {
-                            car.STATUS = "свободна";
-                        }
+                    string id = car.ID.ToString();
+                    CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString() == id).FirstOrDefault();
 
+                    if (contract != null)
+                    {
+                        if (contract.CONTRACT_STATUS == "Прокат активен")
+                        {
+                            car.STATUS = "В прокате";
+                        }
+                        else car.STATUS = "Свободна";
+                        CAR_RENTEntities.GetContext().SaveChanges();
                     }
-                    catch
-                    {
 
+
+                    else if (contract == null)
+                    {
+                        car.STATUS = "Свободна";
+                        CAR_RENTEntities.GetContext().SaveChanges();
                     }
                 }
-                else if (contract == null)
-                {
-                    car.STATUS = "свободна";
-                }
+                catch { }
 
             }
 

@@ -23,6 +23,7 @@ namespace CAR_RENT.windows
         public CatalogWindow()
         {
             InitializeComponent();
+           
             frame.Content = new CatalogPage();
             
         }
@@ -48,7 +49,7 @@ namespace CAR_RENT.windows
         private void userContracts_Click(object sender, RoutedEventArgs e)
         {
             frame.Content = new UserContracts();
-           
+            
         }
 
         private void main_Click(object sender, RoutedEventArgs e)

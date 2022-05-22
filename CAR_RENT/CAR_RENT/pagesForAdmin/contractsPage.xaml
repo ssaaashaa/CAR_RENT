@@ -50,8 +50,9 @@
                 <DataGridTextColumn Header="Начало аренды" Binding="{Binding CONTRACT_START, StringFormat=d}" Width="auto"/>
                 <DataGridTextColumn Header="Конец аренды" Binding="{Binding CONTRACT_END, StringFormat=d}" Width="auto"/>
                 <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE}" Width="auto"/>
-                <DataGridTextColumn Header="Итого (руб.)" Binding="{Binding TOTAL_COST}" Width="auto"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding STATUS}" Width="auto"/>
+                <DataGridTextColumn Header="Итоговая стоимость" Binding="{Binding TOTAL_COST}" Width="auto"/>
+                <DataGridTextColumn Header="Статус заявки" Binding="{Binding STATUS}" Width="auto"/>
+                <DataGridTextColumn Header="Статус проката" Binding="{Binding CONTRACT_STATUS}" Width="auto"/>
                 <DataGridTemplateColumn Header="ДТП" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -116,7 +117,8 @@
             <TextBlock Text="Конец аренды" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Промокод" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Итоговая стоимость проката" TextWrapping="Wrap" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Статус" Grid.Row="6" VerticalAlignment="Center"></TextBlock>           
+            <TextBlock Text="Статус заявки" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
+           
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
@@ -155,6 +157,7 @@
                     Отменена
                 </ComboBoxItem>
             </ComboBox>
+           
         </Grid>
     </Grid>
 </Page>

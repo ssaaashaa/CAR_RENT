@@ -23,7 +23,7 @@ namespace CAR_RENT.userControls
     public partial class Car : UserControl
     {
 
-        public Car(string CurrentName, string Price, string Year, string BodyType,
+        public Car(string CurrentName, string Price, string Year,string BodyType, string EngineType,
         string EngineCapacity, string Transmission, string Equipment, string Image, string Id)
         {
             InitializeComponent();
@@ -31,6 +31,7 @@ namespace CAR_RENT.userControls
             price.Text = Price + " BYN";
             year.Text = Year;
             bodyType.Text = BodyType;
+            engineType.Text = EngineType;
             engineCapacity.Text = EngineCapacity;
             transmission.Text = Transmission;
             equipment.Text = Equipment;

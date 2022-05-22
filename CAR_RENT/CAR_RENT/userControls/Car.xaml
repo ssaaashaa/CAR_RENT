@@ -5,36 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CAR_RENT.userControls"
              mc:Ignorable="d" 
-             d:DesignHeight="350" 
-             d:DesignWidth="600"
+             d:DesignHeight="420" 
+             d:DesignWidth="740"
              Foreground="White"
              FontFamily="Comfortaa"
              Background="Transparent"
-             FontSize="13"
+             FontSize="14"
             
              >
-    <Border Width="Auto" Height="Auto" Name="windowFrame"
+    <Border Width="700" Height="380" Name="windowFrame"
           Background="#2B3238"
           BorderThickness="1"
           CornerRadius="40" 
-          Margin="20"
+          Margin="10"
           >
         <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
                 <ColumnDefinition Width="11*"></ColumnDefinition>
-                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
                 <RowDefinition  Height="10*"></RowDefinition>
-                <RowDefinition  Height="*"></RowDefinition>
+                <RowDefinition  Height="0.3*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid  Grid.Column="1"
                Grid.Row="1"
                Background="#2B3238"
                Panel.ZIndex="1"
+                   Margin="10"
                >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -49,6 +50,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="currentName"
                            VerticalAlignment="Top"
+                               TextWrapping="Wrap"
                            Margin="0 15 0 0"
                                FontSize="21"
                                FontWeight="Bold"></TextBlock>
@@ -63,8 +65,8 @@
                 </Grid>
                 <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.9*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="0.6*"></RowDefinition>
+                        <RowDefinition Height="0.5*"></RowDefinition>
                         <RowDefinition Height="0.3*"></RowDefinition>
                         <RowDefinition Height="0.3*"></RowDefinition>
                         <RowDefinition Height="0.3*"></RowDefinition>
@@ -78,24 +80,26 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Стоимость аренды в сутки:"
-                          Margin="0 15 0 0"
+                          Margin="0 15 40 0"
                            TextWrapping="Wrap"
                            FontWeight="Bold"
                            FontSize="14"
                           ></TextBlock>
                     <TextBlock Grid.Column="1"
                          Height="20"
-                         Margin="0 15 0 0"
+                         Margin="0 10 0 0"
                          FontSize="16"
                          VerticalAlignment="Center"
                            x:Name="price"></TextBlock>
                     <Button Grid.Row="1"
                         Grid.ColumnSpan="2"
-                        Width="160"
-                        Height="30"
+                        Width="170"
+                        Height="35"
                         Content="Бронирование авто"
                         Background="#64AFB6"
-                        Click="Button_Click"></Button>
+                        Click="Button_Click"
+                        Foreground="white"
+                        BorderThickness="0"></Button>
                     <TextBlock Grid.Row="2"
                            Text="год выпуска: "
                            VerticalAlignment="Center"
@@ -145,17 +149,18 @@
                            ></TextBlock>
                     <TextBlock Grid.Row="7"
                            Text="оборудование: "
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"></TextBlock>
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                               ></TextBlock>
                     <TextBlock Grid.Column="0"
                                Grid.ColumnSpan="2"
                                Grid.Row="7"
                                Grid.RowSpan="2"
-                               Margin="0 20 0 0"
+                               Margin="0 35 0 0"
                            VerticalAlignment="Top"
                            TextWrapping="Wrap"
                            x:Name="equipment"
-                           FontSize="12"
+                           
                            ></TextBlock>
                 </Grid>
 

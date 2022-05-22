@@ -29,12 +29,7 @@
         <Setter Property="Margin" Value="10 0"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Visibility" Value="Hidden"/>
-    </Style>
-    <Style x:Key="buttonCatalog" TargetType="Button">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-    </Style>
+    </Style>   
     <Style x:Key="buttonAdmin" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -46,4 +41,9 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
+    <Style x:Key="items" TargetType="ListViewItem">
+        <Setter Property="IsEnabled" Value="False"/>
+        
+    </Style>
+   
 </ResourceDictionary>

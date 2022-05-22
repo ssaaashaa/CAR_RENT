@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CAR_RENT.pages
 {
     /// <summary>
-    /// Логика взаимодействия для UserAccount.xaml
+    /// Логика взаимодействия для CatalogSearch.xaml
     /// </summary>
-    public partial class UserContracts : Page
+    public partial class CatalogSearch : Page
     {
-        public UserContracts()
+        public CatalogSearch()
         {
             InitializeComponent();
         }

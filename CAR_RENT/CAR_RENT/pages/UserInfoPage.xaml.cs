@@ -22,10 +22,11 @@ namespace CAR_RENT.pages
     /// </summary>
     public partial class UserInfoPage : Page
     {
-        private CLIENT currentClient=new CLIENT();
+        private CLIENT currentClient = new CLIENT();
         public UserInfoPage()
         {
             InitializeComponent();
+            id.Text = App.currentClient.ID.ToString();
             login.Text = App.currentClient.LOGIN;
             password.Text = App.currentClient.PASSWORD;
             surname.Text = App.currentClient.SURNAME;
@@ -36,7 +37,7 @@ namespace CAR_RENT.pages
             adress.Text = App.currentClient.ADRESS;
             passportSeries.Text = App.currentClient.PASSPORT_SERIES;
             passport_id.Text = App.currentClient.PASSPORT_ID.ToString();
-            license_id.Text=App.currentClient.DRIVER_LICENSE_ID.ToString();
+            license_id.Text = App.currentClient.DRIVER_LICENSE_ID.ToString();
             experience.Text = App.currentClient.DRIVING_EXPERIENCE;
             passport_id.PreviewTextInput += new TextCompositionEventHandler(passportTextInput);
             license_id.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
@@ -64,7 +65,7 @@ namespace CAR_RENT.pages
 
         private void password_LostFocus(object sender, RoutedEventArgs e)
         {
-            passwordToolTip.Visibility= Visibility.Hidden;  
+            passwordToolTip.Visibility = Visibility.Hidden;
         }
 
         private void passwordConf_GotFocus(object sender, RoutedEventArgs e)
@@ -79,7 +80,7 @@ namespace CAR_RENT.pages
 
         private void surname_GotFocus(object sender, RoutedEventArgs e)
         {
-            surnameToolTip.Visibility = Visibility.Visible; 
+            surnameToolTip.Visibility = Visibility.Visible;
         }
 
         private void surname_LostFocus(object sender, RoutedEventArgs e)
@@ -94,7 +95,7 @@ namespace CAR_RENT.pages
 
         private void name_LostFocus(object sender, RoutedEventArgs e)
         {
-            nameToolTip.Visibility=Visibility.Hidden;   
+            nameToolTip.Visibility = Visibility.Hidden;
         }
 
         private void patronymic_GotFocus(object sender, RoutedEventArgs e)
@@ -104,7 +105,7 @@ namespace CAR_RENT.pages
 
         private void patronymic_LostFocus(object sender, RoutedEventArgs e)
         {
-            patronymicToolTip.Visibility=Visibility.Hidden;
+            patronymicToolTip.Visibility = Visibility.Hidden;
         }
         private void bday_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -114,7 +115,7 @@ namespace CAR_RENT.pages
             DateTime today = DateTime.Today;
             if ((today.Year - date.Year) <= 18)
             {
-                MessageBox.Show("Извините! Вам нет 18 лет! Мы не сможем предоставить вам автомобиль!");                
+                MessageBox.Show("Извините! Вам нет 18 лет! Мы не сможем предоставить Вам автомобиль!");
             }
             //this.NavigationService.GoBack();
         }
@@ -133,7 +134,7 @@ namespace CAR_RENT.pages
 
         private void license_id_LostFocus(object sender, RoutedEventArgs e)
         {
-            licenseToolTip.Visibility=Visibility.Hidden;
+            licenseToolTip.Visibility = Visibility.Hidden;
         }
         void lettersAndNumbers(object sender, TextCompositionEventArgs e)
         {
@@ -147,6 +148,123 @@ namespace CAR_RENT.pages
             if (!Char.IsLetter(e.Text, 0))
             {
                 e.Handled = true; //не обрабатывать введеный символ
+            }
+        }
+
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+            string log = login.Text;
+            string pass = password.Text;
+            string passConf = passwordConf.Text;
+            string surn = surname.Text;
+            string n = name.Text;
+            string patron = patronymic.Text;
+            DateTime date = new DateTime();
+            DateTime.TryParse(bday.Text, out date);
+            string teleph = telephone.Text;
+
+
+            //цифры, строчные буквы, символы - и _, длина 3-16 знаков
+            string patternLogin = @"^[a-zA-Zа-яА-Я0-9_-]{3,16}$";
+            //одна буква маленькая, одна большая, одна цифра, один любой знак(ни цифра/буква)
+            string patternPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9])\S{8,12}$";
+            string patternName = @"^([a-zA-ZА-Яа-я])+$";
+            string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
+
+            using (CAR_RENTEntities db = new CAR_RENTEntities())
+            {
+                CLIENT client = db.CLIENTS.FirstOrDefault(u => u.ID.ToString() == id.Text.ToString());
+                if (client != null)
+                {
+                    if (log.Length != 0
+                        && Regex.IsMatch(log, patternLogin, RegexOptions.IgnoreCase)
+                        && pass.Length != 0
+                        && Regex.IsMatch(pass, patternPassword, RegexOptions.IgnoreCase)
+                        && passConf.Length != 0
+                        && Regex.IsMatch(passConf, patternPassword, RegexOptions.IgnoreCase)
+                        && pass == passConf
+                        && surn.Length != 0
+                        && Regex.IsMatch(surn, patternName, RegexOptions.IgnoreCase)
+                        && n.Length != 0
+                        && Regex.IsMatch(n, patternName, RegexOptions.IgnoreCase)
+                        && patron.Length != 0
+                        && Regex.IsMatch(patron, patternName, RegexOptions.IgnoreCase)
+                        && bday.Text != "Выбор даты" && bday.Text != ""
+                        && Regex.IsMatch(teleph, patternTelephone, RegexOptions.IgnoreCase)
+                        && adress.Text != ""
+                        && passportSeries.SelectedIndex != -1
+                        && passport_id.Text.Length == 7
+                        && license_id.Text != ""
+                        && experience.Text != ""
+                        )
+                    {
+                        try
+                        {
+                            client.LOGIN = log;
+                            client.PASSWORD = pass;
+                            client.SURNAME = surn;
+                            client.NAME = n;
+                            client.PATRONYMIC = patron;
+                            client.BDAY = Convert.ToDateTime(bday);
+                            client.TELEPHONE = teleph;
+                            client.ADRESS = adress.Text;
+                            client.PASSPORT_SERIES = passportSeries.SelectedValue.ToString();
+                            client.PASSPORT_ID = Convert.ToInt32(passport_id.Text);
+                            client.DRIVER_LICENSE_ID = license_id.Text;
+                            client.DRIVING_EXPERIENCE = experience.Text;
+                            db.SaveChanges();
+                        }
+                        catch { }
+                    }
+                    else
+                    {
+                        if (log.Length != 0
+                       && Regex.IsMatch(log, patternLogin, RegexOptions.IgnoreCase)
+                       && pass.Length != 0
+                       && Regex.IsMatch(pass, patternPassword, RegexOptions.IgnoreCase)
+                       && surn.Length != 0
+                       && Regex.IsMatch(surn, patternName, RegexOptions.IgnoreCase)
+                       && n.Length != 0
+                       && Regex.IsMatch(n, patternName, RegexOptions.IgnoreCase)
+                       && patron.Length != 0
+                       && Regex.IsMatch(patron, patternName, RegexOptions.IgnoreCase)
+                       && bday.Text != "Выбор даты" && bday.Text != ""
+                       && Regex.IsMatch(teleph, patternTelephone, RegexOptions.IgnoreCase)
+                       && adress.Text != ""
+                       && passportSeries.SelectedIndex != -1
+                       && passport_id.Text.Length == 7
+                       && license_id.Text != ""
+                       && experience.Text != ""
+                       )
+                        {
+                            try
+                            {
+                                client.LOGIN = log;
+                                client.PASSWORD = pass;
+                                client.SURNAME = surn;
+                                client.NAME = n;
+                                client.PATRONYMIC = patron;
+                                client.BDAY = Convert.ToDateTime(bday);
+                                client.TELEPHONE = teleph;
+                                client.ADRESS = adress.Text;
+                                client.PASSPORT_SERIES = passportSeries.SelectedValue.ToString();
+                                client.PASSPORT_ID = Convert.ToInt32(passport_id.Text);
+                                client.DRIVER_LICENSE_ID = license_id.Text;
+                                client.DRIVING_EXPERIENCE = experience.Text;
+                                db.SaveChanges();
+                            }
+                            catch { }
+                        }
+
+
+
+                    }
+                }
+                else
+                {
+
+                   
+                }
             }
         }
     }

@@ -170,34 +170,34 @@
             </StackPanel>
                 <ComboBox x:Name="CLASS" Grid.Row="2" Text="{Binding CLASS}" Width="200" Height="25" Margin="0,3,0,0" VerticalAlignment="Top" >
                 <ComboBoxItem>
-                    эконом
+                    Эконом
                 </ComboBoxItem> 
                 <ComboBoxItem>
-                    средний
+                    Средний
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    бизнес
+                    Бизнес
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    кабриолет
+                    Кабриолет
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    внедорожник
+                    Внедорожник
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    микроавтобус
+                    Микроавтобус
                 </ComboBoxItem>
                 <ComboBoxItem>
-                   грузовые
+                   Грузовые
                 </ComboBoxItem>
             </ComboBox>
             <TextBox x:Name="REGISTRATION_NUMBER" Text="{Binding REGISTRATION_NUMBER}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <ComboBox x:Name="STATUS" Text="{Binding STATUS}" Grid.Row="4" Width="200" Height="25" >
                 <ComboBoxItem>
-                   свободна
+                   Свободна
                 </ComboBoxItem>
                 <ComboBoxItem>
-                   в прокате
+                   В прокате
                 </ComboBoxItem>
             </ComboBox>
             <StackPanel Grid.Row="5" 
