@@ -71,7 +71,8 @@
             </RepeatButton>
             <Track Name="PART_Track" Grid.Row="1" 
                    IsDirectionReversed="True"
-                   
+                  IsEnabled="False"
+                  
                   >
                 <Track.DecreaseRepeatButton>
                     <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
@@ -88,7 +89,8 @@
             </Track>
             <RepeatButton Grid.Row="3" Height="18"
                           Style="{StaticResource ScrollBarLineButtonBottomStyle}"
-                          Command="ScrollBar.LineDownCommand">
+                          Command="ScrollBar.LineDownCommand"
+                          >
             </RepeatButton>
         </Grid>
     </ControlTemplate>

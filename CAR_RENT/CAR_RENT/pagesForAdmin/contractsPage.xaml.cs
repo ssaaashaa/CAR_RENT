@@ -27,6 +27,7 @@ namespace CAR_RENT.pagesForAdmin
         {
             InitializeComponent();
             DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+            DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c=>c.STATUS=="Новая заявка").ToList();
             CLIENT_ID.PreviewTextInput += new TextCompositionEventHandler(textInput);
             CAR_ID.PreviewTextInput += new TextCompositionEventHandler(textInput);
             contract_status();
@@ -160,7 +161,8 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 CAR_RENTEntities.GetContext().SaveChanges();
-                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();               
+                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS == "Новая заявка").ToList();
                 Clear();
                 MessageBox.Show("Данные успешно добавлены!");
             }
@@ -262,7 +264,8 @@ namespace CAR_RENT.pagesForAdmin
                         }
                         contract_status();
                         CAR_RENTEntities.GetContext().SaveChanges();
-                        DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();                        
+                        DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                        DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS == "Новая заявка").ToList();
                         Clear();
                         MessageBox.Show("Данные успешно обновлены!");
                     }
@@ -290,6 +293,7 @@ namespace CAR_RENT.pagesForAdmin
                 {
                     CAR_RENTEntities.GetContext().SaveChanges();
                     DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                    DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS == "Новая заявка").ToList();
                     Clear();
                     MessageBox.Show("Запись удалена!");
                 }
@@ -309,6 +313,42 @@ namespace CAR_RENT.pagesForAdmin
            int Id = (DGridContracts.SelectedItem as CONTRACT).ID;
            Accident accident= new Accident(Id);   
            accident.Show();
+        }
+
+        private void DGridNewContracts_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            CONTRACT selectedContract = new CONTRACT();
+            selectedContract = DGridNewContracts.SelectedItem as CONTRACT;
+            if (selectedContract != null)
+            {
+                ID.Text = selectedContract.ID.ToString();
+                CLIENT_ID.Text = selectedContract.CLIENT_ID.ToString();
+                CAR_ID.Text = selectedContract.CAR_ID.ToString();
+                CONTRACT_START.Text = selectedContract.CONTRACT_START.ToString().Remove(10);
+                CONTRACT_END.Text = selectedContract.CONTRACT_END.ToString().Remove(10);
+                PROMO_CODE.Text = selectedContract.PROMO_CODE;
+                TOTAL_COST.Text = selectedContract.TOTAL_COST.ToString();
+                STATUS.Text = selectedContract.STATUS;
+
+            }
+        }
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < DGridContracts.Items.Count; i++)
+            {
+                string param = id.Text;
+                DGridContracts.ScrollIntoView(DGridContracts.Items[i]);
+                DataGridRow row = (DataGridRow)DGridContracts.ItemContainerGenerator.ContainerFromIndex(i);
+                TextBlock cellContentID = DGridContracts.Columns[0].GetCellContent(row) as TextBlock;
+                if (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower()))
+                {
+                    object item = DGridContracts.Items[i];
+                    DGridContracts.SelectedItem = item;
+                    DGridContracts.ScrollIntoView(item);
+                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                    break;
+                }
+            }
         }
     }
 }

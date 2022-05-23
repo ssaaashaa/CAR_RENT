@@ -1,20 +1,11 @@
 ﻿using CAR_RENT.models;
-using CAR_RENT.windows;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CAR_RENT.pagesForAdmin
 {
@@ -330,8 +321,27 @@ namespace CAR_RENT.pagesForAdmin
                 MessageBox.Show("Запись не выбрана!");
             }
         }
-        
 
-       
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < DGridClients.Items.Count; i++)
+            {
+                string param = telephNum.Text;
+                DGridClients.ScrollIntoView(DGridClients.Items[i]);
+                DataGridRow row = (DataGridRow)DGridClients.ItemContainerGenerator.ContainerFromIndex(i);
+                TextBlock cellContentTeleph = DGridClients.Columns[11].GetCellContent(row) as TextBlock;
+                TextBlock cellContentID = DGridClients.Columns[0].GetCellContent(row) as TextBlock;
+                if ((cellContentTeleph != null && cellContentTeleph.Text.ToLower().Trim().Equals(param.ToLower()))
+                    || (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower())))
+                {
+                    object item = DGridClients.Items[i];
+                    DGridClients.SelectedItem = item;
+                    DGridClients.ScrollIntoView(item);
+                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                    break;
+                }
+            }
+        }
+
     }
 }

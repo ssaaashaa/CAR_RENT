@@ -41,7 +41,7 @@
                   Grid.Row="1"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
-                  FontSize="14"
+                  FontSize="14"                  
                   MouseLeftButtonDown="DGridCars_MouseEnter"
                   >
             <DataGrid.Columns>
@@ -55,6 +55,35 @@
                 <DataGridTextColumn Header="Стоимость проката" Binding="{Binding RENT_PRICE}" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    >
+            <TextBlock Margin="0 0 0 0"
+                       TextWrapping="Wrap"
+                       Width="250"
+                       VerticalAlignment="Center">Поиск по ID или регистрационному номеру:</TextBlock>
+            <StackPanel Orientation="Vertical"
+                        >
+
+                <TextBox x:Name="regNumber"
+                     Width="120"
+                     TextAlignment="Center"
+                     Background="Transparent"
+                     Foreground="White"
+                     BorderThickness="0 0 0 0.5"></TextBox>
+                <Button x:Name="search"
+                    Click="search_Click"
+                    Width="120"
+                    Margin="0 5"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    Foreground="White">Найти</Button>
+            </StackPanel>
+           
+        </StackPanel>
         <Button Content="Добавить"
                 Width="130"
                 Height="40"

@@ -459,6 +459,40 @@ namespace CAR_RENT.pages
                         result.Visibility = Visibility.Visible;
                     }
                 }
+                if (brand == null && transmission == null && classs != null)
+                {
+                    var carsCatalog = from cars in db.CARS
+                                      join models in db.MODEL_INFO
+                                      on cars.MODEL equals models.MODEL
+                                      where cars.CLASS == classs
+                                      select new
+                                      {
+                                          CurrentName = cars.BREND + cars.MODEL,
+                                          Price = cars.RENT_PRICE,
+                                          Year = models.YEAR_OF_ISSUE,
+                                          BodyType = models.BODY_TYPE,
+                                          EngineCapacity = models.ENGINE_CAPACITY,
+                                          EngineType = models.ENGINE_TYPE,
+                                          Transmission = models.TRANSMISSION,
+                                          Equipment = models.EQUIPMENT,
+                                          Image = cars.IMAGE,
+                                          Id = cars.ID
+                                      };
+                    foreach (var car in carsCatalog)
+                    {
+                        var buf = new Car(car.CurrentName, car.Price.ToString(),
+                        car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType, car.EngineCapacity,
+                        car.Transmission, car.Equipment, car.Image, car.Id.ToString());
+                        buf.Width = 740;
+                        buf.Height = 420;
+                        StackPanel.Items.Add(buf);
+                    }
+                    if (StackPanel.Items.Count == 0)
+                    {
+                        result.Text = "Данные не найдены!";
+                        result.Visibility = Visibility.Visible;
+                    }
+                }
 
 
             }

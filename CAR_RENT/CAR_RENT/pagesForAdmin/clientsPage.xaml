@@ -61,6 +61,35 @@
                 <DataGridTextColumn Header="Тип" Binding="{Binding USER_TYPE}" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    >
+            <TextBlock Margin="0 0 0 0"
+                       TextWrapping="Wrap"
+                       Width="250"
+                       VerticalAlignment="Center">Поиск по ID или номеру телефона:</TextBlock>
+            <StackPanel Orientation="Vertical"
+                        >
+
+                <TextBox x:Name="telephNum"
+                     Width="200"
+                     TextAlignment="Center"
+                     Background="Transparent"
+                     Foreground="White"
+                     BorderThickness="0 0 0 0.5"></TextBox>
+                <Button x:Name="search"
+                    Click="search_Click"
+                    Width="120"
+                    Margin="0 5"
+                    Background="Transparent"
+                    Foreground="White"
+                        HorizontalAlignment="Center">Найти</Button>
+            </StackPanel>
+
+        </StackPanel>
         <Button Content="Добавить"
                 Width="130"
                 Height="40"

@@ -42,7 +42,66 @@
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   FontSize="14"
+                  Height="240"
+                  VerticalAlignment="Top"
                   MouseDown="DGridContracts_MouseDown">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
+                <DataGridTextColumn Header="ID клиента" Binding="{Binding CLIENT_ID}" Width="auto"/>
+                <DataGridTextColumn Header="ID авто" Binding="{Binding CAR_ID}" Width="auto"/>
+                <DataGridTextColumn Header="Начало аренды" Binding="{Binding CONTRACT_START, StringFormat=d}" Width="auto"/>
+                <DataGridTextColumn Header="Конец аренды" Binding="{Binding CONTRACT_END, StringFormat=d}" Width="auto"/>
+                <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE}" Width="auto"/>
+                <DataGridTextColumn Header="Итоговая стоимость" Binding="{Binding TOTAL_COST}" Width="auto"/>
+                <DataGridTextColumn Header="Статус заявки" Binding="{Binding STATUS}" Width="auto"/>
+                <DataGridTextColumn Header="Статус проката" Binding="{Binding CONTRACT_STATUS}" Width="auto"/>
+                <DataGridTemplateColumn Header="ДТП" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="accident" Click="accident_Click">Оформить ДТП</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    >
+            <TextBlock Margin="0 5 0 0"
+                       TextWrapping="Wrap"
+                       Width="110"
+                       VerticalAlignment="Top">Поиск по ID:</TextBlock>
+            <StackPanel Orientation="Vertical"
+                        >
+
+                <TextBox x:Name="id"
+                     Width="120"
+                     TextAlignment="Center"
+                     Background="Transparent"
+                     Foreground="White"
+                     BorderThickness="0 0 0 0.5"></TextBox>
+                <Button x:Name="search"
+                    Click="search_Click"
+                    Width="120"
+                    Margin="0 5"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    Foreground="White">Найти</Button>
+            </StackPanel>
+
+        </StackPanel>
+        <DataGrid x:Name="DGridNewContracts"
+                  Grid.Column="1"   
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  FontSize="14"
+                  MouseDown="DGridNewContracts_MouseDown"
+                  Height="240"
+                  VerticalAlignment="Bottom">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
                 <DataGridTextColumn Header="ID клиента" Binding="{Binding CLIENT_ID}" Width="auto"/>

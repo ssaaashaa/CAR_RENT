@@ -291,11 +291,25 @@ namespace CAR_RENT.pagesForAdmin
             IMAGE.Source = new BitmapImage(new Uri(link.Text));
         }
 
-        //private void MODEL_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    currentModel.Text = MODEL.SelectedValue.ToString();
-
-        //}
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < DGridCars.Items.Count; i++)
+            {
+                string param = regNumber.Text;
+                DGridCars.ScrollIntoView(DGridCars.Items[i]);
+                DataGridRow row = (DataGridRow)DGridCars.ItemContainerGenerator.ContainerFromIndex(i);
+                TextBlock cellContentRegistr = DGridCars.Columns[4].GetCellContent(row) as TextBlock;
+                TextBlock cellContentID = DGridCars.Columns[0].GetCellContent(row) as TextBlock;
+                if ((cellContentRegistr != null && cellContentRegistr.Text.ToLower().Trim().Equals(param.ToLower()))
+                    || (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower())))         {
+                    object item = DGridCars.Items[i];
+                    DGridCars.SelectedItem = item;
+                    DGridCars.ScrollIntoView(item);
+                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                    break;
+                }
+            }
+        }
     }
 }   
    

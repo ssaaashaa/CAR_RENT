@@ -335,13 +335,13 @@
                      >
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel>
-                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent" >эконом</RadioButton>
-                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">средний</RadioButton>
-                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">бизнес</RadioButton>
-                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">кабриолет</RadioButton>
-                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">внедорожник</RadioButton>
-                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">микроавтобус</RadioButton>
-                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">грузовые</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent" >Эконом</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Средний</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Бизнес</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Кабриолет</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Внедорожник</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Микроавтобус</RadioButton>
+                        <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Грузовые</RadioButton>
                        </StackPanel>
                 </ScrollViewer>
             </GroupBox>
