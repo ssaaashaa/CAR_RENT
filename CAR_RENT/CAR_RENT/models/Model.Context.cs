@@ -20,10 +20,10 @@ namespace CAR_RENT.models
             : base("name=CAR_RENTEntities")
         {
         }
-       public static CAR_RENTEntities GetContext()
+        public static CAR_RENTEntities GetContext()
         {
             if (context == null)
-            context = new CAR_RENTEntities();   
+                context = new CAR_RENTEntities();
             return context;
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

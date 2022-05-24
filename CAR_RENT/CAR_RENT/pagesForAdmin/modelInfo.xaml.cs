@@ -34,6 +34,7 @@ namespace CAR_RENT.pagesForAdmin
             selectedModel = DGridModelInfo.SelectedItem as MODEL_INFO;
             if (selectedModel != null)
             {
+                ID.Text=selectedModel.ID.ToString();
                 MODEL.Text = selectedModel.MODEL;
                 YEAR_OF_ISSUE.Text = selectedModel.YEAR_OF_ISSUE.ToString().Remove(0, 6).Remove(4);
                 BODY_TYPE.Text = selectedModel.BODY_TYPE;
@@ -56,6 +57,7 @@ namespace CAR_RENT.pagesForAdmin
         }
         void Clear()
         {
+            ID.Clear();
             MODEL.Clear();
             YEAR_OF_ISSUE.Clear();
             BODY_TYPE.Clear();
@@ -157,7 +159,7 @@ namespace CAR_RENT.pagesForAdmin
             
             try
             {
-                MODEL_INFO currentModel_info = CAR_RENTEntities.GetContext().MODEL_INFO.Where(m => m.MODEL == MODEL.Text).FirstOrDefault();
+                MODEL_INFO currentModel_info = CAR_RENTEntities.GetContext().MODEL_INFO.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
                 currentModel_info.MODEL = MODEL.Text;
                 currentModel_info.YEAR_OF_ISSUE = date;
                 currentModel_info.BODY_TYPE = BODY_TYPE.Text;
@@ -182,7 +184,7 @@ namespace CAR_RENT.pagesForAdmin
             }
             catch
             {
-                if (string.IsNullOrEmpty(MODEL.Text) == false)
+                if (string.IsNullOrEmpty(ID.Text) == false)
                 {
                     MessageBox.Show("Такой модели авто не существует!");
                 }
@@ -195,7 +197,7 @@ namespace CAR_RENT.pagesForAdmin
                 MessageBox.Show("Проверьте введенные данные либо выделите запись, которую требуется удалить!");
 
             }
-            MODEL_INFO currentModel_info=CAR_RENTEntities.GetContext().MODEL_INFO.Where(m=>m.MODEL==MODEL.Text).FirstOrDefault();
+            MODEL_INFO currentModel_info=CAR_RENTEntities.GetContext().MODEL_INFO.Where(m=>m.ID.ToString()==ID.Text.ToString()).FirstOrDefault();
             if(currentModel_info != null)
             {
                 CAR_RENTEntities.GetContext().MODEL_INFO.Remove(currentModel_info);
@@ -211,7 +213,7 @@ namespace CAR_RENT.pagesForAdmin
                     MessageBox.Show(ex.Message);
                 }
             }
-            else if(currentModel_info == null && string.IsNullOrEmpty(MODEL.Text) == false)
+            else if(currentModel_info == null && string.IsNullOrEmpty(ID.Text) == false)
             {
                 MessageBox.Show("Такой модели авто не существует!");
             }

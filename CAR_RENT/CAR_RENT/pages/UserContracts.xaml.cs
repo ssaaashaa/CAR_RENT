@@ -31,6 +31,8 @@ namespace CAR_RENT.pages
                 var historyContracts = from cars in db.CARS
                                        join contracts in db.CONTRACTS
                                        on cars.ID equals contracts.CAR_ID
+                                       join modelss in db.MODEL_INFO
+                                       on cars.MODEL equals modelss.ID
                                        where contracts.CLIENT_ID.ToString() == App.currentClient.ID.ToString()
                                        orderby contracts.ID descending
                                        select new
@@ -38,7 +40,7 @@ namespace CAR_RENT.pages
                                            ContractId = contracts.ID,
                                            ContractStart = contracts.CONTRACT_START,
                                            ContractEnd = contracts.CONTRACT_END,
-                                           Car = cars.BREND + " " + cars.MODEL,
+                                           Car = modelss.BREND + " " + modelss.MODEL,
                                            RegisterNum = cars.REGISTRATION_NUMBER,
                                            Status = contracts.CONTRACT_STATUS,
                                            TotalCost = contracts.TOTAL_COST + " BYN"

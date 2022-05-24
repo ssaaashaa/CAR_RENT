@@ -21,8 +21,7 @@ namespace CAR_RENT.models
         }
     
         public int ID { get; set; }
-        public string BREND { get; set; }
-        public string MODEL { get; set; }
+        public Nullable<int> MODEL { get; set; }
         public string CLASS { get; set; }
         public string REGISTRATION_NUMBER { get; set; }
         public string STATUS { get; set; }

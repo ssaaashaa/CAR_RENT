@@ -30,21 +30,22 @@ namespace CAR_RENT.pagesForAdmin
         public carsPage()
         {
             InitializeComponent();
-
+            ListView listID=new ListView();
+            ListView listMODEL=new ListView();
             DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
             RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(rent_priceTextInput);
             using (CAR_RENTEntities db = new CAR_RENTEntities())
             {
-                var currentModels = from cars in db.CARS
-                                    join models in db.MODEL_INFO
-                                    on cars.MODEL equals models.MODEL
+                var currentModels = from models in db.MODEL_INFO                                  
                                     select new
                                     {
-                                        Model = models.MODEL
+                                        ID = models.ID,
+                                        MODEL=models.MODEL
                                     };
                 foreach (var model in currentModels)
                 {
-                    MODEL.Items.Add(model.Model);
+                    listID.Items.Add(model.ID);
+                    listMODEL.Items.Add(model.MODEL);
                 }
             }
            foreach(CAR car in DGridCars.Items)
@@ -96,7 +97,7 @@ namespace CAR_RENT.pagesForAdmin
             if(selectedCar != null)
             { 
             ID.Text = selectedCar.ID.ToString();
-            BREND.Text = selectedCar.BREND;
+            //BREND.Text = selectedCar.BREND;
             MODEL.SelectedValue = selectedCar.MODEL;
             CLASS.Text = selectedCar.CLASS;
             REGISTRATION_NUMBER.Text = selectedCar.REGISTRATION_NUMBER;
@@ -159,8 +160,8 @@ namespace CAR_RENT.pagesForAdmin
                 return;
             }
             CAR currentCar = new CAR();
-            currentCar.BREND = BREND.Text;
-            currentCar.MODEL = MODEL.SelectedValue.ToString();
+            //currentCar.BREND = BREND.Text;
+            currentCar.MODEL = Convert.ToInt32(MODEL.SelectedValue);
             currentCar.CLASS = CLASS.Text;
             currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
             currentCar.STATUS = STATUS.Text;
@@ -227,8 +228,8 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
-                currentCar.BREND = BREND.Text;
-                currentCar.MODEL = MODEL.SelectedValue.ToString();
+                //currentCar.BREND = BREND.Text;
+                currentCar.MODEL = Convert.ToInt32(MODEL.SelectedValue);
                 currentCar.CLASS = CLASS.Text;
                 currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
                 currentCar.STATUS = STATUS.Text;

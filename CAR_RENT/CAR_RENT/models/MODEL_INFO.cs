@@ -27,6 +27,8 @@ namespace CAR_RENT.models
         public string ENGINE_TYPE { get; set; }
         public string TRANSMISSION { get; set; }
         public string EQUIPMENT { get; set; }
+        public int ID { get; set; }
+        public string BREND { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CAR> CARS { get; set; }

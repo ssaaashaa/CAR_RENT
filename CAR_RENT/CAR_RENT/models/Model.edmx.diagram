@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24a11bf596bd4eb2b3e9faed65889c5f" Name="Diagram1">
+      <Diagram DiagramId="c33c8c5fc00349feaf7adb6ad3c4736a" Name="Diagram1">
         <EntityTypeShape EntityType="CAR_RENTModel.ACCIDENT" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CAR_RENTModel.CAR" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CAR_RENTModel.CAR" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CAR_RENTModel.CLIENT" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CAR_RENTModel.CONTRACT" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CAR_RENTModel.MODEL_INFO" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CAR_RENTModel.MODEL_INFO" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CAR_RENTModel.PROMO_CODE" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CAR_RENTModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="CAR_RENTModel.FK_ACCIDENTS_CONTRACTS" ManuallyRouted="false" />

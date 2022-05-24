@@ -45,6 +45,7 @@
                   FontSize="14"
                   MouseDown="DGridModelInfo_MouseDown">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
                 <DataGridTextColumn Header="Модель" Binding="{Binding MODEL}" Width="auto" />
                 <DataGridTextColumn Header="Год выпуска" Binding="{Binding YEAR_OF_ISSUE, StringFormat='{}{0:yyyy}'}" Width="auto"/>
                 <DataGridTextColumn Header="Тип кузова" Binding="{Binding BODY_TYPE}" Width="auto"/>
@@ -130,11 +131,12 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
+            <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="MODEL" Text="{Binding MODEL}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="YEAR_OF_ISSUE" MaxLength="16" Text="{Binding YEAR_OF_ISSUE}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="BODY_TYPE" MaxLength="12" Text="{Binding BODY_TYPE}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="ENGINE_CAPACITY" Text="{Binding ENGINE_CAPACITY}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <ComboBox x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="4" Width="200" Height="20" >
+            <ComboBox x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="4" Width="200" Height="25" >
                 <ComboBoxItem>
                    бензин
                 </ComboBoxItem>
@@ -142,7 +144,7 @@
                     дизель
                 </ComboBoxItem>
             </ComboBox>
-            <ComboBox x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="5" Width="200" Height="20" >
+            <ComboBox x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="5" Width="200" Height="25" >
                 <ComboBoxItem>
                    автоматическая
                 </ComboBoxItem>

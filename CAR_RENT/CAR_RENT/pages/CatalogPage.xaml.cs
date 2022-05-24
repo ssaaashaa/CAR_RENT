@@ -47,10 +47,10 @@ namespace CAR_RENT.pages
             {
                 var carsCatalog = from cars in db.CARS
                                   join models in db.MODEL_INFO
-                                  on cars.MODEL equals models.MODEL
+                                  on cars.MODEL equals models.ID
                                   select new
                                   {
-                                      CurrentName = cars.BREND + cars.MODEL,
+                                      CurrentName = models.BREND + models.MODEL,
                                       Price = cars.RENT_PRICE,
                                       Year = models.YEAR_OF_ISSUE,
                                       BodyType = models.BODY_TYPE,
@@ -93,11 +93,11 @@ namespace CAR_RENT.pages
                 { 
                 var carsCatalog = from cars in db.CARS
                                   join models in db.MODEL_INFO
-                                  on cars.MODEL equals models.MODEL
+                                  on cars.MODEL equals models.ID
                                   where cars.CLASS == CLASS
                                   select new
                                   {
-                                      CurrentName = cars.BREND + cars.MODEL,
+                                      CurrentName = models.BREND + models.MODEL,
                                       Price = cars.RENT_PRICE,
                                       Year = models.YEAR_OF_ISSUE,
                                       BodyType=models.BODY_TYPE,
@@ -231,10 +231,10 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -259,11 +259,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where models.TRANSMISSION == transmission && cars.BREND == brand && cars.CLASS==classs
+                                      on cars.MODEL equals models.ID
+                                      where models.TRANSMISSION == transmission && models.BREND == brand && cars.CLASS==classs
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -293,11 +293,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where models.TRANSMISSION == transmission && cars.BREND == brand
+                                      on cars.MODEL equals models.ID
+                                      where models.TRANSMISSION == transmission && models.BREND == brand
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -327,11 +327,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where cars.BREND == brand && cars.CLASS == classs
+                                      on cars.MODEL equals models.ID
+                                      where models.BREND == brand && cars.CLASS == classs
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -361,11 +361,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       where models.TRANSMISSION == transmission  && cars.CLASS == classs
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -395,11 +395,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       where models.TRANSMISSION == transmission
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -429,11 +429,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where cars.BREND == brand
+                                      on cars.MODEL equals models.ID
+                                      where models.BREND == brand
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -463,11 +463,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       where cars.CLASS == classs
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -510,10 +510,10 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -539,12 +539,12 @@ namespace CAR_RENT.pages
 
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       where cars.CLASS == type_of_class.Text
 
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -570,11 +570,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where models.TRANSMISSION == transmission && cars.BREND == brand && cars.CLASS == type_of_class.Text
+                                      on cars.MODEL equals models.ID
+                                      where models.TRANSMISSION == transmission && models.BREND == brand && cars.CLASS == type_of_class.Text
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -604,11 +604,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where models.TRANSMISSION == transmission && cars.BREND == brand
+                                      on cars.MODEL equals models.ID
+                                      where models.TRANSMISSION == transmission && models.BREND == brand
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -638,11 +638,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where cars.BREND == brand && cars.CLASS == type_of_class.Text
+                                      on cars.MODEL equals models.ID
+                                      where models.BREND == brand && cars.CLASS == type_of_class.Text
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -672,11 +672,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       where models.TRANSMISSION == transmission && cars.CLASS == type_of_class.Text
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -706,11 +706,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
+                                      on cars.MODEL equals models.ID
                                       where models.TRANSMISSION == transmission
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,
@@ -740,11 +740,11 @@ namespace CAR_RENT.pages
                 {
                     var carsCatalog = from cars in db.CARS
                                       join models in db.MODEL_INFO
-                                      on cars.MODEL equals models.MODEL
-                                      where cars.BREND == brand
+                                      on cars.MODEL equals models.ID
+                                      where models.BREND == brand
                                       select new
                                       {
-                                          CurrentName = cars.BREND + cars.MODEL,
+                                          CurrentName = models.BREND + models.MODEL,
                                           Price = cars.RENT_PRICE,
                                           Year = models.YEAR_OF_ISSUE,
                                           BodyType = models.BODY_TYPE,

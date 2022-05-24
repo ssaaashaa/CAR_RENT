@@ -20,8 +20,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BREND" Type="nvarchar" MaxLength="50" />
-          <Property Name="MODEL" Type="nvarchar" MaxLength="100" />
+          <Property Name="MODEL" Type="int" />
           <Property Name="CLASS" Type="nvarchar" MaxLength="100" />
           <Property Name="REGISTRATION_NUMBER" Type="nchar" MaxLength="50" />
           <Property Name="STATUS" Type="nchar" MaxLength="30" />
@@ -63,7 +62,7 @@
         </EntityType>
         <EntityType Name="MODEL_INFO">
           <Key>
-            <PropertyRef Name="MODEL" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="MODEL" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="YEAR_OF_ISSUE" Type="date" />
@@ -72,6 +71,8 @@
           <Property Name="ENGINE_TYPE" Type="nvarchar" MaxLength="50" />
           <Property Name="TRANSMISSION" Type="nvarchar" MaxLength="50" />
           <Property Name="EQUIPMENT" Type="nvarchar" MaxLength="300" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BREND" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PROMO_CODE">
           <Key>
@@ -107,7 +108,7 @@
           <End Role="CARS" Type="Self.CARS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODEL_INFO">
-              <PropertyRef Name="MODEL" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CARS">
               <PropertyRef Name="MODEL" />
@@ -200,8 +201,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BREND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MODEL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MODEL" Type="Int32" />
           <Property Name="CLASS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="STATUS" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
@@ -250,7 +250,7 @@
         </EntityType>
         <EntityType Name="MODEL_INFO">
           <Key>
-            <PropertyRef Name="MODEL" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="MODEL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="YEAR_OF_ISSUE" Type="DateTime" Precision="0" />
@@ -259,6 +259,8 @@
           <Property Name="ENGINE_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TRANSMISSION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EQUIPMENT" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BREND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CARS" Relationship="Self.FK_CARS_MODEL_INFO" FromRole="MODEL_INFO" ToRole="CARS" />
         </EntityType>
         <EntityType Name="PROMO_CODE">
@@ -296,7 +298,7 @@
           <End Role="CARS" Type="Self.CAR" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODEL_INFO">
-              <PropertyRef Name="MODEL" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CARS">
               <PropertyRef Name="MODEL" />
@@ -389,7 +391,6 @@
             <EntityTypeMapping TypeName="CAR_RENTModel.CAR">
               <MappingFragment StoreEntitySet="CARS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="BREND" ColumnName="BREND" />
                 <ScalarProperty Name="MODEL" ColumnName="MODEL" />
                 <ScalarProperty Name="CLASS" ColumnName="CLASS" />
                 <ScalarProperty Name="REGISTRATION_NUMBER" ColumnName="REGISTRATION_NUMBER" />
@@ -444,6 +445,8 @@
                 <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
                 <ScalarProperty Name="TRANSMISSION" ColumnName="TRANSMISSION" />
                 <ScalarProperty Name="EQUIPMENT" ColumnName="EQUIPMENT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BREND" ColumnName="BREND" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

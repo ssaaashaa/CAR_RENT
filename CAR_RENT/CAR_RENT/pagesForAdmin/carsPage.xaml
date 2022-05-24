@@ -195,7 +195,7 @@
             <TextBox x:Name="BREND" MaxLength="16" Text="{Binding BREND}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <StackPanel Grid.Row="1"
                         Orientation="Vertical">
-            <ListView x:Name="MODEL"  ItemsSource="{Binding MODEL}"  FontSize="12" Height="120" ></ListView>
+            <ListView x:Name="MODEL"  ItemsSource="{Binding Path=listID}" DisplayMemberPath="{Binding Path=listMODEL}" FontSize="12" Height="120" ></ListView>
             </StackPanel>
                 <ComboBox x:Name="CLASS" Grid.Row="2" Text="{Binding CLASS}" Width="200" Height="25" Margin="0,3,0,0" VerticalAlignment="Top" >
                 <ComboBoxItem>
