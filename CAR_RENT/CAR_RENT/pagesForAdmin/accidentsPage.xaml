@@ -126,7 +126,7 @@
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="10" Visibility="Hidden" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="CONTRACT_ID" MaxLength="16" Text="{Binding CONTRACT_ID}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <DatePickerTextBox x:Name="DATE" Grid.Row="1"  Text="{Binding DATE}" Width="200" VerticalAlignment="Center" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
+            <DatePickerTextBox x:Name="DATE" Grid.Row="1"   Text="{Binding DATE}" Width="200" VerticalAlignment="Center" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
             <TextBox x:Name="DAMAGE_COST" Text="{Binding DAMAGE_COST}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="DAMAGE_DESCRIPTION" Margin="0 9" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="3" Grid.RowSpan="6" Width="200" Style="{StaticResource textBoxOuputData }"></TextBox>
         </Grid>

@@ -49,67 +49,10 @@
                                Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
-                    <Label Style="{StaticResource Label}">Домашний адрес</Label>
+                    <Label Style="{StaticResource Label}">Серия и номер паспорта</Label>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Style="{StaticResource TextBox}" 
-                             x:Name="adress"
-                             HorizontalAlignment="Left"
-                             SelectionChanged="aldress_SelectionChanged"
-                             ></TextBox>
-                        <Image Source="../images/done.png"
-                               x:Name="adressDone"
-                               Style="{StaticResource imageDone}"
-                               />
-                    </StackPanel>
-                    <Label Style="{StaticResource Label}">Серия паспорта</Label>
-                    <StackPanel Orientation="Horizontal">
-                  
-                        <ComboBox Width="200"
-                                  Height="20"
-                                  x:Name="passportSeries"
-                                  Margin="0 0 0 12"
-                                  BorderThickness="0"
-                                  SelectionChanged="passportSeries_SelectionChanged">
-                            <ComboBoxItem>
-                                AB
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                BM
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                HB
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                KH
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                MP
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                MC
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                KB
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                PP
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                SP
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                DP
-                            </ComboBoxItem>
-                        </ComboBox>
-                        <Image Source="../images/done.png"
-                               x:Name="seriesDone"
-                               Style="{StaticResource imageDone}"
-                               />
-                    </StackPanel>
-                    <Label Style="{StaticResource Label}">Номер паспорта</Label>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Style="{StaticResource TextBox}" 
-                             x:Name="passportID"
+                             x:Name="passport"
                              HorizontalAlignment="Left"
                              SelectionChanged="passportID_SelectionChanged"
                              MaxLength="7"></TextBox>

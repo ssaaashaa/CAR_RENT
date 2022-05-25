@@ -46,6 +46,7 @@
                   MouseDown="DGridModelInfo_MouseDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
+                <DataGridTextColumn Header="Марка" Binding="{Binding BREND}" Width="auto" />
                 <DataGridTextColumn Header="Модель" Binding="{Binding MODEL}" Width="auto" />
                 <DataGridTextColumn Header="Год выпуска" Binding="{Binding YEAR_OF_ISSUE, StringFormat='{}{0:yyyy}'}" Width="auto"/>
                 <DataGridTextColumn Header="Тип кузова" Binding="{Binding BODY_TYPE}" Width="auto"/>
@@ -104,13 +105,14 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Text="Модель" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Год выпуска" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Тип кузова" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Объем двигателя" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Тип двигателя" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Трансмиссия" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Оборудование" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Марка" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Модель" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Год выпуска" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Тип кузова" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Объем двигателя" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Тип двигателя" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Трансмиссия" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Оборудование" Grid.Row="7" VerticalAlignment="Center"></TextBlock>
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
@@ -132,11 +134,12 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="MODEL" Text="{Binding MODEL}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="YEAR_OF_ISSUE" MaxLength="16" Text="{Binding YEAR_OF_ISSUE}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="BODY_TYPE" MaxLength="12" Text="{Binding BODY_TYPE}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="ENGINE_CAPACITY" Text="{Binding ENGINE_CAPACITY}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <ComboBox x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="4" Width="200" Height="25" >
+            <TextBox x:Name="BREND" Text="{Binding BREND}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="MODEL" Text="{Binding MODEL}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="YEAR_OF_ISSUE" MaxLength="16" Text="{Binding YEAR_OF_ISSUE}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="BODY_TYPE" MaxLength="12" Text="{Binding BODY_TYPE}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="ENGINE_CAPACITY" Text="{Binding ENGINE_CAPACITY}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <ComboBox x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="5" Width="200" Height="25" >
                 <ComboBoxItem>
                    бензин
                 </ComboBoxItem>
@@ -144,7 +147,7 @@
                     дизель
                 </ComboBoxItem>
             </ComboBox>
-            <ComboBox x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="5" Width="200" Height="25" >
+            <ComboBox x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="6" Width="200" Height="25" >
                 <ComboBoxItem>
                    автоматическая
                 </ComboBoxItem>
@@ -152,7 +155,7 @@
                     механическая
                 </ComboBoxItem>
             </ComboBox>
-            <TextBox x:Name="EQUIPMENT" Grid.Row="6" Grid.RowSpan="4" TextWrapping="Wrap" Text="{Binding EQUIPMENT}" Width="200"  Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="EQUIPMENT" Grid.Row="7" Grid.RowSpan="4" TextWrapping="Wrap" Text="{Binding EQUIPMENT}" Width="200"  Style="{StaticResource textBoxOuputData }"></TextBox>
         </Grid>
     </Grid>
 </Page>

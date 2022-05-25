@@ -26,7 +26,7 @@ namespace CAR_RENT.pages
         {
             InitializeComponent();
             telephone.PreviewTextInput += new TextCompositionEventHandler(telephoneTextInput);
-            passportID.PreviewTextInput += new TextCompositionEventHandler(passportTextInput);
+            passport.PreviewTextInput += new TextCompositionEventHandler(passportTextInput);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,11 +42,9 @@ namespace CAR_RENT.pages
                 client.PATRONYMIC = AuthorizationPage.Patron.ToString();
                 client.BDAY = AuthorizationPage.Date;
                 client.TELEPHONE=telephone.Text;
-                client.ADRESS=adress.Text;
-                client.PASSPORT_SERIES = passportSeries.Text;
                 try
                 {
-                    client.PASSPORT_ID = Int32.Parse(passportID.Text);
+                    client.PASSPORT_ID = Int32.Parse(passport.Text);
                 }
                 catch
                 {
@@ -56,12 +54,10 @@ namespace CAR_RENT.pages
                 client.DRIVING_EXPERIENCE=experience.Text;
                
                 if (telephDone.Visibility==Visibility.Visible 
-                    && adressDone.Visibility==Visibility.Visible
-                    &&seriesDone.Visibility==Visibility.Visible
                     &&passportDone.Visibility==Visibility.Visible
                     &&numberDone.Visibility==Visibility.Visible
                     &&numDone.Visibility==Visibility.Visible
-                    &&passportID.Text!="") 
+                    &&passport.Text!="") 
                 {
                     db.CLIENTS.Add(client);
                     db.SaveChanges();
@@ -71,7 +67,7 @@ namespace CAR_RENT.pages
                 }
                 else
                 {
-                    if (passportID.Text != "")
+                    if (passport.Text != "")
                     {
                         MessageBox.Show("Необходимо заполнить все поля!");
                     }
@@ -102,29 +98,9 @@ namespace CAR_RENT.pages
           }
         }
 
-        private void aldress_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            if (adress.Text!="")
-            {
-                adressDone.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                adressDone.Visibility = Visibility.Hidden;
-            }
-        }
+    
 
-        private void passportSeries_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (passportSeries.SelectedIndex != -1)
-            {
-                seriesDone.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                seriesDone.Visibility = Visibility.Hidden;
-            }
-        }
+      
         void passportTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!Char.IsDigit(e.Text, 0))
@@ -135,7 +111,7 @@ namespace CAR_RENT.pages
 
         private void passportID_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if(passportID.Text.Length==7)
+            if(passport.Text.Length==7)
             {
                 passportDone.Visibility = Visibility.Visible;
             }

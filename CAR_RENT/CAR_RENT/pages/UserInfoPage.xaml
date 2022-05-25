@@ -11,30 +11,33 @@
       Background="#3A4149"
       FontFamily="Comfortaa"
       Title="UserInfoPage"
-      FontSize="16"
+      FontSize="14"
       Foreground="White">
     <Page.Resources>
-       
+
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="#8E8E8E"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="0 0 0 -8"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Width" Value="200"/>
+            <Setter Property="Width" Value="180"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="BorderThickness" Value="0 0 0 1"/>
-            
+
         </Style>
     </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="6*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="5.5*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -46,296 +49,289 @@
                 Background="Transparent"
                 BorderBrush="White"
                 BorderThickness="1"
+                Padding="38"
                 >
-           
-            <Grid >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="0.5*"></RowDefinition>
-                </Grid.RowDefinitions>
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="463.574"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Top"
+                            Grid.Row="0">
+                    <StackPanel Orientation="Horizontal"
+                                Height="30">
+                        <Label>Логин:</Label>
+                        <TextBox VerticalAlignment="Bottom"
+                             x:Name="login"></TextBox>
+                        <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="10 0 0 -5"
+                            x:Name="Login"
+                            Click="Login_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="loginMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top"
+                            Grid.Row="1">
+                    <StackPanel Orientation="Horizontal"
+                                Height="30">
+                        <Label>Фамилия:</Label>
+                        <TextBox VerticalAlignment="Bottom"
+                             x:Name="surname"></TextBox>
+                        <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                           Margin="10 0 0 -5"
+                            x:Name="Surname"
+                            Click="Surname_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="surnameMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="30"
+                            VerticalAlignment="Top"
+                            Grid.Row="2">
+                    <Label>Имя:</Label>
+                    <TextBox VerticalAlignment="Bottom"
+                             x:Name="name"
+                             IsEnabled="False"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="25"
+                            VerticalAlignment="Top"
+                            Grid.Row="3">
+                    <Label>Отчество:</Label>
+                    <TextBox VerticalAlignment="Bottom"
+                             x:Name="patronymic"
+                             IsEnabled="False"></TextBox>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top"
+                            Grid.Row="4">
+                    <StackPanel Orientation="Horizontal"
+                                Height="30">
+                        <Label>Дата рождения:</Label>
+                        <DatePicker Height="20"
+                                       Background="Transparent"
+                                       Foreground="Black"
+                                       BorderThickness="0"
+                                       VerticalAlignment="Bottom"
+                                       x:Name="bday"
+                                Margin="0 0 0 -2"></DatePicker>
+                        <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                           Margin="10 0 0 -5"
+                            x:Name="Bday"
+                            Click="Bday_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="bdayMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top"
+                            Grid.Row="5">
+                    <StackPanel Orientation="Horizontal"
+                                Height="30">
+                        <Label>Номер телефона:</Label>
+                        <wpfx:MaskedTextBox Mask="+375 (00) 000-00-00"
+                                       VerticalAlignment="Bottom"
+                                        Background="Transparent"
+                                        Foreground="White"
+                                        BorderThickness="0"
+                                        x:Name="telephone"
+                                        
+                            />
+                        <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="10 0 0 -5"
+                            x:Name="Telephone"
+                            Click="Telephone_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="telephoneMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top"
+                            Grid.Row="6">
+                    <StackPanel Orientation="Horizontal"
+                                Height="30">
+                        <Label>Серия и номер паспорта:</Label>
+                        <TextBox VerticalAlignment="Bottom"
+                             MaxLength="7"
+                             x:Name="passportID"
+                                 Width="135"></TextBox>
+                        <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                           Margin="10 0 0 -5"
+                            x:Name="PassportNum"
+                            Click="PassportNum_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="passportMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top"
+                            Grid.Row="7">
+                    <StackPanel Orientation="Horizontal"
+                                Height="30">
+                        <Label>Номер ВУ:</Label>
+                        <TextBox VerticalAlignment="Bottom"
+                             x:Name="licenseID"></TextBox>
+                        <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="10 0 0 -5"
+                            x:Name="License"
+                            Click="License_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="licenseMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap">
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top"
+                            Grid.Row="8">
+                    <StackPanel Orientation="Horizontal"
+                                Height="30">
+                        <Label>Опыт вождения:</Label>
+                        <TextBox VerticalAlignment="Bottom"
+                             x:Name="experience"></TextBox>
+                        <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="10 0 0 -5"
+                            x:Name="Experience"
+                            Click="Experience_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="experienceMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                </StackPanel>
+            </Grid>
+
+
+        </Border>
+        <Border Grid.Column="2"
+                Grid.Row="1"
+                Background="Transparent"
+                BorderBrush="White"
+                BorderThickness="1"
+                Padding="40"
+                Margin="40 0 0 0"
+                >
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical"
+                            Height="50"
+                            VerticalAlignment="Top">
+                    <Label Margin="0">Пароль:</Label>
+                    <TextBox VerticalAlignment="Top"
+                         HorizontalAlignment="Left"
+                         x:Name="password"></TextBox>
+
+                </StackPanel>
+                <TextBlock x:Name="passwordMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="290"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                <StackPanel Orientation="Vertical"
+                            Height="50"
+                            VerticalAlignment="Top"
+                            Margin="0 15 0 0">
+                    <Label Margin="0">Подтверждение пароля:</Label>
+                    <TextBox VerticalAlignment="Top"
+                             HorizontalAlignment="Left"
+                              x:Name="passwordConfirmation"></TextBox>
+
+                </StackPanel>
+                <TextBlock x:Name="passwordConfMessage"
+                               Foreground="Red"
+                               FontSize="12"
+                               Width="290"
+                               TextWrapping="Wrap"
+                               Margin="4 2 0 0 "></TextBlock>
+                <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="10 0"
+                        x:Name="Password"
+                        Click="Password_Click"
+                            >Изменить</Button>
                 <TextBlock x:Name="id"
                            Visibility="Hidden"></TextBlock>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="1"
-                           VerticalAlignment="Center"
-                           Margin="50 0"
-                            >
-                    <Label>Логин</Label>
-                    <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="login"
-                    GotFocus="login_GotFocus"
-                         LostFocus="login_LostFocus" 
-                            />
-                        <TextBlock x:Name="loginToolTip"
-                        TextWrapping="Wrap" 
-                               Width="234"
-                               VerticalAlignment="Center"
-                               Visibility="Hidden"
-                               FontSize="10"
-                               Foreground="white"
-                               Margin="7 0 0 0">*логин может содержать цифры, буквы, символы "-" и "_", длина от 3 до 16 символов</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="2"
-                            VerticalAlignment="Center"
-                           Margin="50 0"
-                            >
-                    <Label>Пароль</Label>
-                    <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="password"
-                             GotFocus="password_GotFocus"
-                             LostFocus="password_LostFocus"
-                            />
-                        <TextBlock x:Name="passwordToolTip"
-                               TextWrapping="Wrap" 
-                               Width="241"
-                               Visibility="Hidden"
-                               FontSize="10"
-                               Foreground="white"
-                               Margin="7 0 0 0">*пароль должен быть 8-12 символов, содержать хотя бы одну цифру, одну латинскую букву, один специальный символ</TextBlock>
+            </StackPanel>
 
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="3"
-                             VerticalAlignment="Center"
-                           Margin="50 0"
-                            >
-                    <Label>Подтверждение пароля</Label>
-                    <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="passwordConf"
-                         GotFocus="passwordConf_GotFocus"
-                         LostFocus="passwordConf_LostFocus"
-                            />
-                        <TextBlock x:Name="passwordConfToolTip"
-                               TextWrapping="Wrap" 
-                               Width="241"
-                               VerticalAlignment="Bottom"
-                               Visibility="Hidden"
-                               FontSize="10"
-                               Margin="7 0 0 0"
-                               Foreground="White"
-                               >*пароли должены совпадать</TextBlock>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="4"
-                            VerticalAlignment="Center"
-                           Margin="50 0"
-                            >
-                    <Label>Фамилия</Label>
-                    <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="surname"
-                         GotFocus="surname_GotFocus"
-                         LostFocus="surname_LostFocus"
-                            />
-                        <TextBlock x:Name="surnameToolTip"
-                               TextWrapping="Wrap" 
-                               Width="241"
-                               VerticalAlignment="Bottom"
-                               Visibility="Hidden"
-                               FontSize="10"
-                               Margin="7 0 0 0"
-                               Foreground="white"
-                               >*ввод с большой буквы</TextBlock>
-
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="5"
-                            VerticalAlignment="Center"
-                           Margin="50 0"
-                            >
-                    <Label>Имя</Label>
-                    <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="name"
-                         GotFocus="name_GotFocus"
-                         LostFocus="name_LostFocus"   />
-                        <TextBlock x:Name="nameToolTip"
-                               TextWrapping="Wrap" 
-                               Width="241"
-                               Visibility="Hidden"
-                               VerticalAlignment="Bottom"
-                               FontSize="10"
-                               Margin="7 0 0 0"
-                               Foreground="white"
-                               >*ввод с большой буквы</TextBlock>
-
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="6"
-                            VerticalAlignment="Center"
-                           Margin="50 0"
-                            >
-                    <Label>Отчество</Label>
-                    <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="patronymic"
-                         GotFocus="patronymic_GotFocus"    
-                         LostFocus="patronymic_LostFocus"    
-                            />
-                        <TextBlock x:Name="patronymicToolTip"
-                               TextWrapping="Wrap" 
-                               Width="241"
-                               Visibility="Hidden"
-                               VerticalAlignment="Bottom"
-                               FontSize="10"
-                               Margin="7 0 0 0"
-                               Foreground="white"
-                               >*ввод с большой буквы</TextBlock>
-
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="7"
-                            VerticalAlignment="Center"
-                           Margin="50 0"
-                            >
-                    <Label>Дата рождения</Label>
-                    <DatePicker  Width="225"
-                             HorizontalAlignment="Left"
-                                 FontSize="16"
-                                 Margin="0 0 0 15"
-                                 BorderThickness="0.1"
-                                 BorderBrush="#3A4149"
-                                 x:Name="bday"
-                                 VerticalAlignment="Center"
-                                 
-                                 SelectedDateChanged="bday_SelectedDateChanged"
-                                ></DatePicker>
-                </StackPanel>
-                <StackPanel Grid.Column="0"
-                            Grid.Row="8"
-                            VerticalAlignment="Center"
-                            Margin="50 0"
-                            >
-                    <Label>Номер телефона</Label>
-                    <StackPanel Orientation="Horizontal">                        
-                        <TextBox x:Name="telephone"
-                            />
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="1"
-                            Grid.Row="1"
-                            VerticalAlignment="Center"                           
-                            >
-                    <Label>Домашний адрес</Label>
-                    <TextBox x:Name="adress"
-                             TextWrapping="Wrap"
-                             Height="35"
-                             HorizontalAlignment="Left"
-                            />
-                </StackPanel>
-                <StackPanel Grid.Column="1"
-                            Grid.Row="2"
-                            VerticalAlignment="Center"
-                          
-                            >
-                    <Label>Серия паспорта</Label>
-                    <ComboBox Width="200"
-                                  Height="20"
-                                  x:Name="passportSeries"
-                                 HorizontalAlignment="Left"
-                                  BorderThickness="0"
-                                 >
-                        <ComboBoxItem>
-                            AB
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            BM
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            HB
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            KH
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            MP
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            MC
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            KB
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            PP
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            SP
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            DP
-                        </ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Grid.Column="1"
-                            Grid.Row="3"
-                            VerticalAlignment="Center"
-                          
-                            >
-                    <Label>Номер паспорта</Label>
-                    <TextBox x:Name="passport_id"
-                         MaxLength="7"
-                             HorizontalAlignment="Left"
-                            />
-                </StackPanel>
-                <StackPanel Grid.Column="1"
-                            Grid.Row="4"
-                            VerticalAlignment="Center"
-                          
-                            >
-                    <Label>Номер ВУ</Label>
-                    <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="license_id"
-                             MaxLength="11"
-                             GotFocus="license_id_GotFocus"
-                             LostFocus="license_id_LostFocus"
-                            />
-                        <TextBlock x:Name="licenseToolTip"
-                               TextWrapping="Wrap" 
-                               Width="241"
-                               Visibility="Hidden"
-                               FontSize="10"
-                               Margin="7 0 0 0"
-                               VerticalAlignment="Bottom"
-                               Foreground="white"                                 
-                               >*например, 4AB 0000245</TextBlock>
-
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="1"
-                            Grid.Row="5"
-                            VerticalAlignment="Center"
-                           
-                            >
-                    <Label>Опыт вождения</Label>
-                    <TextBox x:Name="experience"
-                             HorizontalAlignment="Left"
-                            />
-                </StackPanel>
-                <Button Grid.Column="1"
-                        Grid.Row="8"
-                        Margin="100 5"
-                        x:Name="save"
-                        Click="save_Click">
-                    Сохранить изменения
-                </Button>
-            </Grid>
         </Border>
     </Grid>
 </Page>

@@ -20,7 +20,7 @@ namespace CAR_RENT.pagesForAdmin
         {
             InitializeComponent();
             DGridClients.ItemsSource = CAR_RENTEntities.GetContext().CLIENTS.ToList();           
-            PASSPORT_ID.PreviewTextInput += new TextCompositionEventHandler(passportTextInput);
+            PASSPORT.PreviewTextInput += new TextCompositionEventHandler(passportTextInput);
         }
         private void Validation()
         {
@@ -80,15 +80,11 @@ namespace CAR_RENT.pagesForAdmin
             {
                 errors.AppendLine("Пользователь может быть только совершеннолетним!");
             }
-            if (string.IsNullOrEmpty(PASSPORT_SERIES.Text))
-            {
-                errors.AppendLine("Выберите серию паспорта!");
-            }
-            if (string.IsNullOrEmpty(PASSPORT_ID.Text))
+            if (string.IsNullOrEmpty(PASSPORT.Text))
             {
                 errors.AppendLine("Введите номер паспорта!");
             }
-            if (PASSPORT_ID.Text.Length != 7)
+            if (PASSPORT.Text.Length != 7)
             {
                 errors.AppendLine("Введите корректный номер паспорта!");
             }
@@ -123,8 +119,7 @@ namespace CAR_RENT.pagesForAdmin
             NAME.Clear();
             PATRONYMIC.Clear();
             BDAY.Clear();
-            PASSPORT_SERIES.SelectedIndex = -1;
-            PASSPORT_ID.Clear();
+            PASSPORT.Clear();
             LICENSE_ID.Clear();
             EXPERIENCE.Clear();
             TELEPHONE.Clear();
@@ -150,19 +145,7 @@ namespace CAR_RENT.pagesForAdmin
                 currentClient.NAME=NAME.Text;
                 currentClient.PATRONYMIC=PATRONYMIC.Text;
                 currentClient.BDAY = date;
-                currentClient.PASSPORT_SERIES=PASSPORT_SERIES.Text;
-                try
-                {
-                    currentClient.PASSPORT_ID = Int32.Parse(PASSPORT_ID.Text);
-                }
-                catch
-                {
-                    if (PASSPORT_ID.Text.Length == 0)
-                    {
-                        MessageBox.Show("Введите номер паспорта");
-                        return;
-                    }
-                }
+                currentClient.PASSPORT_SERIES = PASSPORT.Text;
                 currentClient.DRIVER_LICENSE_ID=LICENSE_ID.Text;
                 currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text;
                 currentClient.TELEPHONE=TELEPHONE.Text;
@@ -199,18 +182,7 @@ namespace CAR_RENT.pagesForAdmin
                 currentClient.NAME = NAME.Text;
                 currentClient.PATRONYMIC = PATRONYMIC.Text;
                 currentClient.BDAY = date;
-                currentClient.PASSPORT_SERIES = PASSPORT_SERIES.Text;
-                try
-                {
-                    currentClient.PASSPORT_ID = Int32.Parse(PASSPORT_ID.Text);
-                }
-                catch
-                {
-                    if (PASSPORT_ID.Text.Length == 0)
-                    {
-                        MessageBox.Show("Введите номер паспорта");
-                    }
-                }
+                currentClient.PASSPORT_SERIES = PASSPORT.Text;
                 currentClient.DRIVER_LICENSE_ID = LICENSE_ID.Text;
                 currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text;
                 currentClient.TELEPHONE = TELEPHONE.Text;
@@ -303,13 +275,7 @@ namespace CAR_RENT.pagesForAdmin
                     BDAY.Text = selectedClient.BDAY.ToString().Remove(10);
                 }
                 catch { }
-                PASSPORT_SERIES.Text = selectedClient.PASSPORT_SERIES;
-                PASSPORT_ID.Text = selectedClient.PASSPORT_ID.ToString();
-                try
-                {
-                    LICENSE_ID.Text = selectedClient.DRIVER_LICENSE_ID.ToString();
-                }
-                catch { }
+                PASSPORT.Text = selectedClient.PASSPORT_SERIES;
                 EXPERIENCE.Text = selectedClient.DRIVING_EXPERIENCE.ToString();
                 TELEPHONE.Text = selectedClient.TELEPHONE;
                 ADRESS.Text = selectedClient.ADRESS;

@@ -119,9 +119,6 @@
     <Compile Include="models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="pages\CatalogSearch.xaml.cs">
-      <DependentUpon>CatalogSearch.xaml</DependentUpon>
-    </Compile>
     <Compile Include="userControls\HistoryContract.xaml.cs">
       <DependentUpon>HistoryContract.xaml</DependentUpon>
     </Compile>
@@ -159,15 +156,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\CatalogSearch.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="pages\UserContracts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\UserInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

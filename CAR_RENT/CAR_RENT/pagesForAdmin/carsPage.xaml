@@ -13,6 +13,7 @@
       FontSize="16"
       Foreground="White">
     <Page.Resources>
+
         <ResourceDictionary Source="../templates/Styles.xaml" />
     </Page.Resources>
     <Grid>
@@ -46,7 +47,6 @@
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
-                <DataGridTextColumn Header="Марка" Binding="{Binding BREND}" Width="auto"/>
                 <DataGridTextColumn Header="Модель" Binding="{Binding MODEL}" Width="auto"/>
                 <DataGridTextColumn Header="Класс" Binding="{Binding CLASS}" Width="auto"/>
                 <DataGridTextColumn Header="Реистрационный номер" Binding="{Binding REGISTRATION_NUMBER}" Width="auto"/>

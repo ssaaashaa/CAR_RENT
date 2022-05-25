@@ -102,12 +102,12 @@ namespace CAR_RENT.pages
                         MainWindow.mainWindow.Close();
                 }
                 
-                CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log  && u.USER_TYPE==0);
+                CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log && u.USER_TYPE==0);
                 if (client!=null)
                 {
 
-                        if (client.PASSWORD == pass)
-                        {
+                        if (client.PASSWORD == pass && client.LOGIN==log)
+                        { 
                             CatalogWindow catalog = new CatalogWindow();
                             App.currentClient = client;
                             catalog.Show();
