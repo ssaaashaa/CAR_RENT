@@ -10,7 +10,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CONTRACT_ID" Type="int" />
+          <Property Name="CONTRACT_ID" Type="int" Nullable="false" />
           <Property Name="DATE" Type="date" />
           <Property Name="DAMAGE_COST" Type="int" />
           <Property Name="DAMAGE_DESCRIPTION" Type="nvarchar" MaxLength="300" />
@@ -20,7 +20,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MODEL" Type="int" />
+          <Property Name="MODEL" Type="int" Nullable="false" />
           <Property Name="CLASS" Type="nvarchar" MaxLength="100" />
           <Property Name="REGISTRATION_NUMBER" Type="nchar" MaxLength="50" />
           <Property Name="STATUS" Type="nchar" MaxLength="30" />
@@ -38,12 +38,10 @@
           <Property Name="NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="PATRONYMIC" Type="nvarchar" MaxLength="50" />
           <Property Name="BDAY" Type="date" />
-          <Property Name="PASSPORT_SERIES" Type="nvarchar" MaxLength="10" />
-          <Property Name="PASSPORT_ID" Type="int" />
+          <Property Name="PASSPORT" Type="nvarchar" MaxLength="10" />
           <Property Name="DRIVER_LICENSE_ID" Type="nvarchar" MaxLength="30" />
           <Property Name="DRIVING_EXPERIENCE" Type="nvarchar" MaxLength="20" />
           <Property Name="TELEPHONE" Type="nvarchar" MaxLength="30" />
-          <Property Name="ADRESS" Type="nvarchar" MaxLength="100" />
           <Property Name="USER_TYPE" Type="int" />
         </EntityType>
         <EntityType Name="CONTRACTS">
@@ -51,8 +49,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CLIENT_ID" Type="int" />
-          <Property Name="CAR_ID" Type="int" />
+          <Property Name="CLIENT_ID" Type="int" Nullable="false" />
+          <Property Name="CAR_ID" Type="int" Nullable="false" />
           <Property Name="CONTRACT_START" Type="date" />
           <Property Name="CONTRACT_END" Type="date" />
           <Property Name="PROMO_CODE" Type="nvarchar" MaxLength="20" />
@@ -92,7 +90,7 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_ACCIDENTS_CONTRACTS">
-          <End Role="CONTRACTS" Type="Self.CONTRACTS" Multiplicity="0..1" />
+          <End Role="CONTRACTS" Type="Self.CONTRACTS" Multiplicity="1" />
           <End Role="ACCIDENTS" Type="Self.ACCIDENTS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CONTRACTS">
@@ -104,7 +102,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CARS_MODEL_INFO">
-          <End Role="MODEL_INFO" Type="Self.MODEL_INFO" Multiplicity="0..1" />
+          <End Role="MODEL_INFO" Type="Self.MODEL_INFO" Multiplicity="1" />
           <End Role="CARS" Type="Self.CARS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODEL_INFO">
@@ -116,7 +114,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CONTRACTS_CARS">
-          <End Role="CARS" Type="Self.CARS" Multiplicity="0..1" />
+          <End Role="CARS" Type="Self.CARS" Multiplicity="1" />
           <End Role="CONTRACTS" Type="Self.CONTRACTS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CARS">
@@ -128,7 +126,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CONTRACTS_CLIENTS">
-          <End Role="CLIENTS" Type="Self.CLIENTS" Multiplicity="0..1" />
+          <End Role="CLIENTS" Type="Self.CLIENTS" Multiplicity="1" />
           <End Role="CONTRACTS" Type="Self.CONTRACTS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CLIENTS">
@@ -190,7 +188,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CONTRACT_ID" Type="Int32" />
+          <Property Name="CONTRACT_ID" Type="Int32" Nullable="false" />
           <Property Name="DATE" Type="DateTime" Precision="0" />
           <Property Name="DAMAGE_COST" Type="Int32" />
           <Property Name="DAMAGE_DESCRIPTION" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -201,7 +199,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MODEL" Type="Int32" />
+          <Property Name="MODEL" Type="Int32" Nullable="false" />
           <Property Name="CLASS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="REGISTRATION_NUMBER" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="STATUS" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
@@ -221,12 +219,10 @@
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PATRONYMIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BDAY" Type="DateTime" Precision="0" />
-          <Property Name="PASSPORT_SERIES" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="PASSPORT_ID" Type="Int32" />
+          <Property Name="PASSPORT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="DRIVER_LICENSE_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="DRIVING_EXPERIENCE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TELEPHONE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="ADRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="USER_TYPE" Type="Int32" />
           <NavigationProperty Name="CONTRACTS" Relationship="Self.FK_CONTRACTS_CLIENTS" FromRole="CLIENTS" ToRole="CONTRACTS" />
         </EntityType>
@@ -235,8 +231,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CLIENT_ID" Type="Int32" />
-          <Property Name="CAR_ID" Type="Int32" />
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="CAR_ID" Type="Int32" Nullable="false" />
           <Property Name="CONTRACT_START" Type="DateTime" Precision="0" />
           <Property Name="CONTRACT_END" Type="DateTime" Precision="0" />
           <Property Name="PROMO_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -282,7 +278,7 @@
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_ACCIDENTS_CONTRACTS">
-          <End Role="CONTRACTS" Type="Self.CONTRACT" Multiplicity="0..1" />
+          <End Role="CONTRACTS" Type="Self.CONTRACT" Multiplicity="1" />
           <End Role="ACCIDENTS" Type="Self.ACCIDENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CONTRACTS">
@@ -294,7 +290,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CARS_MODEL_INFO">
-          <End Role="MODEL_INFO" Type="Self.MODEL_INFO" Multiplicity="0..1" />
+          <End Role="MODEL_INFO" Type="Self.MODEL_INFO" Multiplicity="1" />
           <End Role="CARS" Type="Self.CAR" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODEL_INFO">
@@ -306,7 +302,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CONTRACTS_CARS">
-          <End Role="CARS" Type="Self.CAR" Multiplicity="0..1" />
+          <End Role="CARS" Type="Self.CAR" Multiplicity="1" />
           <End Role="CONTRACTS" Type="Self.CONTRACT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CARS">
@@ -318,7 +314,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CONTRACTS_CLIENTS">
-          <End Role="CLIENTS" Type="Self.CLIENT" Multiplicity="0..1" />
+          <End Role="CLIENTS" Type="Self.CLIENT" Multiplicity="1" />
           <End Role="CONTRACTS" Type="Self.CONTRACT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CLIENTS">
@@ -410,12 +406,10 @@
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="PATRONYMIC" ColumnName="PATRONYMIC" />
                 <ScalarProperty Name="BDAY" ColumnName="BDAY" />
-                <ScalarProperty Name="PASSPORT_SERIES" ColumnName="PASSPORT_SERIES" />
-                <ScalarProperty Name="PASSPORT_ID" ColumnName="PASSPORT_ID" />
+                <ScalarProperty Name="PASSPORT" ColumnName="PASSPORT" />
                 <ScalarProperty Name="DRIVER_LICENSE_ID" ColumnName="DRIVER_LICENSE_ID" />
                 <ScalarProperty Name="DRIVING_EXPERIENCE" ColumnName="DRIVING_EXPERIENCE" />
                 <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
-                <ScalarProperty Name="ADRESS" ColumnName="ADRESS" />
                 <ScalarProperty Name="USER_TYPE" ColumnName="USER_TYPE" />
               </MappingFragment>
             </EntityTypeMapping>

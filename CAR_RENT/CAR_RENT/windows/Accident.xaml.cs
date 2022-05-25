@@ -2,6 +2,7 @@
 using CAR_RENT.userControls;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,22 +70,25 @@ namespace CAR_RENT.windows
             try
             {
                 ACCIDENT currentAccident = CAR_RENTEntities.GetContext().ACCIDENTS.Where(a => a.ID.ToString() == accidentID.Text.ToString()).FirstOrDefault();
-                currentAccident.CONTRACT_ID = Convert.ToInt32(contractID.Text);
-                currentAccident.DATE = Convert.ToDateTime(date.Text).Date;
-                currentAccident.DAMAGE_DESCRIPTION = description.Text.ToString().Remove(0, 33);
-                currentAccident.DAMAGE_COST = Convert.ToInt32(damageCost.Text);
-                if(currentAccident!=null)
-                {
-                    try
+                using (CAR_RENTEntities db=new CAR_RENTEntities()) 
+                {   
+                    db.Entry(currentAccident).State = EntityState.Modified;
+                    currentAccident.CONTRACT_ID = Convert.ToInt32(contractID.Text);
+                    currentAccident.DATE = Convert.ToDateTime(date.Text).Date;
+                    currentAccident.DAMAGE_DESCRIPTION = description.Text.ToString().Remove(0, 33);
+                    currentAccident.DAMAGE_COST = Convert.ToInt32(damageCost.Text);
+                    if (currentAccident != null)
                     {
-                        CAR_RENTEntities.GetContext().SaveChanges();
-                        Clear();
-                        MessageBox.Show("ДТП оформлено!");
-                        this.Close();
+                        try
+                        {
+                            CAR_RENTEntities.GetContext().SaveChanges();
+                            Clear();
+                            MessageBox.Show("ДТП оформлено!");
+                            this.Close();
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
-
 
             }
             catch { }

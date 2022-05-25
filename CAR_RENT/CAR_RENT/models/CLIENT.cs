@@ -27,12 +27,10 @@ namespace CAR_RENT.models
         public string NAME { get; set; }
         public string PATRONYMIC { get; set; }
         public Nullable<System.DateTime> BDAY { get; set; }
-        public string PASSPORT_SERIES { get; set; }
-        public Nullable<int> PASSPORT_ID { get; set; }
+        public string PASSPORT { get; set; }
         public string DRIVER_LICENSE_ID { get; set; }
         public string DRIVING_EXPERIENCE { get; set; }
         public string TELEPHONE { get; set; }
-        public string ADRESS { get; set; }
         public Nullable<int> USER_TYPE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

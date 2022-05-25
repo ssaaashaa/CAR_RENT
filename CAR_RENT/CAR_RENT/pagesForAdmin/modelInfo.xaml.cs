@@ -36,6 +36,7 @@ namespace CAR_RENT.pagesForAdmin
             {
                 ID.Text=selectedModel.ID.ToString();
                 MODEL.Text = selectedModel.MODEL;
+                BREND.Text = selectedModel.BREND;
                 YEAR_OF_ISSUE.Text = selectedModel.YEAR_OF_ISSUE.ToString().Remove(0, 6).Remove(4);
                 BODY_TYPE.Text = selectedModel.BODY_TYPE;
                 ENGINE_CAPACITY.Text = selectedModel.ENGINE_CAPACITY;
@@ -59,6 +60,7 @@ namespace CAR_RENT.pagesForAdmin
         {
             ID.Clear();
             MODEL.Clear();
+            BREND.Clear();
             YEAR_OF_ISSUE.Clear();
             BODY_TYPE.Clear();
             ENGINE_TYPE.SelectedIndex = -1;
@@ -71,6 +73,10 @@ namespace CAR_RENT.pagesForAdmin
             StringBuilder errors = new StringBuilder();
             DateTime date = new DateTime();
             DateTime.TryParse(YEAR_OF_ISSUE.Text, out date);
+            if (string.IsNullOrWhiteSpace(BREND.Text))
+            {
+                errors.AppendLine("Введите марку!");
+            }
             if (string.IsNullOrWhiteSpace(MODEL.Text))
             {
                 errors.AppendLine("Введите модель!");
@@ -101,6 +107,7 @@ namespace CAR_RENT.pagesForAdmin
                 return;
             }
             MODEL_INFO currentModel_info = new MODEL_INFO();
+            currentModel_info.BREND = BREND.Text;
             currentModel_info.MODEL = MODEL.Text;
             currentModel_info.YEAR_OF_ISSUE = date;
             currentModel_info.BODY_TYPE = BODY_TYPE.Text;
@@ -126,6 +133,10 @@ namespace CAR_RENT.pagesForAdmin
             StringBuilder errors = new StringBuilder();
             DateTime date = new DateTime();
             DateTime.TryParse(YEAR_OF_ISSUE.Text, out date);
+            if (string.IsNullOrWhiteSpace(BREND.Text))
+            {
+                errors.AppendLine("Введите марку!");
+            }
             if (string.IsNullOrWhiteSpace(MODEL.Text))
             {
                 errors.AppendLine("Введите модель!");
@@ -160,6 +171,7 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 MODEL_INFO currentModel_info = CAR_RENTEntities.GetContext().MODEL_INFO.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
+                currentModel_info.BREND = BREND.Text;
                 currentModel_info.MODEL = MODEL.Text;
                 currentModel_info.YEAR_OF_ISSUE = date;
                 currentModel_info.BODY_TYPE = BODY_TYPE.Text;

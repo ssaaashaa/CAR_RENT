@@ -42,14 +42,7 @@ namespace CAR_RENT.pages
                 client.PATRONYMIC = AuthorizationPage.Patron.ToString();
                 client.BDAY = AuthorizationPage.Date;
                 client.TELEPHONE=telephone.Text;
-                try
-                {
-                    client.PASSPORT_ID = Int32.Parse(passport.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Необходимо заполнить все поля!");
-                }
+                client.PASSPORT = passport.Text;
                 client.DRIVER_LICENSE_ID=licenseID.Text;
                 client.DRIVING_EXPERIENCE=experience.Text;
                

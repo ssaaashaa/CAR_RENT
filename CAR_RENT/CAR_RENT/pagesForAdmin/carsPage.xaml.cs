@@ -81,8 +81,7 @@ namespace CAR_RENT.pagesForAdmin
         void Clear()
         {
             ID.Clear();
-            BREND.Clear();
-            MODEL.SelectedIndex = -1;
+            MODEL.Clear();
             CLASS.SelectedIndex = -1;
             REGISTRATION_NUMBER.Clear();
             STATUS.SelectedIndex = -1;
@@ -97,7 +96,7 @@ namespace CAR_RENT.pagesForAdmin
             if(selectedCar != null)
             { 
             ID.Text = selectedCar.ID.ToString();
-            MODEL.SelectedValue = selectedCar.MODEL;
+            MODEL.Text = selectedCar.MODEL.ToString();
             CLASS.Text = selectedCar.CLASS;
             REGISTRATION_NUMBER.Text = selectedCar.REGISTRATION_NUMBER;
             STATUS.Text = selectedCar.STATUS;
@@ -107,7 +106,6 @@ namespace CAR_RENT.pagesForAdmin
             IMAGE.Source = myBitmapImage;
             link.Text=Link;
             RENT_PRICE.Text = selectedCar.RENT_PRICE.ToString();
-            MODEL.ScrollIntoView(selectedCar.MODEL);
             }
             else
             {
@@ -125,13 +123,9 @@ namespace CAR_RENT.pagesForAdmin
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(BREND.Text))
+            if (string.IsNullOrWhiteSpace(MODEL.Text))
             {
-                errors.AppendLine("Введите марку!");
-            }
-            if (MODEL.SelectedIndex == -1)
-            {
-                errors.AppendLine("Выберите модель!");
+                errors.AppendLine("Введите модель!");
             }
             if (CLASS.SelectedIndex == -1)
             {
@@ -145,7 +139,7 @@ namespace CAR_RENT.pagesForAdmin
             {
                 errors.AppendLine("Выберите статус!");
             }
-            if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
+            if (string.IsNullOrWhiteSpace(RENT_PRICE.Text))
             {
                 errors.AppendLine("Введите стоимость проката!");
             }
@@ -159,7 +153,6 @@ namespace CAR_RENT.pagesForAdmin
                 return;
             }
             CAR currentCar = new CAR();
-            currentCar.MODEL = Convert.ToInt32(MODEL.SelectedValue);
             currentCar.CLASS = CLASS.Text;
             currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
             currentCar.STATUS = STATUS.Text;
@@ -194,13 +187,9 @@ namespace CAR_RENT.pagesForAdmin
                 MessageBox.Show("Выделите запись, которую требуется изменить!");
             }
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(BREND.Text))
+            if (string.IsNullOrWhiteSpace(MODEL.Text))
             {
                 errors.AppendLine("Введите марку!");
-            }
-            if (MODEL.SelectedIndex == -1)
-            {
-                errors.AppendLine("Выберите модель!");
             }
             if (CLASS.SelectedIndex == -1)
             {
@@ -226,7 +215,7 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
-                currentCar.MODEL = Convert.ToInt32(MODEL.SelectedValue);
+                currentCar.MODEL = Convert.ToInt32(MODEL.Text);
                 currentCar.CLASS = CLASS.Text;
                 currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
                 currentCar.STATUS = STATUS.Text;
@@ -296,7 +285,7 @@ namespace CAR_RENT.pagesForAdmin
                 string param = regNumber.Text;
                 DGridCars.ScrollIntoView(DGridCars.Items[i]);
                 DataGridRow row = (DataGridRow)DGridCars.ItemContainerGenerator.ContainerFromIndex(i);
-                TextBlock cellContentRegistr = DGridCars.Columns[4].GetCellContent(row) as TextBlock;
+                TextBlock cellContentRegistr = DGridCars.Columns[3].GetCellContent(row) as TextBlock;
                 TextBlock cellContentID = DGridCars.Columns[0].GetCellContent(row) as TextBlock;
                 if ((cellContentRegistr != null && cellContentRegistr.Text.ToLower().Trim().Equals(param.ToLower()))
                     || (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower())))         {

@@ -51,8 +51,8 @@
                 <DataGridTextColumn Header="Класс" Binding="{Binding CLASS}" Width="auto"/>
                 <DataGridTextColumn Header="Реистрационный номер" Binding="{Binding REGISTRATION_NUMBER}" Width="auto"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding STATUS}" Width="auto"/>
-                <DataGridTextColumn Header="Фото" Binding="{Binding IMAGE}" Width="auto"/>
                 <DataGridTextColumn Header="Стоимость проката" Binding="{Binding RENT_PRICE}" Width="auto"/>
+                <DataGridTextColumn Header="Фото" Binding="{Binding IMAGE}" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal"
@@ -117,7 +117,7 @@
                    Grid.Column="3"
                    Grid.ColumnSpan="2"
                    Grid.Row="1"
-                   Height="200"
+                   Height="280"
                    VerticalAlignment="Bottom"
                    Margin="10 0 0 70"
                    >
@@ -150,7 +150,7 @@
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -164,20 +164,19 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Text="Марка" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Модель" Grid.Row="1" VerticalAlignment="Top"></TextBlock>
-            <TextBlock Text="Класс" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Регистрационный номер" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Статус" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Стоимость проката" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="Фото" Grid.Row="6" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Модель" Grid.Row="0" VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="Класс" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Регистрационный номер" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Статус" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Стоимость проката" Grid.Row="4" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Фото" Grid.Row="5" VerticalAlignment="Center"></TextBlock>
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
               HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -192,12 +191,8 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="14" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="BREND" MaxLength="16" Text="{Binding BREND}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <StackPanel Grid.Row="1"
-                        Orientation="Vertical">
-            <ListView x:Name="MODEL"  ItemsSource="{Binding Path=listID}" DisplayMemberPath="{Binding Path=listMODEL}" FontSize="12" Height="120" ></ListView>
-            </StackPanel>
-                <ComboBox x:Name="CLASS" Grid.Row="2" Text="{Binding CLASS}" Width="200" Height="25" Margin="0,3,0,0" VerticalAlignment="Top" >
+            <TextBox x:Name="MODEL" MaxLength="16" Text="{Binding MODEL}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <ComboBox x:Name="CLASS" Grid.Row="1" Text="{Binding CLASS}" Width="200" Height="25" Margin="0,3,0,0" VerticalAlignment="Top" >
                 <ComboBoxItem>
                     Эконом
                 </ComboBoxItem> 
@@ -220,8 +215,8 @@
                    Грузовые
                 </ComboBoxItem>
             </ComboBox>
-            <TextBox x:Name="REGISTRATION_NUMBER" Text="{Binding REGISTRATION_NUMBER}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <ComboBox x:Name="STATUS" Text="{Binding STATUS}" Grid.Row="4" Width="200" Height="25" >
+            <TextBox x:Name="REGISTRATION_NUMBER" Text="{Binding REGISTRATION_NUMBER}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <ComboBox x:Name="STATUS" Text="{Binding STATUS}" Grid.Row="3" Width="200" Height="25" >
                 <ComboBoxItem>
                    Свободна
                 </ComboBoxItem>
@@ -229,10 +224,10 @@
                    В прокате
                 </ComboBoxItem>
             </ComboBox>
-            <StackPanel Grid.Row="5" 
+            <StackPanel Grid.Row="4" 
                         Orientation="Horizontal"
                         VerticalAlignment="Center">
-                <TextBox x:Name="RENT_PRICE"  Text="{Binding RENT_PRICE}"  Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Right"></TextBox>
+                <TextBox x:Name="RENT_PRICE"  Text="{Binding RENT_PRICE}"  Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Center"></TextBox>
                 <Label Foreground="White">BYN</Label>
             </StackPanel>
            

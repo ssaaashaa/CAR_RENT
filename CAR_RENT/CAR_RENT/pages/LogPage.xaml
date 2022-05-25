@@ -13,21 +13,21 @@
      
 >
     <Grid>
-       
-        <Border Height="480" Width="380">
-        <Border.OpacityMask>
-            <VisualBrush>
-                <VisualBrush.Visual>
-                    <Border CornerRadius="50" Height="480" Width="380" Background="White"/>
-                </VisualBrush.Visual>
-            </VisualBrush>
-        </Border.OpacityMask>
 
-        <Grid Height="480" Width="380" 
+        <Border Height="480" Width="380">
+            <Border.OpacityMask>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Border CornerRadius="50" Height="480" Width="380" Background="White"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.OpacityMask>
+
+            <Grid Height="480" Width="380" 
             Background="#2B3238">
-            <StackPanel Orientation="Vertical"
-                        Margin="0 80 0 0">
-                <StackPanel Orientation="Horizontal"
+                <StackPanel Orientation="Vertical"
+                        Margin="0 70 0 0">
+                    <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Width="278"
                         Height="65">
@@ -36,12 +36,12 @@
                            Background="#363B41"
                            BorderThickness="0">
                             <Border.OpacityMask>
-                                    <VisualBrush>
-                                        <VisualBrush.Visual>
-                                            <Border CornerRadius="10 0 0 10" Height="65" Width="65" Background="White"/>
-                                        </VisualBrush.Visual>
-                                    </VisualBrush>
-                                </Border.OpacityMask>
+                                <VisualBrush>
+                                    <VisualBrush.Visual>
+                                        <Border CornerRadius="10 0 0 10" Height="65" Width="65" Background="White"/>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Border.OpacityMask>
                             <Image Source="../images/user.png"
                                    Width="30"
                                    Height="30"/>
@@ -59,18 +59,24 @@
                            Width="213"
                            Height="65"
                            BorderThickness="0"
-                           Padding="10 24"
+                           Padding="10 23"
                            FontSize="16"
                            Foreground="#8E8E8E"
                            x:Name="login"
-                           Text="Логин"
-                           GotFocus="login_GotFocus"
-                           LostFocus="login_LostFocus"
+                           MaxLength="16"
+                           TextChanged="login_TextChanged"
+                           PreviewKeyDown="login_PreviewKeyDown"
                            />
                         </Border>
-                    
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"
+                    </StackPanel>
+                    <TextBlock x:Name="loginMessage"
+                               Margin="120 1 60 0"
+                               TextWrapping="Wrap"
+                               Visibility="Hidden"
+                               Foreground="#64AFB6"
+                               ></TextBlock>
+
+                    <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Width="278"
                         Height="65"
@@ -99,24 +105,28 @@
                                     </VisualBrush.Visual>
                                 </VisualBrush>
                             </Border.OpacityMask>
-                            <TextBox Background="#3A4149"
+                            <PasswordBox Background="#3A4149"
                            Width="213"
                            Height="65"
                            BorderThickness="0"
                            FontSize="16"
                            Foreground="#8E8E8E"
                            x:Name="password"
-                           Text="Пароль"
                            Padding="10 24"
-                           GotFocus="password_GotFocus"
-                           LostFocus="password_LostFocus"
-                           MaxLength="12"          
+                           MaxLength="12" 
+                           PasswordChanged="password_PasswordChanged"  
+                           PreviewKeyDown="password_PreviewKeyDown"
                         >
-                                
-                            </TextBox>
+
+                            </PasswordBox>
                         </Border>
                         <Border BorderBrush="Black" BorderThickness="1" Width="100"/>
-                </StackPanel>
+                    </StackPanel>
+                    <TextBlock x:Name="passwordMessage"
+                               Margin="120 1 60 0"
+                               Visibility="Hidden"
+                               Foreground="#64AFB6"
+                               ></TextBlock>
                     <Border Width="278"
                            Height="55"
                            Margin="0 33 0 0">
@@ -152,9 +162,9 @@
                                    Click="Hyperlink_Click" Cursor="Hand">
                             Регистрация
                         </Hyperlink>
-                       
-                    </TextBlock>
-                    <Image Width="10"  
+
+                        </TextBlock>
+                        <Image Width="10"  
                                Source="../images/arrow.png"
                                VerticalAlignment="Center"
                            Margin="5 0 0 0"></Image>
@@ -167,8 +177,7 @@
                        Foreground="white">carrent</Label>
 
             </Grid>
-       
-    </Border>
 
+        </Border>
     </Grid>
 </Page>

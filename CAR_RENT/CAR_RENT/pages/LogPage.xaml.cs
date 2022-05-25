@@ -25,145 +25,219 @@ namespace CAR_RENT.pages
         public LogPage()
         {
             InitializeComponent();
-            var conracts = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
-            foreach (CONTRACT contract in conracts)
+            try
             {
-                DateTime contract_end = new DateTime();
-                DateTime.TryParse(contract.CONTRACT_END.ToString(), out contract_end);
-                DateTime now = new DateTime();
-                DateTime.TryParse(DateTime.Now.ToString(), out now);
-                TimeSpan days = now - contract_end;
-                if (contract.STATUS == "Подтверждена" && days.Days > 0)
+                login.PreviewTextInput += new TextCompositionEventHandler(loginText);
+                var contracts = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                foreach (CONTRACT contract in contracts)
                 {
-                    contract.CONTRACT_STATUS = "Прокат завершен";
-                }
-                if (contract.STATUS == "Подтверждена" && days.Days <= 0)
-                {
-                    contract.CONTRACT_STATUS = "Прокат активен";
-                }
-                if (contract.STATUS == "Отменена" && days.Days > 0)
-                {
-                    contract.CONTRACT_STATUS = "Прокат отменен";
-                }
-                if (contract.STATUS == "Новая заявка")
-                {
-                    contract.CONTRACT_STATUS = "Ждет подтверждения";
-                }
-                CAR_RENTEntities.GetContext().SaveChanges();
-            }
-            var cars = CAR_RENTEntities.GetContext().CARS.ToList();
-            foreach (CAR car in cars)
-            {
-                try
-                {
-                    string id = car.ID.ToString();
-                    CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString() == id).FirstOrDefault();
-
-                    if (contract != null)
+                    DateTime contract_end = new DateTime();
+                    DateTime.TryParse(contract.CONTRACT_END.ToString(), out contract_end);
+                    DateTime now = new DateTime();
+                    DateTime.TryParse(DateTime.Now.ToString(), out now);
+                    TimeSpan days = now - contract_end;
+                    if (contract.STATUS == "Подтверждена" && days.Days > 0)
                     {
-                        if (contract.CONTRACT_STATUS == "Прокат активен")
+                        contract.CONTRACT_STATUS = "Прокат завершен";
+                    }
+                    if (contract.STATUS == "Подтверждена" && days.Days <= 0)
+                    {
+                        contract.CONTRACT_STATUS = "Прокат активен";
+                    }
+                    if (contract.STATUS == "Отменена" && days.Days > 0)
+                    {
+                        contract.CONTRACT_STATUS = "Прокат отменен";
+                    }
+                    if (contract.STATUS == "Новая заявка")
+                    {
+                        contract.CONTRACT_STATUS = "Ждет подтверждения";
+                    }
+                    CAR_RENTEntities.GetContext().SaveChanges();
+                }
+                var cars = CAR_RENTEntities.GetContext().CARS.ToList();
+                foreach (CAR car in cars)
+                {
+                    try
+                    {
+                        string id = car.ID.ToString();
+                        CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString().Trim() == id).FirstOrDefault();
+
+                        if (contract != null)
                         {
-                            car.STATUS = "В прокате";
+                            if (contract.CONTRACT_STATUS == "Прокат активен")
+                            {
+                                car.STATUS = "В прокате";
+                            }
+                            else car.STATUS = "Свободна";
+                            CAR_RENTEntities.GetContext().SaveChanges();
                         }
-                        else car.STATUS = "Свободна";
-                        CAR_RENTEntities.GetContext().SaveChanges();
-                    }
 
 
-                    else if (contract == null)
-                    {
-                        car.STATUS = "Свободна";
-                        CAR_RENTEntities.GetContext().SaveChanges();
+                        else if (contract == null)
+                        {
+                            car.STATUS = "Свободна";
+                            CAR_RENTEntities.GetContext().SaveChanges();
+                        }
                     }
+                    catch { }
+
                 }
-                catch { }
-
             }
+            catch { }
         }
-
+        private void loginText(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsLetterOrDigit(e.Text, 0) && e.Text != "-" && e.Text != "_")
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
         private void Come_Click(object sender, RoutedEventArgs e)
         {
-           
-
-            if(login.Text !="Логин" && password.Text!="Пароль")
+            try
             {
-
-           
-            using (CAR_RENTEntities db=new CAR_RENTEntities())
-            {
-                string log = login.Text;
-                string pass = password.Text;
-                CLIENT admin = db.CLIENTS.FirstOrDefault(a => a.LOGIN == log && a.USER_TYPE == 1);
-                if (admin != null)
-                { 
-                        AdminWindow adminWindow = new AdminWindow();
-                        App.admin = admin;
-                        adminWindow.Show();
-                        MainWindow.mainWindow.Close();
-                }
-                
-                CLIENT client = db.CLIENTS.FirstOrDefault(u=>u.LOGIN==log && u.USER_TYPE==0);
-                if (client!=null)
+                if (login.Text.Length != 0 && password.Password.Length != 0)
                 {
+                    loginMessage.Text = "";
+                    passwordMessage.Text = "";
+                    using (CAR_RENTEntities db = new CAR_RENTEntities())
+                    {
+                        string log = login.Text.Trim();
+                        string pass = password.Password.Trim();
+                        CLIENT admin = db.CLIENTS.Where(a => a.LOGIN.Trim() == log && a.USER_TYPE.ToString().Trim() == "1").AsEnumerable().Where(a => a.LOGIN.Trim() == log && a.USER_TYPE.ToString().Trim() == "1").FirstOrDefault();
+                        if (admin != null)
+                        {
+                            AdminWindow adminWindow = new AdminWindow();
+                            App.admin = admin;
+                            adminWindow.Show();
+                            MainWindow.mainWindow.Close();
+                        }
 
-                        if (client.PASSWORD == pass && client.LOGIN==log)
-                        { 
-                            CatalogWindow catalog = new CatalogWindow();
-                            App.currentClient = client;
-                            catalog.Show();
-                            Application.Current.MainWindow.Close();
+                        CLIENT client = db.CLIENTS.Where(u => u.LOGIN.Trim() == log && u.USER_TYPE.ToString().Trim() == "0").AsEnumerable().Where(u => u.LOGIN.Trim() == log && u.USER_TYPE.ToString().Trim() == "0").FirstOrDefault();
+                        if (client != null)
+                        {
+
+                            if (client.PASSWORD.Trim() == pass && client.LOGIN.Trim() == log)
+
+                            {
+                                CatalogWindow catalog = new CatalogWindow();
+                                App.currentClient = client;
+                                catalog.Show();
+                                Application.Current.MainWindow.Close();
+                            }
+                            else
+                            {
+                                passwordMessage.Visibility = Visibility.Visible;
+                                passwordMessage.Text = "Неправильный пароль!";
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Неправильный пароль!");                        }
-                }
-                    else
-                    {
-                        if (admin == null)
-                        {
-                            MessageBox.Show("Пользователь не найден. Введите данные ещё раз!");
+                            if (client == null)
+                            {
+                                loginMessage.Visibility = Visibility.Visible;
+                                loginMessage.Text = "Пользователь не найден!";
+
+                            }
                         }
                     }
+                }
+                else
+                {
+                    loginMessage.Text = "";
+                    passwordMessage.Text = "";
+                    if (login.Text.Length == 0)
+                    {
+                        loginMessage.Visibility = Visibility.Visible;
+                        loginMessage.Text = "Введите логин!";
+                    }
+
+                    if (password.Password.Length == 0)
+                    {
+                        passwordMessage.Visibility = Visibility.Visible;
+                        passwordMessage.Text = "Введите пароль!";
+                    }
+                }
             }
-            }
-            else
-            {
-                MessageBox.Show("Введите логин и пароль!");
-            }
+            catch { }
         }
-        
-        
+
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-          AuthorizationPage authorizationPage = new AuthorizationPage();
-          NavigationService.Navigate(authorizationPage);
-
-
+            try
+            {
+                AuthorizationPage authorizationPage = new AuthorizationPage();
+                NavigationService.Navigate(authorizationPage);
+            }
+            catch { }
         }
 
-        private void login_GotFocus(object sender, RoutedEventArgs e)
+        private void login_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (login.Text == "Логин")
-                login.Text = "";
+            try
+            {
+                using (CAR_RENTEntities db = new CAR_RENTEntities())
+                {
+                    string log = login.Text.Trim();
+                    CLIENT clientLogin = db.CLIENTS.Where(c => c.LOGIN.Trim() == log).AsEnumerable().Where(c => c.LOGIN.Trim() == log).FirstOrDefault();
+                    if (clientLogin == null)
+                    {
+                        loginMessage.Visibility = Visibility.Visible;
+                        loginMessage.Text = "Пользователь не найден!";
+                    }
+                    else if (clientLogin != null)
+                    {
+                        loginMessage.Visibility = Visibility.Hidden;
+                    }
+
+                }
+            }
+            catch { }
         }
 
-        private void login_LostFocus(object sender, RoutedEventArgs e)
+        private void password_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (login.Text == "")
-                login.Text = "Логин";
+
+            try
+            {
+                if (password.Password.Length != 0)
+                {
+                    passwordMessage.Visibility = Visibility.Hidden;
+                }
+            }
+            catch { }
         }
 
-        private void password_GotFocus(object sender, RoutedEventArgs e)
+        private void password_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (password.Text == "Пароль")
-                password.Text = "";
+            try 
+            { 
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+            }
+            catch { }
         }
 
-        private void password_LostFocus(object sender, RoutedEventArgs e)
+        private void login_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (password.Text == "")
-                password.Text = "Пароль";
+            try
+            {
+                if (e.Key == Key.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch { }
         }
-       
     }
 }
+
+
+

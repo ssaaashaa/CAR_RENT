@@ -21,8 +21,8 @@ namespace CAR_RENT.models
         }
     
         public int ID { get; set; }
-        public Nullable<int> CLIENT_ID { get; set; }
-        public Nullable<int> CAR_ID { get; set; }
+        public int CLIENT_ID { get; set; }
+        public int CAR_ID { get; set; }
         public Nullable<System.DateTime> CONTRACT_START { get; set; }
         public Nullable<System.DateTime> CONTRACT_END { get; set; }
         public string PROMO_CODE { get; set; }

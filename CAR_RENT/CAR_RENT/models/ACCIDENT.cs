@@ -15,7 +15,7 @@ namespace CAR_RENT.models
     public partial class ACCIDENT
     {
         public int ID { get; set; }
-        public Nullable<int> CONTRACT_ID { get; set; }
+        public int CONTRACT_ID { get; set; }
         public Nullable<System.DateTime> DATE { get; set; }
         public Nullable<int> DAMAGE_COST { get; set; }
         public string DAMAGE_DESCRIPTION { get; set; }

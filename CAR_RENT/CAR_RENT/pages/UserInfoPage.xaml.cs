@@ -35,7 +35,7 @@ namespace CAR_RENT.pages
             patronymic.Text = App.currentClient.PATRONYMIC;
             bday.Text = App.currentClient.BDAY.ToString();
             telephone.Text = App.currentClient.TELEPHONE;
-            passportID.Text = App.currentClient.PASSPORT_ID.ToString();
+            passportID.Text = App.currentClient.PASSPORT.ToString();
             licenseID.Text = App.currentClient.DRIVER_LICENSE_ID.ToString();
             experience.Text = App.currentClient.DRIVING_EXPERIENCE;
             login.PreviewTextInput += new TextCompositionEventHandler(loginText);
@@ -264,10 +264,10 @@ namespace CAR_RENT.pages
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
                     CLIENT client = db.CLIENTS.FirstOrDefault(u => u.ID.ToString() == id.Text.ToString());
-                    CLIENT clientPassport = db.CLIENTS.FirstOrDefault(u => u.PASSPORT_SERIES == passportID.Text);
+                    CLIENT clientPassport = db.CLIENTS.FirstOrDefault(u => u.PASSPORT == passportID.Text);
                     if (passportID.Text.Length == 10)
                     {
-                        client.PASSPORT_SERIES = passportID.Text;
+                        client.PASSPORT = passportID.Text;
                         db.Entry(client).State = EntityState.Modified;
                         db.SaveChanges();
                         App.currentClient = client;

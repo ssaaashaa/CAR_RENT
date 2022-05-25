@@ -23,7 +23,6 @@ namespace CAR_RENT
     public partial class MainWindow : Window
     {
         public static MainWindow mainWindow = new MainWindow();
-        //public static Frame Frame;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,10 +34,8 @@ namespace CAR_RENT
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
             foreach (Window w in App.Current.Windows)
-                w.Close();
-
+            w.Close();
         }
     }
 }

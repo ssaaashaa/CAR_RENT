@@ -68,10 +68,14 @@ namespace CAR_RENT.pagesForAdmin
         }
         private void textInput(object sender, TextCompositionEventArgs e)
         {
+            try
+            {
             if (!Char.IsDigit(e.Text, 0))
             {
                 e.Handled = true; //не обрабатывать введеный символ
             }
+            }
+            catch { }
         }
         private void DGridContracts_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -85,10 +89,10 @@ namespace CAR_RENT.pagesForAdmin
                 CONTRACT_START.Text = selectedContract.CONTRACT_START.ToString().Remove(10);
                 CONTRACT_END.Text=selectedContract.CONTRACT_END.ToString().Remove(10);
                 PROMO_CODE.Text = selectedContract.PROMO_CODE;
-                TOTAL_COST.Text = selectedContract.TOTAL_COST.ToString();
                 STATUS.Text = selectedContract.STATUS;
-                
-            }   
+                SUM.Text = selectedContract.TOTAL_COST.ToString();
+
+            }
         }
         void Clear()
         {
@@ -98,7 +102,6 @@ namespace CAR_RENT.pagesForAdmin
             CONTRACT_START.Text = null;
             CONTRACT_END.Text= null;           
             PROMO_CODE.Clear();
-            TOTAL_COST.Clear();
             STATUS.SelectedItem = null;
            
         }
@@ -327,13 +330,15 @@ namespace CAR_RENT.pagesForAdmin
                 CONTRACT_START.Text = selectedContract.CONTRACT_START.ToString().Remove(10);
                 CONTRACT_END.Text = selectedContract.CONTRACT_END.ToString().Remove(10);
                 PROMO_CODE.Text = selectedContract.PROMO_CODE;
-                TOTAL_COST.Text = selectedContract.TOTAL_COST.ToString();
                 STATUS.Text = selectedContract.STATUS;
+                SUM.Text = selectedContract.TOTAL_COST.ToString();
 
             }
         }
         private void search_Click(object sender, RoutedEventArgs e)
         {
+            idCar.Clear();
+            DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
             for (int i = 0; i < DGridContracts.Items.Count; i++)
             {
                 string param = id.Text;
@@ -350,5 +355,22 @@ namespace CAR_RENT.pagesForAdmin
                 }
             }
         }
+
+        private void searchCar_Click(object sender, RoutedEventArgs e)
+        {
+            DGridContracts.ItemsSource = null;
+            DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString()==idCar.Text).ToList();
+        }
+
+        private void idCar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString() == idCar.Text.Trim()).ToList();
+            if (idCar.Text.Trim().Length == 0)
+            {
+                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+            }
+        }
+
+     
     }
 }

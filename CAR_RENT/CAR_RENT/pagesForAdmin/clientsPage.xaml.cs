@@ -20,7 +20,6 @@ namespace CAR_RENT.pagesForAdmin
         {
             InitializeComponent();
             DGridClients.ItemsSource = CAR_RENTEntities.GetContext().CLIENTS.ToList();           
-            PASSPORT.PreviewTextInput += new TextCompositionEventHandler(passportTextInput);
         }
         private void Validation()
         {
@@ -100,10 +99,6 @@ namespace CAR_RENT.pagesForAdmin
             {
                 errors.AppendLine("Неверный формат телефона!");
             }
-            if (string.IsNullOrEmpty(ADRESS.Text))
-            {
-                errors.AppendLine("Введите адрес!");
-            }
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
@@ -123,7 +118,6 @@ namespace CAR_RENT.pagesForAdmin
             LICENSE_ID.Clear();
             EXPERIENCE.Clear();
             TELEPHONE.Clear();
-            ADRESS.Clear();
             TYPE.Clear();
         }
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -145,11 +139,10 @@ namespace CAR_RENT.pagesForAdmin
                 currentClient.NAME=NAME.Text;
                 currentClient.PATRONYMIC=PATRONYMIC.Text;
                 currentClient.BDAY = date;
-                currentClient.PASSPORT_SERIES = PASSPORT.Text;
+                currentClient.PASSPORT = PASSPORT.Text;
                 currentClient.DRIVER_LICENSE_ID=LICENSE_ID.Text;
                 currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text;
                 currentClient.TELEPHONE=TELEPHONE.Text;
-                currentClient.ADRESS=ADRESS.Text;
                 CAR_RENTEntities.GetContext().CLIENTS.Add(currentClient);
                 try
                 {
@@ -182,11 +175,10 @@ namespace CAR_RENT.pagesForAdmin
                 currentClient.NAME = NAME.Text;
                 currentClient.PATRONYMIC = PATRONYMIC.Text;
                 currentClient.BDAY = date;
-                currentClient.PASSPORT_SERIES = PASSPORT.Text;
+                currentClient.PASSPORT = PASSPORT.Text;
                 currentClient.DRIVER_LICENSE_ID = LICENSE_ID.Text;
                 currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text;
                 currentClient.TELEPHONE = TELEPHONE.Text;
-                currentClient.ADRESS = ADRESS.Text;
                 if (currentClient!=null)
                 {
                     try
@@ -213,14 +205,7 @@ namespace CAR_RENT.pagesForAdmin
             }
         }
 
-       
-        void passportTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!Char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true; //не обрабатывать введеный символ
-            }
-        }
+     
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             CLIENT currentClient = CAR_RENTEntities.GetContext().CLIENTS.Where(u => u.ID.ToString() == ID.Text).FirstOrDefault();
@@ -275,10 +260,9 @@ namespace CAR_RENT.pagesForAdmin
                     BDAY.Text = selectedClient.BDAY.ToString().Remove(10);
                 }
                 catch { }
-                PASSPORT.Text = selectedClient.PASSPORT_SERIES;
+                PASSPORT.Text = selectedClient.PASSPORT;
                 EXPERIENCE.Text = selectedClient.DRIVING_EXPERIENCE.ToString();
                 TELEPHONE.Text = selectedClient.TELEPHONE;
-                ADRESS.Text = selectedClient.ADRESS;
                 TYPE.Text = selectedClient.USER_TYPE.ToString();
                 ID.Text = selectedClient.ID.ToString();
             }
