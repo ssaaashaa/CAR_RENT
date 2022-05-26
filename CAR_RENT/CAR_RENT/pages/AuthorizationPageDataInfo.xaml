@@ -33,45 +33,109 @@
 
             <Grid Height="630" Width="650" 
             Background="white">
+
                 <StackPanel Orientation="Vertical"
                             Margin="75 40">
                     <Label FontSize="18">Регистрация</Label>
-                    <Label Style="{StaticResource Label}"
-                           Margin="0 25 0 6">Номер телефона</Label>
+                    <Label Style="{DynamicResource Label}"
+                           Margin="0 25 0 6">Дата рождения</Label>
                     <StackPanel Orientation="Horizontal">
-                       
-                        <wpfx:MaskedTextBox Mask="+375 (00) 000-00-00" Style="{StaticResource TextBox}"
+                        <DatePicker  Width="225"
+                                 FontSize="13"
+                                 BorderThickness="0.1"
+                                 BorderBrush="#3A4149"
+                                 x:Name="bday"
+                                     Margin="0 0 0 15"
+                                 SelectedDateChanged="bday_SelectedDateChanged"
+                                 PreviewKeyDown="space_PreviewKeyDown"
+                                />
+                        <Image Source="../images/done.png"
+                               Width="20"
+                               Height="20"
+                               x:Name="bdayDone"
+                               Margin="10 0"
+                               VerticalAlignment="Top"
+                               Visibility="Hidden"
+                               />
+
+                    </StackPanel>
+                    <Label Style="{StaticResource Label}"
+                           >Номер телефона</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <wpfx:MaskedTextBox Mask="+375 (00) 000-00-00" Style="{StaticResource TextBox}"
                              x:Name="telephone"
-                             SelectionChanged="telephone_SelectionChanged" 
+                             TextChanged="telephone_TextChanged"
+                             PreviewKeyDown="space_PreviewKeyDown"
                             />
-                         <Image Source="../images/done.png"
+                            <TextBlock x:Name="telephMessage"
+                                       Foreground="#64AFB6"
+                                       FontSize="8"
+                                       Visibility="Hidden"
+                                       Margin="0 -12 0 0">Номер занят!</TextBlock>
+                        </StackPanel>
+                        <Image Source="../images/done.png"
                                x:Name="telephDone"
                                Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
                     <Label Style="{StaticResource Label}">Серия и номер паспорта</Label>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Style="{StaticResource TextBox}" 
+                        <StackPanel Orientation="Vertical">
+                            <TextBox Style="{StaticResource TextBox}" 
                              x:Name="passport"
-                             HorizontalAlignment="Left"
-                             SelectionChanged="passportID_SelectionChanged"
-                             MaxLength="7"></TextBox>
+                             MaxLength="9"
+                             GotFocus="passportfToolTip_GotFocus"
+                             LostFocus="passportfToolTip_LostFocus"
+                                 TextChanged="passport_TextChanged"
+                                 PreviewKeyDown="space_PreviewKeyDown"/>
+                            <TextBlock x:Name="passportMessage"
+                                       Foreground="#64AFB6"
+                                       FontSize="8"
+                                       Visibility="Hidden"
+                                       Margin="0 -12 0 0">Такой паспорт уже есть!</TextBlock>
+                        </StackPanel>
                         <Image Source="../images/done.png"
                                x:Name="passportDone"
                                Style="{StaticResource imageDone}"
                                />
+                        <TextBlock x:Name="passportfToolTip"
+                               TextWrapping="Wrap" 
+                               Width="241"
+                               Visibility="Hidden"
+                               FontSize="10"
+                               Margin="7 3 0 0"
+                               Foreground="#1D6A72"
+                               ><Run Text="*например, KH1234567"/></TextBlock>
                     </StackPanel>
                     <Label Style="{StaticResource Label}">Номер ВУ</Label>
                     <StackPanel Orientation="Horizontal">
+                        <StackPanel>
                         <TextBox Style="{StaticResource TextBox}" 
                              x:Name="licenseID"
-                             MaxLength="11"    
-                             HorizontalAlignment="Left"
-                             SelectionChanged="licenseID_SelectionChanged"></TextBox>
+                             MaxLength="11"
+                                 TextChanged="licenseID_TextChanged" 
+                                 GotFocus="licenseMessage_GotFocus"
+                                 LostFocus="licenseMessage_LostFocus"/>
+                            <TextBlock x:Name="licenseMessage"
+                                       Foreground="#64AFB6"
+                                       FontSize="8"
+                                       Visibility="Hidden"
+                                       Margin="0 -12 0 0"
+                                       >Такое ВУ уже есть!</TextBlock>
+                        </StackPanel>
                         <Image Source="../images/done.png"
                                x:Name="numberDone"
                                Style="{StaticResource imageDone}"
                                />
+                        <TextBlock x:Name="licenseToolTip"
+                               TextWrapping="Wrap" 
+                               Width="241"
+                               Visibility="Hidden"
+                               FontSize="10"
+                               Margin="7 4 0 0"
+                               Foreground="#1D6A72"
+                               ><Run Text="*например, 4KH 1234567"/></TextBlock>
                     </StackPanel>
                     <Label Style="{StaticResource Label}">Опыт вождения</Label>
                     <StackPanel Orientation="Horizontal">
@@ -84,7 +148,7 @@
                                Style="{StaticResource imageDone}"
                                />
                     </StackPanel>
-                   
+
 
                 </StackPanel>
                 <Label VerticalAlignment="Bottom" 

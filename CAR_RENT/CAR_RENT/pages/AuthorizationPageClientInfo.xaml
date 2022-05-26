@@ -34,7 +34,25 @@
         <Style x:Key="Label" TargetType="Label">
             <Setter Property="FontSize" Value="14"/>
         </Style>
-        
+        <Style x:Key="PasswordBox" TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" SnapsToDevicePixels="True" CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="0 0 0 14"/>
+            <Setter Property="Background" Value="#E1E3E4"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -52,20 +70,20 @@
             Background="white">
                 <StackPanel Orientation="Vertical"
                             Margin="85 40">
-                <Label FontSize="18">Регистрация</Label>
+                    <Label FontSize="18">Регистрация</Label>
                     <Label Style="{DynamicResource Label}"
                            Margin="0 25 0 7">Логин</Label>
                     <StackPanel Orientation="Horizontal"
                                Margin="0 5"
                                >
-                    <TextBox Style="{DynamicResource TextBox}" 
+                        <TextBox Style="{DynamicResource TextBox}" 
                              Margin="0"
                              x:Name="login"
+                             MaxLength="12"
                              GotFocus="login_GotFocus"
                              LostFocus="login_LostFocus"
                              SelectionChanged="login_SelectionChanged"
-                            
-                             
+                             PreviewKeyDown="space_PreviewKeyDown"
                             />
 
                         <Image Source="../images/done.png"
@@ -82,7 +100,7 @@
                                Foreground="#1D6A72"
                                Margin="7 0 0 0">*логин может содержать цифры, буквы, символы "-" и "_", длина от 3 до 16 символов</TextBlock>
                     </StackPanel>
-                    <Label Foreground="Red"
+                    <Label Foreground="#64AFB6"
                            Margin="0 -10 0 -5"
                            FontSize="8"
                            Visibility="Hidden"
@@ -90,12 +108,14 @@
                            >Логин занят! Попробуйте другой.</Label>
                     <Label Style="{DynamicResource Label}">Пароль</Label>
                     <StackPanel Orientation="Horizontal" Width="565">
-                    <TextBox Style="{DynamicResource TextBox}"
+                        <PasswordBox Style="{DynamicResource PasswordBox}"
                              Margin="0"
                              x:Name="password"
                              GotFocus="password_GotFocus"
                              LostFocus="password_LostFocus"
-                             SelectionChanged="password_SelectionChanged"/>
+                             PasswordChanged="password_SelectionChanged"
+                             PreviewKeyDown="space_PreviewKeyDown"
+                             MaxLength="12"/>
                         <Image Source="../images/done.png"
                                Width="20"
                                x:Name="passDone"
@@ -103,21 +123,23 @@
                                Visibility="Hidden"/>
                         <TextBlock x:Name="passwordToolTip"
                                TextWrapping="Wrap" 
-                               Width="241"
+                               Width="230"
                                Visibility="Hidden"
                                FontSize="10"
                                Foreground="#1D6A72"
-                               Margin="7 0 0 0">*пароль должен быть 8-12 символов, содержать хотя бы одну цифру, одну латинскую букву, один специальный символ</TextBlock>
+                               Margin="7 0 0 0">*пароль должен состоять из 8-12 символов и включать хотя бы одну большую и маленькую латинские буквы, цифру</TextBlock>
                     </StackPanel>
                     <Label Style="{DynamicResource Label}"
                            Margin="0 0 0 10">Подтверждение пароля</Label>
                     <StackPanel Orientation="Horizontal">
-                    <TextBox Style="{DynamicResource TextBox}"
+                        <PasswordBox Style="{DynamicResource PasswordBox}"
                              Margin="0"
                              x:Name="passwordConfirmation"
                              GotFocus="passwordConfirmation_GotFocus"
                              LostFocus="passwordConfirmation_LostFocus"
-                             SelectionChanged="passwordConfirmation_SelectionChanged"/>
+                             PasswordChanged="passwordConfirmation_SelectionChanged"
+                             PreviewKeyDown="space_PreviewKeyDown"
+                             MaxLength="12"/>
                         <Image Source="../images/done.png"
                                Width="20"
                                x:Name="passConfDone"
@@ -128,7 +150,7 @@
                                Width="241"
                                Visibility="Hidden"
                                FontSize="10"
-                               Margin="7 0 0 0"
+                               Margin="7 5 0 0"
                                Foreground="#1D6A72"
                                >*пароли должены совпадать</TextBlock>
                     </StackPanel>
@@ -145,6 +167,8 @@
                         <TextBox Style="{DynamicResource TextBox}"
                              x:Name="surname"
                              SelectionChanged="surname_SelectionChanged"    
+                             GotFocus="name_GotFocus"
+                            LostFocus="name_LostFocus"
                                  />
                         <Image Source="../images/done.png"
                                Width="20"
@@ -154,6 +178,14 @@
                                VerticalAlignment="Top"
                                Visibility="Hidden"
                                />
+                        <TextBlock x:Name="nameConfToolTip"
+                               TextWrapping="Wrap" 
+                               Width="241"
+                               Visibility="Hidden"
+                               FontSize="10"
+                               Margin="7 5 0 0"
+                               Foreground="#1D6A72"
+                               >*ввод с большой буквы и кириллицей</TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical"
@@ -161,10 +193,12 @@
                             <Label Style="{DynamicResource Label}"
                                    Margin="0 0 0 10">Имя</Label>
                             <StackPanel Orientation="Horizontal">
-                            <TextBox Style="{DynamicResource TextBox}"
+                                <TextBox Style="{DynamicResource TextBox}"
                                      x:Name="name"
-                                     SelectionChanged="name_SelectionChanged"/>
-                               <Image Source="../images/done.png"
+                                     SelectionChanged="name_SelectionChanged"
+                                         GotFocus="name_GotFocus"
+                            LostFocus="name_LostFocus"/>
+                                <Image Source="../images/done.png"
                                Width="20"
                                Height="20"
                                x:Name="nDone"
@@ -174,14 +208,15 @@
                                />
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <Label Style="{DynamicResource Label}"
-                                   Margin="0 0 0 10">Отчество</Label>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Style="{DynamicResource TextBox}"
-                                     x:Name="patronymic"
-                                         SelectionChanged="patronymic_SelectionChanged"/>
-                                <Image Source="../images/done.png"
+                    </StackPanel>
+                    <Label Style="{DynamicResource Label}">Отчество</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Style="{DynamicResource TextBox}"
+                                      x:Name="patronymic"
+                                         SelectionChanged="patronymic_SelectionChanged"
+                                         GotFocus="name_GotFocus"
+                            LostFocus="name_LostFocus"/>
+                        <Image Source="../images/done.png"
                                Width="20"
                                Height="20"
                                x:Name="patronDone"
@@ -189,31 +224,10 @@
                                VerticalAlignment="Top"
                                Visibility="Hidden"
                                />
-
-                            </StackPanel>
                     </StackPanel>
-                    </StackPanel>
-                    <Label Style="{DynamicResource Label}">Дата рождения</Label>
-                    <StackPanel Orientation="Horizontal">
-                        <DatePicker  Width="225"
-                             HorizontalAlignment="Left"
-                                 FontSize="13"
-                                 Margin="0 0 0 15"
-                                 BorderThickness="0.1"
-                                 BorderBrush="#3A4149"
-                                 x:Name="bday"
-                                 SelectedDateChanged="bday_SelectedDateChanged"
-                                ></DatePicker>
-                              <Image Source="../images/done.png"
-                               Width="20"
-                               Height="20"
-                               x:Name="bdayDone"
-                               Margin="10 0"
-                               VerticalAlignment="Top"
-                               Visibility="Hidden"
-                               />
-
-                    </StackPanel>
+                    <TextBlock  Foreground="#1D6A72"
+                                Visibility="Hidden"
+                                x:Name="fillAll">Необходимо заполнить все поля!</TextBlock>
                 </StackPanel>
                 <Label VerticalAlignment="Bottom" 
                        HorizontalAlignment="Center"
@@ -226,7 +240,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Margin="20 0 75 80"
-                            Click="Button_Click"
+                            Click="Next"
                         x:Name="next"
                             >
                     <Image Source="..\images\regArrow.png"></Image>
@@ -238,7 +252,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Margin="0 0 175 80"
-                            Click="Button_Click_1"
+                            Click="Back"
                             >
                     <Image Source="..\images\ArrowBack.png" RenderTransformOrigin="-0.213,0.532"></Image>
                 </Button>

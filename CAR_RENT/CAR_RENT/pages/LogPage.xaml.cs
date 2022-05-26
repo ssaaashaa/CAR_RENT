@@ -28,6 +28,7 @@ namespace CAR_RENT.pages
             try
             {
                 login.PreviewTextInput += new TextCompositionEventHandler(loginText);
+                password.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
                 var contracts = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
                 foreach (CONTRACT contract in contracts)
                 {
@@ -90,6 +91,17 @@ namespace CAR_RENT.pages
             try
             {
                 if (!Char.IsLetterOrDigit(e.Text, 0) && e.Text != "-" && e.Text != "_")
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+        void lettersAndNumbers(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsLetterOrDigit(e.Text, 0))
                 {
                     e.Handled = true; //не обрабатывать введеный символ
                 }
@@ -215,12 +227,12 @@ namespace CAR_RENT.pages
 
         private void password_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            try 
-            { 
-            if (e.Key == Key.Space)
+            try
             {
-                e.Handled = true;
-            }
+                if (e.Key == Key.Space)
+                {
+                    e.Handled = true;
+                }
             }
             catch { }
         }

@@ -365,7 +365,7 @@ namespace CAR_RENT.pages
         {
             try
             {
-                string patternPassword = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9]{8,14}$";
+                string patternPassword = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9]{8,12}$";
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
                     CLIENT client = db.CLIENTS.FirstOrDefault(u => u.ID.ToString() == id.Text.ToString());
@@ -390,7 +390,7 @@ namespace CAR_RENT.pages
                         }
                         if(!Regex.IsMatch(password.Text, patternPassword))
                         {
-                            passwordMessage.Text = "Пароль должен состоять из 8-14 символов и включать хотя бы одну большую и маленькую латинские буквы, цифру!";
+                            passwordMessage.Text = "Пароль должен состоять из 8-12 символов и включать хотя бы одну большую и маленькую латинские буквы, цифру!";
                         }
                         if (Regex.IsMatch(password.Text, patternPassword))
                         {

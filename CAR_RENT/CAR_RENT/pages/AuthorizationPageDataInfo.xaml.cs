@@ -25,118 +25,307 @@ namespace CAR_RENT.pages
         public AuthorizationPageDataInfo()
         {
             InitializeComponent();
+            bday.PreviewTextInput += new TextCompositionEventHandler(date);
             telephone.PreviewTextInput += new TextCompositionEventHandler(telephoneTextInput);
-            passport.PreviewTextInput += new TextCompositionEventHandler(passportTextInput);
+            passport.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+            licenseID.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+            experience.PreviewTextInput += new TextCompositionEventHandler(experienceInput);
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void date(object sender, TextCompositionEventArgs e)
         {
-           
-            using (CAR_RENTEntities db = new CAR_RENTEntities())
-            { 
-                CLIENT client = new CLIENT();
-                client.LOGIN = AuthorizationPage.Log.ToString();
-                client.PASSWORD = AuthorizationPage.Pass.ToString();
-                client.SURNAME = AuthorizationPage.Surn.ToString();
-                client.NAME = AuthorizationPage.N.ToString();
-                client.PATRONYMIC = AuthorizationPage.Patron.ToString();
-                client.BDAY = AuthorizationPage.Date;
-                client.TELEPHONE=telephone.Text;
-                client.PASSPORT = passport.Text;
-                client.DRIVER_LICENSE_ID=licenseID.Text;
-                client.DRIVING_EXPERIENCE=experience.Text;
-               
-                if (telephDone.Visibility==Visibility.Visible 
-                    &&passportDone.Visibility==Visibility.Visible
-                    &&numberDone.Visibility==Visibility.Visible
-                    &&numDone.Visibility==Visibility.Visible
-                    &&passport.Text!="") 
+            try
+            {
+                if (!Char.IsDigit(e.Text, 0) && e.Text != "." && e.Text != "-" && e.Text != "/")
                 {
-                    db.CLIENTS.Add(client);
-                    db.SaveChanges();
-                    App.currentClient = client;
-                    AuthorizattionIsDone authorizattionIsDone = new AuthorizattionIsDone();
-                    NavigationService.Navigate(authorizattionIsDone);
-                }
-                else
-                {
-                    if (passport.Text != "")
-                    {
-                        MessageBox.Show("Необходимо заполнить все поля!");
-                    }
+                    e.Handled = true; //не обрабатывать введеный символ
                 }
             }
+            catch { }
+        }
+        void telephoneTextInput(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+
+                if (!Char.IsDigit(e.Text, 0))
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+
+            }
+            catch { }
+        }
+        void lettersAndNumbers(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsLetterOrDigit(e.Text, 0))
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+        void experienceInput(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsLetterOrDigit(e.Text, 0) && e.Text != "," && e.Text != ".")
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+        private void space_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch { }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (CAR_RENTEntities db = new CAR_RENTEntities())
+                {
+                    DateTime date = new DateTime();
+                    DateTime.TryParse(bday.Text.Trim(), out date);
+                    CLIENT client = new CLIENT();
+                    client.LOGIN = AuthorizationPage.Log.ToString();
+                    client.PASSWORD = AuthorizationPage.Pass.ToString();
+                    client.SURNAME = AuthorizationPage.Surn.ToString();
+                    client.NAME = AuthorizationPage.N.ToString();
+                    client.PATRONYMIC = AuthorizationPage.Patron.ToString();
+                    client.BDAY = date;
+                    client.TELEPHONE = telephone.Text;
+                    client.PASSPORT = passport.Text;
+                    client.DRIVER_LICENSE_ID = licenseID.Text;
+                    client.DRIVING_EXPERIENCE = experience.Text;
+
+                    if (telephDone.Visibility == Visibility.Visible
+                        && bdayDone.Visibility == Visibility.Visible
+                        && passportDone.Visibility == Visibility.Visible
+                        && numberDone.Visibility == Visibility.Visible
+                        && numDone.Visibility == Visibility.Visible)
+                    {
+                        db.CLIENTS.Add(client);
+                        db.SaveChanges();
+                        App.currentClient = client;
+                        AuthorizattionIsDone authorizattionIsDone = new AuthorizattionIsDone();
+                        NavigationService.Navigate(authorizattionIsDone);
+                    }
+                    else
+                    {
+                        if (passport.Text != "")
+                        {
+                            MessageBox.Show("Необходимо заполнить все поля!");
+                        }
+                    }
+                }
+
+
+            }
+            catch { }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            try 
+            { 
             this.NavigationService.GoBack();
-        }
-
-        private void telephone_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
-            string teleph = telephone.Text;
-            if (Regex.IsMatch(teleph, patternTelephone, RegexOptions.IgnoreCase))
-            {
-                telephDone.Visibility = Visibility.Visible;
             }
-            else return;
-        }
-        void telephoneTextInput(object sender, TextCompositionEventArgs e)
-        {
-          if (!Char.IsControl(e.Text, 0) && !Char.IsDigit(e.Text, 0) && !Char.IsWhiteSpace(e.Text, 0))
-          {
-                e.Handled = true; //не обрабатывать введеный символ
-          }
-        }
-
-    
-
-      
-        void passportTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!Char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true; //не обрабатывать введеный символ
-            }
-        }
-
-        private void passportID_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            if(passport.Text.Length==7)
-            {
-                passportDone.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                passportDone.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void licenseID_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-            if (licenseID.Text != "")
-            {
-                numberDone.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                numberDone.Visibility = Visibility.Hidden;
-            }
+            catch{ }
         }
 
         private void experience_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if (experience.Text != "")
+            try
             {
-                numDone.Visibility = Visibility.Visible;
+                if (experience.Text != "")
+                {
+                    numDone.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    numDone.Visibility = Visibility.Hidden;
+                }
             }
-            else
-            {
-                numDone.Visibility = Visibility.Hidden;
-            }
+            catch { }
         }
+        private void bday_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                DateTime date = new DateTime();
+                DateTime.TryParse(bday.Text.Trim(), out date);
+                DateTime today = DateTime.Today;
+                if ((today.Year - date.Year) <= 18)
+                {
+                    MessageBox.Show("Извините! Вам нет 18 лет! Мы не сможем предоставить вам автомобиль!");
+                    return;
+                }
+                if ((today.Year - date.Year) >= 90)
+                {
+                    MessageBox.Show("Извините! Некорректно введенные данные!");
+                    return;
+                }
+                else
+                {
+                    if (bday.Text.Trim() != null && bday.Text.Trim().Length == 10)
+                    {
+                        bdayDone.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        bdayDone.Visibility = Visibility.Hidden;
+                    }
+                }
+
+            }
+            catch { }
+
+        }
+
+        private void passportfToolTip_GotFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                passportfToolTip.Visibility = Visibility.Visible;
+            }
+            catch { }
+        }
+
+        private void passportfToolTip_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                passportfToolTip.Visibility = Visibility.Hidden;
+            }
+            catch { }
+        }
+        private void licenseMessage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                licenseToolTip.Visibility = Visibility.Visible;
+            }
+            catch { }
+        }
+
+        private void licenseMessage_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                licenseToolTip.Visibility = Visibility.Hidden;
+            }
+            catch { }
+        }
+        private void telephone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                using (CAR_RENTEntities db = new CAR_RENTEntities())
+                {
+                    string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
+                    string teleph = telephone.Text;
+                    CLIENT clientTelephone = db.CLIENTS.FirstOrDefault(u => u.TELEPHONE == telephone.Text);
+                    if (clientTelephone != null)
+                    {
+                        telephMessage.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+
+                        if (Regex.IsMatch(teleph, patternTelephone) && clientTelephone == null)
+                        {
+                            telephDone.Visibility = Visibility.Visible;
+                            telephMessage.Visibility = Visibility.Hidden;
+
+                        }
+                        else
+                        {
+                            telephDone.Visibility = Visibility.Hidden;
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void passport_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                using (CAR_RENTEntities db = new CAR_RENTEntities())
+                {
+                    string patternPassport = @"^([A-Z]{2}[0-9]{7})$";
+                    string pass = passport.Text;
+                    CLIENT clientPassport = db.CLIENTS.FirstOrDefault(u => u.PASSPORT == passport.Text);
+                    if (clientPassport != null && passport.Text.Length == 9)
+                    {
+                        passportMessage.Visibility = Visibility.Visible;
+
+                    }
+                    else
+                    {
+
+                        if (Regex.IsMatch(pass, patternPassport) && clientPassport == null)
+                        {
+                            passportDone.Visibility = Visibility.Visible;
+                            passportMessage.Visibility = Visibility.Hidden;
+                        }
+                        else
+                        {
+                            passportDone.Visibility = Visibility.Hidden;
+                            passportMessage.Visibility = Visibility.Hidden;
+
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void licenseID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                using (CAR_RENTEntities db = new CAR_RENTEntities())
+                {
+                    string patternLicense = @"^([0-9]{1}[A-Z]{2}\s{1}[0-9]{6,7})$";
+                    string license = licenseID.Text;
+                    CLIENT clientLicense = db.CLIENTS.FirstOrDefault(u => u.DRIVER_LICENSE_ID == licenseID.Text);
+                    if (clientLicense != null && (licenseID.Text.Length == 10 || licenseID.Text.Length == 9))
+                    {
+                        licenseMessage.Visibility = Visibility.Visible;
+
+                    }
+                    else
+                    {
+
+                        if (Regex.IsMatch(license, patternLicense) && clientLicense == null)
+                        {
+                            numberDone.Visibility = Visibility.Visible;
+                            licenseMessage.Visibility = Visibility.Hidden;
+                        }
+                        else
+                        {
+                            numberDone.Visibility = Visibility.Hidden;
+                            licenseMessage.Visibility = Visibility.Hidden;
+
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+
+        
     }
 }
