@@ -23,38 +23,49 @@ namespace CAR_RENT.windows
         public CatalogWindow()
         {
             InitializeComponent();
-           
             frame.Content = new CatalogPage();
             
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            try 
+            { 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+            }
+            catch { }
         }
 
-        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-           
-           
-        }
 
         private void userAccount_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = new UserInfoPage();
+            try
+            {
+                frame.Content = new UserInfoPage();
+            }
+            catch { }
+            
         }
 
         private void userContracts_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = new UserContracts();
+            try
+            {
+                frame.Content = new UserContracts();
+            }
+            catch { }
             
         }
 
         private void main_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = new CatalogPage();
+            try
+            {
+                frame.Content = new CatalogPage();
+            }
+            catch { }
         }
     }
 }

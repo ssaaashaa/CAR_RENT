@@ -81,19 +81,40 @@
                           Grid.Row="2"
                             VerticalAlignment="Center">
                     <Label Foreground="White">Дата начала аренды</Label>
-                    <DatePicker  x:Name="CONTRACT_START"></DatePicker>
+                    <DatePicker  x:Name="CONTRACT_START"
+                                 PreviewKeyDown="space_PreviewKeyDown"
+                                 GotFocus="CONTRACT_START_GotFocus"
+                                 ></DatePicker>
                 </StackPanel>
                 <StackPanel Grid.Column="1"
                           Grid.Row="3"
                             VerticalAlignment="Center">
                     <Label Foreground="White">Дата окончания аренды</Label>
-                    <DatePicker x:Name="CONTRACT_END"></DatePicker>
+                    <DatePicker x:Name="CONTRACT_END"
+                                PreviewKeyDown="space_PreviewKeyDown"
+                                GotFocus="CONTRACT_END_GotFocus"></DatePicker>
+                    <TextBlock x:Name="dateMessage"
+                               Visibility="Hidden"
+                               FontSize="10"
+                               Margin="0 2 0 0"
+                               Foreground="#64AFB6"></TextBlock>
                 </StackPanel>
                 <StackPanel  Grid.Column="1"
                           Grid.Row="4"
                           VerticalAlignment="Center">
                     <Label Foreground="White">Промокод</Label>
-                    <TextBox x:Name="PROMO_CODE"  VerticalAlignment="Center"></TextBox>
+                    <TextBox x:Name="PROMO_CODE"  
+                             VerticalAlignment="Center"
+                             PreviewKeyDown="space_PreviewKeyDown"
+                             GotFocus="promocodeMessage_GotFocus"
+                             MaxLength="20"></TextBox>
+                    <TextBlock VerticalAlignment="Bottom"
+                               x:Name="promocodeMessage"
+                               Visibility="Hidden"
+                               FontSize="10"
+                               Margin="0 2 0 0"
+                               Foreground="#64AFB6"
+                               ></TextBlock>
                 </StackPanel>
                 <Button Grid.Row="5"
                         Grid.Column="1"

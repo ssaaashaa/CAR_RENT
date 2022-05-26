@@ -29,16 +29,23 @@
         <TextBlock Grid.Row="0"
                    Grid.Column="1"
                    Foreground="White"
-                   VerticalAlignment="Bottom"
+                   VerticalAlignment="Top"
+                   Margin="0 40 0 0"
                    FontSize="26">История прокатов</TextBlock>
-        <StackPanel Grid.Row="1"
+        <ScrollViewer Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Height="625"
                     Width="1250"
+                    VerticalScrollBarVisibility="Hidden"
+                    CanContentScroll="True">
+        <StackPanel 
                     x:Name="HISTORY_CONTRACTS"
                     Background="Transparent"
-                    Margin="0 20 0 0"
-                    ></StackPanel>
+                    Margin="0 40 0 0"
+                    >
+           
+        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

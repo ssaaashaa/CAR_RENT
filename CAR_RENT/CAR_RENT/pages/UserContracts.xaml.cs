@@ -25,7 +25,8 @@ namespace CAR_RENT.pages
         public UserContracts()
         {
             InitializeComponent();
-
+            try
+            {
             using (CAR_RENTEntities db = new CAR_RENTEntities())
             {
                 var historyContracts = from cars in db.CARS
@@ -58,6 +59,8 @@ namespace CAR_RENT.pages
                 }
 
             }
+            }
+            catch { }
         }
     }
 }
