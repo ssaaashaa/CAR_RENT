@@ -23,13 +23,13 @@ namespace CAR_RENT.windows
     /// </summary>
     public partial class rent : Window
     {
-
-        public rent()
+        string ID;
+        public rent(string id, string currentName)
         {
             InitializeComponent();
             try
             {
-                auto.Text = Car.CurrentName;
+                auto.Text = currentName;
                 CONTRACT_START.DisplayDate = DateTime.Now;
                 CONTRACT_START.SelectedDate = DateTime.Now;
                 TimeSpan days = TimeSpan.FromDays(7);
@@ -42,11 +42,12 @@ namespace CAR_RENT.windows
                 CONTRACT_START.PreviewTextInput += new TextCompositionEventHandler(dateInput);
                 CONTRACT_END.PreviewTextInput+= new TextCompositionEventHandler(dateInput);
                 PROMO_CODE.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+                ID=id;
             }
             catch { }
 
         }
-
+     
         private void dateInput(object sender, TextCompositionEventArgs e)
         {
             try
@@ -173,10 +174,10 @@ namespace CAR_RENT.windows
                 }
 
                 contract.CLIENT_ID = App.currentClient.ID;
-                contract.CAR_ID = Convert.ToInt32(Car.Id);
+                contract.CAR_ID = Convert.ToInt32(ID);
                 contract.CONTRACT_START = Convert.ToDateTime(CONTRACT_START.Text);
                 contract.CONTRACT_END = Convert.ToDateTime(CONTRACT_END.Text);
-                CAR car = CAR_RENTEntities.GetContext().CARS.Where(c => c.ID.ToString() == Car.Id.ToString()).FirstOrDefault();
+                CAR car = CAR_RENTEntities.GetContext().CARS.Where(c => c.ID.ToString() == ID.ToString()).FirstOrDefault();
                 double total_price = Convert.ToInt32(car.RENT_PRICE) * days.Days - Convert.ToInt32(car.RENT_PRICE) * days.Days * promocode;
                 contract.TOTAL_COST = Convert.ToInt32(total_price);
                 contract.STATUS = "Новая заявка";

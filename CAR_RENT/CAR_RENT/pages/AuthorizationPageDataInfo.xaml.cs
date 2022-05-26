@@ -22,7 +22,12 @@ namespace CAR_RENT.pages
     /// </summary>
     public partial class AuthorizationPageDataInfo : Page
     {
-        public AuthorizationPageDataInfo()
+        string login;
+        string password;
+        string surname;
+        string name;
+        string patronymic;
+        public AuthorizationPageDataInfo(string log, string pass, string surn, string n, string patron)
         {
             InitializeComponent();
             bday.PreviewTextInput += new TextCompositionEventHandler(date);
@@ -30,6 +35,11 @@ namespace CAR_RENT.pages
             passport.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
             licenseID.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
             experience.PreviewTextInput += new TextCompositionEventHandler(experienceInput);
+            login = log;
+            password = pass;
+            surname = surn;
+            name = n;
+            patronymic = patron;
         }
         private void date(object sender, TextCompositionEventArgs e)
         {
@@ -97,11 +107,11 @@ namespace CAR_RENT.pages
                     DateTime date = new DateTime();
                     DateTime.TryParse(bday.Text.Trim(), out date);
                     CLIENT client = new CLIENT();
-                    client.LOGIN = AuthorizationPage.Log.ToString().Trim();
-                    client.PASSWORD = AuthorizationPage.Pass.ToString().Trim();
-                    client.SURNAME = AuthorizationPage.Surn.ToString().Trim();
-                    client.NAME = AuthorizationPage.N.ToString().Trim();
-                    client.PATRONYMIC = AuthorizationPage.Patron.ToString().Trim();
+                    client.LOGIN = login;
+                    client.PASSWORD = password;
+                    client.SURNAME = surname;
+                    client.NAME = name;
+                    client.PATRONYMIC = patronymic;
                     client.BDAY = date;
                     client.TELEPHONE = telephone.Text.Trim();
                     client.PASSPORT = passport.Text;

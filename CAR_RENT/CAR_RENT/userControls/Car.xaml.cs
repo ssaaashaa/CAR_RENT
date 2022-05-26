@@ -1,4 +1,5 @@
-﻿using CAR_RENT.windows;
+﻿using CAR_RENT.pages;
+using CAR_RENT.windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,14 +42,14 @@ namespace CAR_RENT.userControls
             id.Text = Id;
 
         }
-        public static string CurrentName { get; set; }
-        public static string Id { get; set; }
+        public string CurrentName { get; set; }
+        public string Id { get; set; }
         public Car() { }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             CurrentName = currentName.Text;
             Id = id.Text;
-            rent rent = new rent();
+            rent rent = new rent(Id, CurrentName);
             rent.Show();
         }
     }

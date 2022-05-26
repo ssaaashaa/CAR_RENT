@@ -33,6 +33,11 @@ namespace CAR_RENT.pages
             classes.Visibility = Visibility.Visible;
             line.Visibility = Visibility.Visible;
         }
+        //public CatalogPage(ItemsControl itemsControl, Car car)
+        //{
+        //    itemsControl.Items.Clear();
+        //    StackPanel = itemsControl;
+        //}
         
         private void autopark_Click(object sender, RoutedEventArgs e)
         {
@@ -102,7 +107,7 @@ namespace CAR_RENT.pages
                                   where cars.CLASS == CLASS
                                   select new
                                   {
-                                      CurrentName = models.BREND + models.MODEL,
+                                      CurrentName = models.BREND + " " + models.MODEL,
                                       Price = cars.RENT_PRICE,
                                       Year = models.YEAR_OF_ISSUE,
                                       BodyType=models.BODY_TYPE,
@@ -288,7 +293,7 @@ namespace CAR_RENT.pages
                                           on cars.MODEL equals models.ID
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -317,7 +322,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission && models.BREND == brand && cars.CLASS == classs
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -351,7 +356,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission && models.BREND == brand
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -385,7 +390,7 @@ namespace CAR_RENT.pages
                                           where models.BREND == brand && cars.CLASS == classs
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -419,7 +424,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission && cars.CLASS == classs
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -453,7 +458,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -487,7 +492,7 @@ namespace CAR_RENT.pages
                                           where models.BREND == brand
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -521,7 +526,7 @@ namespace CAR_RENT.pages
                                           where cars.CLASS == classs
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -571,7 +576,7 @@ namespace CAR_RENT.pages
                                           on cars.MODEL equals models.ID
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -602,7 +607,7 @@ namespace CAR_RENT.pages
 
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -632,7 +637,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission && models.BREND == brand && cars.CLASS == type_of_class.Text
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -666,7 +671,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission && models.BREND == brand
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -700,7 +705,7 @@ namespace CAR_RENT.pages
                                           where models.BREND == brand && cars.CLASS == type_of_class.Text
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -734,7 +739,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission && cars.CLASS == type_of_class.Text
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -768,7 +773,7 @@ namespace CAR_RENT.pages
                                           where models.TRANSMISSION == transmission
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,
@@ -802,7 +807,7 @@ namespace CAR_RENT.pages
                                           where models.BREND == brand
                                           select new
                                           {
-                                              CurrentName = models.BREND + models.MODEL,
+                                              CurrentName = models.BREND + " " + models.MODEL,
                                               Price = cars.RENT_PRICE,
                                               Year = models.YEAR_OF_ISSUE,
                                               BodyType = models.BODY_TYPE,

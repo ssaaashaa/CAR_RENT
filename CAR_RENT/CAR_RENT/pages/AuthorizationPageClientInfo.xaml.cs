@@ -66,7 +66,7 @@ namespace CAR_RENT.pages
             }
             catch { }
         }
-       
+
         private void space_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -78,13 +78,6 @@ namespace CAR_RENT.pages
             }
             catch { }
         }
-        public static string Log { get; set; }
-        public static string Pass { get; set; }
-        public static string PassConf { get; set; }
-        public static string Surn { get; set; }
-        public static string N { get; set; }
-        public static string Patron { get; set; }
-
         private void Next(object sender, RoutedEventArgs e)
         {
             try
@@ -117,19 +110,11 @@ namespace CAR_RENT.pages
                             && logDone.Visibility == Visibility.Visible
                             && passDone.Visibility == Visibility.Visible
                             && passConfDone.Visibility == Visibility.Visible
-                            && surnDone.Visibility == Visibility.Visible    
+                            && surnDone.Visibility == Visibility.Visible
                             && nDone.Visibility == Visibility.Visible
                             && patronDone.Visibility == Visibility.Visible)
                         {
-                            Log = log;
-                            Pass = pass;
-                            PassConf = passConf;
-                            Surn = surn;
-                            N = n;
-                            Patron = patron;
-                            this.NavigationService.Navigate(new Uri("/AuthorizationPageDataInfo", UriKind.Relative));
-                            AuthorizationPageDataInfo authorizationPageDataInfo = new AuthorizationPageDataInfo();
-                            NavigationService.Navigate(authorizationPageDataInfo);
+                            this.NavigationService.Navigate(new AuthorizationPageDataInfo(log, pass, surn, n, patron));
                         }
                         else
                         {
@@ -155,7 +140,7 @@ namespace CAR_RENT.pages
         {
             try
             {
-            this.NavigationService.GoBack();
+                this.NavigationService.GoBack();
             }
             catch { }
         }
@@ -261,7 +246,7 @@ namespace CAR_RENT.pages
         {
             try
             {
-                string patternPassword=@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9]{8,12}$"; 
+                string patternPassword = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9]{8,12}$";
                 string pass = password.Password.Trim();
                 if (Regex.IsMatch(pass, patternPassword))
                 {
@@ -300,7 +285,7 @@ namespace CAR_RENT.pages
         }
 
 
-      
+
 
         private void surname_SelectionChanged(object sender, RoutedEventArgs e)
         {
