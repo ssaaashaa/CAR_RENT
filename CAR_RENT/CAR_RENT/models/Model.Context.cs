@@ -26,6 +26,7 @@ namespace CAR_RENT.models
                 context = new CAR_RENTEntities();
             return context;
         }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

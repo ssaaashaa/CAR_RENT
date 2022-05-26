@@ -235,7 +235,7 @@ namespace CAR_RENT.pages
                 string log = login.Text.Trim();
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
-                    CLIENT client = db.CLIENTS.Where(c => c.LOGIN.Trim() == log).AsEnumerable().Where(c => c.LOGIN.Trim() == log).FirstOrDefault();
+                    CLIENT client = db.CLIENTS.Where(c => c.LOGIN.Trim() == log).FirstOrDefault();
                     string patternLogin = @"^[a-zA-Zа-яА-Я0-9_-]{3,16}$";
                     if (client != null)
                     {

@@ -97,16 +97,16 @@ namespace CAR_RENT.pages
                     DateTime date = new DateTime();
                     DateTime.TryParse(bday.Text.Trim(), out date);
                     CLIENT client = new CLIENT();
-                    client.LOGIN = AuthorizationPage.Log.ToString();
-                    client.PASSWORD = AuthorizationPage.Pass.ToString();
-                    client.SURNAME = AuthorizationPage.Surn.ToString();
-                    client.NAME = AuthorizationPage.N.ToString();
-                    client.PATRONYMIC = AuthorizationPage.Patron.ToString();
+                    client.LOGIN = AuthorizationPage.Log.ToString().Trim();
+                    client.PASSWORD = AuthorizationPage.Pass.ToString().Trim();
+                    client.SURNAME = AuthorizationPage.Surn.ToString().Trim();
+                    client.NAME = AuthorizationPage.N.ToString().Trim();
+                    client.PATRONYMIC = AuthorizationPage.Patron.ToString().Trim();
                     client.BDAY = date;
-                    client.TELEPHONE = telephone.Text;
+                    client.TELEPHONE = telephone.Text.Trim();
                     client.PASSPORT = passport.Text;
-                    client.DRIVER_LICENSE_ID = licenseID.Text;
-                    client.DRIVING_EXPERIENCE = experience.Text;
+                    client.DRIVER_LICENSE_ID = licenseID.Text.Trim();
+                    client.DRIVING_EXPERIENCE = experience.Text.Trim();
 
                     if (telephDone.Visibility == Visibility.Visible
                         && bdayDone.Visibility == Visibility.Visible
@@ -147,7 +147,7 @@ namespace CAR_RENT.pages
         {
             try
             {
-                if (experience.Text != "")
+                if (experience.Text.Trim() != "")
                 {
                     numDone.Visibility = Visibility.Visible;
                 }
@@ -233,8 +233,8 @@ namespace CAR_RENT.pages
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
                     string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
-                    string teleph = telephone.Text;
-                    CLIENT clientTelephone = db.CLIENTS.FirstOrDefault(u => u.TELEPHONE == telephone.Text);
+                    string teleph = telephone.Text.Trim();
+                    CLIENT clientTelephone = db.CLIENTS.FirstOrDefault(u => u.TELEPHONE.Trim() == telephone.Text.Trim());
                     if (clientTelephone != null)
                     {
                         telephMessage.Visibility = Visibility.Visible;
@@ -265,8 +265,8 @@ namespace CAR_RENT.pages
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
                     string patternPassport = @"^([A-Z]{2}[0-9]{7})$";
-                    string pass = passport.Text;
-                    CLIENT clientPassport = db.CLIENTS.FirstOrDefault(u => u.PASSPORT == passport.Text);
+                    string pass = passport.Text.Trim();
+                    CLIENT clientPassport = db.CLIENTS.FirstOrDefault(u => u.PASSPORT.Trim() == passport.Text.Trim());
                     if (clientPassport != null && passport.Text.Length == 9)
                     {
                         passportMessage.Visibility = Visibility.Visible;
@@ -299,8 +299,8 @@ namespace CAR_RENT.pages
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
                     string patternLicense = @"^([0-9]{1}[A-Z]{2}\s{1}[0-9]{6,7})$";
-                    string license = licenseID.Text;
-                    CLIENT clientLicense = db.CLIENTS.FirstOrDefault(u => u.DRIVER_LICENSE_ID == licenseID.Text);
+                    string license = licenseID.Text.Trim();
+                    CLIENT clientLicense = db.CLIENTS.FirstOrDefault(u => u.DRIVER_LICENSE_ID.Trim() == licenseID.Text.Trim());
                     if (clientLicense != null && (licenseID.Text.Length == 10 || licenseID.Text.Length == 9))
                     {
                         licenseMessage.Visibility = Visibility.Visible;

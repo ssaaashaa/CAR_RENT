@@ -359,7 +359,6 @@
     <Resource Include="images\userAccount.png" />
     <Resource Include="images\userContracts.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

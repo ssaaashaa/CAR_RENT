@@ -31,7 +31,7 @@ namespace CAR_RENT.models
         public string DRIVER_LICENSE_ID { get; set; }
         public string DRIVING_EXPERIENCE { get; set; }
         public string TELEPHONE { get; set; }
-        public Nullable<int> USER_TYPE { get; set; }
+        public int USER_TYPE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTRACT> CONTRACTS { get; set; }
