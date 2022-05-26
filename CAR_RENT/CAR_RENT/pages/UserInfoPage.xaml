@@ -17,7 +17,7 @@
 
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="#8E8E8E"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Margin" Value="0 0 0 -8"/>
         </Style>
@@ -28,6 +28,7 @@
             <Setter Property="Width" Value="180"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="Margin" Value="0 0 0 -5"/>
 
         </Style>
     </Page.Resources>
@@ -73,12 +74,14 @@
                                 Height="30">
                         <Label>Логин:</Label>
                         <TextBox VerticalAlignment="Bottom"
-                             x:Name="login"></TextBox>
+                             x:Name="login"
+                             PreviewKeyDown="space_PreviewKeyDown"
+                                 ></TextBox>
                         <Button Height="20"
                             FontSize="14"
                             VerticalAlignment="Bottom"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                             Margin="10 0 0 -5"
                             x:Name="Login"
@@ -86,11 +89,11 @@
                             >Изменить</Button>
                     </StackPanel>
                     <TextBlock x:Name="loginMessage"
-                               Foreground="Red"
+                              Foreground="#64AFB6"
                                FontSize="12"
                                Width="460"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="4 4 0 0 "></TextBlock>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top"
                             Grid.Row="1">
@@ -103,7 +106,7 @@
                             FontSize="14"
                             VerticalAlignment="Bottom"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                            Margin="10 0 0 -5"
                             x:Name="Surname"
@@ -111,29 +114,62 @@
                             >Изменить</Button>
                     </StackPanel>
                     <TextBlock x:Name="surnameMessage"
-                               Foreground="Red"
+                               Foreground="#64AFB6"
                                FontSize="12"
                                Width="460"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="4 4 0 0 "></TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                            Height="30"
-                            VerticalAlignment="Top"
+                <StackPanel VerticalAlignment="Top"
                             Grid.Row="2">
+                    <StackPanel  Orientation="Horizontal"
+                            Height="30">
                     <Label>Имя:</Label>
                     <TextBox VerticalAlignment="Bottom"
-                             x:Name="name"
-                             IsEnabled="False"></TextBox>
+                             x:Name="name"></TextBox>
+                    <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="#64AFB6"
+                            BorderThickness="0"
+                           Margin="10 0 0 -5"
+                            x:Name="Name"
+                            Click="Name_Click"
+                            >Изменить</Button>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                            Height="25"
+                <TextBlock x:Name="nameMessage"
+                               Foreground="#64AFB6"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 4 0 0 "></TextBlock>
+                </StackPanel>
+                <StackPanel 
                             VerticalAlignment="Top"
                             Grid.Row="3">
+                    <StackPanel Orientation="Horizontal"
+                            Height="25">
                     <Label>Отчество:</Label>
                     <TextBox VerticalAlignment="Bottom"
-                             x:Name="patronymic"
-                             IsEnabled="False"></TextBox>
+                             x:Name="patronymic"></TextBox>
+                    <Button Height="20"
+                            FontSize="14"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Foreground="#64AFB6"
+                            BorderThickness="0"
+                           Margin="10 0 0 -5"
+                            x:Name="Patronymic"
+                            Click="Patronymic_Click"
+                            >Изменить</Button>
+                    </StackPanel>
+                    <TextBlock x:Name="patronymicMessage"
+                               Foreground="#64AFB6"
+                               FontSize="12"
+                               Width="460"
+                               TextWrapping="Wrap"
+                               Margin="4 4 0 0 "></TextBlock>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top"
                             Grid.Row="4">
@@ -146,12 +182,13 @@
                                        BorderThickness="0"
                                        VerticalAlignment="Bottom"
                                        x:Name="bday"
-                                Margin="0 0 0 -2"></DatePicker>
+                                    PreviewKeyDown="space_PreviewKeyDown"
+                                Margin="0 0 0 -4"></DatePicker>
                         <Button Height="20"
                             FontSize="14"
                             VerticalAlignment="Bottom"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                            Margin="10 0 0 -5"
                             x:Name="Bday"
@@ -159,11 +196,11 @@
                             >Изменить</Button>
                     </StackPanel>
                     <TextBlock x:Name="bdayMessage"
-                               Foreground="Red"
+                               Foreground="#64AFB6"
                                FontSize="12"
                                Width="460"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="4 4 0 0 "></TextBlock>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top"
                             Grid.Row="5">
@@ -176,13 +213,14 @@
                                         Foreground="White"
                                         BorderThickness="0"
                                         x:Name="telephone"
-                                        
+                                        Margin="0 0 0 -3"
+                                        PreviewKeyDown="space_PreviewKeyDown"
                             />
                         <Button Height="20"
                             FontSize="14"
                             VerticalAlignment="Bottom"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                             Margin="10 0 0 -5"
                             x:Name="Telephone"
@@ -190,11 +228,11 @@
                             >Изменить</Button>
                     </StackPanel>
                     <TextBlock x:Name="telephoneMessage"
-                               Foreground="Red"
+                               Foreground="#64AFB6"
                                FontSize="12"
                                Width="460"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="4 4 0 0 "></TextBlock>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top"
                             Grid.Row="6">
@@ -202,14 +240,15 @@
                                 Height="30">
                         <Label>Серия и номер паспорта:</Label>
                         <TextBox VerticalAlignment="Bottom"
-                             MaxLength="7"
+                             MaxLength="9"
                              x:Name="passportID"
-                                 Width="135"></TextBox>
+                             Width="135"
+                             PreviewKeyDown="space_PreviewKeyDown"></TextBox>
                         <Button Height="20"
                             FontSize="14"
                             VerticalAlignment="Bottom"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                            Margin="10 0 0 -5"
                             x:Name="PassportNum"
@@ -217,11 +256,11 @@
                             >Изменить</Button>
                     </StackPanel>
                     <TextBlock x:Name="passportMessage"
-                               Foreground="Red"
+                               Foreground="#64AFB6"
                                FontSize="12"
                                Width="460"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="4 4 0 0 "></TextBlock>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top"
                             Grid.Row="7">
@@ -229,12 +268,13 @@
                                 Height="30">
                         <Label>Номер ВУ:</Label>
                         <TextBox VerticalAlignment="Bottom"
-                             x:Name="licenseID"></TextBox>
+                             x:Name="licenseID"
+                                 MaxLength="11"></TextBox>
                         <Button Height="20"
                             FontSize="14"
                             VerticalAlignment="Bottom"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                             Margin="10 0 0 -5"
                             x:Name="License"
@@ -242,10 +282,11 @@
                             >Изменить</Button>
                     </StackPanel>
                     <TextBlock x:Name="licenseMessage"
-                               Foreground="Red"
+                               Foreground="#64AFB6"
                                FontSize="12"
                                Width="460"
-                               TextWrapping="Wrap">
+                               TextWrapping="Wrap"
+                               Margin="4 4 0 0 ">
                     </TextBlock>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top"
@@ -259,7 +300,7 @@
                             FontSize="14"
                             VerticalAlignment="Bottom"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                             Margin="10 0 0 -5"
                             x:Name="Experience"
@@ -267,11 +308,11 @@
                             >Изменить</Button>
                     </StackPanel>
                     <TextBlock x:Name="experienceMessage"
-                               Foreground="Red"
+                               Foreground="#64AFB6"
                                FontSize="12"
                                Width="460"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="4 4 0 0 "></TextBlock>
                 </StackPanel>
             </Grid>
 
@@ -292,15 +333,16 @@
                     <Label Margin="0">Пароль:</Label>
                     <TextBox VerticalAlignment="Top"
                          HorizontalAlignment="Left"
-                         x:Name="password"></TextBox>
+                         x:Name="password"
+                             PreviewKeyDown="space_PreviewKeyDown"></TextBox>
 
                 </StackPanel>
                 <TextBlock x:Name="passwordMessage"
-                               Foreground="Red"
+                              Foreground="#64AFB6"
                                FontSize="12"
                                Width="290"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="-65 2 0 0 "></TextBlock>
                 <StackPanel Orientation="Vertical"
                             Height="50"
                             VerticalAlignment="Top"
@@ -308,21 +350,22 @@
                     <Label Margin="0">Подтверждение пароля:</Label>
                     <TextBox VerticalAlignment="Top"
                              HorizontalAlignment="Left"
-                              x:Name="passwordConfirmation"></TextBox>
+                             x:Name="passwordConfirmation"
+                             PreviewKeyDown="space_PreviewKeyDown"></TextBox>
 
                 </StackPanel>
                 <TextBlock x:Name="passwordConfMessage"
-                               Foreground="Red"
+                               Foreground="#64AFB6"
                                FontSize="12"
                                Width="290"
                                TextWrapping="Wrap"
-                               Margin="4 2 0 0 "></TextBlock>
+                               Margin="-65 2 0 0 "></TextBlock>
                 <Button Height="20"
                             FontSize="14"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
                             Background="Transparent"
-                            Foreground="White"
+                            Foreground="#64AFB6"
                             BorderThickness="0"
                             Margin="10 0"
                         x:Name="Password"
