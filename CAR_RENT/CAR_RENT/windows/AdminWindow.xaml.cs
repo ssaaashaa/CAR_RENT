@@ -33,49 +33,87 @@ namespace CAR_RENT.windows
 
         private void promocode_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new promo_codePage();
+            try
+            {
+                Frame.Content = new promo_codePage();
+            }
+            catch { }
+          
         }
 
         private void CLIENTS_Click(object sender, RoutedEventArgs e)
         {
-            clientsPage clientPage = new clientsPage();
-            Frame.Content = clientPage;
+            try
+            {
+                clientsPage clientPage = new clientsPage();
+                Frame.Content = clientPage;
+            }
+            catch { }
+          
         }
 
         private void CARS_Click(object sender, RoutedEventArgs e)
         {
-            carsPage carsPage = new carsPage();
-            Frame.Content = carsPage;
+            try
+            {
+                carsPage carsPage = new carsPage();
+                Frame.Content = carsPage;
+            }
+            catch { }
         }
 
 
 
         private void MODEL_INFO_Click(object sender, RoutedEventArgs e)
         {
-            modelInfo modelInfo = new modelInfo();
-            Frame.Content = modelInfo;
+            try
+            {
+                modelInfo modelInfo = new modelInfo();
+                Frame.Content = modelInfo;
+            }
+            catch { }
         }
 
         private void CONTRACTS_Click(object sender, RoutedEventArgs e)
         {
-            contractsPage contractsPage = new contractsPage();
-            Frame.Content = contractsPage;
+            try
+            {
+                contractsPage contractsPage = new contractsPage();
+                Frame.Content = contractsPage;
+            }
+            catch { }
+           
         }
 
         private void ACCIEDNTS_Click(object sender, RoutedEventArgs e)
         {
-            accidentsPage accidentsPage = new accidentsPage();
-            Frame.Content = accidentsPage;
+            try
+            {
+                accidentsPage accidentsPage = new accidentsPage();
+                Frame.Content = accidentsPage;
+            }
+            catch { }
+           
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            try
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+            catch { }
+       
         }
         private void HOME_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = null;
+            try
+            {
+                Frame.Content = null;
+            }
+            catch { }
+           
         }
     }
 }

@@ -40,14 +40,14 @@ namespace CAR_RENT.windows
                 CONTRACT_START.BlackoutDates.AddDatesInPast();
                 CONTRACT_END.BlackoutDates.AddDatesInPast();
                 CONTRACT_START.PreviewTextInput += new TextCompositionEventHandler(dateInput);
-                CONTRACT_END.PreviewTextInput+= new TextCompositionEventHandler(dateInput);
+                CONTRACT_END.PreviewTextInput += new TextCompositionEventHandler(dateInput);
                 PROMO_CODE.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
-                ID=id;
+                ID = id;
             }
             catch { }
 
         }
-     
+
         private void dateInput(object sender, TextCompositionEventArgs e)
         {
             try
@@ -153,7 +153,7 @@ namespace CAR_RENT.windows
                     else
                     {
                         promocodeMessage.Visibility = Visibility.Visible;
-                        promocodeMessage.Text="Такого промокода не существует!";
+                        promocodeMessage.Text = "Такого промокода не существует!";
                         PROMO_CODE.Clear();
                         errors.AppendLine();
                     }
@@ -183,9 +183,8 @@ namespace CAR_RENT.windows
                 contract.STATUS = "Новая заявка";
                 contract.CONTRACT_STATUS = "Ждет подтверждения";
                 CAR_RENTEntities.GetContext().CONTRACTS.Add(contract);
-                try
+                using(CAR_RENTEntities db= new CAR_RENTEntities())
                 {
-                    CAR_RENTEntities.GetContext().SaveChanges();
                     try
                     {
                         MailAddress from = new MailAddress("aleksa-vesna@mail.ru", "Aleksandra");
@@ -207,24 +206,25 @@ namespace CAR_RENT.windows
                         smtp.EnableSsl = true;
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtp.Send(m);
+                        CAR_RENTEntities.GetContext().SaveChanges();
+                        MessageBox.Show("Заявка отправлена!");
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        return;
                     }
-                    MessageBox.Show("Заявка отправлена!");
                     this.Close();
                 }
-                catch
-                {
-                    MessageBox.Show("Заявка не отправлена!");
-                }
+          
+
+
 
             }
             catch { }
 
         }
 
-        
+
     }
 }

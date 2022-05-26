@@ -30,190 +30,236 @@ namespace CAR_RENT.pagesForAdmin
         public carsPage()
         {
             InitializeComponent();
-            ListView listID=new ListView();
-            ListView listMODEL=new ListView();
-            DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
-            RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(rent_priceTextInput);
-            using (CAR_RENTEntities db = new CAR_RENTEntities())
+            try
             {
-                var currentModels = from models in db.MODEL_INFO                                  
-                                    select new
-                                    {
-                                        ID = models.ID,
-                                        MODEL=models.MODEL
-                                    };
-                foreach (var model in currentModels)
-                {
-                    listID.Items.Add(model.ID);
-                    listMODEL.Items.Add(model.MODEL);
-                }
-            }
-           foreach(CAR car in DGridCars.Items)
-            {
-                try
-                {
-                    string id = car.ID.ToString();
-                    CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString() == id).FirstOrDefault();
+                MODEL.PreviewTextInput += new TextCompositionEventHandler(numbers);
+                REGISTRATION_NUMBER.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+                regNumber.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+                RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(numbers);
+                //ListView listID=new ListView();
+                //ListView listMODEL=new ListView();
+                DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
 
-                    if (contract != null)
+                //using (CAR_RENTEntities db = new CAR_RENTEntities())
+                //{
+                //    var currentModels = from models in db.MODEL_INFO                                  
+                //                        select new
+                //                        {
+                //                            ID = models.ID,
+                //                            MODEL=models.MODEL
+                //                        };
+                //    foreach (var model in currentModels)
+                //    {
+                //        listID.Items.Add(model.ID);
+                //        listMODEL.Items.Add(model.MODEL);
+                //    }
+                //}
+                foreach (CAR car in DGridCars.Items)
+                {
+                    try
                     {
-                        if (contract.CONTRACT_STATUS == "Прокат активен")
+                        string id = car.ID.ToString();
+                        CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString() == id).FirstOrDefault();
+
+                        if (contract != null)
                         {
-                            car.STATUS = "В прокате";
+                            if (contract.CONTRACT_STATUS == "Прокат активен")
+                            {
+                                car.STATUS = "В прокате";
+                            }
+                            else car.STATUS = "Свободна";
+                            CAR_RENTEntities.GetContext().SaveChanges();
                         }
-                        else car.STATUS = "Свободна";
-                        CAR_RENTEntities.GetContext().SaveChanges();
-                    }
 
 
-                    else if (contract == null)
-                    {
-                        car.STATUS = "Свободна";
-                        CAR_RENTEntities.GetContext().SaveChanges();
+                        else if (contract == null)
+                        {
+                            car.STATUS = "Свободна";
+                            CAR_RENTEntities.GetContext().SaveChanges();
+                        }
                     }
+                    catch { }
+
                 }
-                catch { }
+
 
             }
+            catch { }
 
         }
-
+        void numbers(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsDigit(e.Text, 0))
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+        void lettersAndNumbers(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsLetterOrDigit(e.Text, 0) && e.Text != "-")
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+        private void space_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch { }
+        }
         void Clear()
         {
-            ID.Clear();
-            MODEL.Clear();
-            CLASS.SelectedIndex = -1;
-            REGISTRATION_NUMBER.Clear();
-            STATUS.SelectedIndex = -1;
-            RENT_PRICE.Clear();
-            IMAGE.Source = null;
+            try
+            {
+                ID.Clear();
+                MODEL.Clear();
+                CLASS.SelectedIndex = -1;
+                REGISTRATION_NUMBER.Clear();
+                STATUS.SelectedIndex = -1;
+                RENT_PRICE.Clear();
+                IMAGE.Source = null;
+            }
+            catch { }
         }
 
         private void DGridCars_MouseEnter(object sender, MouseEventArgs e)
         {
-            CAR selectedCar = new CAR();
-            selectedCar = DGridCars.SelectedItem as CAR;
-            if(selectedCar != null)
-            { 
-            ID.Text = selectedCar.ID.ToString();
-            MODEL.Text = selectedCar.MODEL.ToString();
-            CLASS.Text = selectedCar.CLASS;
-            REGISTRATION_NUMBER.Text = selectedCar.REGISTRATION_NUMBER;
-            STATUS.Text = selectedCar.STATUS;
-            string Link = selectedCar.IMAGE;
-            BitmapImage myBitmapImage = new BitmapImage(new Uri(Link));
-            myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            IMAGE.Source = myBitmapImage;
-            link.Text=Link;
-            RENT_PRICE.Text = selectedCar.RENT_PRICE.ToString();
-            }
-            else
+            try
             {
-                MessageBox.Show("Вы не выбрали запись!");
+                CAR selectedCar = new CAR();
+                selectedCar = DGridCars.SelectedItem as CAR;
+                if (selectedCar != null)
+                {
+                    ID.Text = selectedCar.ID.ToString();
+                    MODEL.Text = selectedCar.MODEL.ToString();
+                    CLASS.Text = selectedCar.CLASS;
+                    REGISTRATION_NUMBER.Text = selectedCar.REGISTRATION_NUMBER;
+                    STATUS.Text = selectedCar.STATUS;
+                    string Link = selectedCar.IMAGE;
+                    BitmapImage myBitmapImage = new BitmapImage(new Uri(Link));
+                    myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    IMAGE.Source = myBitmapImage;
+                    link.Text = Link;
+                    RENT_PRICE.Text = selectedCar.RENT_PRICE.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Вы не выбрали запись!");
+                }
             }
+            catch { }
 
-        }
-        void rent_priceTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!Char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true; //не обрабатывать введеный символ
-            }
         }
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(MODEL.Text))
-            {
-                errors.AppendLine("Введите модель!");
-            }
-            if (CLASS.SelectedIndex == -1)
-            {
-                errors.AppendLine("Выберите класс!");
-            }
-            if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
-            {
-                errors.AppendLine("Введите регистрационный номер!");
-            }
-            if (STATUS.SelectedIndex == -1)
-            {
-                errors.AppendLine("Выберите статус!");
-            }
-            if (string.IsNullOrWhiteSpace(RENT_PRICE.Text))
-            {
-                errors.AppendLine("Введите стоимость проката!");
-            }
-            if (string.IsNullOrWhiteSpace(link.Text))
-            {
-                errors.AppendLine("Загрузите фото!");
-            }
-            if (errors.Length > 0)
-            {
-                MessageBox.Show(errors.ToString());
-                return;
-            }
-            CAR currentCar = new CAR();
-            currentCar.CLASS = CLASS.Text;
-            currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
-            currentCar.STATUS = STATUS.Text;
-            currentCar.RENT_PRICE = Convert.ToInt32(RENT_PRICE.Text);
-            currentCar.IMAGE = link.Text;
-            CAR_RENTEntities.GetContext().CARS.Add(currentCar);
             try
             {
-                CAR_RENTEntities.GetContext().SaveChanges();
-                DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
-                Clear();
-                MessageBox.Show("Данные успешно добавлены!");
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                StringBuilder errors = new StringBuilder();
+                if (string.IsNullOrWhiteSpace(MODEL.Text))
                 {
-                    foreach (DbValidationError err in validationError.ValidationErrors)
+                    errors.AppendLine("Введите модель!");
+                }
+                if (CLASS.SelectedIndex == -1)
+                {
+                    errors.AppendLine("Выберите класс!");
+                }
+                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
+                {
+                    errors.AppendLine("Введите регистрационный номер!");
+                }
+                if (STATUS.SelectedIndex == -1)
+                {
+                    errors.AppendLine("Выберите статус!");
+                }
+                if (string.IsNullOrWhiteSpace(RENT_PRICE.Text))
+                {
+                    errors.AppendLine("Введите стоимость проката!");
+                }
+                if (string.IsNullOrWhiteSpace(link.Text))
+                {
+                    errors.AppendLine("Загрузите фото!");
+                }
+                if (errors.Length > 0)
+                {
+                    MessageBox.Show(errors.ToString());
+                    return;
+                }
+                CAR currentCar = new CAR();
+                currentCar.CLASS = CLASS.Text;
+                currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
+                currentCar.STATUS = STATUS.Text;
+                currentCar.RENT_PRICE = Convert.ToInt32(RENT_PRICE.Text);
+                currentCar.IMAGE = link.Text;
+                CAR_RENTEntities.GetContext().CARS.Add(currentCar);
+                try
+                {
+                    CAR_RENTEntities.GetContext().SaveChanges();
+                    DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
+                    Clear();
+                    MessageBox.Show("Данные успешно добавлены!");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
                     {
-                        MessageBox.Show(err.ErrorMessage + " ");
+                        foreach (DbValidationError err in validationError.ValidationErrors)
+                        {
+                            MessageBox.Show(err.ErrorMessage + " ");
 
+                        }
                     }
                 }
             }
-            
+            catch { }
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (ID.Text.Equals(""))
-            {
-                MessageBox.Show("Выделите запись, которую требуется изменить!");
-            }
-            StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(MODEL.Text))
-            {
-                errors.AppendLine("Введите марку!");
-            }
-            if (CLASS.SelectedIndex == -1)
-            {
-                errors.AppendLine("Выберите класс!");
-            }
-            if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
-            {
-                errors.AppendLine("Введите регистрационный номер!");
-            }
-            if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
-            {
-                errors.AppendLine("Введите стоимость проката!");
-            }
-            if (string.IsNullOrWhiteSpace(link.Text))
-            {
-                errors.AppendLine("Загрузите фото!");
-            }
-            if (errors.Length > 0)
-            {
-                MessageBox.Show(errors.ToString());
-                return;
-            }
             try
             {
+                if (ID.Text.Equals(""))
+                {
+                    MessageBox.Show("Выделите запись, которую требуется изменить!");
+                }
+                StringBuilder errors = new StringBuilder();
+                if (string.IsNullOrWhiteSpace(MODEL.Text))
+                {
+                    errors.AppendLine("Введите марку!");
+                }
+                if (CLASS.SelectedIndex == -1)
+                {
+                    errors.AppendLine("Выберите класс!");
+                }
+                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
+                {
+                    errors.AppendLine("Введите регистрационный номер!");
+                }
+                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
+                {
+                    errors.AppendLine("Введите стоимость проката!");
+                }
+                if (string.IsNullOrWhiteSpace(link.Text))
+                {
+                    errors.AppendLine("Загрузите фото!");
+                }
+                if (errors.Length > 0)
+                {
+                    MessageBox.Show(errors.ToString());
+                    return;
+                }
                 CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
                 currentCar.MODEL = Convert.ToInt32(MODEL.Text);
                 currentCar.CLASS = CLASS.Text;
@@ -242,62 +288,74 @@ namespace CAR_RENT.pagesForAdmin
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (ID.Text.Equals(""))
+            try
             {
-                MessageBox.Show("Выделите запись, которую требуется удалить!");
-            }
-            CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
-            if (currentCar != null)
-            {
-                CAR_RENTEntities.GetContext().CARS.Remove(currentCar);
-                try
+                if (ID.Text.Equals(""))
                 {
-                    CAR_RENTEntities.GetContext().SaveChanges();
-                    DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
-                    Clear();
-                    MessageBox.Show("Запись удалена!");
+                    MessageBox.Show("Выделите запись, которую требуется удалить!");
                 }
-                catch (Exception ex)
+                CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
+                if (currentCar != null)
                 {
-                    MessageBox.Show(ex.Message);
+                    CAR_RENTEntities.GetContext().CARS.Remove(currentCar);
+                    try
+                    {
+                        CAR_RENTEntities.GetContext().SaveChanges();
+                        DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
+                        Clear();
+                        MessageBox.Show("Запись удалена!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else if (currentCar == null && string.IsNullOrEmpty(ID.Text) == false)
+                {
+                    MessageBox.Show("Такого авто не существует!");
                 }
             }
-            else if (currentCar == null && string.IsNullOrEmpty(ID.Text) == false)
-            {
-                MessageBox.Show("Такого авто не существует!");
-            }
+            catch { }
         }
 
 
         private void LoadImage_Click(object sender, RoutedEventArgs e)
         {
-
-            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-            if (openFileDlg.ShowDialog() == true)
-                link.Text = openFileDlg.FileName;
-            IMAGE.Source = new BitmapImage(new Uri(link.Text));
+            try
+            {
+                Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+                if (openFileDlg.ShowDialog() == true)
+                    link.Text = openFileDlg.FileName;
+                IMAGE.Source = new BitmapImage(new Uri(link.Text));
+            }
+            catch { }
         }
 
         private void search_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < DGridCars.Items.Count; i++)
+            try
             {
-                string param = regNumber.Text;
-                DGridCars.ScrollIntoView(DGridCars.Items[i]);
-                DataGridRow row = (DataGridRow)DGridCars.ItemContainerGenerator.ContainerFromIndex(i);
-                TextBlock cellContentRegistr = DGridCars.Columns[3].GetCellContent(row) as TextBlock;
-                TextBlock cellContentID = DGridCars.Columns[0].GetCellContent(row) as TextBlock;
-                if ((cellContentRegistr != null && cellContentRegistr.Text.ToLower().Trim().Equals(param.ToLower()))
-                    || (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower())))         {
-                    object item = DGridCars.Items[i];
-                    DGridCars.SelectedItem = item;
-                    DGridCars.ScrollIntoView(item);
-                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                    break;
+                for (int i = 0; i < DGridCars.Items.Count; i++)
+                {
+                    string param = regNumber.Text;
+                    DGridCars.ScrollIntoView(DGridCars.Items[i]);
+                    DataGridRow row = (DataGridRow)DGridCars.ItemContainerGenerator.ContainerFromIndex(i);
+                    TextBlock cellContentRegistr = DGridCars.Columns[3].GetCellContent(row) as TextBlock;
+                    TextBlock cellContentID = DGridCars.Columns[0].GetCellContent(row) as TextBlock;
+                    if ((cellContentRegistr != null && cellContentRegistr.Text.ToLower().Trim().Equals(param.ToLower()))
+                        || (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower())))
+                    {
+                        object item = DGridCars.Items[i];
+                        DGridCars.SelectedItem = item;
+                        DGridCars.ScrollIntoView(item);
+                        row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        break;
+                    }
                 }
             }
+            catch { }
         }
     }
-}   
-   
+}
+
 

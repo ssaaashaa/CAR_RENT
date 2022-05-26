@@ -73,7 +73,8 @@
                      TextAlignment="Center"
                      Background="Transparent"
                      Foreground="White"
-                     BorderThickness="0 0 0 0.5"></TextBox>
+                     BorderThickness="0 0 0 0.5"
+                     ></TextBox>
                 <Button x:Name="search"
                     Click="search_Click"
                     Width="120"
@@ -191,7 +192,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="14" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="MODEL" MaxLength="16" Text="{Binding MODEL}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="MODEL" MaxLength="16" Text="{Binding MODEL}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
             <ComboBox x:Name="CLASS" Grid.Row="1" Text="{Binding CLASS}" Width="200" Height="25" Margin="0,3,0,0" VerticalAlignment="Top" >
                 <ComboBoxItem>
                     Эконом
@@ -227,7 +228,7 @@
             <StackPanel Grid.Row="4" 
                         Orientation="Horizontal"
                         VerticalAlignment="Center">
-                <TextBox x:Name="RENT_PRICE"  Text="{Binding RENT_PRICE}"  Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Center"></TextBox>
+                <TextBox x:Name="RENT_PRICE"  Text="{Binding RENT_PRICE}"  Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Center" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
                 <Label Foreground="White">BYN</Label>
             </StackPanel>
            

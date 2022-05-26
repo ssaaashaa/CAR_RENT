@@ -254,7 +254,7 @@ namespace CAR_RENT.pages
                     }
                     if (!Regex.IsMatch(surname.Text.Trim(), patternName) && surname.Text.Length != 0)
                     {
-                        patronymicMessage.Text = "Ввод с большой буквы и кириллицей";
+                        patronymicMessage.Text = "Ввод с большой буквы и кириллицей!";
                     }
 
                 }
@@ -285,7 +285,7 @@ namespace CAR_RENT.pages
                     }
                     else
                     {
-                        if ((today.Year - date.Year) <= 18)
+                        if ((today.Year - date.Year) < 18)
                         {
                            bdayMessage.Text= "Извините! Вам нет 18 лет! Мы не сможем предоставить вам автомобиль!";
                         }
@@ -375,7 +375,7 @@ namespace CAR_RENT.pages
                       
                         if (!Regex.IsMatch(pass, patternPassport))
                         {
-                            passportMessage.Text = "Введите корректную серию и номер паспорта! Например, KH 7842563";
+                            passportMessage.Text = "Введите корректную серию и номер паспорта! Например, KH 7842563.";
                         }
                        
                         if (clientPassport != null && App.currentClient.PASSPORT.Trim() != passportID.Text.Trim())

@@ -112,6 +112,7 @@ namespace CAR_RENT.pagesForAdmin
             DateTime.TryParse(CONTRACT_START.Text, out contract_start);
             DateTime contract_end = new DateTime();
             DateTime.TryParse(CONTRACT_END.Text, out contract_end);
+            TimeSpan days = contract_end - contract_start;
             if (string.IsNullOrWhiteSpace(CLIENT_ID.Text))
             {
                 errors.AppendLine("Введите клиента!");
@@ -145,8 +146,8 @@ namespace CAR_RENT.pagesForAdmin
                 promo_code = CAR_RENTEntities.GetContext().PROMO_CODE.Where(c => c.PROMO_CODE1 == PROMO_CODE.Text).Single();
                 promocode = Convert.ToDouble(promo_code.DISCOUNT_AMOUNT) * 0.01;
             }
-            int count_of_days = contract_end.Day - contract_start.Day;            
-            double total_price = Convert.ToInt32(car.RENT_PRICE) * count_of_days- Convert.ToInt32(car.RENT_PRICE) * count_of_days*promocode;         
+           // int count_of_days = contract_end.Day - contract_start.Day;            
+            double total_price = Convert.ToInt32(car.RENT_PRICE) * days.Days- Convert.ToInt32(car.RENT_PRICE) * days.Days * promocode;         
             CONTRACT currentContract =new CONTRACT(); 
             currentContract.CLIENT_ID = Convert.ToInt32(CLIENT_ID.Text);
             currentContract.CAR_ID=Convert.ToInt32(CAR_ID.Text);
@@ -215,6 +216,7 @@ namespace CAR_RENT.pagesForAdmin
                 DateTime.TryParse(CONTRACT_START.Text, out contract_start);
                 DateTime contract_end = new DateTime();
                 DateTime.TryParse(CONTRACT_END.Text, out contract_end);
+                TimeSpan days = contract_end - contract_start;
                 double promocode = 0;
                 PROMO_CODE promo_code = null;
                 CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(c => c.ID.ToString() == CAR_ID.Text.ToString()).FirstOrDefault();
@@ -223,8 +225,8 @@ namespace CAR_RENT.pagesForAdmin
                     promo_code = CAR_RENTEntities.GetContext().PROMO_CODE.Where(c => c.PROMO_CODE1 == PROMO_CODE.Text).Single();
                     promocode = Convert.ToDouble(promo_code.DISCOUNT_AMOUNT) * 0.01;
                 }
-                int count_of_days = contract_end.Day - contract_start.Day;
-                double total_price = Convert.ToInt32(currentCar.RENT_PRICE) * count_of_days - Convert.ToInt32(currentCar.RENT_PRICE) * count_of_days * promocode;
+                //int count_of_days = contract_end.Day - contract_start.Day;
+                double total_price = Convert.ToInt32(currentCar.RENT_PRICE) * days.Days - Convert.ToInt32(currentCar.RENT_PRICE) * days.Days * promocode;
                 CONTRACT currentContract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
                 currentContract.CLIENT_ID = Convert.ToInt32(CLIENT_ID.Text);
                 currentContract.CAR_ID = Convert.ToInt32(CAR_ID.Text);
@@ -243,9 +245,9 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         DateTime now = new DateTime();
                         DateTime.TryParse(DateTime.Now.ToString(), out now);
-                        int status = now.Day - contract_end.Day;
+                        TimeSpan status = now - contract_end;
                         int flag = 0;
-                        if (status >= 0)
+                        if (status.Days >= 0)
                         {
                             flag = 1;
                         }

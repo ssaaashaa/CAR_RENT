@@ -25,6 +25,7 @@ namespace CAR_RENT.pages
   
     public partial class CatalogPage : Page
     {
+        List<int> IDs=new List<int>();
         public CatalogPage()
         {
             InitializeComponent();
@@ -75,7 +76,7 @@ namespace CAR_RENT.pages
                     car.Transmission, car.Equipment, car.Image, car.Id.ToString());
                     buf.Width = 740;
                     buf.Height = 420;
-                    StackPanel.Items.Add(buf);    
+                    StackPanel.Items.Add(buf);
                 }
             }
             }

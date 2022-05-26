@@ -23,7 +23,8 @@ namespace CAR_RENT.userControls
     /// </summary>
     public partial class Car : UserControl
     {
-
+        public string ID { get; set; }
+        public string CarName { get; set; }
         public Car(string CurrentName, string Price, string Year,string BodyType, string EngineType,
         string EngineCapacity, string Transmission, string Equipment, string Image, string Id)
         {
@@ -39,18 +40,20 @@ namespace CAR_RENT.userControls
             BitmapImage myBitmapImage = new BitmapImage(new Uri(Image));
             myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             currentImage.Source = myBitmapImage;
-            id.Text = Id;
+            ID = Id;
+            CarName=CurrentName;
 
         }
-        public string CurrentName { get; set; }
-        public string Id { get; set; }
-        public Car() { }
+     
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CurrentName = currentName.Text;
-            Id = id.Text;
-            rent rent = new rent(Id, CurrentName);
-            rent.Show();
+            try
+            {
+                rent rent = new rent(ID, CarName);
+                rent.Show();
+            }
+            catch{ }
+         
         }
     }
 }
