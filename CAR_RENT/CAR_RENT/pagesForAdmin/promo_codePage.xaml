@@ -59,6 +59,7 @@
                 Grid.Column="3"
                 Grid.Row="2"
                 HorizontalAlignment="Left"
+                Margin="80 0 0 0 "
                ></Button>
         <Button Content="Удалить"
                 Width="130"
@@ -68,17 +69,9 @@
                 Grid.Column="4"
                 Grid.Row="2"
                 HorizontalAlignment="Right"
+                Margin="0 0 40 0"
                 Click="Delete_Click"></Button>
-        <Button Content="Изменить"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Edit"
-                Grid.Column="3"
-                Grid.ColumnSpan="2"
-                Grid.Row="2"
-                HorizontalAlignment="Center"
-                Click="Edit_Click"></Button>
+       
        
        
         <Grid Grid.Row="1"
@@ -125,8 +118,8 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox x:Name="PROMO_CODE" Text="{Binding PROMO_CODE1}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="DISCOUNT_AMOUNT" MaxLength="16" Text="{Binding DISCOUNT_AMOUNT}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="PROMO_CODE" PreviewKeyDown="space_PreviewKeyDown" Text="{Binding PROMO_CODE1}" MaxLength="20" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="DISCOUNT_AMOUNT" PreviewKeyDown="space_PreviewKeyDown" MaxLength="2" Text="{Binding DISCOUNT_AMOUNT}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
         </Grid>
     </Grid>
 </Page>
