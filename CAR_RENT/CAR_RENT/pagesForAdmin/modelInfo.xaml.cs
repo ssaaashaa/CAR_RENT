@@ -1,4 +1,5 @@
 ﻿using CAR_RENT.models;
+using CAR_RENT.windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -341,5 +342,30 @@ namespace CAR_RENT.pagesForAdmin
             }
 
         }
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                DGridModelInfo.ItemsSource = CAR_RENTEntities.GetContext().MODEL_INFO.ToList();
+                for (int i = 0; i < DGridModelInfo.Items.Count; i++)
+                {
+                    string param = id.Text;
+                    DGridModelInfo.ScrollIntoView(DGridModelInfo.Items[i]);
+                    DataGridRow row = (DataGridRow)DGridModelInfo.ItemContainerGenerator.ContainerFromIndex(i);
+                    TextBlock cellContentID = DGridModelInfo.Columns[0].GetCellContent(row) as TextBlock;
+                    if (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower()))
+                    {
+                        object item = DGridModelInfo.Items[i];
+                        DGridModelInfo.SelectedItem = item;
+                        DGridModelInfo.ScrollIntoView(item);
+                        row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        break;
+                    }
+                }
+            }
+            catch { }
+        }
+
     }
 }

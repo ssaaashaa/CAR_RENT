@@ -61,8 +61,8 @@
                     <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
                     <DataGridTextColumn Header="ID клиента" Binding="{Binding CLIENT_ID}" Width="auto"/>
                     <DataGridTextColumn Header="ID авто" Binding="{Binding CAR_ID}" Width="auto"/>
-                    <DataGridTextColumn Header="Начало аренды" Binding="{Binding CONTRACT_START, StringFormat=d}" Width="auto"/>
-                    <DataGridTextColumn Header="Конец аренды" Binding="{Binding CONTRACT_END, StringFormat=d}" Width="auto"/>
+                    <DataGridTextColumn Header="Начало аренды" Binding="{Binding CONTRACT_START, StringFormat='{}{0:dd.MM.yyyy}'}" Width="auto"/>
+                    <DataGridTextColumn Header="Конец аренды" Binding="{Binding CONTRACT_END,  StringFormat='{}{0:dd.MM.yyyy}'}" Width="auto"/>
                     <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE}" Width="auto"/>
                     <DataGridTextColumn Header="Итоговая стоимость" Binding="{Binding TOTAL_COST}" Width="auto"/>
                     <DataGridTextColumn Header="Статус заявки" Binding="{Binding STATUS}" Width="auto"/>
@@ -147,8 +147,8 @@
                         <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
                         <DataGridTextColumn Header="ID клиента" Binding="{Binding CLIENT_ID}" Width="auto"/>
                         <DataGridTextColumn Header="ID авто" Binding="{Binding CAR_ID}" Width="auto"/>
-                        <DataGridTextColumn Header="Начало аренды" Binding="{Binding CONTRACT_START, StringFormat=d}" Width="auto"/>
-                        <DataGridTextColumn Header="Конец аренды" Binding="{Binding CONTRACT_END, StringFormat=d}" Width="auto"/>
+                        <DataGridTextColumn Header="Начало аренды" Binding="{Binding CONTRACT_START,  StringFormat='{}{0:dd.MM.yyyy}'}" Width="auto"/>
+                        <DataGridTextColumn Header="Конец аренды" Binding="{Binding CONTRACT_END,  StringFormat='{}{0:dd.MM.yyyy}'}" Width="auto"/>
                         <DataGridTextColumn Header="Промокод" Binding="{Binding PROMO_CODE}" Width="auto"/>
                         <DataGridTextColumn Header="Итоговая стоимость" Binding="{Binding TOTAL_COST}" Width="auto"/>
                         <DataGridTextColumn Header="Статус заявки" Binding="{Binding STATUS}" Width="auto"/>
@@ -242,7 +242,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="0" Visibility="Hidden" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <ComboBox x:Name="CLIENT_ID"  Text="{Binding CLIENT_ID}" Grid.Row="0" Width="200" Height="25" ></ComboBox>
+            <ComboBox x:Name="CLIENT_ID" Text="{Binding CLIENT_ID}" Grid.Row="0" Width="200" Height="25" ></ComboBox>
             <ComboBox x:Name="CAR_ID" Text="{Binding CAR_ID}" Grid.Row="1" Width="200" Height="25" ></ComboBox>
             <DatePicker x:Name="CONTRACT_START" PreviewKeyDown="space_PreviewKeyDown" Text="{Binding CONTRACT_START, StringFormat=d}"  Grid.Row="2" Width="200" FontSize="13" VerticalAlignment="Center" ></DatePicker>
             <DatePicker x:Name="CONTRACT_END" PreviewKeyDown="space_PreviewKeyDown" Text="{Binding CONTRACT_END, StringFormat=d}" Grid.Row="3" Width="200" FontSize="13" VerticalAlignment="Center" ></DatePicker>

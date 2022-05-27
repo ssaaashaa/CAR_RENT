@@ -25,7 +25,7 @@ namespace CAR_RENT.pagesForAdmin
     public partial class carsPage : Page
 
     {
-       
+
         public static StringBuilder errors = new StringBuilder();
 
         public carsPage()
@@ -35,7 +35,8 @@ namespace CAR_RENT.pagesForAdmin
             {
                 MODEL.PreviewTextInput += new TextCompositionEventHandler(numbers);
                 REGISTRATION_NUMBER.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
-                regNumber.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+                regNum.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+                id.PreviewTextInput += new TextCompositionEventHandler(numbers);
                 RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(numbers);
                 ListView listID = new ListView();
                 DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
@@ -361,15 +362,16 @@ namespace CAR_RENT.pagesForAdmin
         {
             try
             {
+                id.Clear();
                 for (int i = 0; i < DGridCars.Items.Count; i++)
                 {
-                    string param = regNumber.Text.Trim();
+                    string param = regNum.Text.Trim();
                     DGridCars.ScrollIntoView(DGridCars.Items[i]);
                     DataGridRow row = (DataGridRow)DGridCars.ItemContainerGenerator.ContainerFromIndex(i);
                     TextBlock cellContentRegistr = DGridCars.Columns[3].GetCellContent(row) as TextBlock;
-                    TextBlock cellContentID = DGridCars.Columns[1].GetCellContent(row) as TextBlock;
-                    if ((cellContentRegistr != null && cellContentRegistr.Text.ToLower().Trim().Equals(param.ToLower()))
-                        || (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower())))
+                   
+                    if (cellContentRegistr != null && cellContentRegistr.Text.ToLower().Trim().Equals(param.ToLower()))
+                       
                     {
                         object item = DGridCars.Items[i];
                         DGridCars.SelectedItem = item;
@@ -377,6 +379,19 @@ namespace CAR_RENT.pagesForAdmin
                         row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                         break;
                     }
+                }
+            }
+            catch { }
+        }
+
+        private void id_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.Where(c => c.MODEL.ToString().Trim() == id.Text.Trim()).ToList();
+                if (id.Text.Trim().Length == 0)
+                {
+                    DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
                 }
             }
             catch { }

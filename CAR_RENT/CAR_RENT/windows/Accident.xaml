@@ -126,7 +126,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 15 0 0">
-                            <Label>Стоимость ущерба:</Label>
+                            <Label>Величина ущерба:</Label>
                             <TextBox Width="100"
                                      VerticalContentAlignment="Center"
                                      TextAlignment="Center"
@@ -149,7 +149,8 @@
                                  BorderBrush="#3A4149"
                                  VerticalAlignment="Bottom"
                                  HorizontalAlignment="Right" 
-                                 x:Name="date"/>
+                                 x:Name="Date"
+                                 PreviewKeyDown="space_PreviewKeyDown"/>
 
                 </Grid>
             </Grid>

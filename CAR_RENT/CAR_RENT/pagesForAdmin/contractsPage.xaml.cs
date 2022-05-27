@@ -47,11 +47,13 @@ namespace CAR_RENT.pagesForAdmin
                     var currentClients = (from clients in db.CLIENTS
                                           select new
                                           {
-                                              ID = clients.ID
+                                              ID = clients.ID,
+                                              LOGIN=clients.LOGIN
                                           }).ToList().OrderBy(c => c.ID);
                     foreach (var client in currentClients)
                     {
                         CLIENT_ID.Items.Add(client.ID);
+                       
 
                     }
                 }

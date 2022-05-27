@@ -51,40 +51,79 @@
                 <DataGridTextColumn Header="Класс" Binding="{Binding CLASS}" Width="auto"/>
                 <DataGridTextColumn Header="Реистрационный номер" Binding="{Binding REGISTRATION_NUMBER}" Width="auto"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding STATUS}" Width="auto"/>
-                <DataGridTextColumn Header="Стоимость проката" Binding="{Binding RENT_PRICE}" Width="auto"/>
+                <DataGridTextColumn Header="Стоимость проката" Binding="{Binding RENT_PRICE}"  Width="auto"/>
                 <DataGridTextColumn Header="Фото" Binding="{Binding IMAGE}" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal"
-                    Grid.Column="1"
-                    Grid.Row="2"
+        <Grid Grid.Row="2"
+              Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal"
+                    Grid.Column="0"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     >
-            <TextBlock Margin="0 0 0 0"
+                <TextBlock Margin="0 0 0 0"
                        TextWrapping="Wrap"
-                       Width="250"
-                       VerticalAlignment="Center">Поиск по ID модели или регистрационному номеру:</TextBlock>
-            <StackPanel Orientation="Vertical"
+                       Width="200"
+                       VerticalAlignment="Top">Поиск по рег. номеру:</TextBlock>
+                <StackPanel Orientation="Vertical"
                         >
 
-                <TextBox x:Name="regNumber"
+                    <TextBox x:Name="regNum"
+                             
+                             
+                             MaxLength="9"
                      Width="120"
                      TextAlignment="Center"
                      Background="Transparent"
                      Foreground="White"
                      BorderThickness="0 0 0 0.5"
+                             TextChanged="id_TextChanged"
                      ></TextBox>
-                <Button x:Name="search"
+                    <Button x:Name="search"
                     Click="search_Click"
+                            
                     Width="120"
                     Margin="0 5"
                     HorizontalAlignment="Right"
                     Background="Transparent"
                     Foreground="White">Найти</Button>
+                </StackPanel>
+
             </StackPanel>
-           
-        </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                        Margin="0 4 0 0 "
+                    >
+                <TextBlock Margin="0 0 0 0"
+                       TextWrapping="Wrap"
+                       Width="180"
+                       VerticalAlignment="Top">Поиск по ID модели:</TextBlock>
+                <StackPanel Orientation="Vertical"
+                        >
+
+                    <TextBox x:Name="id"
+                             
+                     Width="120"
+                     TextAlignment="Center"
+                     Background="Transparent"
+                     Foreground="White"
+                     BorderThickness="0 0 0 0.5"
+                             TextChanged="id_TextChanged"
+                             PreviewKeyDown="space_PreviewKeyDown"
+                     ></TextBox>
+                   
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+     
         <Button Content="Добавить"
                 Width="130"
                 Height="40"
@@ -192,7 +231,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="14" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <ComboBox x:Name="MODEL" Text="{Binding MODEL}"  Grid.Row="0" Width="200" Height="25" Margin="0 0 0 8" PreviewKeyDown="space_PreviewKeyDown"></ComboBox>
+            <ComboBox x:Name="MODEL"   Grid.Row="0" Width="200" Height="25" Margin="0 0 0 8" PreviewKeyDown="space_PreviewKeyDown"></ComboBox>
             <ComboBox x:Name="CLASS" Grid.Row="1" Text="{Binding CLASS}" Width="200" Height="25" Margin="0,3,0,0" VerticalAlignment="Top" >
                 <ComboBoxItem>
                     Эконом
@@ -216,7 +255,7 @@
                    Грузовые
                 </ComboBoxItem>
             </ComboBox>
-            <TextBox x:Name="REGISTRATION_NUMBER" Text="{Binding REGISTRATION_NUMBER}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="REGISTRATION_NUMBER" Text="{Binding REGISTRATION_NUMBER}" MaxLength="9" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <ComboBox x:Name="STATUS" Text="{Binding STATUS}" Grid.Row="3" Width="200" Height="25" >
                 <ComboBoxItem>
                    Свободна

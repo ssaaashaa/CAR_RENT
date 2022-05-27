@@ -42,15 +42,43 @@
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   FontSize="14"
+                  Height="500"
+                  VerticalAlignment="Top"
                   MouseDown="DGridAccidents_MouseDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto" />
                 <DataGridTextColumn Header="ID контракта" Binding="{Binding CONTRACT_ID}" Width="auto"/>
-                <DataGridTextColumn Header="Дата ДТП" Binding="{Binding DATE, StringFormat=d}" Width="auto"/>
+                <DataGridTextColumn Header="Дата ДТП" Binding="{Binding DATE, StringFormat='{}{0:dd.MM.yyyy}'}" Width="auto"/>
                 <DataGridTextColumn Header="Величина ущерба" Binding="{Binding DAMAGE_COST}" Width="auto"/>
                 <DataGridTextColumn Header="Описание ущерба" Binding="{Binding DAMAGE_DESCRIPTION}" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="0 5 0 0"
+                    >
+            <TextBlock Margin="0 5 0 0"
+                       TextWrapping="Wrap"
+                       Width="190"
+                       VerticalAlignment="Top">Поиск по ID клиента:</TextBlock>
+            <StackPanel Orientation="Vertical"
+                        >
+
+                <TextBox x:Name="id"
+                             PreviewKeyDown="space_PreviewKeyDown"
+                     Width="120"
+                     TextAlignment="Center"
+                     Background="Transparent"
+                     Foreground="White"
+                     BorderThickness="0 0 0 0.5"
+                         TextChanged="id_TextChanged"></TextBox>
+              
+            </StackPanel>
+
+        </StackPanel>
         <Button Content="Добавить"
                 Width="130"
                 Height="40"
@@ -125,10 +153,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="10" Visibility="Hidden" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="CONTRACT_ID" MaxLength="16" Text="{Binding CONTRACT_ID}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <DatePickerTextBox x:Name="DATE" Grid.Row="1"   Text="{Binding DATE}" Width="200" VerticalAlignment="Center" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
-            <TextBox x:Name="DAMAGE_COST" Text="{Binding DAMAGE_COST}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="DAMAGE_DESCRIPTION" Margin="0 9" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="3" Grid.RowSpan="6" Width="200" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <ComboBox x:Name="CONTRACT_ID"  Text="{Binding CONTRACT_ID}" Grid.Row="0" Width="200" Height="25"></ComboBox>
+            <DatePickerTextBox x:Name="DATE" Grid.Row="1" PreviewKeyDown="space_PreviewKeyDown"  Text="{Binding DATE, StringFormat='{}{0:dd.MM.yyyy}'}" Width="200" VerticalAlignment="Center" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal">
+                <TextBox x:Name="DAMAGE_COST" Text="{Binding DAMAGE_COST}" Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Center" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
+                <Label Foreground="White" VerticalAlignment="Center">BYN</Label>
+            </StackPanel>
+            <TextBox x:Name="DAMAGE_DESCRIPTION" Margin="0 9" BorderThickness="1" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="3" Grid.RowSpan="6" Width="200" Style="{StaticResource textBoxOuputData }"></TextBox>
         </Grid>
     </Grid>
 </Page>

@@ -51,7 +51,7 @@
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding SURNAME}" Width="auto"/>
                 <DataGridTextColumn Header="Имя" Binding="{Binding NAME}" Width="auto"/>
                 <DataGridTextColumn Header="Отчество" Binding="{Binding PATRONYMIC}" Width="auto"/>
-                <DataGridTextColumn Header="Дата рождения" Binding="{Binding BDAY, StringFormat=d}" Width="auto"/>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding BDAY,  StringFormat='{}{0:dd.MM.yyyy}'}" Width="auto"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding TELEPHONE}" Width="auto"/>
                 <DataGridTextColumn Header="Серия паспорта" Binding="{Binding PASSPORT}" Width="auto"/>
                 <DataGridTextColumn Header="Номер ВУ" Binding="{Binding DRIVER_LICENSE_ID}" Width="auto"/>
