@@ -64,7 +64,7 @@
             <TextBlock Margin="0 0 0 0"
                        TextWrapping="Wrap"
                        Width="250"
-                       VerticalAlignment="Center">Поиск по ID или регистрационному номеру:</TextBlock>
+                       VerticalAlignment="Center">Поиск по ID модели или регистрационному номеру:</TextBlock>
             <StackPanel Orientation="Vertical"
                         >
 
@@ -192,7 +192,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="14" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="MODEL" MaxLength="16" Text="{Binding MODEL}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
+            <ComboBox x:Name="MODEL" Text="{Binding MODEL}"  Grid.Row="0" Width="200" Height="25" Margin="0 0 0 8" PreviewKeyDown="space_PreviewKeyDown"></ComboBox>
             <ComboBox x:Name="CLASS" Grid.Row="1" Text="{Binding CLASS}" Width="200" Height="25" Margin="0,3,0,0" VerticalAlignment="Top" >
                 <ComboBoxItem>
                     Эконом

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,30 +37,28 @@ namespace CAR_RENT.pagesForAdmin
                 REGISTRATION_NUMBER.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
                 regNumber.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
                 RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(numbers);
-                //ListView listID=new ListView();
-                //ListView listMODEL=new ListView();
+                ListView listID = new ListView();
                 DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
 
-                //using (CAR_RENTEntities db = new CAR_RENTEntities())
-                //{
-                //    var currentModels = from models in db.MODEL_INFO                                  
-                //                        select new
-                //                        {
-                //                            ID = models.ID,
-                //                            MODEL=models.MODEL
-                //                        };
-                //    foreach (var model in currentModels)
-                //    {
-                //        listID.Items.Add(model.ID);
-                //        listMODEL.Items.Add(model.MODEL);
-                //    }
-                //}
+                using (CAR_RENTEntities db = new CAR_RENTEntities())
+                {
+                    var currentModels = from models in db.MODEL_INFO
+                                        select new
+                                        {
+                                            ID = models.ID
+                                        };
+                    foreach (var model in currentModels)
+                    {
+                        MODEL.Items.Add(model.ID);
+
+                    }
+                }
                 foreach (CAR car in DGridCars.Items)
                 {
                     try
                     {
                         string id = car.ID.ToString();
-                        CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString() == id).FirstOrDefault();
+                        CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString().Trim() == id.Trim()).FirstOrDefault();
 
                         if (contract != null)
                         {
@@ -91,7 +90,7 @@ namespace CAR_RENT.pagesForAdmin
         {
             try
             {
-                if (!Char.IsDigit(e.Text, 0))
+                if (!Char.IsDigit(e.Text, 0) && e.Text != ".")
                 {
                     e.Handled = true; //не обрабатывать введеный символ
                 }
@@ -125,12 +124,13 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 ID.Clear();
-                MODEL.Clear();
+                MODEL.SelectedIndex = -1;
                 CLASS.SelectedIndex = -1;
                 REGISTRATION_NUMBER.Clear();
                 STATUS.SelectedIndex = -1;
                 RENT_PRICE.Clear();
                 IMAGE.Source = null;
+                link.Clear();
             }
             catch { }
         }
@@ -143,17 +143,17 @@ namespace CAR_RENT.pagesForAdmin
                 selectedCar = DGridCars.SelectedItem as CAR;
                 if (selectedCar != null)
                 {
-                    ID.Text = selectedCar.ID.ToString();
-                    MODEL.Text = selectedCar.MODEL.ToString();
-                    CLASS.Text = selectedCar.CLASS;
-                    REGISTRATION_NUMBER.Text = selectedCar.REGISTRATION_NUMBER;
-                    STATUS.Text = selectedCar.STATUS;
+                    ID.Text = selectedCar.ID.ToString().Trim();
+                    MODEL.Text = selectedCar.MODEL.ToString().Trim();
+                    CLASS.Text = selectedCar.CLASS.Trim();
+                    REGISTRATION_NUMBER.Text = selectedCar.REGISTRATION_NUMBER.Trim();
+                    STATUS.Text = selectedCar.STATUS.Trim();
                     string Link = selectedCar.IMAGE;
                     BitmapImage myBitmapImage = new BitmapImage(new Uri(Link));
                     myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                     IMAGE.Source = myBitmapImage;
-                    link.Text = Link;
-                    RENT_PRICE.Text = selectedCar.RENT_PRICE.ToString();
+                    link.Text = Link.Trim();
+                    RENT_PRICE.Text = selectedCar.RENT_PRICE.ToString().Trim();
                 }
                 else
                 {
@@ -167,42 +167,55 @@ namespace CAR_RENT.pagesForAdmin
         {
             try
             {
+                string patternRegNum = @"^([0-9]{4}\s[A-Z]{2}-[0-9])$";
                 StringBuilder errors = new StringBuilder();
-                if (string.IsNullOrWhiteSpace(MODEL.Text))
+                if (string.IsNullOrWhiteSpace(MODEL.Text.Trim()))
                 {
-                    errors.AppendLine("Введите модель!");
+                    errors.AppendLine("Выберите модель!");
                 }
                 if (CLASS.SelectedIndex == -1)
                 {
                     errors.AppendLine("Выберите класс!");
                 }
-                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
+                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text.Trim()))
                 {
                     errors.AppendLine("Введите регистрационный номер!");
+
+                }
+                if (!Regex.IsMatch(REGISTRATION_NUMBER.Text.Trim(), patternRegNum))
+                {
+                    errors.AppendLine("Введите корректный регистрационный номер! Например, 1234 AB-4");
+                }
+                CAR car = CAR_RENTEntities.GetContext().CARS.FirstOrDefault(u => u.REGISTRATION_NUMBER.Trim() == REGISTRATION_NUMBER.Text.Trim());
+                if (car != null)
+                {
+                    errors.AppendLine("Машина с таким регистрационным номером уже существует. Попробуйте снова!");
                 }
                 if (STATUS.SelectedIndex == -1)
                 {
                     errors.AppendLine("Выберите статус!");
                 }
-                if (string.IsNullOrWhiteSpace(RENT_PRICE.Text))
+                if (string.IsNullOrWhiteSpace(RENT_PRICE.Text.Trim()))
                 {
                     errors.AppendLine("Введите стоимость проката!");
                 }
-                if (string.IsNullOrWhiteSpace(link.Text))
+                if (string.IsNullOrWhiteSpace(link.Text.Trim()))
                 {
                     errors.AppendLine("Загрузите фото!");
                 }
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
                 }
                 CAR currentCar = new CAR();
-                currentCar.CLASS = CLASS.Text;
-                currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
-                currentCar.STATUS = STATUS.Text;
-                currentCar.RENT_PRICE = Convert.ToInt32(RENT_PRICE.Text);
-                currentCar.IMAGE = link.Text;
+                currentCar.CLASS = CLASS.Text.Trim();
+                currentCar.MODEL = Convert.ToInt32(MODEL.SelectedValue);
+                currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text.Trim();
+                currentCar.STATUS = STATUS.Text.Trim();
+                currentCar.RENT_PRICE = Convert.ToInt32(RENT_PRICE.Text.Trim());
+                currentCar.IMAGE = link.Text.Trim();
                 CAR_RENTEntities.GetContext().CARS.Add(currentCar);
                 try
                 {
@@ -230,43 +243,56 @@ namespace CAR_RENT.pagesForAdmin
         {
             try
             {
+                string patternRegNum = @"^([0-9]{4}\s[A-Z]{2}-[0-9])$";
                 if (ID.Text.Equals(""))
                 {
                     MessageBox.Show("Выделите запись, которую требуется изменить!");
+                    return;
                 }
                 StringBuilder errors = new StringBuilder();
-                if (string.IsNullOrWhiteSpace(MODEL.Text))
+                if (string.IsNullOrWhiteSpace(MODEL.Text.Trim()))
                 {
-                    errors.AppendLine("Введите марку!");
+                    errors.AppendLine("Выберите модель!");
                 }
                 if (CLASS.SelectedIndex == -1)
                 {
                     errors.AppendLine("Выберите класс!");
                 }
-                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
+                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text.Trim()))
                 {
                     errors.AppendLine("Введите регистрационный номер!");
                 }
-                if (string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text))
+                if (!Regex.IsMatch(REGISTRATION_NUMBER.Text.Trim(), patternRegNum))
+                {
+                    errors.AppendLine("Введите корректный регистрационный номер! Например, 1234 AB-4");
+                }
+                CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
+                CAR car = CAR_RENTEntities.GetContext().CARS.FirstOrDefault(u => u.REGISTRATION_NUMBER.Trim() == REGISTRATION_NUMBER.Text.Trim());
+
+                if (car != null && currentCar.REGISTRATION_NUMBER.Trim() != REGISTRATION_NUMBER.Text.Trim())
+                {
+                    errors.AppendLine("Машина с таким регистрационным номером уже существует. Попробуйте снова!");
+                }
+                if (string.IsNullOrWhiteSpace(RENT_PRICE.Text.Trim()))
                 {
                     errors.AppendLine("Введите стоимость проката!");
                 }
-                if (string.IsNullOrWhiteSpace(link.Text))
+                if (string.IsNullOrWhiteSpace(link.Text.Trim()))
                 {
                     errors.AppendLine("Загрузите фото!");
                 }
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
                 }
-                CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
-                currentCar.MODEL = Convert.ToInt32(MODEL.Text);
-                currentCar.CLASS = CLASS.Text;
-                currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text;
-                currentCar.STATUS = STATUS.Text;
-                currentCar.RENT_PRICE = Convert.ToInt32(RENT_PRICE.Text);
-                currentCar.IMAGE = link.Text;
+                currentCar.MODEL = Convert.ToInt32(MODEL.Text.Trim());
+                currentCar.CLASS = CLASS.Text.Trim();
+                currentCar.REGISTRATION_NUMBER = REGISTRATION_NUMBER.Text.Trim();
+                currentCar.STATUS = STATUS.Text.Trim();
+                currentCar.RENT_PRICE = Convert.ToInt32(RENT_PRICE.Text.Trim());
+                currentCar.IMAGE = link.Text.Trim();
                 if (currentCar != null)
                 {
                     try
@@ -294,7 +320,7 @@ namespace CAR_RENT.pagesForAdmin
                 {
                     MessageBox.Show("Выделите запись, которую требуется удалить!");
                 }
-                CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
+                CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(m => m.ID.ToString().Trim() == ID.Text.ToString().Trim()).FirstOrDefault();
                 if (currentCar != null)
                 {
                     CAR_RENTEntities.GetContext().CARS.Remove(currentCar);
@@ -310,7 +336,7 @@ namespace CAR_RENT.pagesForAdmin
                         MessageBox.Show(ex.Message);
                     }
                 }
-                else if (currentCar == null && string.IsNullOrEmpty(ID.Text) == false)
+                else if (currentCar == null && string.IsNullOrEmpty(ID.Text.Trim()) == false)
                 {
                     MessageBox.Show("Такого авто не существует!");
                 }
@@ -337,11 +363,11 @@ namespace CAR_RENT.pagesForAdmin
             {
                 for (int i = 0; i < DGridCars.Items.Count; i++)
                 {
-                    string param = regNumber.Text;
+                    string param = regNumber.Text.Trim();
                     DGridCars.ScrollIntoView(DGridCars.Items[i]);
                     DataGridRow row = (DataGridRow)DGridCars.ItemContainerGenerator.ContainerFromIndex(i);
                     TextBlock cellContentRegistr = DGridCars.Columns[3].GetCellContent(row) as TextBlock;
-                    TextBlock cellContentID = DGridCars.Columns[0].GetCellContent(row) as TextBlock;
+                    TextBlock cellContentID = DGridCars.Columns[1].GetCellContent(row) as TextBlock;
                     if ((cellContentRegistr != null && cellContentRegistr.Text.ToLower().Trim().Equals(param.ToLower()))
                         || (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower())))
                     {

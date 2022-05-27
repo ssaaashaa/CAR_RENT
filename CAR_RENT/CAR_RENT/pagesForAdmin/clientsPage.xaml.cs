@@ -175,11 +175,11 @@ namespace CAR_RENT.pagesForAdmin
                     DateTime date = new DateTime();
                     DateTime.TryParse(BDAY.Text.Trim(), out date);
                     DateTime today = DateTime.Today;
-                    if (string.IsNullOrEmpty(LOGIN.Text))
+                    if (string.IsNullOrEmpty(LOGIN.Text.Trim()))
                     {
                         errors.AppendLine("Введите логин!");
                     }
-                    if (!Regex.IsMatch(LOGIN.Text, patternLogin))
+                    if (!Regex.IsMatch(LOGIN.Text.Trim(), patternLogin))
                     {
                         errors.AppendLine("Логин может содержать цифры, буквы, - _, быть длиной от 3 до 16 символов");
                     }
@@ -188,39 +188,39 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким логином уже существует. Попробуйте снова!");
                     }
-                    if (string.IsNullOrEmpty(PASSWORD.Text))
+                    if (string.IsNullOrEmpty(PASSWORD.Text.Trim()))
                     {
                         errors.AppendLine("Введите пароль!");
                     }
-                    if (!Regex.IsMatch(PASSWORD.Text, patternPassword))
+                    if (!Regex.IsMatch(PASSWORD.Text.Trim(), patternPassword))
                     {
                         errors.AppendLine("Пароль должен состоять из 8-12 символов и включать хотя бы одну большую и маленькую латинские буквы, цифру!");
                     }
-                    if (string.IsNullOrEmpty(SURNAME.Text))
+                    if (string.IsNullOrEmpty(SURNAME.Text.Trim()))
                     {
                         errors.AppendLine("Введите фамилию!");
                     }
-                    if (!Regex.IsMatch(SURNAME.Text, patternName))
+                    if (!Regex.IsMatch(SURNAME.Text.Trim(), patternName))
                     {
                         errors.AppendLine("Ввод фамилии с большой буквы и кириллицей!");
                     }
-                    if (string.IsNullOrEmpty(NAME.Text))
+                    if (string.IsNullOrEmpty(NAME.Text.Trim()))
                     {
                         errors.AppendLine("Введите имя!");
                     }
-                    if (!Regex.IsMatch(NAME.Text, patternName))
+                    if (!Regex.IsMatch(NAME.Text.Trim(), patternName))
                     {
                         errors.AppendLine("Ввод имени с большой буквы и кириллицей!");
                     }
-                    if (string.IsNullOrEmpty(PATRONYMIC.Text))
+                    if (string.IsNullOrEmpty(PATRONYMIC.Text.Trim()))
                     {
                         errors.AppendLine("Введите отчество!");
                     }
-                    if (!Regex.IsMatch(PATRONYMIC.Text, patternName))
+                    if (!Regex.IsMatch(PATRONYMIC.Text.Trim(), patternName))
                     {
                         errors.AppendLine("Ввод отчества с большой буквы и кириллицей!");
                     }
-                    if (string.IsNullOrEmpty(BDAY.Text))
+                    if (string.IsNullOrEmpty(BDAY.Text.Trim()))
                     {
                         errors.AppendLine("Введите дату рождения!");
                     }
@@ -232,7 +232,7 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Извините! Некорректно введенные данные!");
                     }
-                    if (!Regex.IsMatch(TELEPHONE.Text, patternTelephone))
+                    if (!Regex.IsMatch(TELEPHONE.Text.Trim(), patternTelephone))
                     {
                         errors.AppendLine("Введите корректный номер телефона!");
                     }
@@ -241,11 +241,11 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким номером телефона уже существует!");
                     }
-                    if (string.IsNullOrEmpty(PASSPORT.Text))
+                    if (string.IsNullOrEmpty(PASSPORT.Text.Trim()))
                     {
                         errors.AppendLine("Введите номер и серию паспорта!");
                     }
-                    if (!Regex.IsMatch(PASSPORT.Text, patternPassport))
+                    if (!Regex.IsMatch(PASSPORT.Text.Trim(), patternPassport))
                     {
                         errors.AppendLine("Введите корректную серию и номер паспорта! Например, KH 7842563");
                     }
@@ -254,11 +254,11 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким номером паспорта уже существует!");
                     }
-                    if (string.IsNullOrEmpty(LICENSE_ID.Text))
+                    if (string.IsNullOrEmpty(LICENSE_ID.Text.Trim()))
                     {
                         errors.AppendLine("Введите номер ВУ!");
                     }
-                    if (!Regex.IsMatch(LICENSE_ID.Text, patternLicense))
+                    if (!Regex.IsMatch(LICENSE_ID.Text.Trim(), patternLicense))
                     {
                         errors.AppendLine("Введите корректный номер ВУ! Например, 4AC 875966.");
                     }
@@ -268,7 +268,7 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким номером ВУ уже существует!");
                     }
-                    if (string.IsNullOrEmpty(EXPERIENCE.Text))
+                    if (string.IsNullOrEmpty(EXPERIENCE.Text.Trim()))
                     {
                         errors.AppendLine("Введите опыт вождения!");
                     }
@@ -281,21 +281,17 @@ namespace CAR_RENT.pagesForAdmin
                         return;
                     }
 
-
-
-
-                    //Validation();
                     CLIENT currentClient = new CLIENT();
-                    currentClient.LOGIN = LOGIN.Text;
-                    currentClient.PASSWORD = PASSWORD.Text;
-                    currentClient.SURNAME = SURNAME.Text;
-                    currentClient.NAME = NAME.Text;
-                    currentClient.PATRONYMIC = PATRONYMIC.Text;
+                    currentClient.LOGIN = LOGIN.Text.Trim();
+                    currentClient.PASSWORD = PASSWORD.Text.Trim();
+                    currentClient.SURNAME = SURNAME.Text.Trim();
+                    currentClient.NAME = NAME.Text.Trim();
+                    currentClient.PATRONYMIC = PATRONYMIC.Text.Trim();
                     currentClient.BDAY = date;
-                    currentClient.PASSPORT = PASSPORT.Text;
-                    currentClient.DRIVER_LICENSE_ID = LICENSE_ID.Text;
-                    currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text;
-                    currentClient.TELEPHONE = TELEPHONE.Text;
+                    currentClient.PASSPORT = PASSPORT.Text.Trim();
+                    currentClient.DRIVER_LICENSE_ID = LICENSE_ID.Text.Trim();
+                    currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text.Trim();
+                    currentClient.TELEPHONE = TELEPHONE.Text.Trim();
                     CAR_RENTEntities.GetContext().CLIENTS.Add(currentClient);
                     try
                     {
@@ -307,7 +303,6 @@ namespace CAR_RENT.pagesForAdmin
                     catch
                     {
                         MessageBox.Show("Данные не добавлены!");
-                        //Clear();
                     }
 
                 }
@@ -326,6 +321,12 @@ namespace CAR_RENT.pagesForAdmin
 
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
+                    CLIENT currentClient = CAR_RENTEntities.GetContext().CLIENTS.Where(u => u.ID.ToString().Trim() == ID.Text.Trim()).FirstOrDefault();
+                    if (currentClient == null)
+                    {
+                        MessageBox.Show("Необходимо выбрать запись для редактирования!");
+                        return;
+                    }
                     string patternLogin = @"^[a-zA-Zа-яА-Я0-9_-]{3,16}$";
                     string patternName = @"^[А-Я][а-я'-]+$";
                     string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
@@ -336,17 +337,12 @@ namespace CAR_RENT.pagesForAdmin
                     DateTime date = new DateTime();
                     DateTime.TryParse(BDAY.Text.Trim(), out date);
                     DateTime today = DateTime.Today;
-                    CLIENT currentClient = CAR_RENTEntities.GetContext().CLIENTS.Where(u => u.ID.ToString() == ID.Text).FirstOrDefault();
-                    if (currentClient == null)
-                    {
-                        MessageBox.Show("Необходимо выбрать запись для редактирования!");
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(LOGIN.Text))
+                  
+                    if (string.IsNullOrEmpty(LOGIN.Text.Trim()))
                     {
                         errors.AppendLine("Введите логин!");
                     }
-                    if (!Regex.IsMatch(LOGIN.Text, patternLogin))
+                    if (!Regex.IsMatch(LOGIN.Text.Trim(), patternLogin))
                     {
                         errors.AppendLine("Логин может содержать цифры, буквы, - _, быть длиной от 3 до 16 символов");
                     }
@@ -357,39 +353,39 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким логином уже существует. Попробуйте снова!");
                     }
-                    if (string.IsNullOrEmpty(PASSWORD.Text))
+                    if (string.IsNullOrEmpty(PASSWORD.Text.Trim()))
                     {
                         errors.AppendLine("Введите пароль!");
                     }
-                    if (!Regex.IsMatch(PASSWORD.Text, patternPassword))
+                    if (!Regex.IsMatch(PASSWORD.Text.Trim(), patternPassword))
                     {
                         errors.AppendLine("Пароль должен состоять из 8-12 символов и включать хотя бы одну большую и маленькую латинские буквы, цифру!");
                     }
-                    if (string.IsNullOrEmpty(SURNAME.Text))
+                    if (string.IsNullOrEmpty(SURNAME.Text.Trim()))
                     {
                         errors.AppendLine("Введите фамилию!");
                     }
-                    if (!Regex.IsMatch(SURNAME.Text, patternName))
+                    if (!Regex.IsMatch(SURNAME.Text.Trim(), patternName))
                     {
                         errors.AppendLine("Ввод фамилии с большой буквы и кириллицей!");
                     }
-                    if (string.IsNullOrEmpty(NAME.Text))
+                    if (string.IsNullOrEmpty(NAME.Text.Trim()))
                     {
                         errors.AppendLine("Введите имя!");
                     }
-                    if (!Regex.IsMatch(NAME.Text, patternName))
+                    if (!Regex.IsMatch(NAME.Text.Trim(), patternName))
                     {
                         errors.AppendLine("Ввод имени с большой буквы и кириллицей!");
                     }
-                    if (string.IsNullOrEmpty(PATRONYMIC.Text))
+                    if (string.IsNullOrEmpty(PATRONYMIC.Text.Trim()))
                     {
                         errors.AppendLine("Введите отчество!");
                     }
-                    if (!Regex.IsMatch(PATRONYMIC.Text, patternName))
+                    if (!Regex.IsMatch(PATRONYMIC.Text.Trim(), patternName))
                     {
                         errors.AppendLine("Ввод отчества с большой буквы и кириллицей!");
                     }
-                    if (string.IsNullOrEmpty(BDAY.Text))
+                    if (string.IsNullOrEmpty(BDAY.Text.Trim()))
                     {
                         errors.AppendLine("Введите дату рождения!");
                     }
@@ -401,7 +397,7 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Извините! Некорректно введенные данные!");
                     }
-                    if (!Regex.IsMatch(TELEPHONE.Text, patternTelephone))
+                    if (!Regex.IsMatch(TELEPHONE.Text.Trim(), patternTelephone))
                     {
                         errors.AppendLine("Введите корректный номер телефона!");
                     }
@@ -410,11 +406,11 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким номером телефона уже существует!");
                     }
-                    if (string.IsNullOrEmpty(PASSPORT.Text))
+                    if (string.IsNullOrEmpty(PASSPORT.Text.Trim()))
                     {
                         errors.AppendLine("Введите номер и серию паспорта!");
                     }
-                    if (!Regex.IsMatch(PASSPORT.Text, patternPassport))
+                    if (!Regex.IsMatch(PASSPORT.Text.Trim(), patternPassport))
                     {
                         errors.AppendLine("Введите корректную серию и номер паспорта! Например, KH 7842563");
                     }
@@ -423,11 +419,11 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким номером паспорта уже существует!");
                     }
-                    if (string.IsNullOrEmpty(LICENSE_ID.Text))
+                    if (string.IsNullOrEmpty(LICENSE_ID.Text.Trim()))
                     {
                         errors.AppendLine("Введите номер ВУ!");
                     }
-                    if (!Regex.IsMatch(LICENSE_ID.Text, patternLicense))
+                    if (!Regex.IsMatch(LICENSE_ID.Text.Trim(), patternLicense))
                     {
                         errors.AppendLine("Введите корректный номер ВУ! Например, 4AC 875966.");
                     }
@@ -437,7 +433,7 @@ namespace CAR_RENT.pagesForAdmin
                     {
                         errors.AppendLine("Пользователь с таким номером ВУ уже существует!");
                     }
-                    if (string.IsNullOrEmpty(EXPERIENCE.Text))
+                    if (string.IsNullOrEmpty(EXPERIENCE.Text.Trim()))
                     {
                         errors.AppendLine("Введите опыт вождения!");
                     }
@@ -449,22 +445,16 @@ namespace CAR_RENT.pagesForAdmin
                         errors.Clear();
                         return;
                     }
-
-
-
-
-
-
-                    currentClient.LOGIN = LOGIN.Text;
-                    currentClient.PASSWORD = PASSWORD.Text;
-                    currentClient.SURNAME = SURNAME.Text;
-                    currentClient.NAME = NAME.Text;
-                    currentClient.PATRONYMIC = PATRONYMIC.Text;
+                    currentClient.LOGIN = LOGIN.Text.Trim();
+                    currentClient.PASSWORD = PASSWORD.Text.Trim();
+                    currentClient.SURNAME = SURNAME.Text.Trim();
+                    currentClient.NAME = NAME.Text.Trim();
+                    currentClient.PATRONYMIC = PATRONYMIC.Text.Trim();
                     currentClient.BDAY = date;
-                    currentClient.PASSPORT = PASSPORT.Text;
-                    currentClient.DRIVER_LICENSE_ID = LICENSE_ID.Text;
-                    currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text;
-                    currentClient.TELEPHONE = TELEPHONE.Text;
+                    currentClient.PASSPORT = PASSPORT.Text.Trim();
+                    currentClient.DRIVER_LICENSE_ID = LICENSE_ID.Text.Trim();
+                    currentClient.DRIVING_EXPERIENCE = EXPERIENCE.Text.Trim();
+                    currentClient.TELEPHONE = TELEPHONE.Text.Trim();
 
                     if (currentClient != null)
                     {
@@ -485,7 +475,7 @@ namespace CAR_RENT.pagesForAdmin
             }
             catch
             {
-                if (string.IsNullOrEmpty(LOGIN.Text) == false)
+                if (string.IsNullOrEmpty(LOGIN.Text.Trim()) == false)
                 {
                     Clear();
                     MessageBox.Show("Такого клиента не существует!");
@@ -499,7 +489,7 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
 
-                CLIENT currentClient = CAR_RENTEntities.GetContext().CLIENTS.Where(u => u.ID.ToString() == ID.Text).FirstOrDefault();
+                CLIENT currentClient = CAR_RENTEntities.GetContext().CLIENTS.Where(u => u.ID.ToString().Trim() == ID.Text.Trim()).FirstOrDefault();
 
                 if (currentClient != null)
                 {
@@ -517,7 +507,7 @@ namespace CAR_RENT.pagesForAdmin
                     }
 
                 }
-                else if (LOGIN.Text != "" && currentClient == null)
+                else if (LOGIN.Text.Trim() != "" && currentClient == null)
                 {
                     Clear();
                     MessageBox.Show("Такой записи не существует!");
@@ -545,22 +535,22 @@ namespace CAR_RENT.pagesForAdmin
                 selectedClient = DGridClients.SelectedItem as CLIENT;
                 if (selectedClient != null)
                 {
-                    LOGIN.Text = selectedClient.LOGIN;
-                    PASSWORD.Text = selectedClient.PASSWORD;
-                    SURNAME.Text = selectedClient.SURNAME;
-                    NAME.Text = selectedClient.NAME;
-                    PATRONYMIC.Text = selectedClient.PATRONYMIC;
+                    LOGIN.Text = selectedClient.LOGIN.Trim();
+                    PASSWORD.Text = selectedClient.PASSWORD.Trim();
+                    SURNAME.Text = selectedClient.SURNAME.Trim();
+                    NAME.Text = selectedClient.NAME.Trim();
+                    PATRONYMIC.Text = selectedClient.PATRONYMIC.Trim();
                     try
                     {
-                        BDAY.Text = selectedClient.BDAY.ToString().Remove(10);
+                        BDAY.Text = selectedClient.BDAY.ToString().Remove(10).Trim();
                     }
                     catch { }
-                    PASSPORT.Text = selectedClient.PASSPORT;
-                    LICENSE_ID.Text = selectedClient.DRIVER_LICENSE_ID;
-                    EXPERIENCE.Text = selectedClient.DRIVING_EXPERIENCE;
-                    TELEPHONE.Text = selectedClient.TELEPHONE;
-                    TYPE.Text = selectedClient.USER_TYPE.ToString();
-                    ID.Text = selectedClient.ID.ToString();
+                    PASSPORT.Text = selectedClient.PASSPORT.Trim();
+                    LICENSE_ID.Text = selectedClient.DRIVER_LICENSE_ID.Trim();
+                    EXPERIENCE.Text = selectedClient.DRIVING_EXPERIENCE.Trim();
+                    TELEPHONE.Text = selectedClient.TELEPHONE.Trim();
+                    TYPE.Text = selectedClient.USER_TYPE.ToString().Trim();
+                    ID.Text = selectedClient.ID.ToString().Trim();
                 }
                 else
                 {
@@ -577,7 +567,7 @@ namespace CAR_RENT.pagesForAdmin
             {
                 for (int i = 0; i < DGridClients.Items.Count; i++)
                 {
-                    string param = telephNum.Text;
+                    string param = telephNum.Text.Trim();
                     DGridClients.ScrollIntoView(DGridClients.Items[i]);
                     DataGridRow row = (DataGridRow)DGridClients.ItemContainerGenerator.ContainerFromIndex(i);
                     TextBlock cellContentTeleph = DGridClients.Columns[7].GetCellContent(row) as TextBlock;
