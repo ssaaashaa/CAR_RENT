@@ -24,12 +24,17 @@ namespace CAR_RENT.pagesForAdmin
         public modelInfo()
         {
             InitializeComponent();
-            DGridModelInfo.ItemsSource = CAR_RENTEntities.GetContext().MODEL_INFO.ToList();
-            BREND.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
-            MODEL.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
-            YEAR_OF_ISSUE.PreviewTextInput += new TextCompositionEventHandler(date);
-            ENGINE_TYPE.PreviewTextInput += new TextCompositionEventHandler(letters);
-            ENGINE_CAPACITY.PreviewTextInput += new TextCompositionEventHandler(numbers);
+            try
+            {
+                DGridModelInfo.ItemsSource = CAR_RENTEntities.GetContext().MODEL_INFO.ToList();
+                BREND.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+                MODEL.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
+                YEAR_OF_ISSUE.PreviewTextInput += new TextCompositionEventHandler(date);
+                ENGINE_TYPE.PreviewTextInput += new TextCompositionEventHandler(letters);
+                ENGINE_CAPACITY.PreviewTextInput += new TextCompositionEventHandler(numbers);
+            }
+            catch { }
+          
         }
         void lettersAndNumbers(object sender, TextCompositionEventArgs e)
         {
@@ -88,40 +93,54 @@ namespace CAR_RENT.pagesForAdmin
         }
         private void DGridModelInfo_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MODEL_INFO selectedModel = new MODEL_INFO();
-            selectedModel = DGridModelInfo.SelectedItem as MODEL_INFO;
-            if (selectedModel != null)
+            try
             {
-                ID.Text=selectedModel.ID.ToString().Trim();
-                MODEL.Text = selectedModel.MODEL.Trim();
-                BREND.Text = selectedModel.BREND.Trim();
-                YEAR_OF_ISSUE.Text = selectedModel.YEAR_OF_ISSUE.ToString().Remove(0, 6).Remove(4).Trim();
-                BODY_TYPE.Text = selectedModel.BODY_TYPE.Trim();
-                try { 
-                ENGINE_CAPACITY.Text = selectedModel.ENGINE_CAPACITY.Trim();
+                MODEL_INFO selectedModel = new MODEL_INFO();
+                selectedModel = DGridModelInfo.SelectedItem as MODEL_INFO;
+                if (selectedModel != null)
+                {
+                    ID.Text = selectedModel.ID.ToString().Trim();
+                    MODEL.Text = selectedModel.MODEL.Trim();
+                    BREND.Text = selectedModel.BREND.Trim();
+                    YEAR_OF_ISSUE.Text = selectedModel.YEAR_OF_ISSUE.ToString().Remove(0, 6).Remove(4).Trim();
+                    BODY_TYPE.Text = selectedModel.BODY_TYPE.Trim();
+                    try
+                    {
+                        ENGINE_CAPACITY.Text = selectedModel.ENGINE_CAPACITY.Trim();
+                    }
+                    catch { }
+                    ENGINE_TYPE.Text = selectedModel.ENGINE_TYPE.Trim();
+                    TRANSMISSION.Text = selectedModel.TRANSMISSION.Trim();
+                    EQUIPMENT.Text = selectedModel.EQUIPMENT.Trim();
                 }
-                catch { }
-                ENGINE_TYPE.Text = selectedModel.ENGINE_TYPE.Trim();
-                TRANSMISSION.Text = selectedModel.TRANSMISSION.Trim();
-                EQUIPMENT.Text = selectedModel.EQUIPMENT.Trim();
+                else
+                {
+                    MessageBox.Show("Запись не выбрана!");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Запись не выбрана!");
+
             }
+           
         }
     
         void Clear()
         {
-            ID.Clear();
-            MODEL.Clear();
-            BREND.Clear();
-            YEAR_OF_ISSUE.Clear();
-            BODY_TYPE.Clear();
-            ENGINE_TYPE.SelectedIndex = -1;
-            ENGINE_CAPACITY.Clear();
-            TRANSMISSION.SelectedIndex = -1;
-            EQUIPMENT.Clear();
+            try
+            {
+                ID.Clear();
+                MODEL.Clear();
+                BREND.Clear();
+                YEAR_OF_ISSUE.Clear();
+                BODY_TYPE.Clear();
+                ENGINE_TYPE.SelectedIndex = -1;
+                ENGINE_CAPACITY.Clear();
+                TRANSMISSION.SelectedIndex = -1;
+                EQUIPMENT.Clear();
+            }
+            catch{ }
+      
         }
         private void Add_Click(object sender, RoutedEventArgs e)
         {
@@ -286,31 +305,41 @@ namespace CAR_RENT.pagesForAdmin
         } 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (MODEL.Text.Equals(""))
+            try
             {
-                MessageBox.Show("Проверьте введенные данные либо выделите запись, которую требуется удалить!");
+                if (MODEL.Text.Equals(""))
+                {
+                    MessageBox.Show("Проверьте введенные данные либо выделите запись, которую требуется удалить!");
 
-            }
-            MODEL_INFO currentModel_info=CAR_RENTEntities.GetContext().MODEL_INFO.Where(m=>m.ID.ToString().Trim() == ID.Text.ToString().Trim()).FirstOrDefault();
-            if(currentModel_info != null)
-            {
-                CAR_RENTEntities.GetContext().MODEL_INFO.Remove(currentModel_info);
-                try
-                {
-                    CAR_RENTEntities.GetContext().SaveChanges();
-                    DGridModelInfo.ItemsSource = CAR_RENTEntities.GetContext().MODEL_INFO.ToList();
-                    Clear();
-                    MessageBox.Show("Запись удалена!");
                 }
-                catch (Exception ex)
+                MODEL_INFO currentModel_info = CAR_RENTEntities.GetContext().MODEL_INFO.Where(m => m.ID.ToString().Trim() == ID.Text.ToString().Trim()).FirstOrDefault();
+                if (currentModel_info != null)
                 {
-                    MessageBox.Show(ex.Message);
+                    CAR_RENTEntities.GetContext().MODEL_INFO.Remove(currentModel_info);
+                    try
+                    {
+                        CAR_RENTEntities.GetContext().SaveChanges();
+                        DGridModelInfo.ItemsSource = CAR_RENTEntities.GetContext().MODEL_INFO.ToList();
+                        Clear();
+                        MessageBox.Show("Запись удалена!");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Даннная машина зарегестрирована для проката! Удаление данных о ней невозможно!");
+
+                    }
+
+                }
+                else if (currentModel_info == null && string.IsNullOrEmpty(ID.Text.Trim()) == false)
+                {
+                    MessageBox.Show("Такой модели авто не существует!");
                 }
             }
-            else if(currentModel_info == null && string.IsNullOrEmpty(ID.Text.Trim()) == false)
+            catch(Exception ex)
             {
-                MessageBox.Show("Такой модели авто не существует!");
+                MessageBox.Show(ex.Message);
             }
+
         }
     }
 }

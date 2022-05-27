@@ -90,6 +90,7 @@
                         >
 
                     <TextBox x:Name="id"
+                             PreviewKeyDown="space_PreviewKeyDown"
                      Width="120"
                      TextAlignment="Center"
                      Background="Transparent"
@@ -120,6 +121,7 @@
                         >
 
                     <TextBox x:Name="idCar"
+                             PreviewKeyDown="space_PreviewKeyDown"
                      Width="120"
                      TextAlignment="Center"
                      Background="Transparent"
@@ -240,11 +242,11 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="0" Visibility="Hidden" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="CLIENT_ID" MaxLength="16" Text="{Binding CLIENT_ID}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="CAR_ID" MaxLength="12" Text="{Binding CAR_ID}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <DatePicker x:Name="CONTRACT_START" Text="{Binding CONTRACT_START, StringFormat=d}"  Grid.Row="2" Width="200" FontSize="13" VerticalAlignment="Center" ></DatePicker>
-            <DatePicker x:Name="CONTRACT_END" Text="{Binding CONTRACT_END, StringFormat=d}" Grid.Row="3" Width="200" FontSize="13" VerticalAlignment="Center" ></DatePicker>
-            <TextBox x:Name="PROMO_CODE" Grid.Row="4"  Text="{Binding PROMO_CODE}" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" ></TextBox>
+            <ComboBox x:Name="CLIENT_ID"  Text="{Binding CLIENT_ID}" Grid.Row="0" Width="200" Height="25" ></ComboBox>
+            <ComboBox x:Name="CAR_ID" Text="{Binding CAR_ID}" Grid.Row="1" Width="200" Height="25" ></ComboBox>
+            <DatePicker x:Name="CONTRACT_START" PreviewKeyDown="space_PreviewKeyDown" Text="{Binding CONTRACT_START, StringFormat=d}"  Grid.Row="2" Width="200" FontSize="13" VerticalAlignment="Center" ></DatePicker>
+            <DatePicker x:Name="CONTRACT_END" PreviewKeyDown="space_PreviewKeyDown" Text="{Binding CONTRACT_END, StringFormat=d}" Grid.Row="3" Width="200" FontSize="13" VerticalAlignment="Center" ></DatePicker>
+            <ComboBox x:Name="PROMO_CODE" Grid.Row="4"  Text="{Binding PROMO_CODE}" Width="200" Height="25"  ></ComboBox>
             <ComboBox x:Name="STATUS" Grid.Row="5" Text="{Binding STATUS}" Width="200" Height="25" VerticalAlignment="Top" >
                 <ComboBoxItem>
                     Новая заявка

@@ -15,7 +15,7 @@ namespace CAR_RENT.pagesForAdmin
     /// </summary>
     public partial class clientsPage : Page
     {
-        StringBuilder errors = new StringBuilder();
+       
         public clientsPage()
         {
             InitializeComponent();
@@ -164,7 +164,7 @@ namespace CAR_RENT.pagesForAdmin
             {
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
-
+                    StringBuilder errors = new StringBuilder();
                     string patternLogin = @"^[a-zA-Zа-яА-Я0-9_-]{3,16}$";
                     string patternName = @"^[А-Я][а-я'-]+$";
                     string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
@@ -321,6 +321,7 @@ namespace CAR_RENT.pagesForAdmin
 
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
+                    StringBuilder errors = new StringBuilder();
                     CLIENT currentClient = CAR_RENTEntities.GetContext().CLIENTS.Where(u => u.ID.ToString().Trim() == ID.Text.Trim()).FirstOrDefault();
                     if (currentClient == null)
                     {
@@ -473,13 +474,12 @@ namespace CAR_RENT.pagesForAdmin
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
-                if (string.IsNullOrEmpty(LOGIN.Text.Trim()) == false)
-                {
+               
                     Clear();
-                    MessageBox.Show("Такого клиента не существует!");
-                }
+                    MessageBox.Show(ex.Message);
+                
             }
         }
 

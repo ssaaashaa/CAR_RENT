@@ -25,7 +25,7 @@ namespace CAR_RENT.pagesForAdmin
     public partial class carsPage : Page
 
     {
-        private CAR currentCar = new CAR();
+       
         public static StringBuilder errors = new StringBuilder();
 
         public carsPage()
