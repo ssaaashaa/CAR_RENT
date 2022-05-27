@@ -174,12 +174,12 @@
             <TextBox x:Name="NAME" Text="{Binding NAME}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="PATRONYMIC" Text="{Binding PATRONYMIC}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <DatePickerTextBox x:Name="BDAY" Grid.Row="5"  Text="{Binding BDAY}" Width="200" Height="20" Background="Transparent" Foreground="White" Visibility="Visible" PreviewKeyDown="space_PreviewKeyDown"></DatePickerTextBox>
-            <TextBox MaxLength="7" x:Name="PASSPORT"  Text="{Binding PASSPORT}" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
+            <TextBox MaxLength="9" x:Name="PASSPORT"  Text="{Binding PASSPORT}" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
             <TextBox x:Name="LICENSE_ID" MaxLength="11" Text="{Binding DRIVER_LICENSE_ID}" Grid.Row="8" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="EXPERIENCE" Text="{Binding DRIVING_EXPERIENCE}" Grid.Row="9" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <wpfx:MaskedTextBox x:Name="TELEPHONE"  Mask="+375 (00) 000-00-00" Grid.Row="6" Style="{StaticResource textBoxOuputData}" VerticalAlignment="Center" PreviewKeyDown="space_PreviewKeyDown"/>
             <TextBox x:Name="TYPE" Text="{Binding TYPE}" Grid.Row="10" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
-            <TextBox x:Name="ID" Visibility="Hidden" Text="{Binding ID}" Grid.Row="12" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBox x:Name="ID" MaxLength="1"  Visibility="Hidden" Text="{Binding ID}" Grid.Row="12" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
 
         </Grid>
     </Grid>
