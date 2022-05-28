@@ -239,9 +239,9 @@
                            ></TextBox>
                 <TextBlock>BYN</TextBlock>
             </StackPanel>
-            <Button Content="Изменить"
+            <Button Content="Изменить статус"
                  Style="{StaticResource buttonTables}"
-                Width="130"
+                Width="180"
                 Height="40"
                 FontSize="16"
                 x:Name="Edit"
