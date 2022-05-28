@@ -72,7 +72,7 @@
                         >
 
                 <TextBox x:Name="id"
-                             PreviewKeyDown="space_PreviewKeyDown"
+                            
                      Width="120"
                      TextAlignment="Center"
                      Background="Transparent"
@@ -89,46 +89,11 @@
             </StackPanel>
 
         </StackPanel>
-        <Button Content="Добавить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Add"
-                Click="Add_Click"
-                Grid.Column="3"
-                Grid.Row="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-               ></Button>
-        <Button Content="Удалить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Delete"
-                Click="Delete_Click"
-                Grid.Column="4"
-                Grid.Row="1"
-                                VerticalAlignment="Bottom"
-
-                HorizontalAlignment="Right"></Button>
-        <Button Content="Изменить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Edete"
-                Click="Edit_Click"
-                Grid.Column="3"
-                Grid.ColumnSpan="2"
-                Grid.Row="1"
-                                VerticalAlignment="Bottom"
-
-                HorizontalAlignment="Center"></Button>
+       
         <Grid Grid.Row="1"
               Grid.Column="3"
               HorizontalAlignment="Center"
+              Margin="0 75 0 0"
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -142,9 +107,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+               
             </Grid.RowDefinitions>
             <TextBlock Text="Марка" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Модель" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
@@ -157,7 +120,8 @@
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
-              HorizontalAlignment="Center">
+              HorizontalAlignment="Center"
+               Margin="0 75 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -170,36 +134,20 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+              
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="BREND" MaxLength="100" Text="{Binding BREND}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="MODEL" MaxLength="100" Text="{Binding MODEL}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <DatePickerTextBox x:Name="YEAR_OF_ISSUE" Grid.Row="2"  Text="{Binding YEAR_OF_ISSUE, StringFormat='{}{0:yyyy}'}" MaxLength="4"  PreviewKeyDown="space_PreviewKeyDown" Width="200" Height="20" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
-            <TextBox x:Name="BODY_TYPE" MaxLength="50" Text="{Binding BODY_TYPE}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="ENGINE_CAPACITY" MaxLength="4" PreviewKeyDown="space_PreviewKeyDown" Text="{Binding ENGINE_CAPACITY}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <ComboBox x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="5" Width="200" Height="25" >
-                <ComboBoxItem>
-                   бензин
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    дизель
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    электроэнергия
-                </ComboBoxItem>
-            </ComboBox>
-            <ComboBox x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="6" Width="200" Height="25" >
-                <ComboBoxItem>
-                   автоматическая
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    механическая
-                </ComboBoxItem>
-            </ComboBox>
-            <TextBox x:Name="EQUIPMENT" Grid.Row="6" MaxLength="300" Grid.RowSpan="6" Margin="0 50 0 0" TextWrapping="Wrap" Text="{Binding EQUIPMENT}" Width="200"  Style="{StaticResource textBoxOuputData }" BorderThickness="1"></TextBox>
+            <TextBlock x:Name="BREND" VerticalAlignment="Center" Text="{Binding BREND}" Grid.Row="0" Width="200"></TextBlock>
+            <TextBlock x:Name="MODEL"  VerticalAlignment="Center" Text="{Binding MODEL}" Grid.Row="1" Width="200"></TextBlock>
+            <TextBlock x:Name="YEAR_OF_ISSUE" Grid.Row="2"  Text="{Binding YEAR_OF_ISSUE, StringFormat='{}{0:yyyy}'}" Width="200"  VerticalAlignment="Center" ></TextBlock>
+            <TextBlock x:Name="BODY_TYPE" Text="{Binding BODY_TYPE}" Grid.Row="3" Width="200" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="ENGINE_CAPACITY" Text="{Binding ENGINE_CAPACITY}" Grid.Row="4" Width="200"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="ENGINE_TYPE" Text="{Binding ENGINE_TYPE}" Grid.Row="5" Width="200"  VerticalAlignment="Center"/>
+
+
+            <TextBlock x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="6" Width="200"  VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="EQUIPMENT" Grid.Row="6" Grid.RowSpan="6" Margin="0 50 0 0" TextWrapping="Wrap" Text="{Binding EQUIPMENT}" Width="200"  ></TextBlock>
         </Grid>
     </Grid>
 </Page>
