@@ -70,16 +70,17 @@
             <TextBlock Margin="0 0 0 0"
                        TextWrapping="Wrap"
                        Width="250"
-                       VerticalAlignment="Top">Поиск по ID или номеру телефона:</TextBlock>
+                       VerticalAlignment="Top">Поиск по номеру телефона:</TextBlock>
             <StackPanel Orientation="Vertical"
                         >
 
-                <TextBox x:Name="telephNum"
+                <wpfx:MaskedTextBox x:Name="telephNum"
+                                    Mask="+375 (00) 000-00-00"
                      Width="200"
                      TextAlignment="Center"
                      Background="Transparent"
                      Foreground="White"
-                     BorderThickness="0 0 0 0.5"></TextBox>
+                     BorderThickness="0 0 0 0.5"></wpfx:MaskedTextBox>
                 <Button x:Name="search"
                          Style="{StaticResource buttonTables}"
                     Click="search_Click"
@@ -87,45 +88,16 @@
                     Margin="0 5"
                     Background="Transparent"
                     Foreground="White"
+                        IsDefault="True"
                     HorizontalAlignment="Center">Найти</Button>
             </StackPanel>
 
         </StackPanel>
-        <Button Content="Добавить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Add"
-                Click="Add_Click"
-                Grid.Column="3"
-                Grid.Row="2"
-                HorizontalAlignment="Left"
-               ></Button>
-        <Button Content="Удалить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Delete"
-                Click="Delete_Click"
-                Grid.Column="4"
-                Grid.Row="2"
-                HorizontalAlignment="Right"></Button>
-        <Button Content="Изменить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Edete"
-                Click="Edit_Click"
-                Grid.Column="3"
-                Grid.ColumnSpan="2"
-                Grid.Row="2"
-                HorizontalAlignment="Center"></Button>
+       
         <Grid Grid.Row="1"
               Grid.Column="3"
               HorizontalAlignment="Center"
+               Margin="0 70 0 0"
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -139,9 +111,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+              
             </Grid.RowDefinitions>
             <TextBlock Text="Логин" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Пароль" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
@@ -157,7 +127,8 @@
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
-              HorizontalAlignment="Center">
+              HorizontalAlignment="Center"
+              Margin="0 70 0 0">
             <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -170,22 +141,21 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+           
+                
         </Grid.RowDefinitions>
-            <TextBox x:Name="LOGIN" MaxLength="16" Text="{Binding LOGIN}" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
-            <TextBox x:Name="PASSWORD" MaxLength="12" Text="{Binding PASSWORD, StringFormat=d}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
-            <TextBox x:Name="SURNAME" Text="{Binding SURNAME}" Grid.Row="2" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="NAME" Text="{Binding NAME}" Grid.Row="3" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="PATRONYMIC" Text="{Binding PATRONYMIC}" Grid.Row="4" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <DatePickerTextBox x:Name="BDAY" Grid.Row="5"  Text="{Binding BDAY}" Width="200" Height="20" Background="Transparent" Foreground="White" Visibility="Visible" PreviewKeyDown="space_PreviewKeyDown"></DatePickerTextBox>
-            <TextBox MaxLength="9" x:Name="PASSPORT"  Text="{Binding PASSPORT}" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
-            <TextBox x:Name="LICENSE_ID" MaxLength="11" Text="{Binding DRIVER_LICENSE_ID}" Grid.Row="8" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <TextBox x:Name="EXPERIENCE" Text="{Binding DRIVING_EXPERIENCE}" Grid.Row="9" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <wpfx:MaskedTextBox x:Name="TELEPHONE"  Mask="+375 (00) 000-00-00" Grid.Row="6" Style="{StaticResource textBoxOuputData}" VerticalAlignment="Center" PreviewKeyDown="space_PreviewKeyDown"/>
-            <TextBox x:Name="TYPE" Text="{Binding TYPE}" Grid.Row="10" Width="200" Height="20" Style="{StaticResource textBoxOuputData }" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
-            <TextBox x:Name="ID" MaxLength="1"  Visibility="Hidden" Text="{Binding ID}" Grid.Row="12" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBlock x:Name="LOGIN" VerticalAlignment="Center" Text="{Binding LOGIN}" Grid.Row="0" Width="200" ></TextBlock>
+            <TextBlock x:Name="PASSWORD"  VerticalAlignment="Center" Text="{Binding PASSWORD, StringFormat=d}" Grid.Row="1" Width="200" ></TextBlock>
+            <TextBlock x:Name="SURNAME" Text="{Binding SURNAME}" Grid.Row="2" Width="200"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="NAME" Text="{Binding NAME}" Grid.Row="3" Width="200"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="PATRONYMIC" Text="{Binding PATRONYMIC}" Grid.Row="4" Width="200"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="BDAY" Grid.Row="5"  Text="{Binding BDAY}" Width="200"  VerticalAlignment="Center" ></TextBlock>
+            <TextBlock  VerticalAlignment="Center" x:Name="PASSPORT"  Text="{Binding PASSPORT}" Grid.Row="7" Width="200" ></TextBlock>
+            <TextBlock x:Name="LICENSE_ID" Text="{Binding DRIVER_LICENSE_ID}" Grid.Row="8" Width="200"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="EXPERIENCE" Text="{Binding DRIVING_EXPERIENCE}" Grid.Row="9" Width="200" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="TELEPHONE" Grid.Row="6" VerticalAlignment="Center" />
+            <TextBlock x:Name="TYPE" Text="{Binding TYPE}" Grid.Row="10" Width="200"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="ID"   Visibility="Hidden" Text="{Binding ID}" Grid.Row="12" Width="200" ></TextBlock>
 
         </Grid>
     </Grid>
