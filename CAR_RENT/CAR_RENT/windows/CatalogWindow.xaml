@@ -43,16 +43,20 @@
                     Grid.Row="0"
                     Grid.Column="3"
                      Panel.ZIndex="1"
+                    MouseEnter="userAccount_MouseEnter"
+                    MouseLeave="userAccount_MouseLeave"
                    >
                 <Image Source="../images/userAccount.png"
-                       Width="40"></Image>
+                       Width="40"
+                       x:Name="account"></Image>
             </Button>
             <Button FontSize="18"
                     Background="Transparent"
                     Foreground="White"
                     BorderThickness="0"
                     Style="{StaticResource buttonWithoutBackground}"
-                                     
+                               MouseEnter="userContracts_MouseEnter"
+                    MouseLeave="userContracts_MouseLeave"
                     x:Name="userContracts"
                     Click="userContracts_Click"
                     Grid.Row="0"
@@ -60,6 +64,7 @@
                      Panel.ZIndex="1"
                    >
                 <Image Source="../images/userContracts.png"
+                       x:Name="contracts"
                        Width="40"></Image>
             </Button>
             <Button FontSize="18"
@@ -70,21 +75,26 @@
                     Grid.Row="0"
                     Grid.Column="5"
                     Panel.ZIndex="1"
+                    MouseEnter="Button_MouseEnter"
+                    MouseLeave="Button_MouseLeave"
                     Style="{StaticResource buttonWithoutBackground}"
                                     
-                    >Выйти</Button>
+                    >
+                <TextBlock x:Name="exit">Выйти</TextBlock>
+            </Button>
             <Button Grid.Column="1"
                     HorizontalAlignment="Left"
                     FontSize="18"
                     Background="Transparent"
                     Foreground="White"
                     Style="{StaticResource buttonWithoutBackground}"
-                                      
+                              MouseEnter="main_MouseEnter"  
+                    MouseLeave="main_MouseLeave"
                     Panel.ZIndex="1"
-                    x:Name="main"
+                  
                     BorderThickness="0"
                     Click="main_Click">
-                Главная
+                <TextBlock   x:Name="main">Главная</TextBlock>
             </Button>
             <StackPanel Grid.Row="0"
                    Grid.ColumnSpan="7"

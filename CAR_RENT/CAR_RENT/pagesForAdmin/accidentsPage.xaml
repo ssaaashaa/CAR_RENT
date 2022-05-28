@@ -80,47 +80,11 @@
             </StackPanel>
 
         </StackPanel>
-        <Button Content="Добавить"
-                Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Add"
-                Click="Add_Click"
-                Grid.Column="3"
-                Grid.Row="1"
-                HorizontalAlignment="Left"
-                  VerticalAlignment="Bottom"
-                Margin="0 0 0 30"
-               ></Button>
-        <Button Content="Удалить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Delete"
-                Click="Delete_Click"
-                Grid.Column="4"
-                Grid.Row="1"
-                HorizontalAlignment="Right"
-                  VerticalAlignment="Bottom"
-                Margin="0 0 0 30"></Button>
-        <Button Content="Изменить"
-                 Style="{StaticResource buttonTables}"
-                Width="130"
-                Height="40"
-                FontSize="16"
-                x:Name="Edit"
-                Click="Edit_Click"
-                Grid.Column="3"
-                Grid.ColumnSpan="2"
-                Grid.Row="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Margin="0 0 0 30"></Button>
+      
         <Grid Grid.Row="1"
               Grid.Column="3"
               HorizontalAlignment="Center"
+              Margin="0 60 0 0"
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -134,9 +98,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+               
             </Grid.RowDefinitions>
             <TextBlock Text="ID контракта" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Дата" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
@@ -146,32 +108,31 @@
         <Grid Grid.Row="1"
               Grid.Column="4"
               HorizontalAlignment="Center"
+                 Margin="0 60 0 0"
              >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition Height="37.912"></RowDefinition>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="37.912"/>
+                <RowDefinition ></RowDefinition>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+               
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="10" Visibility="Hidden" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
-            <ComboBox x:Name="CONTRACT_ID"  Text="{Binding CONTRACT_ID}" Grid.Row="0" Width="200" Height="25"></ComboBox>
-            <DatePickerTextBox x:Name="DATE" Grid.Row="1" PreviewKeyDown="space_PreviewKeyDown"  Text="{Binding DATE, StringFormat='{}{0:dd.MM.yyyy}'}" Width="200" VerticalAlignment="Center" Background="Transparent" Foreground="White" Visibility="Visible" ></DatePickerTextBox>
+            <TextBlock x:Name="CONTRACT_ID"  Text="{Binding CONTRACT_ID}" Grid.Row="0" Width="200" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="DATE" Grid.Row="1" VerticalAlignment="Center" Text="{Binding DATE, StringFormat='{}{0:dd.MM.yyyy}'}" Width="200" ></TextBlock>
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal">
-                <TextBox x:Name="DAMAGE_COST" Text="{Binding DAMAGE_COST}" Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Center" PreviewKeyDown="space_PreviewKeyDown"></TextBox>
+                <TextBlock x:Name="DAMAGE_COST" Text="{Binding DAMAGE_COST}" Width="80" VerticalAlignment="Center"></TextBlock>
                 <Label Foreground="White" VerticalAlignment="Center">BYN</Label>
             </StackPanel>
-            <TextBox x:Name="DAMAGE_DESCRIPTION" Margin="0 9" BorderThickness="1" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="3" Grid.RowSpan="6" Width="200" Style="{StaticResource textBoxOuputData }"></TextBox>
+            <TextBlock x:Name="DAMAGE_DESCRIPTION" Margin="0 9" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="3" Grid.RowSpan="6" Width="200" ></TextBlock>
         </Grid>
     </Grid>
 </Page>

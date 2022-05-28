@@ -161,6 +161,8 @@
             Grid.Row="3"
             >
             <Button  Style="{StaticResource buttonWithoutBackground}"
+                     MouseEnter="econom_MouseEnter"
+                     MouseLeave="econom_MouseLeave"
                     Background="Transparent"
                      BorderThickness="0"
                      Margin="38 0"
@@ -171,7 +173,9 @@
                     <Image Source="../images/suv.png"
                        Width="60"/>
                     <TextBlock Foreground="White"
-                       FontSize="18">
+                       FontSize="18"
+                               x:Name="Econom"
+                               >
                     Эконом
                     </TextBlock>
                 </StackPanel>
@@ -179,7 +183,8 @@
             <Button  Style="{StaticResource buttonWithoutBackground}"
                                          Background="Transparent"
                                           BorderThickness="0"
-
+MouseEnter="middle_MouseEnter"
+                     MouseLeave="middle_MouseLeave"
 
                      Margin="35 0"
                      x:Name="middle"
@@ -189,7 +194,8 @@
                     <Image Source="../images/fiat.png"
                        Width="60"/>
                     <TextBlock Foreground="White"
-                       FontSize="18">
+                       FontSize="18"
+                               x:Name="Middle">
                     Средний
                     </TextBlock>
                 </StackPanel>
@@ -197,7 +203,8 @@
             <Button  Style="{StaticResource buttonWithoutBackground}"
                                          Background="Transparent"
                      BorderThickness="0"
-
+MouseEnter="business_MouseEnter"
+                     MouseLeave="business_MouseLeave"
                      Margin="45 0 20 0"
                      x:Name="business"
                      Click="business_Click">
@@ -205,7 +212,8 @@
                     <Image Source="../images/sedan.png"
                        Width="60"/>
                     <TextBlock Foreground="White"
-                       FontSize="18">
+                       FontSize="18"
+                               x:Name="Business">
                    Бизнес
                     </TextBlock>
                 </StackPanel>
@@ -213,7 +221,8 @@
             <Button  Style="{StaticResource buttonWithoutBackground}"
                                          Background="Transparent"
                      BorderThickness="0"
-
+MouseEnter="cabriolet_MouseEnter"
+                     MouseLeave="cabriolet_MouseLeave"
                     Margin="40 0"
                     x:Name="cabriolet"
                     Click="cabriolet_Click">
@@ -224,7 +233,8 @@
                        FontSize="18"
                            TextWrapping="Wrap" 
                            TextAlignment="Center"
-                           Width="128">
+                           Width="128"
+                               x:Name="Cabriolet">
                    Кабриолеты
                     </TextBlock>
                 </StackPanel>
@@ -232,7 +242,9 @@
             <Button  Style="{StaticResource buttonWithoutBackground}"
                                          Background="Transparent"
                      BorderThickness="0"
-
+MouseEnter="offroad_cars_MouseEnter"
+                     
+                     MouseLeave="offroad_cars_MouseLeave"
                      Margin="25 0"
                      x:Name="offroad_cars"
                      Click="offroad_cars_Click">
@@ -240,7 +252,8 @@
                     <Image Source="../images/jeep.png"
                        Width="60"/>
                     <TextBlock Foreground="White"
-                       FontSize="18">
+                       FontSize="18"
+                               x:Name="Offroad">
                     Внедорожники
                     </TextBlock>
                 </StackPanel>
@@ -248,7 +261,8 @@
             <Button  Style="{StaticResource buttonWithoutBackground}"
                                          Background="Transparent"
                      BorderThickness="0"
-
+MouseEnter="minibus_MouseEnter"
+                     MouseLeave="minibus_MouseLeave"
                      Margin="25 0"
                      x:Name="minibus"
                      Click="minibus_Click">
@@ -259,13 +273,15 @@
                        FontSize="18"
                        TextWrapping="Wrap"
                        Width="178"
-                       TextAlignment="Center"><Run Text="Микроавтобусы"/></TextBlock>
+                       TextAlignment="Center"
+                               x:Name="Minibus">Микроавтобусы</TextBlock>
                 </StackPanel>
             </Button>
             <Button  Style="{StaticResource buttonWithoutBackground}"
                                          Background="Transparent"
                      BorderThickness="0"
-
+MouseEnter="truck_MouseEnter"
+                     MouseLeave="truck_MouseLeave"
                      Margin="25 0"
                      x:Name="truck"
                      Click="truck_Click">
@@ -273,7 +289,8 @@
                     <Image Source="../images/container.png"
                        Width="60"/>
                     <TextBlock Foreground="White"
-                       FontSize="18">
+                       FontSize="18"
+                               x:Name="Truck">
                    Грузовые
                     </TextBlock>
                 </StackPanel>
@@ -374,15 +391,13 @@
             <Button Grid.Column="1"
                     Width="200"
                     Height="40"
-                    BorderThickness="0"
-                    Background="#64AFB6"
-                    Foreground="white"
+                   
                     VerticalAlignment="Bottom"
                     Margin="0 0 0 200"
                     x:Name="filters_for_classes"
                     Click="filters_for_classes_Click"
                     Visibility="Hidden"
-                    
+                     Style="{StaticResource buttonTables}"
                     >
                 Подобрать авто
             </Button>

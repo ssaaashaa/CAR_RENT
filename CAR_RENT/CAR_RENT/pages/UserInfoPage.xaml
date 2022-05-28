@@ -31,6 +31,38 @@
             <Setter Property="Margin" Value="0 0 0 -5"/>
 
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+           
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="TextDecorations"  Value="Underline"/>
+                               
+                            </Trigger>
+                         
+                        </Style.Triggers>
+               
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -86,7 +118,8 @@
                             Margin="10 0 0 -5"
                             x:Name="Login"
                             Click="Login_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock></Button>
                     </StackPanel>
                     <TextBlock x:Name="loginMessage"
                               Foreground="#64AFB6"
@@ -111,7 +144,10 @@
                            Margin="10 0 0 -5"
                             x:Name="Surname"
                             Click="Surname_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
                     </StackPanel>
                     <TextBlock x:Name="surnameMessage"
                                Foreground="#64AFB6"
@@ -136,8 +172,11 @@
                            Margin="10 0 0 -5"
                             x:Name="Name"
                             Click="Name_Click"
-                            >Изменить</Button>
-                </StackPanel>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
+                    </StackPanel>
                 <TextBlock x:Name="nameMessage"
                                Foreground="#64AFB6"
                                FontSize="12"
@@ -162,7 +201,10 @@
                            Margin="10 0 0 -5"
                             x:Name="Patronymic"
                             Click="Patronymic_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
                     </StackPanel>
                     <TextBlock x:Name="patronymicMessage"
                                Foreground="#64AFB6"
@@ -177,7 +219,7 @@
                                 Height="30">
                         <Label>Дата рождения:</Label>
                         <DatePicker Height="20"
-                                       Background="Transparent"
+                                       Background="White"
                                        Foreground="Black"
                                        BorderThickness="0"
                                        VerticalAlignment="Bottom"
@@ -193,7 +235,10 @@
                            Margin="10 0 0 -5"
                             x:Name="Bday"
                             Click="Bday_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
                     </StackPanel>
                     <TextBlock x:Name="bdayMessage"
                                Foreground="#64AFB6"
@@ -225,7 +270,10 @@
                             Margin="10 0 0 -5"
                             x:Name="Telephone"
                             Click="Telephone_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
                     </StackPanel>
                     <TextBlock x:Name="telephoneMessage"
                                Foreground="#64AFB6"
@@ -253,7 +301,10 @@
                            Margin="10 0 0 -5"
                             x:Name="PassportNum"
                             Click="PassportNum_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
                     </StackPanel>
                     <TextBlock x:Name="passportMessage"
                                Foreground="#64AFB6"
@@ -279,7 +330,10 @@
                             Margin="10 0 0 -5"
                             x:Name="License"
                             Click="License_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
                     </StackPanel>
                     <TextBlock x:Name="licenseMessage"
                                Foreground="#64AFB6"
@@ -305,7 +359,10 @@
                             Margin="10 0 0 -5"
                             x:Name="Experience"
                             Click="Experience_Click"
-                            >Изменить</Button>
+                            >
+                            <TextBlock FontSize="14" >Изменить</TextBlock>
+                        </Button>
+
                     </StackPanel>
                     <TextBlock x:Name="experienceMessage"
                                Foreground="#64AFB6"
@@ -370,7 +427,10 @@
                             Margin="10 0"
                         x:Name="Password"
                         Click="Password_Click"
-                            >Изменить</Button>
+                            >
+                    <TextBlock FontSize="14" >Изменить</TextBlock>
+                </Button>
+
                 <TextBlock x:Name="id"
                            Visibility="Hidden"></TextBlock>
             </StackPanel>

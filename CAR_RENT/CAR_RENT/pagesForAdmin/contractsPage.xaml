@@ -92,6 +92,7 @@
 
                     <TextBox x:Name="id"
                      Width="120"
+                             PreviewKeyDown="space_PreviewKeyDown"
                      TextAlignment="Center"
                      Background="Transparent"
                      Foreground="White"
@@ -101,6 +102,7 @@
                     Click="search_Click"
                     Width="120"
                     Margin="0 5"
+                              IsDefault="True"
                     HorizontalAlignment="Right"
                     Background="Transparent"
                     Foreground="White">Найти</Button>
@@ -123,6 +125,8 @@
 
                     <TextBox x:Name="idCar"
                      Width="120"
+                             
+                             PreviewKeyDown="space_PreviewKeyDown"
                      TextAlignment="Center"
                      Background="Transparent"
                      Foreground="White"
@@ -228,6 +232,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="6">
                 <TextBlock>Итого: </TextBlock>
                 <TextBox x:Name="SUM" 
+                        
                            VerticalAlignment="Top" 
                            TextAlignment="Center"
                            Width="70"

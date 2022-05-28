@@ -364,7 +364,7 @@ namespace CAR_RENT.pages
         {
             try
             {
-               
+                NextPage.Width = 80;
             }
             catch { }
         }
@@ -373,7 +373,7 @@ namespace CAR_RENT.pages
         {
             try
             {
-               
+                NextPage.Width = 70;
             }
             catch { }
         }

@@ -20,10 +20,12 @@ namespace CAR_RENT.windows
     /// </summary>
     public partial class CatalogWindow : Window
     {
+        public static Frame Frame { get; set; }
         public CatalogWindow()
         {
             InitializeComponent();
             frame.Content = new CatalogPage();
+            Frame = frame;
             
         }
 
@@ -64,6 +66,76 @@ namespace CAR_RENT.windows
             try
             {
                 frame.Content = new CatalogPage();
+            }
+            catch { }
+        }
+
+        private void main_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                main.TextDecorations = TextDecorations.Underline;
+            }catch { }
+        }
+        private void main_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                main.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                exit.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                exit.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void userContracts_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                contracts.Width = 45;
+            }
+            catch { }
+        }
+
+        private void userContracts_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                contracts.Width = 40;
+            }
+            catch { }
+        }
+
+        private void userAccount_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                account.Width = 45;
+            }
+            catch { }
+        }
+
+        private void userAccount_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                account.Width = 40;
             }
             catch { }
         }

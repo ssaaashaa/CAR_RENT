@@ -72,7 +72,7 @@
                         >
 
                 <TextBox x:Name="id"
-                            
+                            PreviewKeyDown="space_PreviewKeyDown"
                      Width="120"
                      TextAlignment="Center"
                      Background="Transparent"
@@ -82,6 +82,7 @@
                          Style="{StaticResource buttonTables}"
                     Click="search_Click"
                     Width="120"
+                          IsDefault="True"
                     Margin="0 5"
                     HorizontalAlignment="Right"
                     Background="Transparent"

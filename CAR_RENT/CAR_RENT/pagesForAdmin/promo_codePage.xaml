@@ -82,7 +82,7 @@
               Grid.Column="3"
               HorizontalAlignment="Center"
               x:Name="grid"
-             
+             Margin="0 50 0 0"
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -96,16 +96,15 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+               
             </Grid.RowDefinitions>
             <TextBlock Text="Промокод" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Скидка (%)" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
         </Grid>
         <Grid Grid.Row="1"
               Grid.Column="4"
-              HorizontalAlignment="Center">
+              HorizontalAlignment="Center"
+               Margin="0 50 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -118,9 +117,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+               
             </Grid.RowDefinitions>
             <TextBox x:Name="PROMO_CODE" PreviewKeyDown="space_PreviewKeyDown" Text="{Binding PROMO_CODE1}" MaxLength="20" Grid.Row="0" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBox x:Name="DISCOUNT_AMOUNT" PreviewKeyDown="space_PreviewKeyDown" MaxLength="2" Text="{Binding DISCOUNT_AMOUNT}" Grid.Row="1" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>

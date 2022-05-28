@@ -839,5 +839,134 @@ namespace CAR_RENT.pages
             }
             catch { }
         }
+
+        private void econom_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Econom.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void econom_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Econom.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void middle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Middle.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void middle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Middle.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void business_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Business.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+   
+
+        private void business_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Business.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void cabriolet_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Cabriolet.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void cabriolet_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Cabriolet.TextDecorations = null;
+            }
+            catch { }
+
+        }
+
+        private void offroad_cars_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Offroad.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void offroad_cars_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Offroad.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void minibus_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Minibus.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void minibus_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Minibus.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void truck_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                Truck.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void truck_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Truck.TextDecorations = null;
+            }
+            catch { }
+        }
     }
 }

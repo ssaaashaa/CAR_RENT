@@ -78,7 +78,7 @@
                         >
 
                     <TextBox x:Name="id"
-                             
+                             PreviewKeyDown="space_PreviewKeyDown"
                      Width="120"
                      TextAlignment="Center"
                      Background="Transparent"
@@ -179,7 +179,7 @@
             <StackPanel Grid.Row="4" 
                         Orientation="Horizontal"
                         VerticalAlignment="Center">
-                <TextBox x:Name="RENT_PRICE"  Text="{Binding RENT_PRICE}"  Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Center" ></TextBox>
+                <TextBox x:Name="RENT_PRICE" PreviewKeyDown="space_PreviewKeyDown"  Text="{Binding RENT_PRICE}"  Width="80" Height="20" Style="{StaticResource textBoxOuputData }" TextAlignment="Center" ></TextBox>
                 <Label Foreground="White">BYN</Label>
             </StackPanel>
             <Button Content="Изменить стоимость"

@@ -76,6 +76,7 @@
 
                 <wpfx:MaskedTextBox x:Name="telephNum"
                                     Mask="+375 (00) 000-00-00"
+                                    PreviewKeyDown="space_PreviewKeyDown"
                      Width="200"
                      TextAlignment="Center"
                      Background="Transparent"

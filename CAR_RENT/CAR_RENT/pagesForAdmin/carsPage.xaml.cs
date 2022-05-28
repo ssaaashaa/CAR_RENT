@@ -35,6 +35,8 @@ namespace CAR_RENT.pagesForAdmin
             {
              
                 RENT_PRICE.PreviewTextInput += new TextCompositionEventHandler(numbers);
+                id.PreviewTextInput += new TextCompositionEventHandler(numbers);
+
                 DGridCars.ItemsSource = CAR_RENTEntities.GetContext().CARS.ToList();
                 foreach (CAR car in DGridCars.Items)
                 {
@@ -69,18 +71,30 @@ namespace CAR_RENT.pagesForAdmin
             catch { }
 
         }
+      
         void numbers(object sender, TextCompositionEventArgs e)
         {
             try
             {
-                if (!Char.IsDigit(e.Text, 0) && e.Text != ".")
+                if (!Char.IsDigit(e.Text, 0))
                 {
                     e.Handled = true; //не обрабатывать введеный символ
                 }
             }
             catch { }
         }
-      
+        private void space_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch { }
+        }
+
         void Clear()
         {
             try

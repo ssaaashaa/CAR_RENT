@@ -1,4 +1,5 @@
 ﻿using CAR_RENT.models;
+using CAR_RENT.pages;
 using CAR_RENT.userControls;
 using System;
 using System.Collections.Generic;
@@ -225,6 +226,7 @@ namespace CAR_RENT.windows
                         return;
                     }
                     this.Close();
+                    CatalogWindow.Frame.Navigate(new UserContracts());
                 }
           
 

@@ -30,7 +30,9 @@ namespace CAR_RENT.pagesForAdmin
             {
                 DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
                 DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS.Trim() == "Новая заявка").ToList();
-              
+                id.PreviewTextInput += new TextCompositionEventHandler(numbers);
+                idCar.PreviewTextInput += new TextCompositionEventHandler(numbers);
+             
                 contract_status();
             
 
@@ -43,7 +45,29 @@ namespace CAR_RENT.pagesForAdmin
 
 
         }
-      
+        void numbers(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsDigit(e.Text, 0))
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+        private void space_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch { }
+        }
+
         void contract_status()
         {
             try

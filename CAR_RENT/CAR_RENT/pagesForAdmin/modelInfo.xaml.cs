@@ -27,13 +27,36 @@ namespace CAR_RENT.pagesForAdmin
             InitializeComponent();
             try
             {
+                id.PreviewTextInput += new TextCompositionEventHandler(numbers);
+
                 DGridModelInfo.ItemsSource = CAR_RENTEntities.GetContext().MODEL_INFO.ToList();
               
             }
             catch { }
           
         }
-       
+        void numbers(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsDigit(e.Text, 0))
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+        private void space_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Space)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch { }
+        }
         private void DGridModelInfo_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
