@@ -58,8 +58,9 @@
                         HorizontalAlignment="Left"
                         BorderThickness="0"
                         x:Name="Close"
-                        Click="Close_Click">
-                    <Image Source="../images/close.png"></Image>
+                        Click="Close_Click"
+                        Margin="-5 0 0 -5">
+                    <Image Source="../images/exit.png"></Image>
                 </Button>
                 <StackPanel Grid.Row="1"
                             Grid.Column="1"
@@ -84,7 +85,7 @@
                     <DatePicker  x:Name="CONTRACT_START"
                                  PreviewKeyDown="space_PreviewKeyDown"
                                  GotFocus="CONTRACT_START_GotFocus"
-                                 ></DatePicker>
+                                    Background="White"></DatePicker>
                 </StackPanel>
                 <StackPanel Grid.Column="1"
                           Grid.Row="3"
@@ -92,7 +93,8 @@
                     <Label Foreground="White">Дата окончания аренды</Label>
                     <DatePicker x:Name="CONTRACT_END"
                                 PreviewKeyDown="space_PreviewKeyDown"
-                                GotFocus="CONTRACT_END_GotFocus"></DatePicker>
+                                GotFocus="CONTRACT_END_GotFocus"
+                                Background="White"></DatePicker>
                     <TextBlock x:Name="dateMessage"
                                Visibility="Hidden"
                                FontSize="10"
@@ -107,6 +109,10 @@
                              VerticalAlignment="Center"
                              PreviewKeyDown="space_PreviewKeyDown"
                              GotFocus="promocodeMessage_GotFocus"
+                            Style="{DynamicResource TextBox}"
+                             Width="285"
+                             Foreground="White"
+                             BorderBrush="White"
                              MaxLength="20"></TextBox>
                     <TextBlock VerticalAlignment="Bottom"
                                x:Name="promocodeMessage"
@@ -121,12 +127,11 @@
                         Width="200"
                         Height="40"
                         Content="Отправить заявку"
-                        Background="#64AFB6"
-                       BorderThickness="0"
-                        Foreground="White"
                         FontSize="17"
                         x:Name="send"
-                        Click="send_Click"></Button>
+                        Click="send_Click"
+                              Style="{StaticResource Enter}"
+                        ></Button>
             </Grid>
         </Border>
     </Grid>

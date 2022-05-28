@@ -13,10 +13,14 @@
       Foreground="White">
     <Page.Resources>
        
-        <ResourceDictionary Source="../templates/ScrollViewer.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../templates/ScrollViewer.xaml"/>
+                <ResourceDictionary Source="../templates/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
-               
-           
+
     </Page.Resources>
 
     <Grid  MouseWheel="ScrollViewer_MouseWheel">
@@ -94,14 +98,15 @@
                     </StackPanel>
                     <Button Width="180"
                         Height="45"
-                        BorderThickness="0"
-                        Background="#64AFB6"
+                       
                         Content="Автопарк"
-                        Foreground="White"
+                      
                         FontSize="18"
                         Margin="0 35 0 0"
                         x:Name="autopark"
-                        Click="autopark_Click"/>
+                        Click="autopark_Click"
+                             Style="{StaticResource Enter}"
+                            />
                 </StackPanel>
                 <Label VerticalAlignment="Bottom" 
                        HorizontalAlignment="Center"
@@ -155,8 +160,10 @@
             Grid.ColumnSpan="5"
             Grid.Row="3"
             >
-            <Button Style="{StaticResource buttonCatalog}"
-                    Margin="38 0"
+            <Button  Style="{StaticResource buttonWithoutBackground}"
+                    Background="Transparent"
+                     BorderThickness="0"
+                     Margin="38 0"
                     x:Name="econom"
                     Click="econom_Click"
                     >
@@ -169,7 +176,11 @@
                     </TextBlock>
                 </StackPanel>
             </Button>
-            <Button  Style="{StaticResource buttonCatalog}"
+            <Button  Style="{StaticResource buttonWithoutBackground}"
+                                         Background="Transparent"
+                                          BorderThickness="0"
+
+
                      Margin="35 0"
                      x:Name="middle"
                      Click="middle_Click">
@@ -183,7 +194,10 @@
                     </TextBlock>
                 </StackPanel>
             </Button>
-            <Button  Style="{StaticResource buttonCatalog}"
+            <Button  Style="{StaticResource buttonWithoutBackground}"
+                                         Background="Transparent"
+                     BorderThickness="0"
+
                      Margin="45 0 20 0"
                      x:Name="business"
                      Click="business_Click">
@@ -196,7 +210,10 @@
                     </TextBlock>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource buttonCatalog}"
+            <Button  Style="{StaticResource buttonWithoutBackground}"
+                                         Background="Transparent"
+                     BorderThickness="0"
+
                     Margin="40 0"
                     x:Name="cabriolet"
                     Click="cabriolet_Click">
@@ -212,7 +229,10 @@
                     </TextBlock>
                 </StackPanel>
             </Button>
-            <Button  Style="{StaticResource buttonCatalog}"
+            <Button  Style="{StaticResource buttonWithoutBackground}"
+                                         Background="Transparent"
+                     BorderThickness="0"
+
                      Margin="25 0"
                      x:Name="offroad_cars"
                      Click="offroad_cars_Click">
@@ -225,7 +245,10 @@
                     </TextBlock>
                 </StackPanel>
             </Button>
-            <Button  Style="{StaticResource buttonCatalog}"
+            <Button  Style="{StaticResource buttonWithoutBackground}"
+                                         Background="Transparent"
+                     BorderThickness="0"
+
                      Margin="25 0"
                      x:Name="minibus"
                      Click="minibus_Click">
@@ -239,7 +262,10 @@
                        TextAlignment="Center"><Run Text="Микроавтобусы"/></TextBlock>
                 </StackPanel>
             </Button>
-            <Button  Style="{StaticResource buttonCatalog}"
+            <Button  Style="{StaticResource buttonWithoutBackground}"
+                                         Background="Transparent"
+                     BorderThickness="0"
+
                      Margin="25 0"
                      x:Name="truck"
                      Click="truck_Click">
@@ -355,20 +381,21 @@
                     Margin="0 0 0 200"
                     x:Name="filters_for_classes"
                     Click="filters_for_classes_Click"
-                    Visibility="Hidden">
+                    Visibility="Hidden"
+                    
+                    >
                 Подобрать авто
             </Button>
             <Button Grid.Column="1"
                     Width="200"
                     Height="40"
-                    BorderThickness="0"
-                    Background="#64AFB6"
-                    Foreground="white"
+                   
                     VerticalAlignment="Bottom"
                     Margin="0 0 0 60"
                     x:Name="filters"
                     Click="filters_Click"
-                    Visibility="Hidden">
+                    Visibility="Hidden"
+                     Style="{StaticResource buttonTables}">
                 Подобрать авто
             </Button>
             <TextBlock Grid.Column="2"

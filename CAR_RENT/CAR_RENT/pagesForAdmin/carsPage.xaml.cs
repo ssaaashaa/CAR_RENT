@@ -170,6 +170,18 @@ namespace CAR_RENT.pagesForAdmin
             {
                 string patternRegNum = @"^([0-9]{4}\s[A-Z]{2}-[0-9])$";
                 StringBuilder errors = new StringBuilder();
+                if(string.IsNullOrWhiteSpace(MODEL.Text.Trim())
+                    && CLASS.SelectedIndex == -1
+                    && string.IsNullOrWhiteSpace(REGISTRATION_NUMBER.Text.Trim())
+                    && STATUS.SelectedIndex == -1
+                    && string.IsNullOrWhiteSpace(RENT_PRICE.Text.Trim())
+                    && string.IsNullOrWhiteSpace(link.Text.Trim()))
+                {
+                    errors.AppendLine("Необходиомо заполнить все поля!");
+                    MessageBox.Show(errors.ToString());
+                    errors.Clear();
+                    return;
+                }
                 if (string.IsNullOrWhiteSpace(MODEL.Text.Trim()))
                 {
                     errors.AppendLine("Выберите модель!");
@@ -244,13 +256,16 @@ namespace CAR_RENT.pagesForAdmin
         {
             try
             {
+                StringBuilder errors = new StringBuilder();
+
                 string patternRegNum = @"^([0-9]{4}\s[A-Z]{2}-[0-9])$";
                 if (ID.Text.Equals(""))
                 {
-                    MessageBox.Show("Выделите запись, которую требуется изменить!");
+                    errors.AppendLine("Выделите запись, которую требуется изменить!");
+                    MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
                 }
-                StringBuilder errors = new StringBuilder();
                 if (string.IsNullOrWhiteSpace(MODEL.Text.Trim()))
                 {
                     errors.AppendLine("Выберите модель!");

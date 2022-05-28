@@ -151,6 +151,19 @@ namespace CAR_RENT.pagesForAdmin
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
                     StringBuilder errors = new StringBuilder();
+                    if(string.IsNullOrWhiteSpace(BREND.Text.Trim())
+                        && string.IsNullOrWhiteSpace(MODEL.Text.Trim())
+                        && string.IsNullOrWhiteSpace(YEAR_OF_ISSUE.Text.Trim())
+                        && string.IsNullOrWhiteSpace(BODY_TYPE.Text.Trim())
+                        && string.IsNullOrWhiteSpace(ENGINE_TYPE.Text.Trim())
+                        && ENGINE_TYPE.SelectedIndex == -1
+                        && TRANSMISSION.SelectedIndex == -1)
+                    {
+                        errors.AppendLine("Необходимо заполнить все поля!");
+                        MessageBox.Show(errors.ToString());
+                        errors.Clear();
+                        return;
+                    }
                     DateTime date = new DateTime();
                     DateTime.TryParse("01.01." + YEAR_OF_ISSUE.Text.Trim(), out date);
                     if (string.IsNullOrWhiteSpace(BREND.Text.Trim()))
@@ -192,6 +205,7 @@ namespace CAR_RENT.pagesForAdmin
                     if (errors.Length > 0)
                     {
                         MessageBox.Show(errors.ToString());
+                        errors.Clear();
                         return;
                     }
                     MODEL_INFO currentModel_info = new MODEL_INFO();
@@ -270,6 +284,7 @@ namespace CAR_RENT.pagesForAdmin
                     if (errors.Length > 0)
                     {
                         MessageBox.Show(errors.ToString());
+                        errors.Clear();
                         return;
                     }
                     currentModel_info.BREND = BREND.Text.Trim();

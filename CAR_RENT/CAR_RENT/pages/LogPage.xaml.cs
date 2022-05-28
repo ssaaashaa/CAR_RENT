@@ -250,6 +250,38 @@ namespace CAR_RENT.pages
             }
             catch { }
         }
+
+        private void registration_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                registration.TextDecorations = TextDecorations.Underline;
+            }
+            catch { }
+        }
+
+        private void registration_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                registration.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void registration_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                registration.TextDecorations = null;
+            }
+            catch { }
+        }
+
+        private void Button_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
 

@@ -35,11 +35,13 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
         <DataGrid x:Name="DGridClients"
                   Grid.Column="1"   
                   Grid.Row="1"
+                  Grid.RowSpan="2"
+                  Margin="0 85 0 0"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   FontSize="14"
@@ -61,14 +63,14 @@
         </DataGrid>
         <StackPanel Orientation="Horizontal"
                     Grid.Column="1"
-                    Grid.Row="2"
-                    VerticalAlignment="Center"
+                    Grid.Row="1"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Left"
                     >
             <TextBlock Margin="0 0 0 0"
                        TextWrapping="Wrap"
                        Width="250"
-                       VerticalAlignment="Center">Поиск по ID или номеру телефона:</TextBlock>
+                       VerticalAlignment="Top">Поиск по ID или номеру телефона:</TextBlock>
             <StackPanel Orientation="Vertical"
                         >
 
@@ -85,7 +87,7 @@
                     Margin="0 5"
                     Background="Transparent"
                     Foreground="White"
-                        HorizontalAlignment="Center">Найти</Button>
+                    HorizontalAlignment="Center">Найти</Button>
             </StackPanel>
 
         </StackPanel>

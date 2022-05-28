@@ -342,5 +342,40 @@ namespace CAR_RENT.pages
             catch { }
         }
 
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch { }
+        }
+
+        private void leftArrow_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch { }
+        }
+
+        private void next_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch { }
+        }
+
+        private void next_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch { }
+        }
     }
 }

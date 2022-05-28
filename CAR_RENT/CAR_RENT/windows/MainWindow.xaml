@@ -14,14 +14,19 @@
         WindowStyle="None"
        
         >
+    <Window.Resources>
+        <ResourceDictionary Source="../templates/Styles.xaml" />
+    </Window.Resources>
     <Grid>
         <Button HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Width="60"
-                Height="60"
+                Width="40"
+                Height="40"
                 BorderThickness="0"
                 Margin="30"
-                Click="Button_Click">
+               
+                Click="Button_Click"
+                 Style="{StaticResource Enter}">
             <Button.Background>
                 <ImageBrush ImageSource="../images/exit.png"></ImageBrush>
             </Button.Background>

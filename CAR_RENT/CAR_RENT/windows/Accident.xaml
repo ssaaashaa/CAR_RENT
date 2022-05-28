@@ -15,8 +15,11 @@
         FontSize="16"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">   
-        <Border Height="690" Width="500" Background="Transparent">
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary Source="../templates/Styles.xaml" />
+    </Window.Resources>
+    <Border Height="690" Width="500" Background="Transparent">
             <Border.OpacityMask>
                 <VisualBrush>
                     <VisualBrush.Visual>
@@ -67,23 +70,24 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
                             Margin="100 20 0 20"
-                            Background="#64AFB6"
-                            Foreground="White"
-                            BorderThickness="0"
                             FontSize="14"
+                            Panel.ZIndex="1"
+                            Content="Оформить"
                             x:Name="accept"
+                            BorderBrush="Black"
+                            Foreground="Black"
                             Click="accept_Click"
+                             Style="{StaticResource buttonTables}"
                             >
-                        Оформить
                     </Button>
                     <Button Grid.Column="2"
                             Margin="0 20 100 20"
-                            Background="#64AFB6"
-                            Foreground="White"
-                            BorderThickness="0"
+                          BorderBrush="Black"
+                            Foreground="Black"
                             x:Name="cancel"
                             Click="cancel_Click"
-                            FontSize="14">
+                            FontSize="14"
+                               Style="{StaticResource buttonTables}">
                         Отмена
                     </Button>
                 </Grid>

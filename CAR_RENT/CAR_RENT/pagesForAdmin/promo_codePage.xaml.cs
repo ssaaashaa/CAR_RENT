@@ -83,6 +83,14 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 StringBuilder errors = new StringBuilder();
+                if(string.IsNullOrWhiteSpace(PROMO_CODE.Text.Trim())
+                    && string.IsNullOrWhiteSpace(DISCOUNT_AMOUNT.Text.ToString().Trim()))
+                {
+                    errors.AppendLine("Необходимо заполнить все поля!");
+                    MessageBox.Show(errors.ToString());
+                    errors.Clear();
+                    return;
+                }
                 if (string.IsNullOrWhiteSpace(PROMO_CODE.Text.Trim()))
                 {
                     errors.AppendLine("Введите промокод!");
@@ -99,6 +107,7 @@ namespace CAR_RENT.pagesForAdmin
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
                 }
                 PROMO_CODE currentPromo_code = new PROMO_CODE();

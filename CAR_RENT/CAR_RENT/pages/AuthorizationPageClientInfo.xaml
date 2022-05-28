@@ -202,26 +202,33 @@
                        Margin="0 0 0 20">carrent</Label>
                 <Button HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                            Width="70"
+                            Width="100"
                             Height="70"
                             Background="Transparent"
                             BorderThickness="0"
                             Margin="20 0 75 80"
                             Click="Next"
                         x:Name="next"
+                          Style="{DynamicResource buttonWithoutBackground}"
+                        MouseEnter="next_MouseEnter"
+                        MouseLeave="next_MouseLeave"
                             >
-                    <Image Source="..\images\regArrow.png"></Image>
+                    <Image Source="..\images\regArrow.png" Height="70"></Image>
                 </Button>
                 <Button HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                            Width="70"
+                            Width="100"
                             Height="70"
                             Background="Transparent"
                             BorderThickness="0"
-                            Margin="0 0 175 80"
+                            Margin="0 0 180 80"
                             Click="Back"
+                        x:Name="leftArrow"
+                        MouseEnter="Button_MouseEnter"
+                        MouseLeave="leftArrow_MouseLeave"
+                        Style="{DynamicResource buttonWithoutBackground}"
                             >
-                    <Image Source="..\images\ArrowBack.png" RenderTransformOrigin="-0.213,0.532"></Image>
+                    <Image Source="..\images\ArrowBack.png" Height="70"></Image>
                 </Button>
             </Grid>
 

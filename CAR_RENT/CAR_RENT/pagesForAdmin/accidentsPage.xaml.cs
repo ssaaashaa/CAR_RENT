@@ -165,6 +165,7 @@ namespace CAR_RENT.pagesForAdmin
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
                 }
                 ACCIDENT currentAccident = new ACCIDENT();
@@ -235,6 +236,7 @@ namespace CAR_RENT.pagesForAdmin
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
                 }
                 currentAccident.ID = Convert.ToInt32(ID.Text.Trim());

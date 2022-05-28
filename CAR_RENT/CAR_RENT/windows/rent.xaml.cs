@@ -38,6 +38,7 @@ namespace CAR_RENT.windows
                 CONTRACT_START.DisplayDateEnd = DateTime.Now + time;
                 CONTRACT_END.DisplayDateEnd = DateTime.Now + time;
                 CONTRACT_START.BlackoutDates.AddDatesInPast();
+                //CONTRACT_END.BlackoutDates.Add();    
                 CONTRACT_END.BlackoutDates.AddDatesInPast();
                 CONTRACT_START.PreviewTextInput += new TextCompositionEventHandler(dateInput);
                 CONTRACT_END.PreviewTextInput += new TextCompositionEventHandler(dateInput);
@@ -178,7 +179,16 @@ namespace CAR_RENT.windows
                 contract.CONTRACT_START = Convert.ToDateTime(CONTRACT_START.Text);
                 contract.CONTRACT_END = Convert.ToDateTime(CONTRACT_END.Text);
                 CAR car = CAR_RENTEntities.GetContext().CARS.Where(c => c.ID.ToString() == ID.ToString()).FirstOrDefault();
-                double total_price = Convert.ToInt32(car.RENT_PRICE) * days.Days - Convert.ToInt32(car.RENT_PRICE) * days.Days * promocode;
+                double total_price=0;
+                if(days.Days > 0)
+                {
+                    total_price = Convert.ToInt32(car.RENT_PRICE) * days.Days - Convert.ToInt32(car.RENT_PRICE) * days.Days * promocode;
+                }
+                else if (days.Days == 0)
+                {
+                    total_price = Convert.ToInt32(car.RENT_PRICE) * 1 - Convert.ToInt32(car.RENT_PRICE) * 1 * promocode;
+
+                }
                 contract.TOTAL_COST = Convert.ToInt32(total_price);
                 contract.STATUS = "Новая заявка";
                 contract.CONTRACT_STATUS = "Ждет подтверждения";

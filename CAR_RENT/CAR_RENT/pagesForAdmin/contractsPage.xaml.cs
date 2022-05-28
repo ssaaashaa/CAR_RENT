@@ -220,6 +220,17 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 StringBuilder errors = new StringBuilder();
+                if(string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim())
+                    && string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim())
+                    && string.IsNullOrWhiteSpace(CONTRACT_START.Text.Trim())
+                    && string.IsNullOrWhiteSpace(CONTRACT_END.Text.Trim())
+                    && string.IsNullOrWhiteSpace(STATUS.Text.Trim()))
+                {
+                    errors.AppendLine("Необходимо заполнить все поля, промокод-необязательно!");
+                    MessageBox.Show(errors.ToString());
+                    errors.Clear();
+                    return;
+                }
                 DateTime contract_start = new DateTime();
                 DateTime.TryParse(CONTRACT_START.Text.Trim(), out contract_start);
                 DateTime contract_end = new DateTime();
@@ -256,7 +267,9 @@ namespace CAR_RENT.pagesForAdmin
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
+                    
                 }
                 double promocode = 0;
                 PROMO_CODE promo_code = null;
@@ -310,6 +323,7 @@ namespace CAR_RENT.pagesForAdmin
                 if (ID.Text.Equals(""))
                 {
                     MessageBox.Show("Выделите запись, которую требуется изменить!");
+                    return;
 
                 }
                 StringBuilder errors = new StringBuilder();
@@ -344,6 +358,7 @@ namespace CAR_RENT.pagesForAdmin
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
+                    errors.Clear();
                     return;
                 }
             

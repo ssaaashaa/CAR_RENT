@@ -9,8 +9,6 @@
       Title="LogPage"
       Background="Transparent"
       FontFamily="Comfortaa"
-      
-     
 >
     <Page.Resources>
         <ResourceDictionary Source="../templates/Styles.xaml" />
@@ -33,6 +31,7 @@
                     <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Width="278"
+                                
                         Height="65">
                         <Border Width="65"
                            Height="65"
@@ -146,6 +145,8 @@
                          Style="{StaticResource Enter}"
                         FontSize="18"
                         Click="Come_Click"
+                                KeyDown="Button_KeyDown"
+                                FontWeight="Heavy"
                         >
 
                         </Button>
@@ -160,15 +161,20 @@
                         <Hyperlink Foreground="#FFFFFF"
                                    TextDecorations="None"
                                    NavigateUri=""
-                                   Click="Hyperlink_Click" Cursor="Hand">
+                                   Click="Hyperlink_Click" Cursor="Hand"
+                                   x:Name="registration"
+                                   MouseEnter="registration_MouseEnter"
+                                   MouseDown="registration_MouseDown"
+                                   MouseLeave="registration_MouseLeave">
                             Регистрация
+                              <Image Width="10"  
+                               Source="../images/arrow.png"
+                               VerticalAlignment="Center"
+                           Margin="0 0 0 0"></Image>
                         </Hyperlink>
 
                         </TextBlock>
-                        <Image Width="10"  
-                               Source="../images/arrow.png"
-                               VerticalAlignment="Center"
-                           Margin="5 0 0 0"></Image>
+                      
                     </StackPanel>
                 </StackPanel>
                 <Label VerticalAlignment="Bottom" 

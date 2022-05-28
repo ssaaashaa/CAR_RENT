@@ -171,7 +171,24 @@ namespace CAR_RENT.pagesForAdmin
                     string patternPassport = @"^([A-Z]{2}[0-9]{7})$";
                     string patternLicense = @"^([0-9]{1}[A-Z]{2}\s{1}[0-9]{6,7})$";
                     string patternPassword = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9]{8,12}$";
-
+                    if (string.IsNullOrEmpty(LOGIN.Text.Trim())
+                        && string.IsNullOrEmpty(PASSWORD.Text.Trim())
+                        && string.IsNullOrEmpty(SURNAME.Text.Trim())
+                        && string.IsNullOrEmpty(NAME.Text.Trim())
+                        && string.IsNullOrEmpty(PATRONYMIC.Text.Trim())
+                        && string.IsNullOrEmpty(BDAY.Text.Trim())
+                        && TELEPHONE.Text.Equals("+375 (__) ___-__-__")
+                        && string.IsNullOrEmpty(PASSPORT.Text.Trim())
+                        && string.IsNullOrEmpty(LICENSE_ID.Text.Trim())
+                        && string.IsNullOrEmpty(EXPERIENCE.Text.Trim())
+                        && string.IsNullOrEmpty(TYPE.Text.Trim()))
+                    {
+                        
+                    errors.AppendLine("Необходиомо заполнить все поля!");
+                    MessageBox.Show(errors.ToString());
+                    errors.Clear();
+                    return;
+                    }
                     DateTime date = new DateTime();
                     DateTime.TryParse(BDAY.Text.Trim(), out date);
                     DateTime today = DateTime.Today;

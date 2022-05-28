@@ -162,13 +162,13 @@
                     </StackPanel>
                     <Button Width="180"
                         Height="45"
-                        BorderThickness="0"
-                        Background="#64AFB6"
+                       
                         Content="Выйти"
-                        Foreground="White"
+                      
                         FontSize="18"
                         Margin="0 35 0 0"
                         x:Name="Exit"
+                             Style="{StaticResource Enter}"
                         Click="Exit_Click"/>
                 </StackPanel>
                 <Label VerticalAlignment="Bottom" 
