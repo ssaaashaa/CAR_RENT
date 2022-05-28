@@ -68,6 +68,7 @@
                            MaxLength="16"
                            TextChanged="login_TextChanged"
                            PreviewKeyDown="login_PreviewKeyDown"
+                                    
                            />
                         </Border>
                     </StackPanel>
@@ -118,6 +119,8 @@
                            MaxLength="12" 
                            PasswordChanged="password_PasswordChanged"  
                            PreviewKeyDown="password_PreviewKeyDown"
+                                     
+                                         
                         >
 
                             </PasswordBox>
@@ -145,8 +148,9 @@
                          Style="{StaticResource Enter}"
                         FontSize="18"
                         Click="Come_Click"
-                                KeyDown="Button_KeyDown"
+                               
                                 FontWeight="Heavy"
+                               IsDefault="True"
                         >
 
                         </Button>

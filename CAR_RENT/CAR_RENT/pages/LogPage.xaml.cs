@@ -122,15 +122,33 @@ namespace CAR_RENT.pages
                     {
                         string log = login.Text.Trim();
                         string pass = password.Password.Trim();
+                      
                         CLIENT admin = db.CLIENTS.Where(a => a.LOGIN.Trim() == log && a.USER_TYPE.ToString().Trim() == "1").AsEnumerable().Where(a => a.LOGIN.Trim() == log && a.USER_TYPE.ToString().Trim() == "1").FirstOrDefault();
                         if (admin != null)
                         {
-                            AdminWindow adminWindow = new AdminWindow();
-                            App.admin = admin;
-                            adminWindow.Show();
-                            MainWindow.Close();
-                        }
+                            if (admin.PASSWORD.Trim() == pass && admin.LOGIN.Trim() == log)
 
+                            {
+                                AdminWindow adminWindow = new AdminWindow();
+                                App.admin = admin;
+                                adminWindow.Show();
+                                MainWindow.Close();
+                            }
+                            else
+                            {
+                                if(admin.PASSWORD.Trim() != pass && admin.LOGIN.Trim() == log)
+                                passwordMessage.Visibility = Visibility.Visible;
+                                passwordMessage.Text = "Неправильный пароль!";
+                            }
+                        }
+                        else
+                        {
+                                loginMessage.Visibility = Visibility.Visible;
+                                loginMessage.Text = "Пользователь не найден!";
+
+                        }
+                        passwordMessage.Visibility = Visibility.Hidden;
+                        loginMessage.Visibility = Visibility.Hidden;
                         CLIENT client = db.CLIENTS.Where(u => u.LOGIN.Trim() == log && u.USER_TYPE.ToString().Trim() == "0").AsEnumerable().Where(u => u.LOGIN.Trim() == log && u.USER_TYPE.ToString().Trim() == "0").FirstOrDefault();
                         if (client != null)
                         {
@@ -145,18 +163,20 @@ namespace CAR_RENT.pages
                             }
                             else
                             {
-                                passwordMessage.Visibility = Visibility.Visible;
+                                if (client.PASSWORD.Trim() != pass && client.LOGIN.Trim() == log)
+                                    passwordMessage.Visibility = Visibility.Visible;
                                 passwordMessage.Text = "Неправильный пароль!";
                             }
                         }
                         else
                         {
-                            if (client == null)
-                            {
+                           
                                 loginMessage.Visibility = Visibility.Visible;
                                 loginMessage.Text = "Пользователь не найден!";
 
-                            }
+                            
+
+                       
                         }
                     }
                 }
@@ -278,10 +298,16 @@ namespace CAR_RENT.pages
             catch { }
         }
 
-        private void Button_KeyDown(object sender, KeyEventArgs e)
-        {
+      
 
-        }
+        //private void login_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        passwordMessage.Visibility = Visibility.Hidden;
+        //    }
+        //    catch { }
+        //}
     }
 }
 
