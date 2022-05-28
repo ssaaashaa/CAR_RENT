@@ -22,20 +22,30 @@ namespace CAR_RENT
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static MainWindow mainWindow = new MainWindow();
+        
         public MainWindow()
         {
             InitializeComponent();
-            LogPage LogPage = new LogPage();
-            frame.Navigate(LogPage);
-            mainWindow = this;
+            try
+            {
+                MainWindow mainWindow = this;
+                LogPage LogPage = new LogPage(mainWindow);
+                frame.Navigate(LogPage);
+            }
+            catch { }
+          
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in App.Current.Windows)
-            w.Close();
+            try
+            {
+                foreach (Window w in App.Current.Windows)
+                    w.Close();
+            }
+            catch { }
+           
         }
     }
 }

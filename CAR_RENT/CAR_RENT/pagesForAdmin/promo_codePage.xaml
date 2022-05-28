@@ -53,6 +53,7 @@
                 </DataGrid.Columns>
         </DataGrid>
         <Button Content="Добавить"
+                 Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"
@@ -64,6 +65,7 @@
                 Margin="80 0 0 0 "
                ></Button>
         <Button Content="Удалить"
+                 Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"

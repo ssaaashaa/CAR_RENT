@@ -122,6 +122,9 @@
     <Compile Include="userControls\HistoryContract.xaml.cs">
       <DependentUpon>HistoryContract.xaml</DependentUpon>
     </Compile>
+    <Compile Include="userControls\PopUp.xaml.cs">
+      <DependentUpon>PopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\Accident.xaml.cs">
       <DependentUpon>Accident.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="userControls\LimitedInputUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="userControls\PopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

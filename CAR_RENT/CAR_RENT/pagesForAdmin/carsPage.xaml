@@ -86,7 +86,7 @@
                      ></TextBox>
                     <Button x:Name="search"
                     Click="search_Click"
-                            
+                             Style="{StaticResource buttonTables}"
                     Width="120"
                     Margin="0 5"
                     HorizontalAlignment="Right"
@@ -125,6 +125,7 @@
         </Grid>
      
         <Button Content="Добавить"
+                 Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"
@@ -135,6 +136,7 @@
                 HorizontalAlignment="Left"
                ></Button>
         <Button Content="Удалить"
+                 Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"
@@ -144,6 +146,7 @@
                 HorizontalAlignment="Right"
                 Click="Delete_Click"></Button>
         <Button Content="Изменить"
+                 Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"

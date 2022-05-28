@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CAR_RENT.windows"
+         xmlns:local1="clr-namespace:CAR_RENT.userControls"
         mc:Ignorable="d"
         Title="AdminWindow" 
          Height="800" 
@@ -40,37 +41,51 @@
             <Button Style="{StaticResource buttonAdmin}"
                     x:Name="CONTRACTS"
                     Click="CONTRACTS_Click"
+                    MouseEnter="CONTRACTS_MouseEnter"
+                    MouseLeave="CONTRACTS_MouseLeave"
                    >
                 <Image Source="../images/contracts.png"
+                      
                        />
             </Button>
             <Button Style="{StaticResource buttonAdmin}" 
                     x:Name="CARS"
-                    Click="CARS_Click">
+                    Click="CARS_Click"
+                    MouseEnter="CARS_MouseEnter"
+                    MouseLeave="CARS_MouseLeave">
                 <Image Source="../images/cars.png"
+                      
                        />
             </Button>
             <Button Style="{StaticResource buttonAdmin}"
                     x:Name="MODEL_INFO"
-                        Click="MODEL_INFO_Click">
+                        Click="MODEL_INFO_Click"
+                    MouseEnter="MODEL_INFO_MouseEnter"
+                    MouseLeave="MODEL_INFO_MouseLeave">
                 <Image Source="../images/carInfo.png"
                        />
             </Button>
             <Button Style="{StaticResource buttonAdmin}"
                     x:Name="CLIENTS"
-                    Click="CLIENTS_Click">
+                    Click="CLIENTS_Click"
+                    MouseEnter="CLIENTS_MouseEnter"
+                    MouseLeave="CLIENTS_MouseLeave">
                 <Image Source="../images/clients.png"
                        />
             </Button>
             <Button Style="{StaticResource buttonAdmin}"
                     x:Name="ACCIEDNTS"
-                    Click="ACCIEDNTS_Click">
+                    Click="ACCIEDNTS_Click"
+                    MouseEnter="ACCIEDNTS_MouseEnter"
+                    MouseLeave="ACCIEDNTS_MouseLeave">
                 <Image Source="../images/accidents.png"
                        />
             </Button>
             <Button Style="{StaticResource buttonAdmin}"
                     x:Name="promocode"
-                    Click="promocode_Click">
+                    Click="promocode_Click"
+                    MouseEnter="promocode_MouseEnter"
+                    MouseLeave="promocode_MouseLeave">
                 <Image Source="../images/promocode.png"
                        />
             </Button>
@@ -78,7 +93,8 @@
                     Margin="0 60 0 0"
                     Width="60"
                    x:Name="HOME"
-                    Click="HOME_Click">
+                    Click="HOME_Click"
+                   >
                 <Image Source="../images/home.png"
                        />
             </Button>
@@ -169,6 +185,58 @@
                x:Name="frame"
               NavigationUIVisibility="Hidden">
         </Frame>
-        
+        <Popup x:Name="popup_contracts"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="-7">
+            <Grid>
+                <local1:PopUp  TextProperty="Контракты" />
+            </Grid>
+        </Popup>
+
+        <Popup x:Name="popup_cars"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="-7">
+            <Grid>
+                <local1:PopUp TextProperty="Автомобили"/>
+            </Grid>
+        </Popup>
+
+        <Popup x:Name="popup_model"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="-7">
+            <Grid>
+                <local1:PopUp TextProperty="Описание авто"/>
+            </Grid>
+        </Popup>
+        <Popup x:Name="popup_clients"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="-7">
+            <Grid>
+                <local1:PopUp  TextProperty="Клиенты"/>
+            </Grid>
+        </Popup>
+
+        <Popup x:Name="popup_accidents"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="-7">
+            <Grid>
+                <local1:PopUp  TextProperty="ДТП"/>
+            </Grid>
+        </Popup>
+
+        <Popup x:Name="popup_promo"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="-7">
+            <Grid>
+                <local1:PopUp TextProperty="Промокоды"/>
+            </Grid>
+        </Popup>
+      
     </Grid>
 </Window>

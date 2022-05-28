@@ -31,6 +31,7 @@ namespace CAR_RENT.pages
             surname.PreviewTextInput += new TextCompositionEventHandler(letters);
             name.PreviewTextInput += new TextCompositionEventHandler(letters);
             patronymic.PreviewTextInput += new TextCompositionEventHandler(letters);
+            
 
         }
         private void loginText(object sender, TextCompositionEventArgs e)

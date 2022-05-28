@@ -22,11 +22,13 @@ namespace CAR_RENT.pages
     /// </summary>
     public partial class LogPage : Page
     {
-        public LogPage()
+        MainWindow MainWindow;
+        public LogPage(MainWindow mainWindow)
         {
             InitializeComponent();
             try
             {
+                MainWindow = mainWindow;
                 login.PreviewTextInput += new TextCompositionEventHandler(loginText);
                 password.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
                 var contracts = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
@@ -126,7 +128,7 @@ namespace CAR_RENT.pages
                             AdminWindow adminWindow = new AdminWindow();
                             App.admin = admin;
                             adminWindow.Show();
-                            MainWindow.mainWindow.Close();
+                            MainWindow.Close();
                         }
 
                         CLIENT client = db.CLIENTS.Where(u => u.LOGIN.Trim() == log && u.USER_TYPE.ToString().Trim() == "0").AsEnumerable().Where(u => u.LOGIN.Trim() == log && u.USER_TYPE.ToString().Trim() == "0").FirstOrDefault();

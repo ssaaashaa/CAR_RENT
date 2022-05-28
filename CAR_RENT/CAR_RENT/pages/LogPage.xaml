@@ -12,6 +12,9 @@
       
      
 >
+    <Page.Resources>
+        <ResourceDictionary Source="../templates/Styles.xaml" />
+    </Page.Resources>
     <Grid>
 
         <Border Height="480" Width="380">
@@ -139,10 +142,8 @@
                         </Border.OpacityMask>
                         <Button Width="278"
                         Height="55"
-                        BorderThickness="0"
-                        Background="#64AFB6"
                         Content="Войти"
-                        Foreground="White"
+                         Style="{StaticResource Enter}"
                         FontSize="18"
                         Click="Come_Click"
                         >

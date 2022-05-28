@@ -83,15 +83,15 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 StringBuilder errors = new StringBuilder();
-                if (string.IsNullOrWhiteSpace(PROMO_CODE.Text))
+                if (string.IsNullOrWhiteSpace(PROMO_CODE.Text.Trim()))
                 {
                     errors.AppendLine("Введите промокод!");
                 }
-                if (string.IsNullOrWhiteSpace(DISCOUNT_AMOUNT.Text.ToString()))
+                if (string.IsNullOrWhiteSpace(DISCOUNT_AMOUNT.Text.ToString().Trim()))
                 {
                     errors.AppendLine("Введите величину скидки!");
                 }
-                PROMO_CODE currentPromocode = CAR_RENTEntities.GetContext().PROMO_CODE.Where(u => u.PROMO_CODE1 == PROMO_CODE.Text).FirstOrDefault();
+                PROMO_CODE currentPromocode = CAR_RENTEntities.GetContext().PROMO_CODE.Where(u => u.PROMO_CODE1.Trim() == PROMO_CODE.Text.Trim()).FirstOrDefault();
                 if(currentPromocode != null)
                 {
                     errors.AppendLine("Такой промокод уже существует!");
@@ -102,8 +102,8 @@ namespace CAR_RENT.pagesForAdmin
                     return;
                 }
                 PROMO_CODE currentPromo_code = new PROMO_CODE();
-                currentPromo_code.PROMO_CODE1 = PROMO_CODE.Text;
-                currentPromo_code.DISCOUNT_AMOUNT = DISCOUNT_AMOUNT.Text;
+                currentPromo_code.PROMO_CODE1 = PROMO_CODE.Text.Trim();
+                currentPromo_code.DISCOUNT_AMOUNT = DISCOUNT_AMOUNT.Text.Trim();
                 CAR_RENTEntities.GetContext().PROMO_CODE.Add(currentPromo_code);
                 CAR_RENTEntities.GetContext().SaveChanges();
                 DGridPromocode.ItemsSource = CAR_RENTEntities.GetContext().PROMO_CODE.ToList();
@@ -134,8 +134,8 @@ namespace CAR_RENT.pagesForAdmin
                 {
                     MessageBox.Show("Выделите запись, которую требуется удалить!");
                 }
-                PROMO_CODE currentPromocode = CAR_RENTEntities.GetContext().PROMO_CODE.Where(p => p.PROMO_CODE1 == PROMO_CODE.Text).FirstOrDefault();
-                var contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.PROMO_CODE == PROMO_CODE.Text).ToList();
+                PROMO_CODE currentPromocode = CAR_RENTEntities.GetContext().PROMO_CODE.Where(p => p.PROMO_CODE1.Trim() == PROMO_CODE.Text.Trim()).FirstOrDefault();
+                var contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.PROMO_CODE.Trim() == PROMO_CODE.Text.Trim()).ToList();
                 if (currentPromocode != null && contract.Count==0)
                 {
                     CAR_RENTEntities.GetContext().PROMO_CODE.Remove(currentPromocode);
@@ -156,7 +156,7 @@ namespace CAR_RENT.pagesForAdmin
                     MessageBox.Show("Удаление промокода и и нформации о нем невозможно!");
 
                 }
-                else if (currentPromocode == null && string.IsNullOrEmpty(PROMO_CODE.Text) == false)
+                else if (currentPromocode == null && string.IsNullOrEmpty(PROMO_CODE.Text.Trim()) == false)
                 {
                     MessageBox.Show("Такого промокода не существует!");
                 }
@@ -166,17 +166,22 @@ namespace CAR_RENT.pagesForAdmin
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PROMO_CODE promo_code = new PROMO_CODE();
-            promo_code = DGridPromocode.SelectedItem as PROMO_CODE;
-            if (promo_code != null)
+            try
             {
-                PROMO_CODE.Text = promo_code.PROMO_CODE1.ToString();
-                DISCOUNT_AMOUNT.Text = promo_code.DISCOUNT_AMOUNT.ToString();
+                PROMO_CODE promo_code = new PROMO_CODE();
+                promo_code = DGridPromocode.SelectedItem as PROMO_CODE;
+                if (promo_code != null)
+                {
+                    PROMO_CODE.Text = promo_code.PROMO_CODE1.ToString();
+                    DISCOUNT_AMOUNT.Text = promo_code.DISCOUNT_AMOUNT.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Запись не выбрана!");
+                }
             }
-            else
-            {
-                MessageBox.Show("Запись не выбрана!");
-            }
+            catch { }
+           
         }
     }
 }

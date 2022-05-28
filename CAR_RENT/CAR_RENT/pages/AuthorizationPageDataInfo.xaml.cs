@@ -35,6 +35,9 @@ namespace CAR_RENT.pages
             passport.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
             licenseID.PreviewTextInput += new TextCompositionEventHandler(lettersAndNumbers);
             experience.PreviewTextInput += new TextCompositionEventHandler(experienceInput);
+            bday.DisplayDate = DateTime.Now.AddYears(-18);
+            bday.DisplayDateStart = DateTime.Now.AddYears(-90);
+            bday.DisplayDateEnd = DateTime.Now.AddYears(-18);
             login = log;
             password = pass;
             surname = surn;
@@ -175,12 +178,12 @@ namespace CAR_RENT.pages
                 DateTime date = new DateTime();
                 DateTime.TryParse(bday.Text.Trim(), out date);
                 DateTime today = DateTime.Today;
-                if ((today.Year - date.Year) <= 18)
+                if ((today.Year - date.Year) < 18)
                 {
                     MessageBox.Show("Извините! Вам нет 18 лет! Мы не сможем предоставить вам автомобиль!");
                     return;
                 }
-                if ((today.Year - date.Year) >= 90)
+                if ((today.Year - date.Year) > 90)
                 {
                     MessageBox.Show("Извините! Некорректно введенные данные!");
                     return;

@@ -29,19 +29,23 @@ namespace CAR_RENT.userControls
         string EngineCapacity, string Transmission, string Equipment, string Image, string Id)
         {
             InitializeComponent();
-            currentName.Text = CurrentName;
-            price.Text = Price + " BYN";
-            year.Text = Year;
-            bodyType.Text = BodyType;
-            engineType.Text = EngineType;
-            engineCapacity.Text = EngineCapacity;
-            transmission.Text = Transmission;
-            equipment.Text = Equipment;
-            BitmapImage myBitmapImage = new BitmapImage(new Uri(Image));
-            myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            currentImage.Source = myBitmapImage;
-            ID = Id;
-            CarName=CurrentName;
+            try
+            {
+                currentName.Text = CurrentName;
+                price.Text = Price + " BYN";
+                year.Text = Year;
+                bodyType.Text = BodyType;
+                engineType.Text = EngineType;
+                engineCapacity.Text = EngineCapacity;
+                transmission.Text = Transmission;
+                equipment.Text = Equipment;
+                BitmapImage myBitmapImage = new BitmapImage(new Uri(Image));
+                myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                currentImage.Source = myBitmapImage;
+                ID = Id;
+                CarName = CurrentName;
+            }
+            catch { }
 
         }
      

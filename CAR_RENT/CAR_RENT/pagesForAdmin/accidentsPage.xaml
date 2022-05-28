@@ -80,6 +80,7 @@
 
         </StackPanel>
         <Button Content="Добавить"
+                Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"
@@ -90,6 +91,7 @@
                 HorizontalAlignment="Left"
                ></Button>
         <Button Content="Удалить"
+                 Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"
@@ -99,6 +101,7 @@
                 Grid.Row="2"
                 HorizontalAlignment="Right"></Button>
         <Button Content="Изменить"
+                 Style="{StaticResource buttonTables}"
                 Width="130"
                 Height="40"
                 FontSize="16"

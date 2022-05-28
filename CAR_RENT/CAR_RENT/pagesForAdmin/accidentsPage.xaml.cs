@@ -44,7 +44,6 @@ namespace CAR_RENT.pagesForAdmin
                     foreach (var contract in currentContracts)
                     {
                         CONTRACT_ID.Items.Add(contract.ID);
-                        //CONTRACT_ID.DisplayMemberPath=
 
                     }
                 }
@@ -122,12 +121,23 @@ namespace CAR_RENT.pagesForAdmin
         {
             try
             {
+                StringBuilder errors = new StringBuilder();
                 CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.ID.ToString().Trim() == CONTRACT_ID.Text.ToString().Trim()).FirstOrDefault();
                 DateTime contract_start = new DateTime();
-                DateTime.TryParse(contract.CONTRACT_START.ToString().Trim(), out contract_start);
                 DateTime contract_end = new DateTime();
-                DateTime.TryParse(contract.CONTRACT_END.ToString().Trim(), out contract_end);
-                StringBuilder errors = new StringBuilder();
+                try
+                {
+                    DateTime.TryParse(contract.CONTRACT_START.ToString().Trim(), out contract_start);
+                    DateTime.TryParse(contract.CONTRACT_END.ToString().Trim(), out contract_end);
+                }
+                catch
+                {
+                    errors.AppendLine("Необходимо заполнить все поля!");
+                    MessageBox.Show(errors.ToString());
+                    errors.Clear();
+                    return;
+                }
+                
                 if (string.IsNullOrWhiteSpace(CONTRACT_ID.Text.Trim()))
                 {
                     errors.AppendLine("Ввыберите ID контракта!");
@@ -136,6 +146,7 @@ namespace CAR_RENT.pagesForAdmin
                 {
                     errors.AppendLine("Введите дату ДТП!");
                 }
+             
                 DateTime date = new DateTime();
                 DateTime.TryParse(DATE.Text, out date);
                 if ((date.Date<contract_start.Date && date.Date < contract_end.Date)|| (date.Date > contract_start.Date && date.Date > contract_end.Date))
@@ -179,16 +190,22 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 CONTRACT contract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.ID.ToString().Trim() == CONTRACT_ID.Text.ToString().Trim()).FirstOrDefault();
-                DateTime contract_start = new DateTime();
-                DateTime.TryParse(contract.CONTRACT_START.ToString().Trim(), out contract_start);
-                DateTime contract_end = new DateTime();
-                DateTime.TryParse(contract.CONTRACT_END.ToString().Trim(), out contract_end);
-                if (ID.Text.Equals(""))
-                {
-                    MessageBox.Show("Выделите запись, которую требуется изменить!");
-
-                }
+                ACCIDENT currentAccident = CAR_RENTEntities.GetContext().ACCIDENTS.Where(a => a.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
                 StringBuilder errors = new StringBuilder();
+                DateTime contract_start = new DateTime();
+                DateTime contract_end = new DateTime();
+                try
+                {
+                    DateTime.TryParse(contract.CONTRACT_START.ToString().Trim(), out contract_start);
+                    DateTime.TryParse(contract.CONTRACT_END.ToString().Trim(), out contract_end);
+                }
+                catch
+                {
+                    errors.AppendLine("Выделите запись, которую требуется изменить!");
+                    MessageBox.Show(errors.ToString());
+                    errors.Clear();
+                    return;
+                }
                 if (string.IsNullOrWhiteSpace(CONTRACT_ID.Text.Trim()))
                 {
                     errors.AppendLine("Выберите ID контракта!");
@@ -211,12 +228,15 @@ namespace CAR_RENT.pagesForAdmin
                 {
                     errors.AppendLine("Введите описание повреждения!");
                 }
+                if (currentAccident == null)
+                {
+                    errors.AppendLine("Выделите запись для редактирования!");
+                }
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
                     return;
                 }
-                ACCIDENT currentAccident = CAR_RENTEntities.GetContext().ACCIDENTS.Where(a => a.ID.ToString() == ID.Text.ToString()).FirstOrDefault();
                 currentAccident.ID = Convert.ToInt32(ID.Text.Trim());
                 currentAccident.CONTRACT_ID = Convert.ToInt32(CONTRACT_ID.Text.Trim());
                 currentAccident.DATE = Convert.ToDateTime(DATE.Text.Trim());
