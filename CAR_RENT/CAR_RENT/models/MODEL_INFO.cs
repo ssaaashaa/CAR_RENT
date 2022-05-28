@@ -32,5 +32,13 @@ namespace CAR_RENT.models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CAR> CARS { get; set; }
+
+        public CAR CAR
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

@@ -35,5 +35,13 @@ namespace CAR_RENT.models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTRACT> CONTRACTS { get; set; }
+
+        public CONTRACT CONTRACT
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

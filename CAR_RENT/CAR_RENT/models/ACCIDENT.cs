@@ -21,5 +21,13 @@ namespace CAR_RENT.models
         public string DAMAGE_DESCRIPTION { get; set; }
     
         public virtual CONTRACT CONTRACT { get; set; }
+
+        public CONTRACT CONTRACT1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

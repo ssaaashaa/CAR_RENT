@@ -30,61 +30,10 @@ namespace CAR_RENT.pagesForAdmin
             {
                 DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
                 DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS.Trim() == "Новая заявка").ToList();
-                CLIENT_ID.PreviewTextInput += new TextCompositionEventHandler(textInput);
-                CAR_ID.PreviewTextInput += new TextCompositionEventHandler(textInput);
-                CONTRACT_START.PreviewTextInput += new TextCompositionEventHandler(dateInput);
-                CONTRACT_END.PreviewTextInput += new TextCompositionEventHandler(dateInput);
-                id.PreviewTextInput += new TextCompositionEventHandler(numbers);
-                idCar.PreviewTextInput += new TextCompositionEventHandler(numbers);
+              
                 contract_status();
-                TimeSpan time = TimeSpan.FromDays(30);
-                CONTRACT_START.DisplayDateEnd = DateTime.Now + time;
-                CONTRACT_END.DisplayDateEnd = DateTime.Now + time;
+            
 
-                ListView listIDclients = new ListView();
-                using (CAR_RENTEntities db = new CAR_RENTEntities())
-                {
-                    var currentClients = (from clients in db.CLIENTS
-                                          select new
-                                          {
-                                              ID = clients.ID,
-                                              LOGIN=clients.LOGIN
-                                          }).ToList().OrderBy(c => c.ID);
-                    foreach (var client in currentClients)
-                    {
-                        CLIENT_ID.Items.Add(client.ID);
-                       
-
-                    }
-                }
-                ListView listIDcars = new ListView();
-                using (CAR_RENTEntities db = new CAR_RENTEntities())
-                {
-                    var currentCars = (from cars in db.CARS
-                                       select new
-                                       {
-                                           ID = cars.ID
-                                       }).ToList().OrderBy(c => c.ID);
-                    foreach (var car in currentCars)
-                    {
-                        CAR_ID.Items.Add(car.ID);
-
-                    }
-                }
-                ListView listPromo = new ListView();
-                using (CAR_RENTEntities db = new CAR_RENTEntities())
-                {
-                    var currentPromos = (from promo in db.PROMO_CODE
-                                         select new
-                                         {
-                                             PROMO = promo.PROMO_CODE1
-                                         }).ToList().OrderBy(c => c.PROMO);
-                    foreach (var promo in currentPromos)
-                    {
-                        PROMO_CODE.Items.Add(promo.PROMO);
-
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -94,39 +43,7 @@ namespace CAR_RENT.pagesForAdmin
 
 
         }
-        private void dateInput(object sender, TextCompositionEventArgs e)
-        {
-            try
-            {
-                if (!Char.IsDigit(e.Text, 0) && e.Text != "." && e.Text != "-" && e.Text != "/")
-                {
-                    e.Handled = true; //не обрабатывать введеный символ
-                }
-            }
-            catch { }
-        }
-        private void space_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.Key == Key.Space)
-                {
-                    e.Handled = true;
-                }
-            }
-            catch { }
-        }
-        void numbers(object sender, TextCompositionEventArgs e)
-        {
-            try
-            {
-                if (!Char.IsDigit(e.Text, 0))
-                {
-                    e.Handled = true; //не обрабатывать введеный символ
-                }
-            }
-            catch { }
-        }
+      
         void contract_status()
         {
             try
@@ -160,17 +77,7 @@ namespace CAR_RENT.pagesForAdmin
             }
             catch { }
         }
-        private void textInput(object sender, TextCompositionEventArgs e)
-        {
-            try
-            {
-            if (!Char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true; //не обрабатывать введеный символ
-            }
-            }
-            catch { }
-        }
+     
         private void DGridContracts_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
@@ -190,7 +97,7 @@ namespace CAR_RENT.pagesForAdmin
                     }
                     else
                     {
-                        PROMO_CODE.SelectedValue = null;
+                        PROMO_CODE.Text = null;
                     }
                     STATUS.Text = selectedContract.STATUS.Trim();
                     SUM.Text = selectedContract.TOTAL_COST.ToString().Trim();
@@ -204,184 +111,36 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 ID.Clear();
-                CLIENT_ID.SelectedItem = null;
-                CAR_ID.SelectedItem = null;
+                CLIENT_ID.Text = null;
+                CAR_ID.Text = null;
                 CONTRACT_START.Text = null;
                 CONTRACT_END.Text = null;
-                PROMO_CODE.SelectedItem = null;
+                PROMO_CODE.Text = null;
                 STATUS.SelectedItem = null;
                 SUM.Clear();
             }
             catch { }
            
         }
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                StringBuilder errors = new StringBuilder();
-                if(string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim())
-                    && string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim())
-                    && string.IsNullOrWhiteSpace(CONTRACT_START.Text.Trim())
-                    && string.IsNullOrWhiteSpace(CONTRACT_END.Text.Trim())
-                    && string.IsNullOrWhiteSpace(STATUS.Text.Trim()))
-                {
-                    errors.AppendLine("Необходимо заполнить все поля, промокод-необязательно!");
-                    MessageBox.Show(errors.ToString());
-                    errors.Clear();
-                    return;
-                }
-                DateTime contract_start = new DateTime();
-                DateTime.TryParse(CONTRACT_START.Text.Trim(), out contract_start);
-                DateTime contract_end = new DateTime();
-                DateTime.TryParse(CONTRACT_END.Text.Trim(), out contract_end);
-                TimeSpan days = contract_end - contract_start;
-                if (string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim()))
-                {
-                    errors.AppendLine("Выберите клиента!");
-                }
-                if (string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim()))
-                {
-                    errors.AppendLine("Выберите авто!");
-                }
-                if (string.IsNullOrWhiteSpace(CONTRACT_START.Text.Trim()))
-                {
-                    errors.AppendLine("Введите дату начала аренды!");
-                }
-                if (string.IsNullOrWhiteSpace(CONTRACT_END.Text.Trim()))
-                {
-                    errors.AppendLine("Введите дату окончания аренды!");
-                }
-                if (days.Days < 0)
-                {
-                    errors.AppendLine("Введите корректные даты!");
-                }
-                if (days.Days >= 31)
-                {
-                    errors.AppendLine("Прокат осуществляется только на 30 дней!");
-                }
-                if (string.IsNullOrWhiteSpace(STATUS.Text.Trim()))
-                {
-                    errors.AppendLine("Введите статус!");
-                }
-                if (errors.Length > 0)
-                {
-                    MessageBox.Show(errors.ToString());
-                    errors.Clear();
-                    return;
-                    
-                }
-                double promocode = 0;
-                PROMO_CODE promo_code = null;
-                CAR car = CAR_RENTEntities.GetContext().CARS.Where(c => c.ID.ToString().Trim() == CAR_ID.Text.ToString().Trim()).Single();
-                if (PROMO_CODE.Text.Length != 0)
-                {
-                    promo_code = CAR_RENTEntities.GetContext().PROMO_CODE.Where(c => c.PROMO_CODE1.Trim() == PROMO_CODE.Text.Trim()).Single();
-                    promocode = Convert.ToDouble(promo_code.DISCOUNT_AMOUNT.Trim()) * 0.01;
-                }
-                double total_price = Convert.ToInt32(car.RENT_PRICE) * days.Days - Convert.ToInt32(car.RENT_PRICE) * days.Days * promocode;
-                CONTRACT currentContract = new CONTRACT();
-                currentContract.CLIENT_ID = Convert.ToInt32(CLIENT_ID.Text.Trim());
-                currentContract.CAR_ID = Convert.ToInt32(CAR_ID.Text.Trim());
-                currentContract.CONTRACT_START = contract_start;
-                currentContract.CONTRACT_END = contract_end;
-                try
-                {
-                    currentContract.PROMO_CODE = promo_code.PROMO_CODE1.Trim();
-                }
-                catch { }
-                currentContract.TOTAL_COST = Convert.ToInt32(total_price);
-                currentContract.STATUS = STATUS.Text.Trim();
-                contract_status();
-                CAR_RENTEntities.GetContext().CONTRACTS.Add(currentContract);
-                try
-                {
-                    CAR_RENTEntities.GetContext().SaveChanges();
-                    DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
-                    DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS.Trim() == "Новая заявка").ToList();
-                    Clear();
-                    MessageBox.Show("Данные успешно добавлены!");
-                }
-                catch
-                {
-                    MessageBox.Show("Такая запись уже существует!");
-                }
-            }
-            catch { }
 
-
-        }
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+               
+                if (ID.Text.Equals(""))
+                {
+                    MessageBox.Show("Выделите запись, которую требуется изменить!");
+                    return;
+                }
                 DateTime contract_start = new DateTime();
                 DateTime.TryParse(CONTRACT_START.Text.Trim(), out contract_start);
                 DateTime contract_end = new DateTime();
                 DateTime.TryParse(CONTRACT_END.Text.Trim(), out contract_end);
                 TimeSpan days = contract_end - contract_start;
-                if (ID.Text.Equals(""))
-                {
-                    MessageBox.Show("Выделите запись, которую требуется изменить!");
-                    return;
-
-                }
-                StringBuilder errors = new StringBuilder();
-                if (string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim()))
-                {
-                    errors.AppendLine("Введите клиента!");
-                }
-                if (string.IsNullOrWhiteSpace(CLIENT_ID.Text.Trim()))
-                {
-                    errors.AppendLine("Введите авто!");
-                }
-                if (string.IsNullOrWhiteSpace(CONTRACT_START.Text.Trim()))
-                {
-                    errors.AppendLine("Введите дату начала аренды!");
-                }
-                if (string.IsNullOrWhiteSpace(CONTRACT_END.Text.Trim()))
-                {
-                    errors.AppendLine("Введите дату окончания аренды!");
-                }
-                if (days.Days < 0)
-                {
-                    errors.AppendLine("Введите корректные даты!");
-                }
-                if (days.Days >= 31)
-                {
-                    errors.AppendLine("Прокат осуществляется только на 30 дней!");
-                }
-                if (string.IsNullOrWhiteSpace(STATUS.Text.Trim()))
-                {
-                    errors.AppendLine("Введите статус!");
-                }
-                if (errors.Length > 0)
-                {
-                    MessageBox.Show(errors.ToString());
-                    errors.Clear();
-                    return;
-                }
-            
-                double promocode = 0;
-                PROMO_CODE promo_code = null;
                 CAR currentCar = CAR_RENTEntities.GetContext().CARS.Where(c => c.ID.ToString().Trim() == CAR_ID.Text.ToString().Trim()).FirstOrDefault();
-                if (PROMO_CODE.Text.Length != 0)
-                {
-                    promo_code = CAR_RENTEntities.GetContext().PROMO_CODE.Where(c => c.PROMO_CODE1.Trim() == PROMO_CODE.Text.Trim()).Single();
-                    promocode = Convert.ToDouble(promo_code.DISCOUNT_AMOUNT.Trim()) * 0.01;
-                }
-                double total_price = Convert.ToInt32(currentCar.RENT_PRICE) * days.Days - Convert.ToInt32(currentCar.RENT_PRICE) * days.Days * promocode;
                 CONTRACT currentContract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.ID.ToString().Trim() == ID.Text.ToString().Trim()).FirstOrDefault();
-                currentContract.CLIENT_ID = Convert.ToInt32(CLIENT_ID.Text.Trim());
-                currentContract.CAR_ID = Convert.ToInt32(CAR_ID.Text.Trim());
-                currentContract.CONTRACT_START = contract_start;
-                currentContract.CONTRACT_END = contract_end;
-                try
-                {
-                    currentContract.PROMO_CODE = promo_code.PROMO_CODE1.Trim();
-                }
-                catch { }
-                currentContract.TOTAL_COST = Convert.ToInt32(total_price);
+ 
                 currentContract.STATUS = STATUS.Text.Trim();    
                 if (currentContract != null)
                 {
@@ -427,40 +186,7 @@ namespace CAR_RENT.pagesForAdmin
             }
             catch { }
         }
-        private void Delete_Click(object sender, RoutedEventArgs ec)
-        {
-            try
-            {
-                if (ID.Text.Equals(""))
-                {
-                    MessageBox.Show("Выделите запись, которую требуется удалить!");
-
-                }
-                CONTRACT currentContract = CAR_RENTEntities.GetContext().CONTRACTS.Where(m => m.ID.ToString().Trim() == ID.Text.ToString().Trim()).FirstOrDefault();
-                if (currentContract != null)
-                {
-                    CAR_RENTEntities.GetContext().CONTRACTS.Remove(currentContract);
-                    try
-                    {
-                        CAR_RENTEntities.GetContext().SaveChanges();
-                        DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
-                        DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS.Trim() == "Новая заявка").ToList();
-                        Clear();
-                        MessageBox.Show("Запись удалена!");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-                else if (currentContract == null && string.IsNullOrEmpty(ID.Text.Trim()) == false)
-                {
-                    MessageBox.Show("Такого контракта не существует!");
-                }
-            }
-            catch { }
-      
-        }
+       
 
         private void accident_Click(object sender, RoutedEventArgs e)
         {
@@ -492,7 +218,7 @@ namespace CAR_RENT.pagesForAdmin
                     }
                     else
                     {
-                        PROMO_CODE.SelectedValue = null;
+                        PROMO_CODE.Text = null;
                     }
                     STATUS.Text = selectedContract.STATUS.Trim();
                     SUM.Text = selectedContract.TOTAL_COST.ToString().Trim();

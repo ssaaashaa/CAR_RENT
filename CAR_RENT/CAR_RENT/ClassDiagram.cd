@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAR_RENT.models.CAR_RENTEntities">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACKAAAgAAAAAAAAAIAAAAAAEAAAAAAAACAAEACAAAA=</HashCode>
+      <FileName>models\Model.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAR_RENT.models.ACCIDENT">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAgAAAAQAAAAAAAAAAIAAAACEAAAAAAAA=</HashCode>
+      <FileName>models\ACCIDENT.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CONTRACT1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAR_RENT.models.CAR">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAABAgAAAAACAAAAAEAAAAEAAACAAAAAIAEA=</HashCode>
+      <FileName>models\CAR.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CONTRACT" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAR_RENT.models.CLIENT">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAEAAAkAACAEAAAAAAACAAAAAAACACASAAAEA=</HashCode>
+      <FileName>models\CLIENT.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CONTRACT" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAR_RENT.models.CONTRACT">
+    <Position X="8" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAgAAAEIAAAAQAkAAAAEAEAAAQAECAAEA=</HashCode>
+      <FileName>models\CONTRACT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAR_RENT.models.MODEL_INFO">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAEQEAAABgAAAAAAAAABBAAAAAAAAAACAAAgIAAA=</HashCode>
+      <FileName>models\MODEL_INFO.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CAR" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAR_RENT.models.PROMO_CODE">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>models\PROMO_CODE.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CONTRACT" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

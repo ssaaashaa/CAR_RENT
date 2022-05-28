@@ -190,7 +190,7 @@
                    HorizontalOffset="10"
                    VerticalOffset="-7">
             <Grid>
-                <local1:PopUp  TextProperty="Контракты" />
+                <local1:PopUp  TextProperty="Договоры" />
             </Grid>
         </Popup>
 
