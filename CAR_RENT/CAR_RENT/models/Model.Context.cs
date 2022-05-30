@@ -15,11 +15,12 @@ namespace CAR_RENT.models
     
     public partial class CAR_RENTEntities : DbContext
     {
-        private static CAR_RENTEntities context;
+      
         public CAR_RENTEntities()
             : base("name=CAR_RENTEntities")
         {
         }
+        private static CAR_RENTEntities context;
         public static CAR_RENTEntities GetContext()
         {
             if (context == null)

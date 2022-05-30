@@ -71,11 +71,7 @@ namespace CAR_RENT.pagesForAdmin
                     SURNAME.Text = selectedClient.SURNAME.Trim();
                     NAME.Text = selectedClient.NAME.Trim();
                     PATRONYMIC.Text = selectedClient.PATRONYMIC.Trim();
-                    try
-                    {
-                        BDAY.Text = selectedClient.BDAY.ToString().Remove(10).Trim();
-                    }
-                    catch { }
+                    BDAY.Text = selectedClient.BDAY.ToString().Remove(10).Trim();
                     PASSPORT.Text = selectedClient.PASSPORT.Trim();
                     LICENSE_ID.Text = selectedClient.DRIVER_LICENSE_ID.Trim();
                     EXPERIENCE.Text = selectedClient.DRIVING_EXPERIENCE.Trim();
@@ -97,7 +93,7 @@ namespace CAR_RENT.pagesForAdmin
             try
             {
                 string patternTelephone = @"^\+375 \((25|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$";
-                if (!Regex.IsMatch(TELEPHONE.Text.Trim(), patternTelephone))
+                if (!Regex.IsMatch(telephNum.Text.Trim(), patternTelephone))
                 {
                     MessageBox.Show("Введите корректный номер телефона!");
                     return;
@@ -116,6 +112,22 @@ namespace CAR_RENT.pagesForAdmin
                         DGridClients.SelectedItem = item;
                         DGridClients.ScrollIntoView(item);
                         row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        CLIENT selectedClient = DGridClients.Items[i] as CLIENT;
+                        if(selectedClient != null)
+                        {
+                            LOGIN.Text = selectedClient.LOGIN.Trim();
+                            PASSWORD.Text = selectedClient.PASSWORD.Trim();
+                            SURNAME.Text = selectedClient.SURNAME.Trim();
+                            NAME.Text = selectedClient.NAME.Trim();
+                            PATRONYMIC.Text = selectedClient.PATRONYMIC.Trim();
+                            BDAY.Text = selectedClient.BDAY.ToString().Remove(10).Trim();
+                            PASSPORT.Text = selectedClient.PASSPORT.Trim();
+                            LICENSE_ID.Text = selectedClient.DRIVER_LICENSE_ID.Trim();
+                            EXPERIENCE.Text = selectedClient.DRIVING_EXPERIENCE.Trim();
+                            TELEPHONE.Text = selectedClient.TELEPHONE.Trim();
+                            TYPE.Text = selectedClient.USER_TYPE.ToString().Trim();
+                            ID.Text = selectedClient.ID.ToString().Trim();
+                        }
                         break;
                     }
                 }

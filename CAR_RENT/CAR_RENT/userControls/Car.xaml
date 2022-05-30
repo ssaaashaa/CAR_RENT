@@ -94,7 +94,7 @@
                         Height="40"
                         Content="Бронирование авто"
                        
-                        Click="Button_Click"
+                        Click="Rent"
                       
                                                          Style="{StaticResource Enter}"
 ></Button>

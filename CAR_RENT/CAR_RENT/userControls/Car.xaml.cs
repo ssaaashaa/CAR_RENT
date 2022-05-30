@@ -25,8 +25,11 @@ namespace CAR_RENT.userControls
     {
         public string ID { get; set; }
         public string CarName { get; set; }
+        public string Clas { get; set; }
+        public string Transm { get; set; }
+        public string CurName { get; set; }
         public Car(string CurrentName, string Price, string Year,string BodyType, string EngineType,
-        string EngineCapacity, string Transmission, string Equipment, string Image, string Id)
+        string EngineCapacity, string Transmission, string Equipment, string Image, string Id, string Class, string Name, string Trans)
         {
             InitializeComponent();
             try
@@ -43,13 +46,17 @@ namespace CAR_RENT.userControls
                 myBitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                 currentImage.Source = myBitmapImage;
                 ID = Id;
-                CarName = CurrentName;
+                CarName = Name;
+                Clas = Class;
+                Transm = Trans;
+              
+
             }
             catch { }
 
         }
      
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Rent(object sender, RoutedEventArgs e)
         {
             try
             {

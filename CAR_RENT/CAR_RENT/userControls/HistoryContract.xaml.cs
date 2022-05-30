@@ -24,6 +24,7 @@ namespace CAR_RENT.userControls
     public partial class HistoryContract : UserControl
     {
         private string ID { get; set; }
+ 
         public HistoryContract(string ContractId, string ContractStart, string ContractEnd, string Car, string RegisterNum, string Status, string TotalCost)
         {
             InitializeComponent();
@@ -56,7 +57,6 @@ namespace CAR_RENT.userControls
                     contract.STATUS = "Отменена";
                     contract.CONTRACT_STATUS = "Прокат отменен";
                     CAR_RENTEntities.GetContext().SaveChanges();
-                    //cancel.Visibility = Visibility.Hidden;
                     CatalogWindow.Frame.Navigate(new UserContracts());
                   
                 }

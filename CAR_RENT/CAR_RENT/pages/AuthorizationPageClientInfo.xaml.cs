@@ -347,6 +347,9 @@ namespace CAR_RENT.pages
             try
             {
                
+                    PeviousPage.Margin = new Thickness(20);
+               
+
             }
             catch { }
         }
@@ -355,8 +358,8 @@ namespace CAR_RENT.pages
         {
             try
             {
-               
-            }
+                PeviousPage.Margin = new Thickness(15);
+           }
             catch { }
         }
 
@@ -364,7 +367,7 @@ namespace CAR_RENT.pages
         {
             try
             {
-                NextPage.Width = 80;
+                NextPage.Margin = new Thickness(20);
             }
             catch { }
         }
@@ -373,7 +376,26 @@ namespace CAR_RENT.pages
         {
             try
             {
-                NextPage.Width = 70;
+                NextPage.Margin = new Thickness(15);
+            }
+            catch { }
+        }
+
+        private void next_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                NextPage.Margin = new Thickness(20);
+
+            }
+            catch { }
+        }
+
+        private void leftArrow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                PeviousPage.Margin = new Thickness(20);
             }
             catch { }
         }

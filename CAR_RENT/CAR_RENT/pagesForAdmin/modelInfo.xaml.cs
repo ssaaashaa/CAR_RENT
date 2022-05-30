@@ -97,7 +97,7 @@ namespace CAR_RENT.pagesForAdmin
         {
             try
             {
-
+              //  id.Clear();
                 DGridModelInfo.ItemsSource = CAR_RENTEntities.GetContext().MODEL_INFO.ToList();
                 for (int i = 0; i < DGridModelInfo.Items.Count; i++)
                 {
@@ -105,15 +105,66 @@ namespace CAR_RENT.pagesForAdmin
                     DGridModelInfo.ScrollIntoView(DGridModelInfo.Items[i]);
                     DataGridRow row = (DataGridRow)DGridModelInfo.ItemContainerGenerator.ContainerFromIndex(i);
                     TextBlock cellContentID = DGridModelInfo.Columns[0].GetCellContent(row) as TextBlock;
-                    if (cellContentID != null && cellContentID.Text.ToLower().Trim().Equals(param.ToLower()))
+                    if (cellContentID != null && cellContentID.Text.Equals(param))
                     {
                         object item = DGridModelInfo.Items[i];
                         DGridModelInfo.SelectedItem = item;
                         DGridModelInfo.ScrollIntoView(item);
                         row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        MODEL_INFO selectedModel = DGridModelInfo.Items[i] as MODEL_INFO;
+                        if(selectedModel != null)
+                        {
+                            ID.Text = selectedModel.ID.ToString().Trim();
+                            MODEL.Text = selectedModel.MODEL.Trim();
+                            BREND.Text = selectedModel.BREND.Trim();
+                            YEAR_OF_ISSUE.Text = selectedModel.YEAR_OF_ISSUE.ToString().Remove(0, 6).Remove(4).Trim();
+                            BODY_TYPE.Text = selectedModel.BODY_TYPE.Trim();
+                            try
+                            {
+                                ENGINE_CAPACITY.Text = selectedModel.ENGINE_CAPACITY.Trim();
+                            }
+                            catch { }
+                            ENGINE_TYPE.Text = selectedModel.ENGINE_TYPE.Trim();
+                            TRANSMISSION.Text = selectedModel.TRANSMISSION.Trim();
+                            EQUIPMENT.Text = selectedModel.EQUIPMENT.Trim();
+                        }
+                       
                         break;
                     }
+                    if (cellContentID == null)
+                    {
+                        ID.Clear();
+                        MODEL.Text = null;
+                        BREND.Text = null;
+                        YEAR_OF_ISSUE.Text = null;
+                        BODY_TYPE.Text = null;
+                        ENGINE_CAPACITY.Text = null;
+                        TRANSMISSION.Text = null;
+                        EQUIPMENT.Text = null;
+                        ENGINE_TYPE.Text = null;
+                        DGridModelInfo.SelectedItem = null;
+                        break;
+
+                    }
+                    }
+              
+                for (int i = 0; i > DGridModelInfo.Items.Count; i++)
+                {
+                    DGridModelInfo.SelectedItem = null;
+                    ID.Clear();
+                    MODEL.Text = null;
+                    BREND.Text = null;
+                    YEAR_OF_ISSUE.Text = null;
+                    BODY_TYPE.Text = null;
+                    ENGINE_CAPACITY.Text = null;
+                    TRANSMISSION.Text = null;
+                    EQUIPMENT.Text = null;
+                    ENGINE_TYPE.Text = null;
+                  
+                    break;
                 }
+                 
+              
             }
             catch { }
         }

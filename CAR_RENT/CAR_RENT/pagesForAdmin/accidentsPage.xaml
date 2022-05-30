@@ -132,7 +132,7 @@
                 <TextBlock x:Name="DAMAGE_COST" Text="{Binding DAMAGE_COST}" Width="80" VerticalAlignment="Center"></TextBlock>
                 <Label Foreground="White" VerticalAlignment="Center">BYN</Label>
             </StackPanel>
-            <TextBlock x:Name="DAMAGE_DESCRIPTION" Margin="0 9" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="3" Grid.RowSpan="6" Width="200" ></TextBlock>
+            <TextBlock x:Name="DAMAGE_DESCRIPTION" Margin="0 9" Text="{Binding DAMAGE_DESCRIPTION}" Grid.Row="3" Grid.RowSpan="6" Width="200" TextWrapping="Wrap"></TextBlock>
         </Grid>
     </Grid>
 </Page>

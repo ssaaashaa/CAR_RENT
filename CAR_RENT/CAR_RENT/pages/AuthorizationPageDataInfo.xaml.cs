@@ -338,7 +338,63 @@ namespace CAR_RENT.pages
             }
             catch { }
         }
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
 
-        
+                PeviousPage.Margin = new Thickness(20);
+
+
+            }
+            catch { }
+        }
+
+        private void leftArrow_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                PeviousPage.Margin = new Thickness(15);
+            }
+            catch { }
+        }
+
+        private void next_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                NextPage.Margin = new Thickness(20);
+            }
+            catch { }
+        }
+
+        private void next_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                NextPage.Margin = new Thickness(15);
+            }
+            catch { }
+        }
+
+        private void next_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                NextPage.Margin = new Thickness(20);
+
+            }
+            catch { }
+        }
+
+        private void leftArrow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                PeviousPage.Margin = new Thickness(20);
+            }
+            catch { }
+        }
+
     }
 }

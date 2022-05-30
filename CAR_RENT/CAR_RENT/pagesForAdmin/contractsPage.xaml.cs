@@ -270,9 +270,57 @@ namespace CAR_RENT.pagesForAdmin
                         DGridContracts.SelectedItem = item;
                         DGridContracts.ScrollIntoView(item);
                         row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        CONTRACT selectedContract = DGridContracts.Items[i] as CONTRACT;
+                        if(selectedContract != null)
+                        {
+                            ID.Text = selectedContract.ID.ToString().Trim();
+                            CLIENT_ID.Text = selectedContract.CLIENT_ID.ToString().Trim();
+                            CAR_ID.Text = selectedContract.CAR_ID.ToString().Trim();
+                            CONTRACT_START.Text = selectedContract.CONTRACT_START.ToString().Remove(10).Trim();
+                            CONTRACT_END.Text = selectedContract.CONTRACT_END.ToString().Remove(10).Trim();
+                            if (selectedContract.PROMO_CODE != null)
+                            {
+                                PROMO_CODE.Text = selectedContract.PROMO_CODE.Trim();
+                            }
+                            else
+                            {
+                                PROMO_CODE.Text = null;
+                            }
+                            STATUS.Text = selectedContract.STATUS.Trim();
+                            SUM.Text = selectedContract.TOTAL_COST.ToString().Trim();
+                        }
+                        break;
+                    }
+                    if (cellContentID == null)
+                    {
+                        ID.Clear();
+                        CLIENT_ID.Text = null;
+                        CAR_ID.Text = null;
+                        CONTRACT_START.Text = null;
+                        CONTRACT_END.Text = null;
+                        PROMO_CODE.Text = null;
+                        STATUS.Text = null;
+                        SUM.Text = null;
+                        DGridContracts.SelectedItem = null;
                         break;
                     }
                 }
+                for (int i = 0; i > DGridContracts.Items.Count; i++)
+                {
+
+             
+                    ID.Clear();
+                CLIENT_ID.Text = null;
+                CAR_ID.Text = null;
+                CONTRACT_START.Text = null;
+                CONTRACT_END.Text = null;
+                PROMO_CODE.Text = null;
+                STATUS.Text = null;
+                SUM.Text = null;
+                DGridContracts.SelectedItem = null;
+                    break;
+                }
+
             }
             catch { }
         }

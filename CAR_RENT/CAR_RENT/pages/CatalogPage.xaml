@@ -301,7 +301,7 @@ MouseEnter="truck_MouseEnter"
               Grid.ColumnSpan="5"
               Grid.RowSpan="3"
               x:Name="search"
-              Visibility="Hidden"
+            Visibility="Hidden"
              >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"></ColumnDefinition>
@@ -312,15 +312,18 @@ MouseEnter="truck_MouseEnter"
             <GroupBox Padding="5" 
                       Header="Коробка передач"
                       Width="220"
-                      Height="80"
+                      Height="90"
                       Grid.Column="1"
                       FontSize="14"
                       VerticalAlignment="Top"
                       Margin="0 0 0 0"
                       BorderThickness="0.3">              
                 <StackPanel>
+                                        <RadioButton Checked="Transmission_Checked" Margin="3"  GroupName="Transmission" Foreground="White" Background="Transparent">любая</RadioButton>
+
                     <RadioButton Checked="Transmission_Checked" Margin="3" GroupName="Transmission" Foreground="White" Background="Transparent">автоматическая</RadioButton>
                     <RadioButton Checked="Transmission_Checked" Margin="3"  GroupName="Transmission" Foreground="White" Background="Transparent">механическая</RadioButton>
+
                 </StackPanel>
             </GroupBox>
             
@@ -336,6 +339,8 @@ MouseEnter="truck_MouseEnter"
                        BorderBrush="#2B3238">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel>
+                        <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent" >Любая</RadioButton>
+
                         <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent" >Audi</RadioButton>
                         <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">BMW</RadioButton>
                         <RadioButton Checked="Brand_Checked" GroupName="Brand" Margin="3" Foreground="White" Background="Transparent">Chevrolet</RadioButton>
@@ -378,6 +383,8 @@ MouseEnter="truck_MouseEnter"
                      >
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel>
+                        <RadioButton Checked="Class_Checked"  GroupName="Class" Margin="3" Foreground="White" Background="Transparent" >Любой</RadioButton>
+
                         <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent" >Эконом</RadioButton>
                         <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Средний</RadioButton>
                         <RadioButton Checked="Class_Checked" GroupName="Class" Margin="3" Foreground="White" Background="Transparent">Бизнес</RadioButton>
@@ -388,37 +395,13 @@ MouseEnter="truck_MouseEnter"
                        </StackPanel>
                 </ScrollViewer>
             </GroupBox>
-            <Button Grid.Column="1"
-                    Width="200"
-                    Height="40"
-                   
-                    VerticalAlignment="Bottom"
-                    Margin="0 0 0 200"
-                    x:Name="filters_for_classes"
-                    Click="filters_for_classes_Click"
-                    Visibility="Hidden"
-                     Style="{StaticResource buttonTables}"
-                    >
-                Подобрать авто
-            </Button>
-            <Button Grid.Column="1"
-                    Width="200"
-                    Height="40"
-                   
-                    VerticalAlignment="Bottom"
-                    Margin="0 0 0 60"
-                    x:Name="filters"
-                    Click="filters_Click"
-                    Visibility="Hidden"
-                     Style="{StaticResource buttonTables}">
-                Подобрать авто
-            </Button>
+           
             <TextBlock Grid.Column="2"
                       HorizontalAlignment="Center"
                        VerticalAlignment="Bottom"
                        Margin="0 0 0 395"
                        FontSize="19"
-                      Visibility="Hidden"
+                     Visibility="Hidden"
                        x:Name="result">Данные не найдены</TextBlock>
             <Border Grid.Column="2"
                 Grid.Row="0"

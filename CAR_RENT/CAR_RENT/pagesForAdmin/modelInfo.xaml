@@ -108,7 +108,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-               
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Text="Марка" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Модель" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
@@ -135,7 +135,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-              
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Visibility="Hidden" Grid.Row="7" Width="200" Height="20" Style="{StaticResource textBoxOuputData }"></TextBox>
             <TextBlock x:Name="BREND" VerticalAlignment="Center" Text="{Binding BREND}" Grid.Row="0" Width="200"></TextBlock>
@@ -148,7 +148,7 @@
 
             <TextBlock x:Name="TRANSMISSION" Text="{Binding TRANSMISSION}" Grid.Row="6" Width="200"  VerticalAlignment="Center"/>
 
-            <TextBlock x:Name="EQUIPMENT" Grid.Row="6" Grid.RowSpan="6" Margin="0 50 0 0" TextWrapping="Wrap" Text="{Binding EQUIPMENT}" Width="200"  ></TextBlock>
+            <TextBlock x:Name="EQUIPMENT" Grid.Row="6" Grid.RowSpan="6" Margin="0 58 0 0" TextWrapping="Wrap" Text="{Binding EQUIPMENT}" Width="200"  ></TextBlock>
         </Grid>
     </Grid>
 </Page>

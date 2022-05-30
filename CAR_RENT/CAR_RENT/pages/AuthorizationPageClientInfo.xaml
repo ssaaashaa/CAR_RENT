@@ -211,9 +211,10 @@
                         x:Name="next"
                           Style="{DynamicResource buttonWithoutBackground}"
                         MouseEnter="next_MouseEnter"
+                        MouseDown="next_MouseDown"
                         MouseLeave="next_MouseLeave"
                             >
-                    <Image Source="..\images\regArrow.png" Height="70" x:Name="NextPage"></Image>
+                    <Image Source="..\images\regArrow.png" Margin="15" x:Name="NextPage" ></Image>
                 </Button>
                 <Button HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
@@ -225,10 +226,12 @@
                             Click="Back"
                         x:Name="leftArrow"
                         MouseEnter="Button_MouseEnter"
+                        MouseDown="leftArrow_MouseDown"
                         MouseLeave="leftArrow_MouseLeave"
                         Style="{DynamicResource buttonWithoutBackground}"
+                         
                             >
-                    <Image Source="..\images\ArrowBack.png" Height="70"></Image>
+                    <Image Source="..\images\ArrowBack.png" x:Name="PeviousPage" Margin="15"></Image>
                 </Button>
             </Grid>
 

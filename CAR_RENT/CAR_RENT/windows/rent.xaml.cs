@@ -39,7 +39,6 @@ namespace CAR_RENT.windows
                 CONTRACT_START.DisplayDateEnd = DateTime.Now + time;
                 CONTRACT_END.DisplayDateEnd = DateTime.Now + time;
                 CONTRACT_START.BlackoutDates.AddDatesInPast();
-                //CONTRACT_END.BlackoutDates.Add();    
                 CONTRACT_END.BlackoutDates.AddDatesInPast();
                 CONTRACT_START.PreviewTextInput += new TextCompositionEventHandler(dateInput);
                 CONTRACT_END.PreviewTextInput += new TextCompositionEventHandler(dateInput);

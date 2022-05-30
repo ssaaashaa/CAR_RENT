@@ -139,12 +139,14 @@ namespace CAR_RENT.pages
                                 if(admin.PASSWORD.Trim() != pass && admin.LOGIN.Trim() == log)
                                 passwordMessage.Visibility = Visibility.Visible;
                                 passwordMessage.Text = "Неправильный пароль!";
+                                return;
                             }
                         }
                         else
                         {
                                 loginMessage.Visibility = Visibility.Visible;
                                 loginMessage.Text = "Пользователь не найден!";
+
 
                         }
                         passwordMessage.Visibility = Visibility.Hidden;
