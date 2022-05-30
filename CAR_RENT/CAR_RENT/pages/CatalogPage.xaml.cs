@@ -35,11 +35,7 @@ namespace CAR_RENT.pages
             classes.Visibility = Visibility.Visible;
             line.Visibility = Visibility.Visible;
         }
-        //public CatalogPage(ItemsControl itemsControl, Car car)
-        //{
-        //    itemsControl.Items.Clear();
-        //    StackPanel = itemsControl;
-        //}
+       
 
         private void autopark_Click(object sender, RoutedEventArgs e)
         {
@@ -51,7 +47,6 @@ namespace CAR_RENT.pages
                 classes.Visibility = Visibility.Hidden;
                 line.Visibility = Visibility.Hidden;
                 Classes.Visibility = Visibility.Visible;
-                //filters.Visibility = Visibility.Visible;
                 using (CAR_RENTEntities db = new CAR_RENTEntities())
                 {
                     var carsCatalog = from cars in db.CARS
@@ -131,17 +126,11 @@ namespace CAR_RENT.pages
                             var buf = new Car(car.CurrentName, car.Price.ToString(), car.Year.ToString().Remove(0, 6).Remove(4), car.BodyType, car.EngineType.ToString(), car.EngineCapacity, car.Transmission, car.Equipment, car.Image, car.Id.ToString(), car.Class.ToString(), car.CurName.ToString(), car.Trans.ToString());
                             buf.Width = 740;
                             buf.Height = 420;
-                            // Cars.Add(buf);
                             StackPanel.Items.Add(buf);
 
                         }
                     }
 
-                    else
-                    {
-                        result.Text = "Необходимо нажать на кнопку по подбору авто!";
-                        result.Visibility = Visibility.Visible;
-                    }
                 }
 
             }
@@ -152,9 +141,11 @@ namespace CAR_RENT.pages
             try
             {
                 request("Эконом");
-                //type_of_class.Text = "Эконом ";
-                //klass.Visibility = Visibility.Visible;
-                //klass.Text = "класс";
+              
+                type_of_class.Text = "Эконом ";
+                klass.Visibility = Visibility.Visible;
+                klass.Text = "класс";
+                Search();
             }
             catch { }
         }
@@ -164,10 +155,12 @@ namespace CAR_RENT.pages
             try
             {
                 request("Средний");
+                
                 Class.Visibility = Visibility.Visible;
-                //type_of_class.Text = "Средний ";
-                //klass.Visibility = Visibility.Visible;
-                //klass.Text = "класс";
+                type_of_class.Text = "Средний ";
+                klass.Visibility = Visibility.Visible;
+                klass.Text = "класс";
+                Search();
             }
             catch { }
         }
@@ -177,10 +170,12 @@ namespace CAR_RENT.pages
             try
             {
                 request("Бизнес");
+               
                 Class.Visibility = Visibility.Visible;
-                //type_of_class.Text = "Бизнес ";
-                //klass.Visibility = Visibility.Visible;
-                //klass.Text = "класс";
+                type_of_class.Text = "Бизнес ";
+                klass.Visibility = Visibility.Visible;
+                klass.Text = "класс";
+                Search();
             }
             catch { }
 
@@ -190,11 +185,14 @@ namespace CAR_RENT.pages
         {
             try
             {
+              
                 request("Кабриолет");
+              
                 Class.Visibility = Visibility.Visible;
-                //type_of_class.Text = "Кабриолет";
-                //klass.Visibility = Visibility.Visible;
-                //klass.Text = "ы";
+                type_of_class.Text = "Кабриолет";
+                klass.Visibility = Visibility.Visible;
+                klass.Text = "ы";
+                Search();
             }
             catch { }
 
@@ -205,10 +203,12 @@ namespace CAR_RENT.pages
             try
             {
                 request("Внедорожник");
+              
                 Class.Visibility = Visibility.Visible;
-                //type_of_class.Text = "Внедорожник";
-                //klass.Visibility = Visibility.Visible;
-                //klass.Text = "и";
+                type_of_class.Text = "Внедорожник";
+                klass.Visibility = Visibility.Visible;
+                klass.Text = "и";
+                Search();
             }
             catch { }
         }
@@ -218,10 +218,12 @@ namespace CAR_RENT.pages
             try
             {
                 request("Микроавтобус");
+               
                 Class.Visibility = Visibility.Visible;
-                //type_of_class.Text = "Микроавтобус";
-                //klass.Visibility = Visibility.Visible;
-                //klass.Text = "ы";
+                type_of_class.Text = "Микроавтобус";
+                klass.Visibility = Visibility.Visible;
+                klass.Text = "ы";
+                Search();
             }
             catch { }
 
@@ -232,9 +234,11 @@ namespace CAR_RENT.pages
             try
             {
                 request("Грузовые");
+               
                 Class.Visibility = Visibility.Visible;
-                //type_of_class.Text = "Грузовые";
-                //klass.Visibility = Visibility.Hidden;
+                type_of_class.Text = "Грузовые";
+                klass.Visibility = Visibility.Hidden;
+                Search();
             }
             catch { }
 
@@ -293,31 +297,43 @@ namespace CAR_RENT.pages
             string transmission = CheckedTransmission;
             string brand = CheckedBrand;
             string classs = CheckedClass;
-            if (transmission == "любая")
-            {
-                transmission = null;
-            }
-            if (brand == "Любая")
-            {
-                brand = null;
-            }
-            if (classs == "Любой")
-            {
-                classs = null;
-            }
-            var regexClass = new Regex(@"\w*" + classs + @"\w*", RegexOptions.IgnoreCase);
-            var regexBrand = new Regex(@"\w*" + brand + @"\w*", RegexOptions.IgnoreCase);
-            var regexTrans = new Regex(@"\w*" + transmission + @"\w*", RegexOptions.IgnoreCase);
             search.Visibility = Visibility.Visible;
             mainInfo.Visibility = Visibility.Hidden;
             mainCar.Visibility = Visibility.Hidden;
             if (type_of_class.Text.Length != 0)
             {
                 classes.Visibility = Visibility.Visible;
+                Classes.Visibility = Visibility.Hidden;
+                line.Visibility = Visibility.Visible;
+                classs = type_of_class.Text.Trim();
+
+
             }
-            classes.Visibility = Visibility.Hidden;
-            line.Visibility = Visibility.Hidden;
-            Classes.Visibility = Visibility.Visible;
+            else
+            {
+                line.Visibility = Visibility.Hidden;
+                classes.Visibility = Visibility.Hidden;
+                Classes.Visibility = Visibility.Visible;
+                if (classs == "Любой")
+                {
+                    classs = null;
+                }
+                
+               
+            }
+            if (brand == "Любая")
+            {
+                brand = null;
+            }
+            if (transmission == "любая")
+            {
+                transmission = null;
+            }
+            var regexClass = new Regex(@"\w*" + classs + @"\w*", RegexOptions.IgnoreCase);
+            var regexBrand = new Regex(@"\w*" + brand + @"\w*", RegexOptions.IgnoreCase);
+            var regexTrans = new Regex(@"\w*" + transmission + @"\w*", RegexOptions.IgnoreCase);
+
+
             using (CAR_RENTEntities db = new CAR_RENTEntities())
             {
                 var carsCatalog = from cars in db.CARS
@@ -495,9 +511,6 @@ namespace CAR_RENT.pages
             catch { }
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
     }
 }

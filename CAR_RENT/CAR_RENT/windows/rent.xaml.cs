@@ -217,15 +217,16 @@ namespace CAR_RENT.windows
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtp.Send(m);
                         CAR_RENTEntities.GetContext().SaveChanges();
-                        MessageBox.Show("Заявка отправлена!");
+                       ContractIsAccepted contractIsAccepted = new ContractIsAccepted(this);
+                        contractIsAccepted.ShowDialog();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                         return;
                     }
-                    this.Close();
-                    CatalogWindow.Frame.Navigate(new UserContracts());
+                   
+                   
                 }
           
 

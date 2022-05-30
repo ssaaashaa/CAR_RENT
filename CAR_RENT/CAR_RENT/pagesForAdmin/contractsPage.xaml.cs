@@ -28,11 +28,11 @@ namespace CAR_RENT.pagesForAdmin
             InitializeComponent();
             try
             {
-                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS.Trim() != "Новая заявка").OrderByDescending(c => c.CONTRACT_START).ToList();
                 DGridNewContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.STATUS.Trim() == "Новая заявка").ToList();
                 id.PreviewTextInput += new TextCompositionEventHandler(numbers);
-                idCar.PreviewTextInput += new TextCompositionEventHandler(numbers);
-             
+                idCar.PreviewTextInput += new TextCompositionEventHandler(numbersLetters);
+                CAR_ID.PreviewTextInput += new TextCompositionEventHandler(numbers);
                 contract_status();
             
 
@@ -56,6 +56,18 @@ namespace CAR_RENT.pagesForAdmin
             }
             catch { }
         }
+        void numbersLetters(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                if (!Char.IsLetterOrDigit(e.Text, 0) && e.Text != "-")
+                {
+                    e.Handled = true; //не обрабатывать введеный символ
+                }
+            }
+            catch { }
+        }
+
         private void space_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -111,7 +123,9 @@ namespace CAR_RENT.pagesForAdmin
                 if (selectedContract != null)
                 {
                     ID.Text = selectedContract.ID.ToString().Trim();
-                    CLIENT_ID.Text = selectedContract.CLIENT_ID.ToString().Trim();
+                   
+                    CLIENT client=CAR_RENTEntities.GetContext().CLIENTS.Where(x => x.ID == selectedContract.CLIENT_ID).FirstOrDefault();
+                    CLIENT_ID.Text = client.TELEPHONE.ToString().Trim();
                     CAR_ID.Text = selectedContract.CAR_ID.ToString().Trim();
                     CONTRACT_START.Text = selectedContract.CONTRACT_START.ToString().Remove(10).Trim();
                     CONTRACT_END.Text = selectedContract.CONTRACT_END.ToString().Remove(10).Trim();
@@ -166,6 +180,7 @@ namespace CAR_RENT.pagesForAdmin
                 CONTRACT currentContract = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.ID.ToString().Trim() == ID.Text.ToString().Trim()).FirstOrDefault();
  
                 currentContract.STATUS = STATUS.Text.Trim();    
+                currentContract.CAR_ID=Convert.ToInt32(CAR_ID.Text.Trim());
                 if (currentContract != null)
                 {
                     try
@@ -232,8 +247,8 @@ namespace CAR_RENT.pagesForAdmin
                 if (selectedContract != null)
                 {
                     ID.Text = selectedContract.ID.ToString().Trim();
-                    CLIENT_ID.Text = selectedContract.CLIENT_ID.ToString().Trim();
-                    CAR_ID.Text = selectedContract.CAR_ID.ToString().Trim();
+                    CLIENT client = CAR_RENTEntities.GetContext().CLIENTS.Where(x => x.ID == selectedContract.CLIENT_ID).FirstOrDefault();
+                    CLIENT_ID.Text = client.TELEPHONE.ToString().Trim(); CAR_ID.Text = selectedContract.CAR_ID.ToString().Trim();
                     CONTRACT_START.Text = selectedContract.CONTRACT_START.ToString().Remove(10).Trim();
                     CONTRACT_END.Text = selectedContract.CONTRACT_END.ToString().Remove(10).Trim();
                     if (selectedContract.PROMO_CODE != null)
@@ -288,12 +303,14 @@ namespace CAR_RENT.pagesForAdmin
                             }
                             STATUS.Text = selectedContract.STATUS.Trim();
                             SUM.Text = selectedContract.TOTAL_COST.ToString().Trim();
+                            break;
                         }
-                        break;
+                       
+
                     }
-                    if (cellContentID == null)
+                    else 
                     {
-                        ID.Clear();
+                        ID.Clear(); ;
                         CLIENT_ID.Text = null;
                         CAR_ID.Text = null;
                         CONTRACT_START.Text = null;
@@ -302,38 +319,48 @@ namespace CAR_RENT.pagesForAdmin
                         STATUS.Text = null;
                         SUM.Text = null;
                         DGridContracts.SelectedItem = null;
-                        break;
                     }
-                }
-                for (int i = 0; i > DGridContracts.Items.Count; i++)
-                {
+                  
 
-             
-                    ID.Clear();
-                CLIENT_ID.Text = null;
-                CAR_ID.Text = null;
-                CONTRACT_START.Text = null;
-                CONTRACT_END.Text = null;
-                PROMO_CODE.Text = null;
-                STATUS.Text = null;
-                SUM.Text = null;
-                DGridContracts.SelectedItem = null;
-                    break;
                 }
-
             }
             catch { }
         }
 
         private void idCar_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+
+           
             try
             {
-                DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString().Trim() == idCar.Text.Trim()).ToList();
-                if (idCar.Text.Trim().Length == 0)
+              
+                if (idCar.Text.Trim().Length == 9)
                 {
-                    DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                    using (CAR_RENTEntities db = new CAR_RENTEntities())
+                    {
+                        var contracts = (from cars in db.CARS
+                                         where cars.REGISTRATION_NUMBER.ToString() == idCar.Text.Trim()
+                                         join contract in db.CONTRACTS
+                                         on cars.ID equals contract.CAR_ID
+                                         select contract).ToList();
+                        DGridContracts.ItemsSource = contracts;
+                        if (contracts.Count == 0)
+                        {
+                            DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                        }
+                    }
                 }
+                else
+                {
+                    DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.Where(c => c.CAR_ID.ToString().Trim() == idCar.Text.Trim()).OrderByDescending(c => c.CONTRACT_START).ToList();
+                    if (idCar.Text.Trim().Length == 0)
+                    {
+                        DGridContracts.ItemsSource = CAR_RENTEntities.GetContext().CONTRACTS.ToList();
+                    }
+                }
+        
+
             }
             catch { }
         }

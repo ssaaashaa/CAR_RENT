@@ -120,7 +120,9 @@ namespace CAR_RENT.pagesForAdmin
                 if (selectedCar != null)
                 {
                     ID.Text = selectedCar.ID.ToString().Trim();
-                    MODEL.Text = selectedCar.MODEL.ToString().Trim();
+                   
+                    MODEL_INFO model=CAR_RENTEntities.GetContext().MODEL_INFO.Where(x => x.ID.ToString().Trim() == selectedCar.MODEL.ToString().Trim()).FirstOrDefault();
+                    MODEL.Text = model.BREND.Trim() + " " + model.MODEL.Trim();
                     CLASS.Text = selectedCar.CLASS.Trim();
                     REGISTRATION_NUMBER.Text = selectedCar.REGISTRATION_NUMBER.Trim();
                     STATUS.Text = selectedCar.STATUS.Trim();

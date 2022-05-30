@@ -28,7 +28,7 @@
              Grid.Row="1" 
              Grid.ColumnSpan="2" 
              Name="Text" 
-             FontSize="18"
+             FontSize="14"
              Background="white"
              Foreground="#2B3238"
              ScrollViewer.VerticalScrollBarVisibility="Auto" 

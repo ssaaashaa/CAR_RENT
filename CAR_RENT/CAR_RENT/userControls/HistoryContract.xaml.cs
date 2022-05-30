@@ -56,8 +56,9 @@ namespace CAR_RENT.userControls
                 {
                     contract.STATUS = "Отменена";
                     contract.CONTRACT_STATUS = "Прокат отменен";
+                    STATUS.Text = "Прокат отменен";
+                    cancel.Visibility = Visibility.Hidden;
                     CAR_RENTEntities.GetContext().SaveChanges();
-                    CatalogWindow.Frame.Navigate(new UserContracts());
                   
                 }
             }

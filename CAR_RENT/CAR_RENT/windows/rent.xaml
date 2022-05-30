@@ -25,14 +25,7 @@
     </Window.Resources>
     <Grid>
         <Rectangle Fill="#3A4149" Opacity="0.8"></Rectangle>
-        <Border Height="480" Width="380">
-            <Border.OpacityMask>
-                <VisualBrush>
-                    <VisualBrush.Visual>
-                        <Border CornerRadius="50" Height="480" Width="380" Background="White"/>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Border.OpacityMask>
+       
 
             <Grid Height="480" Width="380" 
             Background="#2B3238">
@@ -133,6 +126,6 @@
                               Style="{StaticResource Enter}"
                         ></Button>
             </Grid>
-        </Border>
+      
     </Grid>
 </Window>

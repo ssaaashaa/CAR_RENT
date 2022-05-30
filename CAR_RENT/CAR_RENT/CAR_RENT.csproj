@@ -128,6 +128,9 @@
     <Compile Include="windows\Accident.xaml.cs">
       <DependentUpon>Accident.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\ContractIsAccepted.xaml.cs">
+      <DependentUpon>ContractIsAccepted.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\rent.xaml.cs">
       <DependentUpon>rent.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\CatalogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\ContractIsAccepted.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

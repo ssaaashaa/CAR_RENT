@@ -127,8 +127,26 @@ namespace CAR_RENT.pagesForAdmin
                             TELEPHONE.Text = selectedClient.TELEPHONE.Trim();
                             TYPE.Text = selectedClient.USER_TYPE.ToString().Trim();
                             ID.Text = selectedClient.ID.ToString().Trim();
+                            break;
                         }
-                        break;
+                        
+                    }
+                    else
+                    {
+                     
+                        LOGIN.Text=null;
+                        PASSWORD.Text=null; 
+                        SURNAME.Text=null;
+                        NAME.Text=null;
+                        PATRONYMIC.Text=null;
+                        BDAY.Text=null;
+                        PASSPORT.Text=null;
+                        LICENSE_ID.Text=null;
+                        EXPERIENCE.Text=null;
+                        TELEPHONE.Text=null;
+                        TYPE.Text=null;
+                        ID.Text=null;
+
                     }
                 }
             }

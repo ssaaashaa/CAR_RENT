@@ -19,21 +19,14 @@
     <Window.Resources>
         <ResourceDictionary Source="../templates/Styles.xaml" />
     </Window.Resources>
-    <Border Height="690" Width="500" Background="Transparent">
-            <Border.OpacityMask>
-                <VisualBrush>
-                    <VisualBrush.Visual>
-                        <Border CornerRadius="50" Height="800" Width="800" Background="White"/>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Border.OpacityMask>
+  
         <Grid Background="Transparent">
             <Grid  Background="#2B3238">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*">
 
                     </ColumnDefinition>
-                    <ColumnDefinition Width="10*">
+                    <ColumnDefinition Width="16*">
 
                     </ColumnDefinition>
                     <ColumnDefinition Width="*">
@@ -44,10 +37,10 @@
                     <RowDefinition Height="*">
 
                     </RowDefinition>
-                    <RowDefinition Height="10*">
+                    <RowDefinition Height="19*">
 
                     </RowDefinition>
-                    <RowDefinition Height="1.5*">
+                    <RowDefinition Height="2.5*">
 
                     </RowDefinition>
                     <RowDefinition Height="*">
@@ -94,7 +87,7 @@
                 <Grid Grid.Column="1"
                       Grid.Row="1"
                       Background="White">
-                    <StackPanel Margin="40 20"
+                    <StackPanel Margin="30 20"
                             Orientation="Vertical"
                             >
                         <StackPanel Orientation="Horizontal"
@@ -142,7 +135,7 @@
                                    Height="1"
                                    Fill="#2B3238"
                                    HorizontalAlignment="Right"
-                                   Margin="0 -10 57 0"></Rectangle>
+                                   Margin="0 -10 127 0"></Rectangle>
                     </StackPanel>
 
 
@@ -159,6 +152,6 @@
                 </Grid>
             </Grid>
         </Grid>
-    </Border>
+ 
    
 </Window>

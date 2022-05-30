@@ -127,11 +127,12 @@ namespace CAR_RENT.pagesForAdmin
                             ENGINE_TYPE.Text = selectedModel.ENGINE_TYPE.Trim();
                             TRANSMISSION.Text = selectedModel.TRANSMISSION.Trim();
                             EQUIPMENT.Text = selectedModel.EQUIPMENT.Trim();
+                            break;
                         }
                        
-                        break;
+                       
                     }
-                    if (cellContentID == null)
+                    else
                     {
                         ID.Clear();
                         MODEL.Text = null;
@@ -143,27 +144,10 @@ namespace CAR_RENT.pagesForAdmin
                         EQUIPMENT.Text = null;
                         ENGINE_TYPE.Text = null;
                         DGridModelInfo.SelectedItem = null;
-                        break;
-
                     }
                     }
               
-                for (int i = 0; i > DGridModelInfo.Items.Count; i++)
-                {
-                    DGridModelInfo.SelectedItem = null;
-                    ID.Clear();
-                    MODEL.Text = null;
-                    BREND.Text = null;
-                    YEAR_OF_ISSUE.Text = null;
-                    BODY_TYPE.Text = null;
-                    ENGINE_CAPACITY.Text = null;
-                    TRANSMISSION.Text = null;
-                    EQUIPMENT.Text = null;
-                    ENGINE_TYPE.Text = null;
-                  
-                    break;
-                }
-                 
+              
               
             }
             catch { }

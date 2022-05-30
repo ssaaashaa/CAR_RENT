@@ -301,7 +301,7 @@ MouseEnter="truck_MouseEnter"
               Grid.ColumnSpan="5"
               Grid.RowSpan="3"
               x:Name="search"
-            Visibility="Hidden"
+           Visibility="Hidden"
              >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"></ColumnDefinition>

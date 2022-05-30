@@ -125,8 +125,8 @@
 
                     <TextBox x:Name="idCar"
                      Width="120"
-                             
-                             PreviewKeyDown="space_PreviewKeyDown"
+                              PreviewKeyDown="space_PreviewKeyDown"
+                            
                      TextAlignment="Center"
                      Background="Transparent"
                      Foreground="White"
@@ -185,7 +185,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                
             </Grid.RowDefinitions>
-            <TextBlock Text="ID клиента" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Телефон клиента" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="ID авто" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Начало аренды" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="Конец аренды" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
@@ -214,7 +214,7 @@
             </Grid.RowDefinitions>
             <TextBox x:Name="ID" Text="{Binding ID}" Grid.Row="0" Visibility="Hidden" Width="200" Height="20" ></TextBox>
             <TextBlock x:Name="CLIENT_ID" Text="{Binding CLIENT_ID}"  Grid.Row="0" Width="200" VerticalAlignment="Center"></TextBlock>
-            <TextBlock x:Name="CAR_ID" Text="{Binding CAR_ID}" Grid.Row="1" Width="200"  VerticalAlignment="Center" ></TextBlock>
+            <TextBox  PreviewKeyDown="space_PreviewKeyDown" Background="Transparent" Foreground="White" BorderThickness="0 0 0 1" x:Name="CAR_ID" Text="{Binding CAR_ID}" Grid.Row="1" Width="200"  VerticalAlignment="Center" ></TextBox>
             <TextBlock x:Name="CONTRACT_START" Text="{Binding CONTRACT_START, StringFormat=d}"  Grid.Row="2" Width="200" VerticalAlignment="Center" ></TextBlock>
             <TextBlock x:Name="CONTRACT_END"  Text="{Binding CONTRACT_END, StringFormat=d}" Grid.Row="3" Width="200"  VerticalAlignment="Center" ></TextBlock>
             <TextBlock x:Name="PROMO_CODE" Grid.Row="4"  Text="{Binding PROMO_CODE}" Width="200" VerticalAlignment="Center" ></TextBlock>
@@ -244,7 +244,7 @@
                            ></TextBox>
                 <TextBlock>BYN</TextBlock>
             </StackPanel>
-            <Button Content="Изменить статус"
+            <Button Content="Изменить"
                  Style="{StaticResource buttonTables}"
                 Width="180"
                 Height="40"
